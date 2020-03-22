@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class HarvestId {
   _id: String
 
@@ -7,6 +9,10 @@ export class HarvestId {
 
   id() {
     return this._id;
+  }
+
+  static create() {
+    return new HarvestId(uuidv4());
   }
 
   equalTo(aHarvestId: HarvestId) {

@@ -2,6 +2,7 @@ import { isEqual } from 'lodash';
 
 import { Location } from '../../../valueObjects/Location';
 import { Mushroom } from '../../../valueObjects/Mushroom';
+
 import { HarvestId } from './HarvestId';
 
 export class Harvest {
@@ -11,7 +12,7 @@ export class Harvest {
   _mushroom: Mushroom;
   _quantity: Number;
 
-  constructor({ id = new HarvestId(''), location, date, mushroom, quantity }: {
+  constructor({ id = HarvestId.create(), location, date, mushroom, quantity }: {
     id?: HarvestId,
     location: Location,
     date: Date,

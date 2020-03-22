@@ -1,12 +1,18 @@
 import { HarvestId } from './HarvestId';
 
 describe('HarvestId', () => {;
-  const fakeUUID = 'this-is-a-fake-uuid';
-  const subject = new HarvestId(fakeUUID);
-
   it('should be able to another id with the same value', () => {
-    const aHarvestId = new HarvestId(fakeUUID)
+    const fakeUUID = 'this-is-a-fake-uuid';
+    const subject = new HarvestId(fakeUUID);
+    const aHarvestId = new HarvestId(fakeUUID);
 
     expect(subject.equalTo(aHarvestId)).toBeTruthy();
+  });
+
+  it('should create unique ids', () => {
+    const aHarvest = HarvestId.create();
+    const anotherHarvest = HarvestId.create();
+
+    expect(aHarvest.equalTo(anotherHarvest)).toBeFalsy();
   });
 });
