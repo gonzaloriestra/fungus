@@ -1,5 +1,5 @@
 import { Harvest } from './Harvest';
-import { Location } from '../valueObjects/Location';
+import { Location } from '../../../valueObjects/Location';
 
 export class HarvestHistory {
   harvests: Array<Harvest>;
@@ -17,12 +17,12 @@ export class HarvestHistory {
   }
 
   filterByDate(date: Date) {
-    return new HarvestHistory({ harvests: this.harvests.filter((harvest) => date.getDay() === harvest.getDate().getDay() && date.getMonth() === harvest.getDate().getMonth() && date.getFullYear() === harvest.getDate().getFullYear())});
+    return new HarvestHistory({ harvests: this.harvests.filter((harvest) => date.getDay() === harvest.date().getDay() && date.getMonth() === harvest.date().getMonth() && date.getFullYear() === harvest.date().getFullYear())});
   }
 
   filterByLocation(location: Location) {
     return new HarvestHistory({
-      harvests: this.harvests.filter((harvest) => harvest.getLocation().isEqual(location))});
+      harvests: this.harvests.filter((harvest) => harvest.location().isEqual(location))});
   }
 
   toArray() {

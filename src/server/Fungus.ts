@@ -1,8 +1,8 @@
 import { Map } from "./valueObjects/Map";
 import { MicoParameter } from './valueObjects/MicoParameter';
-import { Harvest } from './entities/Harvest';
+import { Harvest } from './Domain/Model/Harvest/Harvest';
 import { Forecast } from './valueObjects/Forecast';
-import { HarvestHistory } from './entities/HarvestHistory';
+import { HarvestHistory } from './Domain/Model/Harvest/HarvestHistory';
 
 type FungusProps = { map?: Map, micoParameters?: Array<MicoParameter>, harvestHistory?: HarvestHistory };
 
@@ -22,7 +22,7 @@ export class Fungus {
     const harvestsInTheSameDate = this.harvestHistory.filterByDate(date);
 
     return harvestsInTheSameDate.toArray().map((harvest) => {
-      return new Forecast({ location: harvest.getLocation(), mushrooms: [] });
+      return new Forecast({ location: harvest.location(), mushrooms: [] });
     });
   }
 

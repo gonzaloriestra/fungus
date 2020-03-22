@@ -2,10 +2,10 @@ import { Fungus } from './Fungus';
 
 import { Map } from './valueObjects/Map';
 import { MicoParameter } from './valueObjects/MicoParameter';
-import { Harvest } from './entities/Harvest';
+import { Harvest } from './Domain/Model/Harvest/Harvest';
 import { Location } from './valueObjects/Location';
 import { Mushroom } from './valueObjects/Mushroom';
-import { HarvestHistory } from './entities/HarvestHistory';
+import { HarvestHistory } from './Domain/Model/Harvest/HarvestHistory';
 
 describe('Fungus', () => {;
   const today = new Date();
@@ -21,6 +21,11 @@ describe('Fungus', () => {;
       expect(subject.getHarvests().count()).toEqual(1);
     });
   });
+
+
+
+
+
 
   describe('in a day with good conditions for the harvest', () => {
     const map = new Map({ locations: [location] });
@@ -59,7 +64,7 @@ describe('Fungus', () => {;
         const harvests = harvestHistory.filterByLocation(forecast.getLocation());
 
         expect(harvests).toBeDefined();
-        expect(harvests.toArray()[0].getDate()).toEqual(today);
+        expect(harvests.toArray()[0].date()).toEqual(today);
       });
     });
 
