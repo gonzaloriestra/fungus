@@ -5,7 +5,7 @@ import { MicoParameter } from './valueObjects/MicoParameter';
 import { Harvest } from './Domain/Model/Harvest/Harvest';
 import { Location } from './valueObjects/Location';
 import { Mushroom } from './valueObjects/Mushroom';
-import { HarvestHistory } from './Domain/Model/Harvest/HarvestHistory';
+import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
 
 describe('Fungus', () => {;
   const today = new Date();
@@ -30,7 +30,7 @@ describe('Fungus', () => {;
   describe('in a day with good conditions for the harvest', () => {
     const map = new Map({ locations: [location] });
     const micoParameters = [new MicoParameter()];
-    const harvestHistory = new HarvestHistory();
+    const harvestHistory = new FileHarvestRepository();
     harvestHistory.add(new Harvest({ location, date: today, mushroom: new Mushroom(), quantity: 5 }));
     const subject = new Fungus({ map, micoParameters, harvestHistory });
 
@@ -61,10 +61,10 @@ describe('Fungus', () => {;
       const forecasts = subject.foretell(today);
 
       forecasts.forEach(forecast => {
-        const harvests = harvestHistory.filterByLocation(forecast.getLocation());
+        const harvests = harvestHistory.filterBy({location: forecast.getLocation()});
 
         expect(harvests).toBeDefined();
-        expect(harvests.toArray()[0].date()).toEqual(today);
+        expect(harvests[0].date()).toEqual(today);
       });
     });
 
@@ -73,7 +73,7 @@ describe('Fungus', () => {;
       const forecasts = subject.foretell(pastDay);
 
       forecasts.forEach(forecast => {
-        const harvests = harvestHistory.filterByLocation(forecast.getLocation());
+        const harvests = harvestHistory.filterBy({location: forecast.getLocation()});
 
         expect(harvests).toBeUndefined();
       });

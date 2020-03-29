@@ -2,15 +2,16 @@ import { Map } from "./valueObjects/Map";
 import { MicoParameter } from './valueObjects/MicoParameter';
 import { Harvest } from './Domain/Model/Harvest/Harvest';
 import { Forecast } from './valueObjects/Forecast';
-import { HarvestHistory } from './Domain/Model/Harvest/HarvestHistory';
+import { HarvestRepository } from './Domain/Model/Harvest/HarvestRepository';
+import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
 
-type FungusProps = { map?: Map, micoParameters?: Array<MicoParameter>, harvestHistory?: HarvestHistory };
+type FungusProps = { map?: Map, micoParameters?: Array<MicoParameter>, harvestHistory?: HarvestRepository };
 
 export class Fungus {
   map: Map;
-  harvestHistory: HarvestHistory
+  harvestHistory: HarvestRepository
 
-  constructor({ map = new Map(), micoParameters = [], harvestHistory = new HarvestHistory()}: FungusProps = {}) {
+  constructor({ map = new Map(), micoParameters = [], harvestHistory = new FileHarvestRepository()}: FungusProps = {}) {
     this.map = map;
     this.harvestHistory = harvestHistory;
   }
@@ -19,9 +20,9 @@ export class Fungus {
     // TODO - Harvest and Map are representing the same concept, at the and both are location with some harvest associated
     // Maybe we should include harvests into each location
     // TODO - Date comparation can be wrapper in our custom date object
-    const harvestsInTheSameDate = this.harvestHistory.filterByDate(date);
+    const harvestsInTheSameDate = this.harvestHistory.filterBy({date});
 
-    return harvestsInTheSameDate.toArray().map((harvest) => {
+    return harvestsInTheSameDate.map((harvest) => {
       return new Forecast({ location: harvest.location(), mushrooms: [] });
     });
   }
@@ -30,7 +31,7 @@ export class Fungus {
     this.harvestHistory.add(harvest);
   }
 
-  getHarvests(): HarvestHistory {
+  getHarvests(): HarvestRepository {
     return this.harvestHistory;
   }
 }
