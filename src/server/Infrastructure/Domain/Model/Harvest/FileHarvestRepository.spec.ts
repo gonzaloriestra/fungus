@@ -29,7 +29,6 @@ describe('FileHarvestRespostory', () => {
     });
   });
 
-
   describe('.add', () => {
     afterAll(() => {
       fs.unlinkSync(filePath);

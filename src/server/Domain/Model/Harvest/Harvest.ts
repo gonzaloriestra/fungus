@@ -10,14 +10,14 @@ export class Harvest {
   _date: Date;
   _location: Location;
   _mushroom?: Mushroom;
-  _quantity?: Number;
+  _quantity?: number;
 
   constructor({ id = HarvestId.create(), location, date, mushroom, quantity }: {
     id?: HarvestId,
     location: Location,
     date: Date,
     mushroom?: Mushroom,
-    quantity?: Number
+    quantity?: number
   }) {
     this._id = id;
     this._date = date;

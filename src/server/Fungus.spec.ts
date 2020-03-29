@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+
 import { Fungus } from './Fungus';
 
 import { Map } from './valueObjects/Map';
@@ -8,11 +10,17 @@ import { Mushroom } from './valueObjects/Mushroom';
 import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
 
 describe('Fungus', () => {;
+  const filePath = 'testHarvestRepostiory.txt';
   const today = new Date();
   const location = new Location({ id: '0001' });
 
+  afterAll(() => {
+    fs.unlinkSync(filePath);
+  });
+
   describe('Harvest registration', () => {
-    const subject = new Fungus();
+    const harvestHistory = new FileHarvestRepository({ filePath });
+    const subject = new Fungus({  harvestHistory });
 
     it('should be able to register a new harvest', () => {
       const harvest = new Harvest({ date: today, location, mushroom: new Mushroom(), quantity: 5 });
@@ -30,7 +38,7 @@ describe('Fungus', () => {;
   describe('in a day with good conditions for the harvest', () => {
     const map = new Map({ locations: [location] });
     const micoParameters = [new MicoParameter()];
-    const harvestHistory = new FileHarvestRepository();
+    const harvestHistory = new FileHarvestRepository({ filePath });
     harvestHistory.add(new Harvest({ location, date: today, mushroom: new Mushroom(), quantity: 5 }));
     const subject = new Fungus({ map, micoParameters, harvestHistory });
 

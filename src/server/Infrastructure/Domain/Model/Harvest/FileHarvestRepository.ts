@@ -17,6 +17,10 @@ export class FileHarvestRepository implements HarvestRepository {
     this.filePath = filePath;
   }
 
+  nextIdentity() {
+    return HarvestId.create()
+  }
+
   async fetch({onFinish = () => {}}: {onFinish?: () => void} = {}) {
     const lineReader = readline.createInterface({
       input: fs.createReadStream(this.filePath),
@@ -28,10 +32,6 @@ export class FileHarvestRepository implements HarvestRepository {
       const harvest = JSON.parse(line);
       this.harvests.push(harvest);
     });
-  }
-
-  nextIdentity() {
-    return HarvestId.create()
   }
 
   add(harvest: Harvest) {
