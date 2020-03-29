@@ -1,8 +1,11 @@
 import { isEqual } from 'lodash';
-export class Location {
-  _id: String;
 
-  constructor({id}: {id: String} = {id: ''}) {
+import { LocationId } from './LocationId';
+
+export class Location {
+  _id: LocationId;
+
+  constructor({ id = LocationId.create() }: { id?: LocationId} = {}) {
     this._id = id;
   }
 

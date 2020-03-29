@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
 import { Harvest } from '../../../../Domain/Model/Harvest/Harvest';
-import { Location } from '../../../../valueObjects/Location';
+import { Location } from '../../../../Domain/Model/Location/Location';
 
 import { FileHarvestRepository } from './FileHarvestRepository';
 
@@ -11,8 +11,8 @@ describe('FileHarvestRespostory', () => {
   describe('.fetch', () => {
     beforeAll(() => {
       const harvestRepository = new FileHarvestRepository({ filePath });
-      const harvestOne = new Harvest({ location: new Location({ id: '0001' }), date: new Date() });
-      const harvestTwo = new Harvest({ location: new Location({ id: '0002' }), date: new Date() });
+      const harvestOne = new Harvest({ location: new Location(), date: new Date() });
+      const harvestTwo = new Harvest({ location: new Location(), date: new Date() });
 
       harvestRepository.add(harvestOne);
       harvestRepository.add(harvestTwo);
@@ -36,7 +36,7 @@ describe('FileHarvestRespostory', () => {
 
     it('should add a new Harvest to the repository', () => {
       const harvestRepository = new FileHarvestRepository({ filePath });
-      const harvest = new Harvest({ location: new Location({ id: '0001' }), date: new Date()});
+      const harvest = new Harvest({ location: new Location(), date: new Date()});
 
       harvestRepository.add(harvest);
 
@@ -47,8 +47,8 @@ describe('FileHarvestRespostory', () => {
   describe('.filterBy', () => {
     const today = new Date();
     const pastDate = new Date('1985-12-19');
-    const locationOne = new Location({ id: '0001' });
-    const locationTwo = new Location({ id: '0002' });
+    const locationOne = new Location();
+    const locationTwo = new Location();
 
     const harvestRepository = new FileHarvestRepository({ filePath });
     const todayHarvest = new Harvest({ location: locationOne, date: today });

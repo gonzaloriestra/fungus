@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
 
-import { Location } from '../../../valueObjects/Location';
+import { Location } from '../Location/Location';
 import { Mushroom } from '../../../valueObjects/Mushroom';
 
 import { HarvestId } from './HarvestId';

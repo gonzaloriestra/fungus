@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 
-import { Location } from '../../../../valueObjects/Location';
+import { Location } from '../../../../Domain/Model/Location/Location';
 
 import { HarvestRepository } from "../../../../Domain/Model/Harvest/HarvestRepository";
 import { HarvestId } from '../../../../Domain/Model/Harvest/HarvestId';

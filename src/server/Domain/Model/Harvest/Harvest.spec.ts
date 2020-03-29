@@ -1,19 +1,19 @@
 import { Harvest } from './Harvest';
-import { Location } from '../../../valueObjects/Location';
+import { Location } from '../Location/Location';
 
 describe('Harvest', () => {
   describe('.isEqual', () => {
     it('should return true when you compare the same object', () => {
-      const harvestOne = new Harvest({ location: new Location({ id: '0001' }), date: new Date() });
+      const subjectOne = new Harvest({ location: new Location(), date: new Date() });
 
-      expect(harvestOne.isEqual(harvestOne)).toBeTruthy();
+      expect(subjectOne.isEqual(subjectOne)).toBeTruthy();
     });
 
     it('should return false for different harvest instances', () => {
-      const harvestOne = new Harvest({ location: new Location({ id: '0001' }), date: new Date() });
-      const harvestTwo = new Harvest({ location: new Location({ id: '0002' }), date: new Date() });
+      const subjectOne = new Harvest({ location: new Location(), date: new Date() });
+      const subjectTwo = new Harvest({ location: new Location(), date: new Date() });
 
-      expect(harvestOne.isEqual(harvestTwo)).toBeFalsy();
+      expect(subjectOne.isEqual(subjectTwo)).toBeFalsy();
     });
   });
 });

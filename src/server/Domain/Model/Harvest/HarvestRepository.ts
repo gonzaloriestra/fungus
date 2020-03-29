@@ -1,4 +1,4 @@
-import { Location } from '../../../valueObjects/Location';
+import { Location } from '../Location/Location';
 
 import { Harvest } from "./Harvest";
 import { HarvestId } from './HarvestId';

@@ -1,4 +1,4 @@
-import { Location } from './Location';
+import { Location } from '../Domain/Model/Location/Location';
 import { Map } from './Map';
 
 describe('Map', () => {

@@ -5,14 +5,14 @@ import { Fungus } from './Fungus';
 import { Map } from './valueObjects/Map';
 import { MicoParameter } from './valueObjects/MicoParameter';
 import { Harvest } from './Domain/Model/Harvest/Harvest';
-import { Location } from './valueObjects/Location';
+import { Location } from './Domain/Model/Location/Location';
 import { Mushroom } from './valueObjects/Mushroom';
 import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
 
 describe('Fungus', () => {;
   const filePath = 'testHarvestRepostiory.txt';
   const today = new Date();
-  const location = new Location({ id: '0001' });
+  const location = new Location();
 
   afterAll(() => {
     fs.unlinkSync(filePath);

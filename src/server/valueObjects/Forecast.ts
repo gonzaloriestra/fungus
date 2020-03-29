@@ -1,4 +1,4 @@
-import { Location } from './Location';
+import { Location } from '../Domain/Model/Location/Location';
 import { Mushroom } from './Mushroom';
 
 export class Forecast {

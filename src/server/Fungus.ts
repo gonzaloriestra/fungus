@@ -17,9 +17,6 @@ export class Fungus {
   }
 
   foretell(date: Date): Array<Forecast> {
-    // TODO - Harvest and Map are representing the same concept, at the and both are location with some harvest associated
-    // Maybe we should include harvests into each location
-    // TODO - Date comparation can be wrapper in our custom date object
     const harvestsInTheSameDate = this.harvestHistory.filterBy({date});
 
     return harvestsInTheSameDate.map((harvest) => {
