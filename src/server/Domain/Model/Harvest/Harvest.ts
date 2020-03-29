@@ -26,6 +26,10 @@ export class Harvest {
     this._quantity = quantity;
   }
 
+  id() {
+    return this._id;
+  }
+
   date() {
     return this._date;
   }

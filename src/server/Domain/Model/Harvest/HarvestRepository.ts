@@ -7,5 +7,6 @@ export interface HarvestRepository {
   nextIdentity: () => HarvestId,
   add: (harvest: Harvest) => void,
   count: () => number,
-  filterBy: ({date, location}: {date?: Date, location?: Location}) => Array<Harvest>
+  filterBy: ({date, location}: {date?: Date, location?: Location}) => Array<Harvest>,
+  findById: (id: HarvestId) => Harvest|undefined
 };

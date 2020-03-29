@@ -30,7 +30,7 @@ describe('Fungus', () => {;
       const harvest = new Harvest({ date: today, location, mushroom: new Mushroom(), quantity: 5 });
       subject.registerHarvest(harvest);
 
-      expect(subject.harvests().count()).toEqual(1);
+      expect(subject.harvests().findById(harvest.id())).toBeDefined();
     });
 
     it('should allow to get harvest filter by date', () => {

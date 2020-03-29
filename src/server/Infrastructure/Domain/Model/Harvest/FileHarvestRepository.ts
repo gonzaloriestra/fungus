@@ -21,6 +21,10 @@ export class FileHarvestRepository implements HarvestRepository {
     return HarvestId.create()
   }
 
+  findById(id: HarvestId) {
+    return this.harvests.find((harvest) => harvest.id() === id);
+  }
+
   async fetch({onFinish = () => {}}: {onFinish?: () => void} = {}) {
     const lineReader = readline.createInterface({
       input: fs.createReadStream(this.filePath),

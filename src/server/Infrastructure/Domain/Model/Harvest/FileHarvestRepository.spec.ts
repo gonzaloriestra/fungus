@@ -44,6 +44,28 @@ describe('FileHarvestRespostory', () => {
     });
   });
 
+  describe('.findById', () => {
+    afterAll(() => {
+      fs.unlinkSync(filePath);
+    });
+
+    it('should find existing Harvest from the repository', () => {
+      const harvestRepository = new FileHarvestRepository({ filePath });
+      const harvest = new Harvest({ location: new Location(), date: new Date() });
+
+      harvestRepository.add(harvest);
+
+      expect(harvestRepository.findById(harvest.id())).toBeDefined();
+    });
+
+    it('should not find Harvest which are not included in the repository', () => {
+      const harvestRepository = new FileHarvestRepository({ filePath });
+      const harvest = new Harvest({ location: new Location(), date: new Date() });
+
+      expect(harvestRepository.findById(harvest.id())).toBeUndefined();
+    });
+  });
+
   describe('.filterBy', () => {
     const today = new Date();
     const pastDate = new Date('1985-12-19');
