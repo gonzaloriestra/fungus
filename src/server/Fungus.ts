@@ -28,7 +28,7 @@ export class Fungus {
     this.harvestHistory.add(harvest);
   }
 
-  getHarvests(): HarvestRepository {
+  harvests(): HarvestRepository {
     return this.harvestHistory;
   }
 }

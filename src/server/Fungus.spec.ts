@@ -22,11 +22,33 @@ describe('Fungus', () => {;
     const harvestHistory = new FileHarvestRepository({ filePath });
     const subject = new Fungus({  harvestHistory });
 
+    afterAll(() => {
+      fs.unlinkSync(filePath);
+    });
+
     it('should be able to register a new harvest', () => {
       const harvest = new Harvest({ date: today, location, mushroom: new Mushroom(), quantity: 5 });
       subject.registerHarvest(harvest);
 
-      expect(subject.getHarvests().count()).toEqual(1);
+      expect(subject.harvests().count()).toEqual(1);
+    });
+
+    it('should allow to get harvest filter by date', () => {
+      const pastDate = new Date('1985-12-19');
+
+      const harvestOne = new Harvest({ date: today, location, mushroom: new Mushroom(), quantity: 5 });
+      const harvestTwo = new Harvest({ date: pastDate, location, mushroom: new Mushroom(), quantity: 5 });
+      const harvestThree = new Harvest({ date: pastDate, location, mushroom: new Mushroom(), quantity: 5 });
+
+      subject.registerHarvest(harvestOne);
+      subject.registerHarvest(harvestTwo);
+      subject.registerHarvest(harvestThree);
+
+      const filteredHarvest = subject.harvests().filterBy({date: pastDate});
+
+      expect(filteredHarvest.length).toEqual(2);
+      expect(filteredHarvest[0].isEqual(harvestTwo)).toBeTruthy();
+      expect(filteredHarvest[1].isEqual(harvestThree)).toBeTruthy();
     });
   });
 
