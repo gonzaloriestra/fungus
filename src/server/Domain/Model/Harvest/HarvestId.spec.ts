@@ -1,6 +1,6 @@
 import { HarvestId } from './HarvestId';
 
-describe('HarvestId', () => {;
+describe('HarvestId', () => {
   it('should be able to another id with the same value', () => {
     const fakeUUID = 'this-is-a-fake-uuid';
     const subject = new HarvestId(fakeUUID);

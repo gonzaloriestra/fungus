@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class HarvestId {
-  _id: string
+  _id: string;
 
-  static create() {
+  static create(): HarvestId {
     return new HarvestId(uuidv4());
   }
 
@@ -11,11 +11,11 @@ export class HarvestId {
     this._id = id;
   }
 
-  id() {
+  id(): string {
     return this._id;
   }
 
-  equalTo(aHarvestId: HarvestId) {
+  equalTo(aHarvestId: HarvestId): boolean {
     return this._id === aHarvestId.id();
   }
-};
+}

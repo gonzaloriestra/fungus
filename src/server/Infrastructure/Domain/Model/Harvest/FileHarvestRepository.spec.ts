@@ -21,10 +21,11 @@ describe('FileHarvestRespostory', () => {
     it('should populate all the harvests from the existing file', (done) => {
       const harvestRepository = new FileHarvestRepository({ filePath });
 
-      harvestRepository.fetch({ onFinish: () => {
+      harvestRepository.fetch({
+        onFinish: () => {
           expect(harvestRepository.count()).toEqual(2);
           done();
-        }
+        },
       });
     });
   });
@@ -36,7 +37,7 @@ describe('FileHarvestRespostory', () => {
 
     it('should add a new Harvest to the repository', () => {
       const harvestRepository = new FileHarvestRepository({ filePath });
-      const harvest = new Harvest({ location: new Location(), date: new Date()});
+      const harvest = new Harvest({ location: new Location(), date: new Date() });
 
       harvestRepository.add(harvest);
 
@@ -92,7 +93,7 @@ describe('FileHarvestRespostory', () => {
     });
 
     it('should filter by date', () => {
-      const result = harvestRepository.filterBy({date: pastDate});
+      const result = harvestRepository.filterBy({ date: pastDate });
 
       expect(result.length).toEqual(1);
       expect(result[0].isEqual(pastHarvest)).toBeTruthy();

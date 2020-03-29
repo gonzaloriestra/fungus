@@ -12,12 +12,18 @@ export class Harvest {
   _mushroom?: Mushroom;
   _quantity?: number;
 
-  constructor({ id = HarvestId.create(), location, date, mushroom, quantity }: {
-    id?: HarvestId,
-    location: Location,
-    date: Date,
-    mushroom?: Mushroom,
-    quantity?: number
+  constructor({
+    id = HarvestId.create(),
+    location,
+    date,
+    mushroom,
+    quantity,
+  }: {
+    id?: HarvestId;
+    location: Location;
+    date: Date;
+    mushroom?: Mushroom;
+    quantity?: number;
   }) {
     this._id = id;
     this._date = date;
@@ -26,20 +32,19 @@ export class Harvest {
     this._quantity = quantity;
   }
 
-  id() {
+  id(): HarvestId {
     return this._id;
   }
 
-  date() {
+  date(): Date {
     return this._date;
   }
 
-  location() {
+  location(): Location {
     return this._location;
   }
 
-  isEqual(harvest: Harvest) {
+  isEqual(harvest: Harvest): boolean {
     return isEqual(this, harvest);
   }
 }
-

@@ -3,9 +3,7 @@ import { Location } from '../Domain/Model/Location/Location';
 export class Map {
   locations: Array<Location>;
 
-  constructor(
-    { locations }: { locations: Array<Location> } = { locations: [] }
-  ) {
+  constructor({ locations }: { locations: Array<Location> } = { locations: [] }) {
     this.locations = locations;
   }
 

@@ -9,7 +9,7 @@ import { Location } from './Domain/Model/Location/Location';
 import { Mushroom } from './valueObjects/Mushroom';
 import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
 
-describe('Fungus', () => {;
+describe('Fungus', () => {
   const filePath = 'testHarvestRepostiory.txt';
   const today = new Date();
   const location = new Location();
@@ -20,7 +20,7 @@ describe('Fungus', () => {;
 
   describe('Harvest registration', () => {
     const harvestHistory = new FileHarvestRepository({ filePath });
-    const subject = new Fungus({  harvestHistory });
+    const subject = new Fungus({ harvestHistory });
 
     afterAll(() => {
       fs.unlinkSync(filePath);
@@ -44,18 +44,13 @@ describe('Fungus', () => {;
       subject.registerHarvest(harvestTwo);
       subject.registerHarvest(harvestThree);
 
-      const filteredHarvest = subject.harvests().filterBy({date: pastDate});
+      const filteredHarvest = subject.harvests().filterBy({ date: pastDate });
 
       expect(filteredHarvest.length).toEqual(2);
       expect(filteredHarvest[0].isEqual(harvestTwo)).toBeTruthy();
       expect(filteredHarvest[1].isEqual(harvestThree)).toBeTruthy();
     });
   });
-
-
-
-
-
 
   describe('in a day with good conditions for the harvest', () => {
     const map = new Map({ locations: [location] });
@@ -81,7 +76,7 @@ describe('Fungus', () => {;
     it('should include species which can be recollected in each location', () => {
       const forecasts = subject.foretell(today);
 
-      forecasts.forEach(forecast => {
+      forecasts.forEach((forecast) => {
         expect(forecast.getLocation()).toBeInstanceOf(Location);
         expect(forecast.getMushrooms()).toBeInstanceOf(Array);
       });
@@ -90,8 +85,8 @@ describe('Fungus', () => {;
     it('should include locations included in the harvest history registered in the same day', () => {
       const forecasts = subject.foretell(today);
 
-      forecasts.forEach(forecast => {
-        const harvests = harvestHistory.filterBy({location: forecast.getLocation()});
+      forecasts.forEach((forecast) => {
+        const harvests = harvestHistory.filterBy({ location: forecast.getLocation() });
 
         expect(harvests).toBeDefined();
         expect(harvests[0].date()).toEqual(today);
@@ -102,13 +97,11 @@ describe('Fungus', () => {;
       const pastDay = new Date('2019-12-19');
       const forecasts = subject.foretell(pastDay);
 
-      forecasts.forEach(forecast => {
-        const harvests = harvestHistory.filterBy({location: forecast.getLocation()});
+      forecasts.forEach((forecast) => {
+        const harvests = harvestHistory.filterBy({ location: forecast.getLocation() });
 
         expect(harvests).toBeUndefined();
       });
     });
   });
-
-
 });

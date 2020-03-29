@@ -1,6 +1,6 @@
 import { LocationId } from './LocationId';
 
-describe('LocationId', () => {;
+describe('LocationId', () => {
   it('should be able to another id with the same value', () => {
     const fakeUUID = 'this-is-a-fake-uuid';
     const subject = new LocationId(fakeUUID);

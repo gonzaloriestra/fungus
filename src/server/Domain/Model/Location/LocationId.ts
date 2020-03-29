@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class LocationId {
-  _id: string
+  _id: string;
 
-  static create() {
+  static create(): LocationId {
     return new LocationId(uuidv4());
   }
 
@@ -11,11 +11,11 @@ export class LocationId {
     this._id = id;
   }
 
-  id() {
+  id(): string {
     return this._id;
   }
 
-  equalTo(aLocationId: LocationId) {
+  equalTo(aLocationId: LocationId): boolean {
     return this._id === aLocationId.id();
   }
-};
+}
