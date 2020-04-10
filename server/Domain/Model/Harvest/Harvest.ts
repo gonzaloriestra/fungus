@@ -44,6 +44,10 @@ export class Harvest {
     return this._location;
   }
 
+  quantity(): number | undefined {
+    return this._quantity;
+  }
+
   isEqual(harvest: Harvest): boolean {
     return isEqual(this, harvest);
   }

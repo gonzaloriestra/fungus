@@ -11,7 +11,7 @@ export class FileHarvestRepository implements HarvestRepository {
   harvests: Array<Harvest>;
   filePath: string;
 
-  constructor({ harvests = [], filePath = 'harvest.txt' }: { harvests?: Array<Harvest>; filePath?: string } = {}) {
+  constructor({ harvests = [], filePath = 'harvests.txt' }: { harvests?: Array<Harvest>; filePath?: string } = {}) {
     this.harvests = harvests;
     this.filePath = filePath;
   }
@@ -47,6 +47,10 @@ export class FileHarvestRepository implements HarvestRepository {
 
   count(): number {
     return this.harvests.length;
+  }
+
+  all(): Harvest[] {
+    return this.harvests;
   }
 
   filterBy({ date, location }: { date?: Date; location?: Location } = {}): Array<Harvest> {
