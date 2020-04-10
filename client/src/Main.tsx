@@ -1,5 +1,5 @@
 import * as React from 'react';
 
-import { Hello } from './components/Hello';
+import { HarvestTable } from './components/HarvestsTable';
 
-export const Main = (): JSX.Element => <Hello />;
+export const Main = (): JSX.Element => <HarvestTable />;
