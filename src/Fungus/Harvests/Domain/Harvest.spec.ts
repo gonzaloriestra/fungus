@@ -1,5 +1,5 @@
 import { Harvest } from './Harvest';
-import { Location } from '../Location/Location';
+import { Location } from '../../Locations/Domain/Location';
 
 describe('Harvest', () => {
   describe('.isEqual', () => {

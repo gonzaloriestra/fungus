@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
-import { Harvest } from '../../../../Domain/Model/Harvest/Harvest';
-import { Location } from '../../../../Domain/Model/Location/Location';
+import { Harvest } from '../Domain/Harvest';
+import { Location } from '../../Locations/Domain/Location';
 
 import { FileHarvestRepository } from './FileHarvestRepository';
 

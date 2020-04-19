@@ -1,11 +1,11 @@
-import { Map } from './valueObjects/Map';
-import { MicoParameter } from './valueObjects/MicoParameter';
-import { Harvest } from './Domain/Model/Harvest/Harvest';
-import { Forecast } from './valueObjects/Forecast';
-import { HarvestRepository } from './Domain/Model/Harvest/HarvestRepository';
-import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
+import { Map } from './Map';
+import { Micoparam } from './Micoparams/Domain/Micoparam';
+import { Harvest } from './Harvests/Domain/Harvest';
+import { Forecast } from './Forecasts/Domain/Forecast';
+import { HarvestRepository } from './Harvests/Domain/HarvestRepository';
+import { FileHarvestRepository } from './Harvests/Infrastructure/FileHarvestRepository';
 
-type FungusProps = { map?: Map; micoParameters?: Array<MicoParameter>; harvestHistory?: HarvestRepository };
+type FungusProps = { map?: Map; micoParameters?: Array<Micoparam>; harvestHistory?: HarvestRepository };
 
 export class Fungus {
   map: Map;

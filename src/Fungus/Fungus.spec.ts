@@ -2,12 +2,12 @@ import * as fs from 'fs';
 
 import { Fungus } from './Fungus';
 
-import { Map } from './valueObjects/Map';
-import { MicoParameter } from './valueObjects/MicoParameter';
-import { Harvest } from './Domain/Model/Harvest/Harvest';
-import { Location } from './Domain/Model/Location/Location';
-import { Mushroom } from './valueObjects/Mushroom';
-import { FileHarvestRepository } from './Infrastructure/Domain/Model/Harvest/FileHarvestRepository';
+import { Map } from './Map';
+import { Micoparam } from './Micoparams/Domain/Micoparam';
+import { Harvest } from './Harvests/Domain/Harvest';
+import { Location } from './Locations/Domain/Location';
+import { Mushroom } from './Mushrooms/Domain/Mushroom';
+import { FileHarvestRepository } from './Harvests/Infrastructure/FileHarvestRepository';
 
 describe('Fungus', () => {
   const filePath = 'testHarvestRepostiory.txt';
@@ -54,7 +54,7 @@ describe('Fungus', () => {
 
   describe('in a day with good conditions for the harvest', () => {
     const map = new Map({ locations: [location] });
-    const micoParameters = [new MicoParameter()];
+    const micoParameters = [new Micoparam()];
     const harvestHistory = new FileHarvestRepository({ filePath });
     harvestHistory.add(new Harvest({ location, date: today, mushroom: new Mushroom(), quantity: 5 }));
     const subject = new Fungus({ map, micoParameters, harvestHistory });

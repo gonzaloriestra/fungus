@@ -1,5 +1,5 @@
-import { Location } from '../Domain/Model/Location/Location';
-import { Mushroom } from './Mushroom';
+import { Location } from '../../Locations/Domain/Location';
+import { Mushroom } from '../../Mushrooms/Domain/Mushroom';
 
 export class Forecast {
   location: Location;

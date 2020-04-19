@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 
-import { Location } from '../../../../Domain/Model/Location/Location';
+import { Location } from '../../Locations/Domain/Location';
 
-import { HarvestRepository } from '../../../../Domain/Model/Harvest/HarvestRepository';
-import { HarvestId } from '../../../../Domain/Model/Harvest/HarvestId';
-import { Harvest } from '../../../../Domain/Model/Harvest/Harvest';
+import { HarvestRepository } from '../Domain/HarvestRepository';
+import { HarvestId } from '../Domain/HarvestId';
+import { Harvest } from '../Domain/Harvest';
 
 export class FileHarvestRepository implements HarvestRepository {
   harvests: Array<Harvest>;
