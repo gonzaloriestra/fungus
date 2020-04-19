@@ -1,5 +1,5 @@
-import { Harvest } from './Harvest';
-import { Location } from '../../Locations/Domain/Location';
+import { Harvest } from '../../../../../src/Fungus/Harvests/Domain/Harvest';
+import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 
 describe('Harvest', () => {
   describe('.isEqual', () => {

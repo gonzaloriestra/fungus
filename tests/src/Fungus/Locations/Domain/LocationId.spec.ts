@@ -1,4 +1,4 @@
-import { LocationId } from './LocationId';
+import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
 
 describe('LocationId', () => {
   it('should be able to another id with the same value', () => {

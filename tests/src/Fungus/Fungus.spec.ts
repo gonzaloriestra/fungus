@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 
-import { Fungus } from './Fungus';
+import { Fungus } from '../../../src/Fungus/Fungus';
 
-import { Map } from './Map';
-import { Micoparam } from './Micoparams/Domain/Micoparam';
-import { Harvest } from './Harvests/Domain/Harvest';
-import { Location } from './Locations/Domain/Location';
-import { Mushroom } from './Mushrooms/Domain/Mushroom';
-import { FileHarvestRepository } from './Harvests/Infrastructure/FileHarvestRepository';
+import { Map } from '../../../src/Fungus/Map';
+import { Micoparam } from '../../../src/Fungus/Micoparams/Domain/Micoparam';
+import { Harvest } from '../../../src/Fungus/Harvests/Domain/Harvest';
+import { Location } from '../../../src/Fungus/Locations/Domain/Location';
+import { Mushroom } from '../../../src/Fungus/Mushrooms/Domain/Mushroom';
+import { FileHarvestRepository } from '../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
 
 describe('Fungus', () => {
-  const filePath = 'testHarvestRepostiory.txt';
+  const filePath = 'testHarvestRepository.txt';
   const today = new Date();
   const location = new Location();
 

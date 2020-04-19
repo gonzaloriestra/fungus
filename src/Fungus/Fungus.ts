@@ -30,7 +30,7 @@ export class Fungus {
     this.harvestHistory.add(harvest);
   }
 
-  harvests(): Harvest[] {
-    return this.harvestHistory.all();
+  harvests(): HarvestRepository {
+    return this.harvestHistory;
   }
 }

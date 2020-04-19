@@ -1,5 +1,5 @@
-import { Location } from './Locations/Domain/Location';
-import { Map } from './Map';
+import { Location } from '../../../src/Fungus/Locations/Domain/Location';
+import { Map } from '../../../src/Fungus/Map';
 
 describe('Map', () => {
   const locationOne = new Location();

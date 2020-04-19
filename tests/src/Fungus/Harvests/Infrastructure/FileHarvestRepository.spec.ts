@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 
-import { Harvest } from '../Domain/Harvest';
-import { Location } from '../../Locations/Domain/Location';
+import { Harvest } from '../../../../../src/Fungus/Harvests/Domain/Harvest';
+import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 
-import { FileHarvestRepository } from './FileHarvestRepository';
+import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
 
-describe('FileHarvestRespostory', () => {
-  const filePath = 'testHarvestRepostiory.txt';
+describe('FileHarvestRepository', () => {
+  const filePath = 'testHarvestRepository.txt';
 
   describe('.fetch', () => {
     beforeAll(() => {

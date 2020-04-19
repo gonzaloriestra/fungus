@@ -1,4 +1,4 @@
-import { Location } from './Location';
+import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 
 describe('Location', () => {
   describe('.isEqual', () => {

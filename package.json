@@ -23,8 +23,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "parcel apps/fungus/frontend/src/index.html --out-dir build/debug",
-    "build": "parcel build apps/fungus/frontend/src/index.html --out-dir build/release --public-url ./",
+    "start": "parcel applications/fungus/frontend/src/index.html --out-dir build/debug",
+    "build": "parcel build applications/fungus/frontend/src/index.html --out-dir build/release --public-url ./",
     "test": "jest",
     "test:watch": "jest --watch"
   },
