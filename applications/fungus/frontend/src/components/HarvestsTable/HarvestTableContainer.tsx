@@ -10,7 +10,7 @@ export const HarvestTableContainer = (): JSX.Element => {
   useEffect(() => {
     const fungus = new Fungus();
 
-    setHarvests(fungus.harvests());
+    /*setHarvests(fungus.harvests());*/
   }, []);
 
   return <HarvestTable harvests={harvests} />;

@@ -19,7 +19,8 @@
     "noImplicitReturns": true
   },
   "include": [
-    "client/**/*",
-    "server/**/*"
+    "src/**/*",
+    "tests/**/*",
+    "applications/**/*"
   ]
 }
