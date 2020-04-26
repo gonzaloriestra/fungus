@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
+    "target": "es6",
+    "module": "commonjs",
     "outDir": "build/dist",
     "sourceMap": true,
     "experimentalDecorators": true,
     "jsx": "react",
     "lib": [
       "dom",
-      "es2015",
-      "es2016"
+      "es5",
+      "es6"
     ],
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
