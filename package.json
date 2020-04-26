@@ -24,14 +24,14 @@
     "prettier": "^2.0.2",
     "supertest": "^4.0.2",
     "ts-jest": "^25.2.1",
-    "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "parcel applications/fungus/frontend/src/index.html --out-dir build/debug",
     "build": "parcel build applications/fungus/frontend/src/index.html --out-dir build/release --public-url ./",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "yarn run test:unit && yarn run test:features",
+    "test:unit": "NODE_ENV=test jest",
+    "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "NODE_ENV=test cucumber-js -p default"
   },
   "dependencies": {
