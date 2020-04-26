@@ -1,26 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "module": "commonjs",
-    "outDir": "build/dist",
-    "sourceMap": true,
-    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "target": "es6",
     "jsx": "react",
-    "lib": [
-      "dom",
-      "es5",
-      "es6"
-    ],
-    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
     "moduleResolution": "node",
-    "noEmitHelpers": true,
-    "importHelpers": true,
+    "sourceMap": true,
+    "rootDir": ".",
     "strict": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
     "noImplicitReturns": true
   },
   "include": [
-    "src/**/*",
-    "tests/**/*",
-    "applications/**/*"
-  ]
+    "src/**/**.ts",
+    "tests/**/**.ts",
+    "applications/**/**.ts",
+    "package*.json",
+    "project*.json"
+  ],
+  "exclude": ["node_modules"]
 }
