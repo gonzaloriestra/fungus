@@ -10,16 +10,14 @@ import app from './app';
 /**
  * Start Hapi server.
  */
-async function start() {
+async function start(): Promise<void> {
   try {
-    await server.start();
+    await app.start();
   } catch (err) {
     console.log(err);
     process.exit(1);
   }
-  console.log(`Server running @ ${server.info.uri}`);
+  console.log(`Server running @ ${app.info.uri}`);
 }
 
-start();
-
-export default server;
+export default start();

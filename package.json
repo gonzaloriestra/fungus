@@ -29,7 +29,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start:server": "tsc && node build/dist/applications/fungus/backend/index.js",
+    "start:server": "tsc && node dist/applications/fungus/backend/server.js",
     "start": "parcel applications/fungus/frontend/src/index.html --out-dir build/debug",
     "build": "parcel build applications/fungus/frontend/src/index.html --out-dir build/release --public-url ./",
     "test": "yarn run test:unit && yarn run test:features",
@@ -38,6 +38,8 @@
     "test:features": "NODE_ENV=test cucumber-js -p default"
   },
   "dependencies": {
+    "@types/glob": "^7.1.1",
+    "glob": "^7.1.6",
     "hapi": "^18.1.0",
     "http-status": "^1.4.2",
     "lodash": "^4.17.15",

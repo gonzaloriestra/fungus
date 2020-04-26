@@ -9,13 +9,11 @@ let _request: request.Test;
 let _response: request.Response;
 
 Given('I send a GET request to {string}', (route: string) => {
-  _request = request(app).get(route);
+  _request = request(app.listener).get(route);
 });
 
 Given('I send a PUT request to {string} with body:', (route: string, body: string) => {
-  _request = request(app)
-      .put(route)
-      .send(JSON.parse(body));
+  _request = request(app.listener).put(route).send(JSON.parse(body));
 });
 
 Then('the response status code should be {int}', async (status: number) => {
