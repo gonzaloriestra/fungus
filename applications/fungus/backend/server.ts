@@ -8,7 +8,7 @@ import app from './app';
 // app.use(errorHandler());
 
 /**
- * Start Hapi server.
+ * Start server
  */
 async function start(): Promise<void> {
   try {
