@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/cucumber": "^6.0.1",
+    "@types/glob": "^7.1.1",
     "@types/hapi": "^18.0.3",
     "@types/jest": "^25.1.4",
     "@types/lodash": "^4.14.149",
@@ -38,7 +39,6 @@
     "test:features": "NODE_ENV=test cucumber-js -p default"
   },
   "dependencies": {
-    "@types/glob": "^7.1.1",
     "glob": "^7.1.6",
     "hapi": "^18.1.0",
     "http-status": "^1.4.2",
