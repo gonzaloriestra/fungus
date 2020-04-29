@@ -1,19 +1,29 @@
-import { Harvest } from "../../Domain/Harvest";
-import {HarvestId} from "../../Domain/HarvestId";
+import { Location } from '../../../Locations/Domain/Location';
+
+import { HarvestId } from '../../Domain/HarvestId';
+import { Harvest } from '../../Domain/Harvest';
+import HarvestAlreadyExist from '../../Domain/HarvestAlreadyExist';
 
 type HarvestRegistrationProps = {
-  harvestId: string,
-  date: string,
-  quantity: number,
+  id: HarvestId;
+  date: string;
+  quantity: number;
 };
 
 export default class HarvestRegistration {
-  invoke({harvestId, date, quantity}: HarvestRegistrationProps) {
+  invoke({ id, date, quantity }: HarvestRegistrationProps): void {
+    this.ensureStudentDoesntExist(id);
 
-
-    // To-Do check if exists, if exists, throw domain exception of HarvestAlreadyExist({harvestId})
+    const harvest = new Harvest({ id, location: new Location(), date: new Date(date), quantity });
 
     // To-Do persist in memory
-    // const harvest = new Harvest({ id: new HarvestId(harvestId), location: new Location(),  date: new Date(date), quantity});
+  }
+
+  ensureStudentDoesntExist(id: HarvestId): void {
+    // To-Do read from repository the harvest
+    const existentHarvest = null;
+    if (null !== existentHarvest) {
+      throw HarvestAlreadyExist(id);
+    }
   }
 }

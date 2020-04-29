@@ -4,6 +4,7 @@ import httpStatus from 'http-status';
 import HarvestRegistration from '../../../../../src/Fungus/Harvests/Application/Register/HarvestRegistration';
 
 import { Controller } from '../Controller';
+import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
 
 export default class HarvestPutController implements Controller {
   harvestRegistration: HarvestRegistration;
@@ -15,9 +16,10 @@ export default class HarvestPutController implements Controller {
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const harvestId = req.params.id;
     // @ts-ignore
+
     const { date, quantity } = req.payload;
 
-    this.harvestRegistration.invoke({ harvestId, date, quantity });
+    this.harvestRegistration.invoke({ id: new HarvestId(harvestId), date, quantity });
 
     return res.response().code(httpStatus.CREATED);
   }

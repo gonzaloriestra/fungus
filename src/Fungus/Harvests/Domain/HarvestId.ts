@@ -11,11 +11,11 @@ export class HarvestId {
     this._id = id;
   }
 
-  id(): string {
+  toString(): string {
     return this._id;
   }
 
   equalTo(aHarvestId: HarvestId): boolean {
-    return this._id === aHarvestId.id();
+    return this.toString() === aHarvestId.toString();
   }
 }
