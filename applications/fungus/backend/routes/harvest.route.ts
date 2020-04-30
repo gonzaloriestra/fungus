@@ -1,13 +1,11 @@
 import { Server } from 'hapi';
 
-// import container from '../config/dependency-injection';
-import HarvestRegistration from '../../../../src/Fungus/Harvests/Application/Register/HarvestRegistration';
+import container from '../config/dependency-injection';
 
 import HarvestPutController from '../controllers/Harvests/HarvestPutController';
 
 export const register = (app: Server): void => {
-  // const controller: StatusController = container.get('Apps.mooc.controllers.StatusGetController');
-  const controller = new HarvestPutController(new HarvestRegistration());
+  const controller: HarvestPutController = container.get('applications.fungus.controllers.HarvestPutController');
 
   app.route({
     method: 'PUT',

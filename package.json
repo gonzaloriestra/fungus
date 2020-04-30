@@ -43,6 +43,7 @@
     "hapi": "^18.1.0",
     "http-status": "^1.4.2",
     "lodash": "^4.17.15",
+    "node-dependency-injection": "^2.6.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "semantic-ui-react": "^0.88.2",

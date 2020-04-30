@@ -1,0 +1,13 @@
+
+services:
+  fungus.harvests.HarvestRegistration:
+    class: ../../../../../src/Fungus/Harvests/Application/register/HarvestRegistration
+    arguments: []
+
+  applications.fungus.controllers.HarvestPutController:
+    class: ../../controllers/Harvests/HarvestPutController
+    arguments: ["@fungus.harvests.HarvestRegistration"]
+
+  applications.fungus.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
