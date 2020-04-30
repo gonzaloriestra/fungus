@@ -1,11 +1,10 @@
 import { Server } from 'hapi';
 
-// import container from '../config/dependency-injection';
+import container from '../config/dependency-injection';
 import StatusController from '../controllers/StatusGetController';
 
 export const register = (app: Server): void => {
-  // const controller: StatusController = container.get('Apps.mooc.controllers.StatusGetController');
-  const controller = new StatusController();
+  const controller: StatusController = container.get('applications.fungus.controllers.StatusGetController');
 
   app.route({
     method: 'GET',
