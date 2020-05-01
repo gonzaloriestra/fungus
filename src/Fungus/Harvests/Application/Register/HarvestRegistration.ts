@@ -2,7 +2,7 @@ import { Location } from '../../../Locations/Domain/Location';
 
 import { HarvestId } from '../../Domain/HarvestId';
 import { Harvest } from '../../Domain/Harvest';
-import HarvestAlreadyExist from '../../Domain/HarvestAlreadyExist';
+import { HarvestAlreadyExist } from '../../Domain/HarvestAlreadyExist';
 import { HarvestRepository } from '../../Domain/HarvestRepository';
 
 type HarvestRegistrationProps = {

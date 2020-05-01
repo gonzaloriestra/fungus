@@ -1,5 +1,11 @@
 
 services:
+  #  Health Checks
+  applications.fungus.controllers.StatusGetController:
+    class: ../../controllers/HealthChecks/StatusGetController
+    arguments: []
+
+  #  Harvests
   fungus.harvests.InMemoryHarvestRepository:
     class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
     arguments: []
@@ -12,6 +18,15 @@ services:
     class: ../../controllers/Harvests/HarvestPutController
     arguments: ["@fungus.harvests.HarvestRegistration"]
 
-  applications.fungus.controllers.StatusGetController:
-    class: ../../controllers/HealthChecks/StatusGetController
+  #  Mushrooms
+  fungus.harvests.InMemoryMushroomRepository:
+    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
     arguments: []
+
+  fungus.mushrooms.MushroomCreator:
+    class: ../../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
+    arguments: ["@fungus.harvests.InMemoryMushroomRepository"]
+
+  applications.fungus.controllers.MushroomPutController:
+    class: ../../controllers/Mushrooms/MushroomPutController
+    arguments: ["@fungus.mushrooms.MushroomCreator"]
