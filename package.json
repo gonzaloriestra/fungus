@@ -31,8 +31,8 @@
   },
   "scripts": {
     "start:server": "tsc && node dist/applications/fungus/backend/server.js",
-    "start": "parcel applications/fungus/frontend/src/index.html --out-dir build/debug",
-    "build": "parcel build applications/fungus/frontend/src/index.html --out-dir build/release --public-url ./",
+    "start": "parcel applications/fungus/frontend/src/index.html --out-dir dist/debug",
+    "build": "parcel build applications/fungus/frontend/src/index.html --out-dir dist/release --public-url ./",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",

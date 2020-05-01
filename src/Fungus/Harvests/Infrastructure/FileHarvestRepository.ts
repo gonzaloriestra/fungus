@@ -22,14 +22,6 @@ export class FileHarvestRepository implements HarvestRepository {
     this.__fetch({ onFinish: onLoad });
   }
 
-  nextIdentity(): HarvestId {
-    return HarvestId.create();
-  }
-
-  findById(id: HarvestId): Harvest | undefined {
-    return this.harvests.find((harvest) => harvest.id() === id);
-  }
-
   __fetch({ onFinish = (): void => undefined }: { onFinish?: () => void } = {}): void {
     const lineReader = readline.createInterface({
       input: fs.createReadStream(this.filePath),
@@ -41,6 +33,14 @@ export class FileHarvestRepository implements HarvestRepository {
       const harvest = JSON.parse(line);
       this.harvests.push(harvest);
     });
+  }
+
+  nextIdentity(): HarvestId {
+    return HarvestId.create();
+  }
+
+  findById(id: HarvestId): Harvest | undefined {
+    return this.harvests.find((harvest) => harvest.id() === id);
   }
 
   add(harvest: Harvest): void {

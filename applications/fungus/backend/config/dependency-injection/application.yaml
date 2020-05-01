@@ -13,5 +13,5 @@ services:
     arguments: ["@fungus.harvests.HarvestRegistration"]
 
   applications.fungus.controllers.StatusGetController:
-    class: ../../controllers/StatusGetController
+    class: ../../controllers/HealthChecks/StatusGetController
     arguments: []
