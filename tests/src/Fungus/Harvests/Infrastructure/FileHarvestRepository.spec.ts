@@ -8,28 +8,6 @@ import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infras
 describe('FileHarvestRepository', () => {
   const filePath = 'testHarvestRepository.txt';
 
-  describe('.fetch', () => {
-    beforeAll(() => {
-      const harvestRepository = new FileHarvestRepository({ filePath });
-      const harvestOne = new Harvest({ location: new Location(), date: new Date() });
-      const harvestTwo = new Harvest({ location: new Location(), date: new Date() });
-
-      harvestRepository.add(harvestOne);
-      harvestRepository.add(harvestTwo);
-    });
-
-    it('should populate all the harvests from the existing file', (done) => {
-      const harvestRepository = new FileHarvestRepository({ filePath });
-
-      harvestRepository.fetch({
-        onFinish: () => {
-          expect(harvestRepository.count()).toEqual(2);
-          done();
-        },
-      });
-    });
-  });
-
   describe('.add', () => {
     afterAll(() => {
       fs.unlinkSync(filePath);

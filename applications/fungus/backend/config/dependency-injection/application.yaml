@@ -1,8 +1,12 @@
 
 services:
+  fungus.harvests.InMemoryHarvestRepository:
+    class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
+    arguments: []
+
   fungus.harvests.HarvestRegistration:
     class: ../../../../../src/Fungus/Harvests/Application/register/HarvestRegistration
-    arguments: []
+    arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
 
   applications.fungus.controllers.HarvestPutController:
     class: ../../controllers/Harvests/HarvestPutController

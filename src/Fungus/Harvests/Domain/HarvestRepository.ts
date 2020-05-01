@@ -10,5 +10,4 @@ export interface HarvestRepository {
   filterBy: ({ date, location }: { date?: Date; location?: Location }) => Array<Harvest>;
   findById: (id: HarvestId) => Harvest | undefined;
   all: () => Harvest[];
-  fetch: () => void;
 }

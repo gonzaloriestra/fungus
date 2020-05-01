@@ -14,8 +14,6 @@ export class Fungus {
   constructor({ map = new Map(), harvestHistory = new FileHarvestRepository() }: FungusProps = {}) {
     this.map = map;
     this.harvestHistory = harvestHistory;
-
-    this.harvestHistory.fetch();
   }
 
   foretell(date: Date): Array<Forecast> {

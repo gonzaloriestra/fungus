@@ -1,25 +1,14 @@
-import * as fs from 'fs';
-import * as readline from 'readline';
-
 import { Location } from '../../Locations/Domain/Location';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
 
-export class FileHarvestRepository implements HarvestRepository {
+export class InMemoryHarvestRepository implements HarvestRepository {
   harvests: Array<Harvest>;
-  filePath: string;
 
-  constructor({
-    harvests = [],
-    filePath = 'harvests.txt',
-    onLoad,
-  }: { harvests?: Array<Harvest>; filePath?: string; onLoad?: () => void } = {}) {
+  constructor({ harvests = [] }: { harvests?: Array<Harvest> } = {}) {
     this.harvests = harvests;
-    this.filePath = filePath;
-
-    this.__fetch({ onFinish: onLoad });
   }
 
   nextIdentity(): HarvestId {
@@ -30,25 +19,8 @@ export class FileHarvestRepository implements HarvestRepository {
     return this.harvests.find((harvest) => harvest.id() === id);
   }
 
-  __fetch({ onFinish = (): void => undefined }: { onFinish?: () => void } = {}): void {
-    const lineReader = readline.createInterface({
-      input: fs.createReadStream(this.filePath),
-      crlfDelay: Infinity,
-    });
-
-    lineReader.on('close', onFinish);
-    lineReader.on('line', (line) => {
-      const harvest = JSON.parse(line);
-      this.harvests.push(harvest);
-    });
-  }
-
   add(harvest: Harvest): void {
     this.harvests.push(harvest);
-
-    fs.appendFile(this.filePath, `${JSON.stringify(harvest)}\n`, (err) => {
-      if (err) throw err; // TODO Define own error
-    });
   }
 
   count(): number {
