@@ -10,22 +10,22 @@ services:
     class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
     arguments: []
 
-  fungus.harvests.HarvestRegistration:
-    class: ../../../../../src/Fungus/Harvests/Application/register/HarvestRegistration
-    arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
+  fungus.harvests.HarvestCreator:
+    class: ../../../../../src/Fungus/Harvests/Application/create/HarvestCreator
+    arguments: ["@fungus.harvests.InMemoryHarvestRepository", "@fungus.mushrooms.InMemoryMushroomRepository"]
 
   applications.fungus.controllers.HarvestPutController:
     class: ../../controllers/Harvests/HarvestPutController
-    arguments: ["@fungus.harvests.HarvestRegistration"]
+    arguments: ["@fungus.harvests.HarvestCreator"]
 
   #  Mushrooms
-  fungus.harvests.InMemoryMushroomRepository:
+  fungus.mushrooms.InMemoryMushroomRepository:
     class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
     arguments: []
 
   fungus.mushrooms.MushroomCreator:
     class: ../../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
-    arguments: ["@fungus.harvests.InMemoryMushroomRepository"]
+    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
 
   applications.fungus.controllers.MushroomPutController:
     class: ../../controllers/Mushrooms/MushroomPutController

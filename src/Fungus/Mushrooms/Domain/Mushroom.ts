@@ -9,6 +9,10 @@ export class Mushroom {
     this._scientificName = scientificName;
   }
 
+  id(): MushroomId {
+    return this._id;
+  }
+
   scientificName(): string {
     return this._scientificName;
   }

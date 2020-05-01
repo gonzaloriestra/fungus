@@ -10,4 +10,8 @@ export class MushroomId {
   constructor(id: string) {
     this._id = id;
   }
+
+  value(): string {
+    return this._id;
+  }
 }

@@ -3,6 +3,7 @@ import { MushroomAlreadyExist } from '../../Domain/MushroomAlreadyExist';
 import { MushroomRepository } from '../../Domain/MushroomRepository';
 
 import { MushroomCreatorRequest } from './MushroomCreatorRequest';
+import { MushroomWithSameScientificNameAlreadyExist } from '../../Domain/MushroomWithSameScientificNameAlreadyExist';
 
 export default class MushroomCreator {
   repository: MushroomRepository;
@@ -12,18 +13,18 @@ export default class MushroomCreator {
   }
 
   invoke({ id, scientificName }: MushroomCreatorRequest): void {
-    this.ensureMushroomDoesNotExist(scientificName);
+    this.ensureMushroomWithSameScientificNameDoesNotExist(scientificName);
 
     const mushroom = new Mushroom({ id, scientificName });
 
     this.repository.add(mushroom);
   }
 
-  ensureMushroomDoesNotExist(scientificName: string): void {
+  ensureMushroomWithSameScientificNameDoesNotExist(scientificName: string): void {
     const existentMushroom = this.repository.filterBy({ scientificName });
 
     if (existentMushroom.length !== 0) {
-      throw MushroomAlreadyExist(scientificName);
+      throw MushroomWithSameScientificNameAlreadyExist(scientificName);
     }
   }
 }
