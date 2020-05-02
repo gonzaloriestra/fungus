@@ -3,20 +3,31 @@ Feature: Register a new harvest
   As a user
   I want to define a new harvest
 
-  Scenario: A valid new harvest
-    Given I send a PUT request to "/mushrooms/841d8c5e-bcac-43e3-9961-3ac28096a495" with body:
-    """
-    {
-      "scientificName": "Amanita muscaria"
-    }
-    """
+#  Scenario: A valid new harvest
+#    Given I send a PUT request to "/mushrooms/841d8c5e-bcac-43e3-9961-3ac28096a495" with body:
+#    """
+#    {
+#      "scientificName": "Amanita muscaria"
+#    }
+#    """
+#    Given I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
+#    """
+#    {
+#      "date": "2019-10-15",
+#      "mushroomId": "841d8c5e-bcac-43e3-9961-3ac28096a495",
+#      "quantity": "5"
+#    }
+#    """
+#    Then the response status code should be 201
+#    And the response should be empty
+
+  Scenario: Mushroom associated does not exist yet
     Given I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
     """
     {
       "date": "2019-10-15",
-      "mushroomId": "841d8c5e-bcac-43e3-9961-3ac28096a495",
+      "mushroomId": "a8c433d7-3d5f-4d75-b92d-f5be820bf76f",
       "quantity": "5"
     }
     """
-    Then the response status code should be 201
-    And the response should be empty
+    Then the response status code should be 400

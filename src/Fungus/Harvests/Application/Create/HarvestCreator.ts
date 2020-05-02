@@ -33,7 +33,7 @@ export default class HarvestCreator {
     const existentHarvest = this.harvestRepository.findById(id);
 
     if (existentHarvest) {
-      throw HarvestAlreadyExist(id);
+      throw new HarvestAlreadyExist(id);
     }
   }
 
@@ -41,7 +41,7 @@ export default class HarvestCreator {
     const existentMushroom = this.mushroomRepository.findById(mushroomId);
 
     if (!existentMushroom) {
-      throw MushroomDoesNotExist(mushroomId);
+      throw new MushroomDoesNotExist(mushroomId);
     }
   }
 }

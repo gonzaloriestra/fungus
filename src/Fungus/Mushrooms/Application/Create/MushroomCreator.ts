@@ -24,7 +24,7 @@ export default class MushroomCreator {
     const existentMushroom = this.repository.filterBy({ scientificName });
 
     if (existentMushroom.length !== 0) {
-      throw MushroomWithSameScientificNameAlreadyExist(scientificName);
+      throw new MushroomWithSameScientificNameAlreadyExist(scientificName);
     }
   }
 }

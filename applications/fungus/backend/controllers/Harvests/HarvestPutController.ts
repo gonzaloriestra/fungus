@@ -30,9 +30,9 @@ export default class HarvestPutController implements Controller {
       });
     } catch (error) {
       if (error instanceof HarvestAlreadyExist || error instanceof MushroomDoesNotExist) {
-        res.response(error).code(httpStatus.BAD_REQUEST);
+        return res.response(error.message).code(httpStatus.BAD_REQUEST);
       } else {
-        res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
+        return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
       }
     }
 
