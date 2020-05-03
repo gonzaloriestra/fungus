@@ -11,11 +11,11 @@ export class LocationId {
     this._id = id;
   }
 
-  id(): string {
+  value(): string {
     return this._id;
   }
 
   equalTo(aLocationId: LocationId): boolean {
-    return this._id === aLocationId.id();
+    return this.value() === aLocationId.value();
   }
 }

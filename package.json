@@ -38,7 +38,7 @@
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
-    "test:features": "NODE_ENV=test cucumber-js -p default"
+    "test:features": "NODE_ENV=test cucumber-js -p default -b"
   },
   "dependencies": {
     "glob": "^7.1.6",

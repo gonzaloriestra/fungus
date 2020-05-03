@@ -2,12 +2,14 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import HarvestCreator from '../../../../../src/Fungus/Harvests/Application/Create/HarvestCreator';
-
-import { Controller } from '../Controller';
 import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
 import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
 import { HarvestAlreadyExist } from '../../../../../src/Fungus/Harvests/Domain/HarvestAlreadyExist';
 import { MushroomDoesNotExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomDoesNotExist';
+import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
+
+import { Controller } from '../Controller';
+import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
 
 export default class HarvestPutController implements Controller {
   harvestCreator: HarvestCreator;
@@ -19,17 +21,24 @@ export default class HarvestPutController implements Controller {
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const harvestId = req.params.id;
     // @ts-ignore
-    const { date, mushroomId, quantity } = req.payload;
+    const { date, mushroomId, locationId, quantity } = req.payload;
 
     try {
       await this.harvestCreator.invoke({
         id: new HarvestId(harvestId),
         mushroomId: new MushroomId(mushroomId),
+        locationId: new LocationId(locationId),
         date,
         quantity,
       });
     } catch (error) {
-      if (error instanceof HarvestAlreadyExist || error instanceof MushroomDoesNotExist) {
+      console.error(error.message);
+
+      if (
+        error instanceof HarvestAlreadyExist ||
+        error instanceof MushroomDoesNotExist ||
+        error instanceof LocationDoesNotExist
+      ) {
         return res.response(error.message).code(httpStatus.BAD_REQUEST);
       } else {
         return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);

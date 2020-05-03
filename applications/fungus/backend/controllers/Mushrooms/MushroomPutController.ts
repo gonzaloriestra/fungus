@@ -22,6 +22,8 @@ export default class MushroomPutController implements Controller {
     try {
       await this.mushroomCreator.invoke({ id: new MushroomId(mushroomId), scientificName });
     } catch (error) {
+      console.error(error.message);
+
       if (error instanceof MushroomWithSameScientificNameAlreadyExist) {
         return res.response(error.message).code(httpStatus.BAD_REQUEST);
       } else {

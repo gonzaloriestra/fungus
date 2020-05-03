@@ -1,15 +1,22 @@
-import { isEqual } from 'lodash';
-
 import { LocationId } from './LocationId';
+import { Coordinate } from './Coordinate';
 
 export class Location {
   _id: LocationId;
+  _name: string;
+  _coordinates: Array<Coordinate>;
 
-  constructor({ id = LocationId.create() }: { id?: LocationId } = {}) {
+  constructor({ id, name, coordinates }: { id: LocationId; name: string; coordinates: Array<Coordinate> }) {
     this._id = id;
+    this._name = name;
+    this._coordinates = coordinates;
   }
 
-  isEqual(harvest: Location): boolean {
-    return isEqual(this, harvest);
+  id(): LocationId {
+    return this._id;
+  }
+
+  equalTo(aLocation: Location): boolean {
+    return this.id().equalTo(aLocation.id());
   }
 }

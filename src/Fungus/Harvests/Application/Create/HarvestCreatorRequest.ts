@@ -5,6 +5,7 @@ import { HarvestId } from '../../Domain/HarvestId';
 export type HarvestCreatorRequest = {
   id: HarvestId;
   mushroomId: MushroomId;
+  locationId: LocationId;
   date: string;
   quantity: number;
 };

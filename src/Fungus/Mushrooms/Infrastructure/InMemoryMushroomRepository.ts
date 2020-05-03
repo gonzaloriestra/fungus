@@ -13,8 +13,8 @@ export class InMemoryMushroomRepository implements MushroomRepository {
     return MushroomId.create();
   }
 
-  add(harvest: Mushroom): void {
-    this.mushrooms.push(harvest);
+  add(mushroom: Mushroom): void {
+    this.mushrooms.push(mushroom);
   }
 
   findById(id: MushroomId): Mushroom | undefined {

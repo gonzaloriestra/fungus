@@ -4,30 +4,31 @@ import { Location } from '../../Locations/Domain/Location';
 import { Mushroom } from '../../Mushrooms/Domain/Mushroom';
 
 import { HarvestId } from './HarvestId';
+import { LocationId } from '../../Locations/Domain/LocationId';
 
 export class Harvest {
   _id: HarvestId;
   _date: Date;
-  _location: Location;
+  _locationId: LocationId;
   _mushroom?: Mushroom;
   _quantity?: number;
 
   constructor({
     id = HarvestId.create(),
-    location,
+    locationId,
     date,
     mushroom,
     quantity,
   }: {
     id?: HarvestId;
-    location: Location;
+    locationId: LocationId;
     date: Date;
     mushroom?: Mushroom;
     quantity?: number;
   }) {
     this._id = id;
     this._date = date;
-    this._location = location;
+    this._locationId = locationId;
     this._mushroom = mushroom;
     this._quantity = quantity;
   }
@@ -41,7 +42,8 @@ export class Harvest {
   }
 
   location(): Location {
-    return this._location;
+    // To-Do Recover the location
+    return new Location({ id: this._locationId, name: 'prueba', coordinates: [] });
   }
 
   quantity(): number | undefined {
