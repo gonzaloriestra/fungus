@@ -4,10 +4,10 @@ Feature: Register a new mushroom
   I want to define a new mushroom
 
   Scenario: A valid new mushroom
-    Given I send a PUT request to "/mushrooms/a52785bc-55da-402b-8b14-675b174195ca" with body:
+    When I send a PUT request to "/mushrooms/a52785bc-55da-402b-8b14-675b174195ca" with body:
     """
     {
-      "scientificName": "Amanita muscaria"
+      "scientificName": "Amanita caesarea"
     }
     """
     Then the response status code should be 201

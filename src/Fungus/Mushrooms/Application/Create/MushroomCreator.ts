@@ -1,5 +1,4 @@
 import { Mushroom } from '../../Domain/Mushroom';
-import { MushroomAlreadyExist } from '../../Domain/MushroomAlreadyExist';
 import { MushroomRepository } from '../../Domain/MushroomRepository';
 
 import { MushroomCreatorRequest } from './MushroomCreatorRequest';
@@ -23,7 +22,7 @@ export default class MushroomCreator {
   ensureMushroomWithSameScientificNameDoesNotExist(scientificName: string): void {
     const existentMushroom = this.repository.filterBy({ scientificName });
 
-    if (existentMushroom.length !== 0) {
+    if (0 !== existentMushroom.length) {
       throw new MushroomWithSameScientificNameAlreadyExist(scientificName);
     }
   }

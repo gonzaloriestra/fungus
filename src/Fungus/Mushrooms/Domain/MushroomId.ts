@@ -14,4 +14,8 @@ export class MushroomId {
   value(): string {
     return this._id;
   }
+
+  equalTo(aMushroomId: MushroomId): boolean {
+    return this.value() === aMushroomId.value();
+  }
 }

@@ -18,7 +18,7 @@ export class InMemoryMushroomRepository implements MushroomRepository {
   }
 
   findById(id: MushroomId): Mushroom | undefined {
-    return this.mushrooms.find((mushroom) => mushroom.id() === id);
+    return this.mushrooms.find((mushroom) => mushroom.id().equalTo(id));
   }
 
   filterBy({ scientificName }: { scientificName?: string } = {}): Array<Mushroom> {

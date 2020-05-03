@@ -2,9 +2,10 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import MushroomCreator from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
+import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
+import { MushroomWithSameScientificNameAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomWithSameScientificNameAlreadyExist';
 
 import { Controller } from '../Controller';
-import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
 
 export default class MushroomPutController implements Controller {
   mushroomCreator: MushroomCreator;
@@ -18,7 +19,15 @@ export default class MushroomPutController implements Controller {
     // @ts-ignore
     const { scientificName } = req.payload;
 
-    this.mushroomCreator.invoke({ id: new MushroomId(mushroomId), scientificName });
+    try {
+      await this.mushroomCreator.invoke({ id: new MushroomId(mushroomId), scientificName });
+    } catch (error) {
+      if (error instanceof MushroomWithSameScientificNameAlreadyExist) {
+        return res.response(error.message).code(httpStatus.BAD_REQUEST);
+      } else {
+        return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
+      }
+    }
 
     return res.response().code(httpStatus.CREATED);
   }
