@@ -40,10 +40,14 @@ services:
     class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
+  fungus.locations.LocationReader:
+    class: ../../../../../src/Fungus/Locations/Application/read/LocationReader
+    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+
   applications.fungus.controllers.LocationPutController:
     class: ../../controllers/Locations/LocationPutController
     arguments: ["@fungus.locations.LocationCreator"]
 
   applications.fungus.controllers.LocationsGetController:
     class: ../../controllers/Locations/LocationsGetController
-    arguments: []
+    arguments: ["@fungus.locations.LocationReader"]

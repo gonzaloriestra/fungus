@@ -3,6 +3,7 @@ Feature: Recover all the locations
   As an user
   I want to get all locations
 
+
   Scenario: Get all locations
     When I send a GET request to "/locations"
     Then the response status code should be 200
