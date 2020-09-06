@@ -15,9 +15,9 @@ export default class LocationCreator {
   invoke({ id, name, coordinates }: LocationCreatorRequest): void {
     this.ensureLocationDoesNotExist(id);
 
-    const mushroom = new Location({ id, name, coordinates });
+    const location = new Location({ id, name, coordinates });
 
-    this.repository.add(mushroom);
+    this.repository.add(location);
   }
 
   ensureLocationDoesNotExist(id: LocationId): void {

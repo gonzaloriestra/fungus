@@ -43,3 +43,7 @@ services:
   applications.fungus.controllers.LocationPutController:
     class: ../../controllers/Locations/LocationPutController
     arguments: ["@fungus.locations.LocationCreator"]
+
+  applications.fungus.controllers.LocationsGetController:
+    class: ../../controllers/Locations/LocationsGetController
+    arguments: []
