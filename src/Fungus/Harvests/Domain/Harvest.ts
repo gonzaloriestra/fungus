@@ -42,7 +42,7 @@ export class Harvest {
   }
 
   location(): Location {
-    // To-Do Recover the location
+    // ToDo Recover the location
     return new Location({ id: this._locationId, name: 'prueba', coordinates: [] });
   }
 
