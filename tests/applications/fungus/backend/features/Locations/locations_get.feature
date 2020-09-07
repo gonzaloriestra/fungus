@@ -3,7 +3,6 @@ Feature: Recover all the locations
   As an user
   I want to get all locations
 
-// TODO test that it returns some locations
   Scenario: Get all locations
     Given the location store empty
     And a location with id "942b2922-ef5b-4369-af82-a332222a7d12" already defined
