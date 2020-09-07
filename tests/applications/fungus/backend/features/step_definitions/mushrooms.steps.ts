@@ -4,7 +4,7 @@ import faker from 'faker';
 
 import app from '../../../../../../applications/fungus/backend/app';
 
-Given('A mushroom with id {string} already defined', async (id: string) => {
+Given('a mushroom with id {string} already defined', async (id: string) => {
   const body = {
     scientificName: faker.name.findName(),
   };

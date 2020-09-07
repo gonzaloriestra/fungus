@@ -4,7 +4,7 @@ Feature: Register a new harvest
   I want to define a new harvest
 
   Scenario: A valid new harvest
-    Given A mushroom with id "841d8c5e-bcac-43e3-9961-3ac28096a495" already defined
+    Given a mushroom with id "841d8c5e-bcac-43e3-9961-3ac28096a495" already defined
     Given a location with id "85c2cec-f362-432e-a136-5440816a584b" already defined
     When I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
     """
@@ -31,7 +31,7 @@ Feature: Register a new harvest
     Then the response status code should be 400
 
   Scenario: Location associated does not exist yet
-    Given A mushroom with id "63b3a7af-3938-4ce8-a2f2-51871dad6381" already defined
+    Given a mushroom with id "63b3a7af-3938-4ce8-a2f2-51871dad6381" already defined
     When I send a PUT request to "/harvests/6621ae2c-ad1b-4e19-b3f3-3ca86f6bd3dc" with body:
     """
     {
