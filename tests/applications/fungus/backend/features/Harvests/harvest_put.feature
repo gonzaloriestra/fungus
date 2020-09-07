@@ -5,7 +5,7 @@ Feature: Register a new harvest
 
   Scenario: A valid new harvest
     Given A mushroom with id "841d8c5e-bcac-43e3-9961-3ac28096a495" already defined
-    Given A location with id "85c2cec-f362-432e-a136-5440816a584b" already defined
+    Given a location with id "85c2cec-f362-432e-a136-5440816a584b" already defined
     When I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
     """
     {
@@ -19,7 +19,7 @@ Feature: Register a new harvest
     And the response should be empty
 
   Scenario: Mushroom associated does not exist yet
-    Given A location with id "57aab6f2-440c-4a91-973c-217f2af3f054" already defined
+    Given a location with id "57aab6f2-440c-4a91-973c-217f2af3f054" already defined
     When I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
     """
     {

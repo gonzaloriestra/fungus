@@ -40,8 +40,12 @@ services:
     class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
-  fungus.locations.LocationReader:
-    class: ../../../../../src/Fungus/Locations/Application/read/LocationReader
+  fungus.locations.LocationFinder:
+    class: ../../../../../src/Fungus/Locations/Application/find/LocationFinder
+    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+
+  fungus.locations.LocationCleaner:
+    class: ../../../../../src/Fungus/Locations/Application/clean/LocationCleaner
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   applications.fungus.controllers.LocationPutController:
@@ -50,4 +54,8 @@ services:
 
   applications.fungus.controllers.LocationsGetController:
     class: ../../controllers/Locations/LocationsGetController
-    arguments: ["@fungus.locations.LocationReader"]
+    arguments: ["@fungus.locations.LocationFinder"]
+
+  applications.fungus.controllers.LocationsDeleteController:
+    class: ../../controllers/Locations/LocationsDeleteController
+    arguments: ["@fungus.locations.LocationCleaner"]

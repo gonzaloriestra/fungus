@@ -6,4 +6,5 @@ export interface LocationRepository {
   add: (mushroom: Location) => void;
   findById: (id: LocationId) => Location | undefined;
   all: () => Array<Location>;
+  clean: () => void;
 }

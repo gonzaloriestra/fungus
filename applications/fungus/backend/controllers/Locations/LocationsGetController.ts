@@ -2,23 +2,24 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import LocationReader from '../../../../../src/Fungus/Locations/Application/Read/LocationReader';
+import LocationFinder from '../../../../../src/Fungus/Locations/Application/Find/LocationFinder';
 
 export default class LocationsGetController implements Controller {
-  locationReader: LocationReader;
+  locationReader: LocationFinder;
 
-  constructor(locationReader: LocationReader) {
+  constructor(locationReader: LocationFinder) {
     this.locationReader = locationReader;
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.locationReader.invoke();
+      const locations = await this.locationReader.invoke();
+
+      return res.response(locations.data).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);
 
       return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
     }
-    return res.response().code(httpStatus.OK);
   }
 }

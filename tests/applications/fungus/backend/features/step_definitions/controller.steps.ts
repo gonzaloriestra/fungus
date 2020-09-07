@@ -29,3 +29,18 @@ Then('the response status code should be {int}', async (status: number) => {
 Then('the response should be empty', () => {
   assert.deepEqual(_response.body, {});
 });
+
+Then('the response should be:', (response: string) => {
+  assert.deepEqual(_response.body, JSON.parse(response));
+});
+
+Then('the response should be a collection of {int} elements', (numberOfElements: string) => {
+  assert.deepEqual(_response.body.length, numberOfElements);
+});
+
+Then('the response should contains an element with id {string}', (id: string) => {
+  assert.ok(
+    _response.body.find((element: { id: string }) => element.id === id),
+    `The element with id ${id} does not exist`,
+  );
+});

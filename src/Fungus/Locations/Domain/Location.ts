@@ -16,6 +16,10 @@ export class Location {
     return this._id;
   }
 
+  name(): string {
+    return this._name;
+  }
+
   equalTo(aLocation: Location): boolean {
     return this.id().equalTo(aLocation.id());
   }
