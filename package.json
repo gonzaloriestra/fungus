@@ -1,7 +1,43 @@
 {
   "name": "fungus",
   "version": "0.1.0",
+  "description": "",
   "private": true,
+  "license": "",
+  "repository": {
+    "url": "https://github.com/ssanchezmarc/fungus"
+  },
+  "engines": {
+    "node": ">=10.15.0",
+    "yarn": ">=1.21.0"
+  },
+  "scripts": {
+    "start:dev:server": "tsc && node dist/applications/fungus/backend/server.js",
+    "start:server": "NODE_ENV=production node dist/applications/fungus/backend/server",
+    "start": "parcel applications/fungus/frontend/src/index.html --out-dir dist/debug",
+    "test": "yarn run test:unit && yarn run test:features",
+    "test:unit": "NODE_ENV=test jest",
+    "test:unit:watch": "NODE_ENV=test jest --watch",
+    "test:features": "NODE_ENV=test cucumber-js -p default -b",
+    "build:front": "parcel build applications/fungus/frontend/src/index.html --out-dir dist/release --public-url ./",
+    "build": "yarn run build:clean && yarn run build:tsc && yarn run build:di",
+    "build:tsc": "tsc -p tsconfig.prod.json",
+    "build:di": "copy applications/**/*.{json,yaml} dist/applications",
+    "build:clean": "rm -r dist; exit 0"
+  },
+  "dependencies": {
+    "copy": "^0.3.2",
+    "glob": "^7.1.6",
+    "hapi": "^18.1.0",
+    "http-status": "^1.4.2",
+    "lodash": "^4.17.15",
+    "node-dependency-injection": "^2.6.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "semantic-ui-react": "^0.88.2",
+    "ts-node": "^8.9.1",
+    "uuid": "^7.0.2"
+  },
   "devDependencies": {
     "@types/cucumber": "^6.0.1",
     "@types/faker": "^4.1.11",
@@ -30,26 +66,5 @@
     "ts-jest": "^25.2.1",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
-  },
-  "scripts": {
-    "start:server": "tsc && node dist/applications/fungus/backend/server.js",
-    "start": "parcel applications/fungus/frontend/src/index.html --out-dir dist/debug",
-    "build": "parcel build applications/fungus/frontend/src/index.html --out-dir dist/release --public-url ./",
-    "test": "yarn run test:unit && yarn run test:features",
-    "test:unit": "NODE_ENV=test jest",
-    "test:unit:watch": "NODE_ENV=test jest --watch",
-    "test:features": "NODE_ENV=test cucumber-js -p default -b"
-  },
-  "dependencies": {
-    "glob": "^7.1.6",
-    "hapi": "^18.1.0",
-    "http-status": "^1.4.2",
-    "lodash": "^4.17.15",
-    "node-dependency-injection": "^2.6.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "semantic-ui-react": "^0.88.2",
-    "ts-node": "^8.9.1",
-    "uuid": "^7.0.2"
   }
 }

@@ -1,3 +1,4 @@
+import { LocationId } from '../../../Locations/Domain/LocationId';
 import { MushroomId } from '../../../Mushrooms/Domain/MushroomId';
 
 import { HarvestId } from '../../Domain/HarvestId';

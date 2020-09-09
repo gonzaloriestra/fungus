@@ -1,5 +1,5 @@
 Feature: Register a new location
-  In order to have locations to be linked with my harvests
+  In order to have locations registered in the application
   As an user
   I want to define new locations
 

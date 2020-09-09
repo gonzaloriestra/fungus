@@ -14,7 +14,7 @@ export class Forecast {
     return this.location;
   }
 
-  getMushrooms(): Mushroom {
+  getMushrooms(): Array<Mushroom> {
     return this.mushrooms;
   }
 }
