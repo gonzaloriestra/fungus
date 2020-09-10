@@ -2,7 +2,7 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import LocationFinder from '../../../../../src/Fungus/Locations/Application/Find/LocationFinder';
+import LocationFinder from '../../../../../Fungus/Locations/Application/Find/LocationFinder';
 
 export default class LocationsGetController implements Controller {
   locationReader: LocationFinder;

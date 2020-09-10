@@ -1,9 +1,9 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import LocationCreator from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
-import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
-import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
+import LocationCreator from '../../../../../Fungus/Locations/Application/Create/LocationCreator';
+import { LocationId } from '../../../../../Fungus/Locations/Domain/LocationId';
+import { LocationAlreadyExist } from '../../../../../Fungus/Locations/Domain/LocationAlreadyExist';
 
 import { Controller } from '../Controller';
 

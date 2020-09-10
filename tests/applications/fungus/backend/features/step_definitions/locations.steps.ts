@@ -2,7 +2,7 @@ import { Given } from 'cucumber';
 import request from 'supertest';
 import faker from 'faker';
 
-import app from '../../../../../../applications/fungus/backend/app';
+import app from '../../../../../../src/applications/fungus/backend/app';
 
 Given('a location with id {string} already defined', async (id: string) => {
   const body = {

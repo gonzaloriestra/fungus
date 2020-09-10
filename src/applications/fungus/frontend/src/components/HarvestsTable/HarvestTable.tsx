@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table } from 'semantic-ui-react';
 
-import { Harvest } from '../../../../../../src/Fungus/Harvests/Domain/Harvest';
+import { Harvest } from '../../../../../../Fungus/Harvests/Domain/Harvest';
 
 type HarvestTableProps = {
   harvests?: Harvest[];

@@ -1,15 +1,15 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import HarvestCreator from '../../../../../src/Fungus/Harvests/Application/Create/HarvestCreator';
-import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
-import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
-import { HarvestAlreadyExist } from '../../../../../src/Fungus/Harvests/Domain/HarvestAlreadyExist';
-import { MushroomDoesNotExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomDoesNotExist';
-import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
+import HarvestCreator from '../../../../../Fungus/Harvests/Application/Create/HarvestCreator';
+import { HarvestId } from '../../../../../Fungus/Harvests/Domain/HarvestId';
+import { MushroomId } from '../../../../../Fungus/Mushrooms/Domain/MushroomId';
+import { HarvestAlreadyExist } from '../../../../../Fungus/Harvests/Domain/HarvestAlreadyExist';
+import { MushroomDoesNotExist } from '../../../../../Fungus/Mushrooms/Domain/MushroomDoesNotExist';
+import { LocationId } from '../../../../../Fungus/Locations/Domain/LocationId';
 
 import { Controller } from '../Controller';
-import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../../../Fungus/Locations/Domain/LocationDoesNotExist';
 
 export default class HarvestPutController implements Controller {
   harvestCreator: HarvestCreator;

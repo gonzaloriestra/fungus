@@ -2,7 +2,7 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import LocationCleaner from '../../../../../src/Fungus/Locations/Application/Clean/LocationCleaner';
+import LocationCleaner from '../../../../../Fungus/Locations/Application/Clean/LocationCleaner';
 
 export default class LocationsDeleteController implements Controller {
   locationCleaner: LocationCleaner;
