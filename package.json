@@ -12,15 +12,15 @@
     "yarn": ">=1.21.0"
   },
   "scripts": {
-    "start:backend:dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 src/applications/fungus/backend/server.ts",
-    "start:frontend:dev": "NODE_ENV=dev parcel src/applications/fungus/frontend/src/index.html --out-dir dist/debug",
+    "start:backend:dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 applications/backend/server.ts",
+    "start:frontend:dev": "NODE_ENV=dev parcel applications/frontend/src/index.html --out-dir dist/debug",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "NODE_ENV=test cucumber-js -p default -b",
     "start:backend": "NODE_ENV=production node dist/src/applications/fungus/backend/server",
     "build": "yarn run build:front && yarn run build:backend",
-    "build:frontend": "parcel build src/applications/fungus/frontend/src/index.html --out-dir dist/release --public-url ./",
+    "build:frontend": "parcel build applications/frontend/src/index.html --out-dir dist/release --public-url ./",
     "build:backend": "yarn run build:clean && yarn run build:tsc && yarn run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy src/applications/**/*.{json,yaml} dist/src/applications",
