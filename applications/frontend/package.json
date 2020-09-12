@@ -1,11 +1,20 @@
 {
-  "name": "learn-starter",
+  "name": "fungus_frontend_app",
   "version": "0.1.0",
+  "description": "",
   "private": true,
+  "license": "",
+  "repository": {
+    "url": "https://github.com/ssanchezmarc/fungus"
+  },
+  "engines": {
+    "node": ">=10.15.0",
+    "yarn": ">=1.21.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "start:dev": "next dev",
+    "start": "next start",
+    "build": "next build"
   },
   "dependencies": {
     "next": "9.3.5",
