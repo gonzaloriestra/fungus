@@ -1,21 +1,14 @@
-import Link from 'next/link';
-import Head from 'next/head';
-import {Button} from "semantic-ui-react";
+import React from 'react';
+import { Item } from 'semantic-ui-react';
 
-export default function FirstPost() {
+import Location from './components/Location';
+
+const LocationsPage = (): JSX.Element => {
   return (
+    <Item.Group divided>
+      <Location id={'001'} name={'12 Years a Slave'} />
+    </Item.Group>
+  );
+};
 
-    <>
-        <Head>
-            <title>First Post</title>
-        </Head>
-      <h1>First Post</h1>
-        <Button>PRueba s</Button>
-  <h2>
-  <Link href="/">
-    <a>Back to home</a>
-  </Link>
-  </h2>
-  </>
-)
-}
+export default LocationsPage;
