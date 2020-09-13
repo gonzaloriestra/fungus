@@ -1,14 +1,28 @@
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Item as SemanticItem } from 'semantic-ui-react';
+import { GetServerSideProps } from 'next';
 
-import Location from './components/Location';
+import Location from './models/Location';
+import getLocations from './queries/getLocations';
 
-const LocationsPage = (): JSX.Element => {
-  return (
-    <Item.Group divided>
-      <Location id={'001'} name={'12 Years a Slave'} />
-    </Item.Group>
-  );
+import Item from './components/Item';
+
+type LocationsProps = {
+  locations: Array<Location>;
 };
 
-export default LocationsPage;
+export default function Locations({ locations }: LocationsProps): JSX.Element {
+  return (
+    <SemanticItem.Group divided>
+      {locations.map((location) => (
+        <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`location/${location.id}`} />
+      ))}
+    </SemanticItem.Group>
+  );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await getLocations();
+
+  return { props: { locations: res.data } };
+};

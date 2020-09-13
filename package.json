@@ -24,6 +24,7 @@
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "copy": "^0.3.2",
     "glob": "^7.1.6",
     "hapi": "^18.1.0",

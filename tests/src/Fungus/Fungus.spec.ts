@@ -17,7 +17,7 @@ it('empty test', () => {
 // describe('Fungus', () => {
 //   const filePath = 'testHarvestRepository.txt';
 //   const today = new Date();
-//   const location = new Location({ id: LocationId.create(), name: 'location one', coordinates: [] });
+//   const location = new Item({ id: LocationId.create(), name: 'location one', coordinates: [] });
 //
 //   afterAll(() => {
 //     fs.unlinkSync(filePath);
@@ -82,7 +82,7 @@ it('empty test', () => {
 //       const forecasts = subject.foretell(today);
 //
 //       forecasts.forEach((forecast) => {
-//         expect(forecast.getLocation()).toBeInstanceOf(Location);
+//         expect(forecast.getLocation()).toBeInstanceOf(Item);
 //         expect(forecast.getMushrooms()).toBeInstanceOf(Array);
 //       });
 //     });

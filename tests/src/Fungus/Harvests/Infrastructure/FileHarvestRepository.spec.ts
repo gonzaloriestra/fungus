@@ -57,7 +57,7 @@ it('empty test', () => {
 //     const today = new Date();
 //     const pastDate = new Date('1985-12-19');
 //     const locationIdOne = LocationId.create();
-//     const locationOne = new Location({ id: locationIdOne, name: 'Location One', coordinates: [] });
+//     const locationOne = new Item({ id: locationIdOne, name: 'Item One', coordinates: [] });
 //     const locationIdTwo = LocationId.create();
 //
 //     const harvestRepository = new FileHarvestRepository({ filePath });
