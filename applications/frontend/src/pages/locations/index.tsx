@@ -17,7 +17,7 @@ export default function Locations({ locations }: LocationsProps): JSX.Element {
     <SemanticContainer>
       <SemanticItem.Group divided>
         {locations.map((location) => (
-          <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`location/${location.id}`} />
+          <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`locations/${location.id}`} />
         ))}
       </SemanticItem.Group>
     </SemanticContainer>
