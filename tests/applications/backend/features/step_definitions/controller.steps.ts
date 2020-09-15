@@ -37,3 +37,7 @@ Then('the response should contains an element with id {string}', (id: string) =>
     `The element with id ${id} does not exist`,
   );
 });
+
+Then('the response should be an element with id {string}', (id: string) => {
+  assert.equal(_response.body.id, id);
+});

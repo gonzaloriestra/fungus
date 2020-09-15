@@ -5,6 +5,7 @@ import container from '../config/dependency-injection';
 import LocationPutController from '../controllers/Locations/LocationPutController';
 import LocationsGetController from '../controllers/Locations/LocationsGetController';
 import LocationsDeleteController from '../controllers/Locations/LocationsDeleteController';
+import LocationsByIdGetController from '../controllers/Locations/LocationsByIdGetController';
 
 export const register = (app: Server): void => {
   const locationPutController: LocationPutController = container.get(
@@ -12,6 +13,9 @@ export const register = (app: Server): void => {
   );
   const locationsGetController: LocationsGetController = container.get(
     'applications.fungus.controllers.LocationsGetController',
+  );
+  const locationsByIdGetController: LocationsByIdGetController = container.get(
+    'applications.fungus.controllers.LocationsByIdGetController',
   );
   const locationsDeleteController: LocationsDeleteController = container.get(
     'applications.fungus.controllers.LocationsDeleteController',
@@ -27,6 +31,12 @@ export const register = (app: Server): void => {
     method: 'GET',
     path: '/locations',
     handler: locationsGetController.run.bind(locationsGetController),
+  });
+
+  app.route({
+    method: 'GET',
+    path: '/locations/{id}',
+    handler: locationsByIdGetController.run.bind(locationsByIdGetController),
   });
 
   app.route({
