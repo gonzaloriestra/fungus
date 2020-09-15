@@ -6,11 +6,11 @@ A fungi locator which notifies you when you have high options to collect mushroo
 
 ## Backend
 
-`start:dev` to run the server in hot reloading mode
+`start:dev:backend` to run the server in hot reloading mode
 
 ## Frontend
 
-Go to frontend [README](applications/frontend/README.md)
+`start:dev:frontend` to run the web app in hot reloading mode
 
 # TESTING
 

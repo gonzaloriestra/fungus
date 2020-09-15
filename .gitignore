@@ -4,6 +4,7 @@
 # yarn
 yarn-error.log
 
+# production
 .cache
 /dist
 

@@ -12,13 +12,16 @@
     "yarn": ">=1.21.0"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 applications/backend/server.ts",
-    "start": "NODE_ENV=production node dist/src/applications/fungus/backend/server",
+    "start:dev:frontend": "NODE_ENV=development next dev applications/frontend",
+    "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 applications/backend/server.ts",
+    "start:frontend": "NODE_ENV=production next start applications/frontend",
+    "start:backend": "NODE_ENV=production node dist/src/applications/fungus/backend/server",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "NODE_ENV=test cucumber-js -p default -b",
-    "build": "yarn run build:clean && yarn run build:tsc && yarn run build:di",
+    "build:frontend": "next build applications/frontend",
+    "build:backend": "yarn run build:clean && yarn run build:tsc && yarn run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy src/applications/**/*.{json,yaml} dist/src/applications",
     "build:clean": "rm -r dist; exit 0"
@@ -30,7 +33,12 @@
     "hapi": "^18.1.0",
     "http-status": "^1.4.2",
     "lodash": "^4.17.15",
+    "next": "^9.5.3",
     "node-dependency-injection": "^2.6.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^1.2.1",
     "ts-node": "^8.9.1",
     "uuid": "^7.0.2"
   },
@@ -41,7 +49,8 @@
     "@types/hapi": "^18.0.3",
     "@types/jest": "^25.1.4",
     "@types/lodash": "^4.14.149",
-    "@types/node": "^14.10.1",
+    "@types/node": "^14.10.2",
+    "@types/react": "^16.9.49",
     "@types/supertest": "^2.0.8",
     "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -59,6 +68,6 @@
     "ts-jest": "^25.2.1",
     "ts-node-dev": "^1.0.0-pre.62",
     "tslib": "^1.11.1",
-    "typescript": "^3.8.3"
+    "typescript": "^4.0.2"
   }
 }
