@@ -16,6 +16,7 @@ export default class LocationsByIdGetController implements Controller {
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
       const locationId = new LocationId(req.params.id);
+
       const location = await this.locationByIdFinder.invoke(locationId);
 
       if (!location.data) {

@@ -20,6 +20,10 @@ export class Location {
     return this._name;
   }
 
+  coordinates(): Array<Coordinate> {
+    return this._coordinates;
+  }
+
   equalTo(aLocation: Location): boolean {
     return this.id().equalTo(aLocation.id());
   }
