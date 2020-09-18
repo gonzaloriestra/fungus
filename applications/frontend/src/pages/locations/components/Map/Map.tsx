@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
 import { Map as MapLeaflet, TileLayer, Polygon } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 
-import Coordinate from '../../models/Coordinate';
+import Location from '../../models/Location';
+
+import styles from './map.module.css';
 
 type MapProps = {
-  location: Array<Coordinate>;
+  location: Location;
+  initialZoom?: number;
 };
 
-const polygon = [
-  [51.515, -0.09],
-  [51.52, -0.1],
-  [51.52, -0.12],
-];
+function mapPositionFromCoordinates(coordinates): LatLngExpression {
+  if (coordinates && coordinates.length) {
+    return { lat: coordinates[0].latitude, lng: coordinates[0].longitude };
+  }
+}
 
-const Map = ({ location }: MapProps): JSX.Element => {
-  const [position] = useState({ lat: location[0].latitude, lng: location[0].longitude });
-  const [zoom] = useState(15);
+const Map = ({ location, initialZoom = 15 }: MapProps): JSX.Element => {
+  const coordinates = location?.coordinates;
+
+  const [position] = useState(mapPositionFromCoordinates(coordinates));
+  const [zoom] = useState(initialZoom);
 
   return (
-    <MapLeaflet
-      center={position}
-      zoom={zoom}
-      style={{
-        height: '700px',
-      }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <MapLeaflet className={styles.container} center={position} zoom={zoom}>
+      <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+      <Polygon positions={coordinates.map((coordinate) => [coordinate.latitude, coordinate.longitude])} />
     </MapLeaflet>
   );
 };
