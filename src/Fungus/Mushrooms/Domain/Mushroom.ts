@@ -4,9 +4,9 @@ export class Mushroom {
   _id: MushroomId;
   _scientificName: string;
 
-  constructor({ id, scientificName }: { id: MushroomId; scientificName: string }) {
+  constructor({ id, scientificName }: { id: MushroomId; scientificName?: string }) {
     this._id = id;
-    this._scientificName = scientificName;
+    this._scientificName = scientificName || '';
   }
 
   id(): MushroomId {

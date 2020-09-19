@@ -6,10 +6,10 @@ export class Location {
   _name: string;
   _coordinates: Array<Coordinate>;
 
-  constructor({ id, name, coordinates }: { id: LocationId; name: string; coordinates: Array<Coordinate> }) {
+  constructor({ id, name, coordinates }: { id: LocationId; name?: string; coordinates?: Array<Coordinate> }) {
     this._id = id;
-    this._name = name;
-    this._coordinates = coordinates;
+    this._name = name || '';
+    this._coordinates = coordinates || [];
   }
 
   id(): LocationId {
