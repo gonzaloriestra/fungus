@@ -1,6 +1,7 @@
 import { Given } from 'cucumber';
 import request from 'supertest';
 import faker from 'faker';
+import assert from 'assert';
 
 import app from '../../../../../applications/backend/app';
 
@@ -19,5 +20,7 @@ Given('a location with id {string} already defined', async (id: string) => {
 });
 
 Given('the location store empty', async () => {
-  await request(app.listener).delete('/locations').send();
+  const response = await request(app.listener).delete('/locations').send();
+
+  assert.strictEqual(response.status, 204);
 });

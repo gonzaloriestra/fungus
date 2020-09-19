@@ -2,14 +2,26 @@ import { Server } from 'hapi';
 
 import container from '../config/dependency-injection';
 
-import HarvestPutController from '../controllers/Harvests/HarvestPutController';
+import HarvestsPutController from '../controllers/Harvests/HarvestsPutController';
+import HarvestsDeleteController from '../controllers/Harvests/HarvestsDeleteController';
 
 export const register = (app: Server): void => {
-  const controller: HarvestPutController = container.get('applications.fungus.controllers.HarvestPutController');
+  const harvestsPutController: HarvestsPutController = container.get(
+    'applications.fungus.controllers.HarvestsPutController',
+  );
+  const harvestsDeleteController: HarvestsDeleteController = container.get(
+    'applications.fungus.controllers.HarvestsDeleteController',
+  );
 
   app.route({
     method: 'PUT',
     path: '/harvests/{id}',
-    handler: controller.run.bind(controller),
+    handler: harvestsPutController.run.bind(harvestsPutController),
+  });
+
+  app.route({
+    method: 'DELETE',
+    path: '/harvests',
+    handler: harvestsDeleteController.run.bind(harvestsDeleteController),
   });
 };

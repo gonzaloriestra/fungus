@@ -14,9 +14,17 @@ services:
     class: ../../../../src/Fungus/Harvests/Application/create/HarvestCreator
     arguments: ["@fungus.harvests.InMemoryHarvestRepository", "@fungus.mushrooms.InMemoryMushroomRepository", "@fungus.locations.InMemoryLocationRepository"]
 
-  applications.fungus.controllers.HarvestPutController:
-    class: ../../controllers/Harvests/HarvestPutController
+  fungus.harvests.HarvestCleaner:
+    class: ../../../../src/Fungus/Harvests/Application/clean/HarvestCleaner
+    arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
+
+  applications.fungus.controllers.HarvestsPutController:
+    class: ../../controllers/Harvests/HarvestsPutController
     arguments: ["@fungus.harvests.HarvestCreator"]
+
+  applications.fungus.controllers.HarvestsDeleteController:
+    class: ../../controllers/Harvests/HarvestsDeleteController
+    arguments: ["@fungus.harvests.HarvestCleaner"]
 
   #  Mushrooms
   fungus.mushrooms.InMemoryMushroomRepository:

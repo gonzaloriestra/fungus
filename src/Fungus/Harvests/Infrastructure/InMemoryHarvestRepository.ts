@@ -31,6 +31,10 @@ export class InMemoryHarvestRepository implements HarvestRepository {
     return this.harvests;
   }
 
+  clean(): void {
+    this.harvests = [];
+  }
+
   filterBy({ date, location }: { date?: Date; location?: Location } = {}): Array<Harvest> {
     if (date) {
       return this._filterByDate(date);

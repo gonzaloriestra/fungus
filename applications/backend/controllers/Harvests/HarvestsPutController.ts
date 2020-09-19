@@ -11,7 +11,7 @@ import { LocationId } from '../../../../src/Fungus/Locations/Domain/LocationId';
 import { Controller } from '../Controller';
 import { LocationDoesNotExist } from '../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
 
-export default class HarvestPutController implements Controller {
+export default class HarvestsPutController implements Controller {
   harvestCreator: HarvestCreator;
 
   constructor(harvestCreator: HarvestCreator) {
