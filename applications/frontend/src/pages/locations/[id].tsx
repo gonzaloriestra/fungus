@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { List } from 'semantic-ui-react';
+import { Header, Icon } from 'semantic-ui-react';
 
 import Location from './models/Location';
 import getLocation from './queries/getLocation';
@@ -15,6 +15,10 @@ type LocationDetailsProps = {
 export default function LocationDetails({ location, harvests }: LocationDetailsProps): JSX.Element {
   return (
     <>
+      <Header as="h1">
+        <Icon name="map outline" />
+        <Header.Content>Location</Header.Content>
+      </Header>
       <div
         style={{
           height: '500px',
@@ -23,6 +27,10 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
       >
         <Map location={location} />
       </div>
+      <Header as="h2">
+        <Icon name="calendar alternate outline" />
+        <Header.Content>Harvests</Header.Content>
+      </Header>
       <HarvestList harvests={harvests} />
     </>
   );

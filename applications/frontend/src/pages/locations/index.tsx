@@ -1,6 +1,5 @@
 import React from 'react';
-import { Item as SemanticItem } from 'semantic-ui-react';
-import { Container as SemanticContainer } from 'semantic-ui-react';
+import { Header, Icon, Item as SemanticItem, Container } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 
 import Location from './models/Location';
@@ -14,13 +13,19 @@ type LocationsProps = {
 
 export default function Locations({ locations }: LocationsProps): JSX.Element {
   return (
-    <SemanticContainer>
-      <SemanticItem.Group divided>
-        {locations.map((location) => (
-          <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`locations/${location.id}`} />
-        ))}
-      </SemanticItem.Group>
-    </SemanticContainer>
+    <>
+      <Header as="h1">
+        <Icon name="map outline" />
+        <Header.Content>Locations</Header.Content>
+      </Header>
+      <Container>
+        <SemanticItem.Group divided>
+          {locations.map((location) => (
+            <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`locations/${location.id}`} />
+          ))}
+        </SemanticItem.Group>
+      </Container>
+    </>
   );
 }
 

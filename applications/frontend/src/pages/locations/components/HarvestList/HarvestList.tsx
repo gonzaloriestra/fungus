@@ -6,12 +6,10 @@ const HarvestList = ({ harvests }): JSX.Element => {
     <List>
       {harvests.map((harvest) => (
         <List.Item>
-          <List.Icon color="teal" name="tree" />
-          <List.Icon color="grey" name="tree" />
-          <List.Icon color="grey" name="tree" />
           <List.Content>
             <List.Header as="a">{harvest.date}</List.Header>
-            <List.Description>Boletus edulis</List.Description>
+            <List.Description>Mushroom - {harvest.mushroomId}</List.Description>
+            <List.Description>Quantity {harvest.quantity}</List.Description>
           </List.Content>
         </List.Item>
       ))}
