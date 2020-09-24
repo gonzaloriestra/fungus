@@ -1,6 +1,6 @@
 import { Location } from '../../Domain/Location';
 
-export class LocationFinderResponse {
+export class FindLocationsResponse {
   readonly data: Array<{ id: string; name: string }>;
 
   constructor(locations: Array<Location>) {

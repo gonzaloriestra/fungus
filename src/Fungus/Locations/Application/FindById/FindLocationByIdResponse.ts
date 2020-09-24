@@ -1,6 +1,6 @@
 import { Location } from '../../Domain/Location';
 
-export class LocationByIdFinderResponse {
+export class FindLocationByIdResponse {
   readonly data: { id: string; name: string; coordinates?: Array<{ latitude: number; longitude: number }> } | undefined;
 
   constructor(location?: Location) {

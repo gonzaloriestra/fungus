@@ -1,7 +1,7 @@
 import { LocationRepository } from '../../Domain/LocationRepository';
 
-import { LocationByIdFinderResponse } from './LocationByIdFinderResponse';
-import { LocationId } from '../../Domain/LocationId';
+import { FindLocationByIdResponse } from './FindLocationByIdResponse';
+import { FindLocationByIdRequest } from './FindLocationByIdRequest';
 
 export default class LocationByIdFinder {
   repository: LocationRepository;
@@ -9,8 +9,7 @@ export default class LocationByIdFinder {
   constructor(repository: LocationRepository) {
     this.repository = repository;
   }
-
-  invoke(locationId: LocationId): LocationByIdFinderResponse {
-    return new LocationByIdFinderResponse(this.repository.findById(locationId));
+  invoke({ locationId }: FindLocationByIdRequest): FindLocationByIdResponse {
+    return new FindLocationByIdResponse(this.repository.findById(locationId));
   }
 }

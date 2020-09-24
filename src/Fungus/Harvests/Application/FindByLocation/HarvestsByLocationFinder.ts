@@ -1,8 +1,8 @@
+import { Location } from '../../../Locations/Domain/Location';
 import { HarvestRepository } from '../../Domain/HarvestRepository';
 
-import { HarvestsByLocationFinderResponse } from './HarvestsByLocationFinderResponse';
-import { LocationId } from '../../../Locations/Domain/LocationId';
-import { Location } from '../../../Locations/Domain/Location';
+import { FindHarvestsByLocationResponse } from './FindHarvestsByLocationResponse';
+import { FindHarvestsByLocationRequest } from './FindHarvestsByLocationRequest';
 
 export default class HarvestsByLocationFinder {
   repository: HarvestRepository;
@@ -11,9 +11,7 @@ export default class HarvestsByLocationFinder {
     this.repository = repository;
   }
 
-  invoke(locationId: LocationId): HarvestsByLocationFinderResponse {
-    return new HarvestsByLocationFinderResponse(
-      this.repository.filterBy({ location: new Location({ id: locationId }) }),
-    );
+  invoke({ locationId }: FindHarvestsByLocationRequest): FindHarvestsByLocationResponse {
+    return new FindHarvestsByLocationResponse(this.repository.filterBy({ location: new Location({ id: locationId }) }));
   }
 }

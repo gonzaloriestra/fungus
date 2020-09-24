@@ -17,7 +17,7 @@ export default class HarvestsByLocationGetController implements Controller {
     try {
       const locationId = new LocationId(req.params.id);
 
-      const harvests = await this.harvestsByLocationFinder.invoke(locationId);
+      const harvests = await this.harvestsByLocationFinder.invoke({ locationId });
 
       if (!harvests.data.length) {
         return res.response().code(httpStatus.NOT_FOUND);

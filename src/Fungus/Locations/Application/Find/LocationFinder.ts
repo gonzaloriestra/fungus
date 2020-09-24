@@ -1,6 +1,6 @@
 import { LocationRepository } from '../../Domain/LocationRepository';
 
-import { LocationFinderResponse } from './LocationFinderResponse';
+import { FindLocationsResponse } from './FindLocationsResponse';
 
 export default class LocationFinder {
   repository: LocationRepository;
@@ -9,7 +9,7 @@ export default class LocationFinder {
     this.repository = repository;
   }
 
-  invoke(): LocationFinderResponse {
-    return new LocationFinderResponse(this.repository.all());
+  invoke(): FindLocationsResponse {
+    return new FindLocationsResponse(this.repository.all());
   }
 }

@@ -3,7 +3,7 @@ import { LocationRepository } from '../../Domain/LocationRepository';
 import { LocationAlreadyExist } from '../../Domain/LocationAlreadyExist';
 import { LocationId } from '../../Domain/LocationId';
 
-import { LocationCreatorRequest } from './LocationCreatorRequest';
+import { CreateLocationRequest } from './CreateLocationRequest';
 
 export default class LocationCreator {
   repository: LocationRepository;
@@ -12,7 +12,7 @@ export default class LocationCreator {
     this.repository = repository;
   }
 
-  invoke({ id, name, coordinates }: LocationCreatorRequest): void {
+  invoke({ id, name, coordinates }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
     const location = new Location({ id, name, coordinates });

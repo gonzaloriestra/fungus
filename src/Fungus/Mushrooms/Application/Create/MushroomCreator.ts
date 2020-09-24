@@ -1,8 +1,8 @@
 import { Mushroom } from '../../Domain/Mushroom';
+import { MushroomWithSameScientificNameAlreadyExist } from '../../Domain/MushroomWithSameScientificNameAlreadyExist';
 import { MushroomRepository } from '../../Domain/MushroomRepository';
 
-import { MushroomCreatorRequest } from './MushroomCreatorRequest';
-import { MushroomWithSameScientificNameAlreadyExist } from '../../Domain/MushroomWithSameScientificNameAlreadyExist';
+import { CreateMushroomRequest } from './CreateMushroomRequest';
 
 export default class MushroomCreator {
   repository: MushroomRepository;
@@ -11,7 +11,7 @@ export default class MushroomCreator {
     this.repository = repository;
   }
 
-  invoke({ id, scientificName }: MushroomCreatorRequest): void {
+  invoke({ id, scientificName }: CreateMushroomRequest): void {
     this.ensureMushroomWithSameScientificNameDoesNotExist(scientificName);
 
     const mushroom = new Mushroom({ id, scientificName });

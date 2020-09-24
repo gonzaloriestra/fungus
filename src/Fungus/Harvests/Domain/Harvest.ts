@@ -6,12 +6,15 @@ import { Mushroom } from '../../Mushrooms/Domain/Mushroom';
 import { HarvestId } from './HarvestId';
 import { LocationId } from '../../Locations/Domain/LocationId';
 import { MushroomId } from '../../Mushrooms/Domain/MushroomId';
-
+// To-Do Share kernel ?? we are using code from differents modules
 export class Harvest {
   _id: HarvestId;
   _date: Date;
+  // Aggregate ?
   _locationId: LocationId;
+  // Aggregate ?
   _mushroomId?: MushroomId;
+  // To-Do better in a value object
   _quantity?: number;
 
   constructor({

@@ -11,7 +11,7 @@ import { Harvest } from '../../Domain/Harvest';
 import { HarvestAlreadyExist } from '../../Domain/HarvestAlreadyExist';
 
 import { HarvestRepository } from '../../Domain/HarvestRepository';
-import { HarvestCreatorRequest } from './HarvestCreatorRequest';
+import { CreateHarvestRequest } from './CreateHarvestRequest';
 
 export default class HarvestCreator {
   harvestRepository: HarvestRepository;
@@ -28,7 +28,7 @@ export default class HarvestCreator {
     this.locationRepository = locationRepository;
   }
 
-  invoke({ id, mushroomId, locationId, date, quantity }: HarvestCreatorRequest): void {
+  invoke({ id, mushroomId, locationId, date, quantity }: CreateHarvestRequest): void {
     this.ensureHarvestDoesNotExist(id);
     this.ensureMushroomExist(mushroomId);
     this.ensureLocationExist(locationId);

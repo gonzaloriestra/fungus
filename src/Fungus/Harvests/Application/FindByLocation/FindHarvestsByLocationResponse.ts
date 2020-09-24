@@ -1,6 +1,6 @@
 import { Harvest } from '../../Domain/Harvest';
 
-export class HarvestsByLocationFinderResponse {
+export class FindHarvestsByLocationResponse {
   // To-Do How to avoid this definitions
   readonly data: Array<{ id: string; date: string; locationId: string; mushroomId?: string; quantity?: number }>;
 

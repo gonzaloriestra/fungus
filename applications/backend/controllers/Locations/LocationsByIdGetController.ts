@@ -17,7 +17,7 @@ export default class LocationsByIdGetController implements Controller {
     try {
       const locationId = new LocationId(req.params.id);
 
-      const location = await this.locationByIdFinder.invoke(locationId);
+      const location = await this.locationByIdFinder.invoke({ locationId });
 
       if (!location.data) {
         return res.response().code(httpStatus.NOT_FOUND);
