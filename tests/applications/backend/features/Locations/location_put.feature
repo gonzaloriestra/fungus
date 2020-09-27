@@ -49,17 +49,9 @@ Feature: Register a new location
         {
           "latitude": "42.736840",
           "longitude": "-4.886794"
-        },
-        {
-          "latitude": "42.735547",
-          "longitude": "-4.883187"
-        },
-        {
-          "latitude": "42.741442",
-          "longitude": "-4.882156"
         }
       ]
     }
     """
-    Then the response status code should be 404
+    Then the response status code should be 400
     And the response should be empty
