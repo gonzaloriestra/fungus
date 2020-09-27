@@ -27,4 +27,19 @@ export class Location {
   equalTo(aLocation: Location): boolean {
     return this.id().equalTo(aLocation.id());
   }
+
+  toPrimitives(): {
+    id: string;
+    name: string;
+    coordinates: Array<{ latitude: number; longitude: number }>;
+  } {
+    return {
+      id: this._id.value(),
+      name: this._name,
+      coordinates: this._coordinates.map((coordinate) => ({
+        latitude: coordinate.latitude(),
+        longitude: coordinate.longitude(),
+      })),
+    };
+  }
 }

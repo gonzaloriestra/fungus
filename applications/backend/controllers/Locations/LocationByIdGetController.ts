@@ -5,8 +5,9 @@ import { LocationId } from '../../../../src/Fungus/Locations/Domain/LocationId';
 import LocationByIdFinder from '../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder';
 
 import { Controller } from '../Controller';
+import { LocationDoesNotExist } from '../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
 
-export default class LocationsByIdGetController implements Controller {
+export default class LocationByIdGetController implements Controller {
   locationByIdFinder: LocationByIdFinder;
 
   constructor(locationByIdFinder: LocationByIdFinder) {
@@ -17,15 +18,15 @@ export default class LocationsByIdGetController implements Controller {
     try {
       const locationId = new LocationId(req.params.id);
 
-      const location = await this.locationByIdFinder.invoke({ locationId });
+      const response = await this.locationByIdFinder.run({ locationId });
 
-      if (!location.data) {
-        return res.response().code(httpStatus.NOT_FOUND);
-      }
-
-      return res.response(location.data).code(httpStatus.OK);
+      return res.response(response).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);
+
+      if (error instanceof LocationDoesNotExist) {
+        return res.response().code(httpStatus.NOT_FOUND);
+      }
 
       return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
     }

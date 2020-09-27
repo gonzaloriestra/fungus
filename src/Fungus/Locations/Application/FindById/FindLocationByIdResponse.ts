@@ -1,18 +1,19 @@
-import { Location } from '../../Domain/Location';
-
 export class FindLocationByIdResponse {
-  readonly data: { id: string; name: string; coordinates?: Array<{ latitude: number; longitude: number }> } | undefined;
+  readonly id: string;
+  readonly name: string;
+  readonly coordinates?: Array<{ latitude: number; longitude: number }>;
 
-  constructor(location?: Location) {
-    if (location) {
-      this.data = {
-        id: location.id().value(),
-        name: location.name(),
-        coordinates: location.coordinates().map((coordinate) => ({
-          latitude: coordinate.latitude(),
-          longitude: coordinate.longitude(),
-        })),
-      };
-    }
+  constructor({
+    id,
+    name,
+    coordinates,
+  }: {
+    id: string;
+    name: string;
+    coordinates: Array<{ latitude: number; longitude: number }>;
+  }) {
+    this.id = id;
+    this.name = name;
+    this.coordinates = coordinates;
   }
 }

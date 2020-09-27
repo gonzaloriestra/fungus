@@ -2,6 +2,7 @@ import { LocationRepository } from '../../Domain/LocationRepository';
 
 import { FindLocationByIdResponse } from './FindLocationByIdResponse';
 import { FindLocationByIdRequest } from './FindLocationByIdRequest';
+import { LocationDoesNotExist } from '../../Domain/LocationDoesNotExist';
 
 export default class LocationByIdFinder {
   repository: LocationRepository;
@@ -9,7 +10,14 @@ export default class LocationByIdFinder {
   constructor(repository: LocationRepository) {
     this.repository = repository;
   }
-  invoke({ locationId }: FindLocationByIdRequest): FindLocationByIdResponse {
-    return new FindLocationByIdResponse(this.repository.findById(locationId));
+
+  run({ locationId }: FindLocationByIdRequest): FindLocationByIdResponse {
+    const location = this.repository.findById(locationId);
+
+    if (!location) {
+      throw new LocationDoesNotExist(locationId);
+    }
+
+    return new FindLocationByIdResponse(location.toPrimitives());
   }
 }

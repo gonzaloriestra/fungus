@@ -5,7 +5,7 @@ import container from '../config/dependency-injection';
 import LocationPutController from '../controllers/Locations/LocationPutController';
 import LocationsGetController from '../controllers/Locations/LocationsGetController';
 import LocationsDeleteController from '../controllers/Locations/LocationsDeleteController';
-import LocationsByIdGetController from '../controllers/Locations/LocationsByIdGetController';
+import LocationByIdGetController from '../controllers/Locations/LocationByIdGetController';
 
 export const register = (app: Server): void => {
   const locationPutController: LocationPutController = container.get(
@@ -14,8 +14,8 @@ export const register = (app: Server): void => {
   const locationsGetController: LocationsGetController = container.get(
     'applications.fungus.controllers.LocationsGetController',
   );
-  const locationsByIdGetController: LocationsByIdGetController = container.get(
-    'applications.fungus.controllers.LocationsByIdGetController',
+  const locationByIdGetController: LocationByIdGetController = container.get(
+    'applications.fungus.controllers.LocationByIdGetController',
   );
   const locationsDeleteController: LocationsDeleteController = container.get(
     'applications.fungus.controllers.LocationsDeleteController',
@@ -36,7 +36,7 @@ export const register = (app: Server): void => {
   app.route({
     method: 'GET',
     path: '/locations/{id}',
-    handler: locationsByIdGetController.run.bind(locationsByIdGetController),
+    handler: locationByIdGetController.run.bind(locationByIdGetController),
   });
 
   app.route({

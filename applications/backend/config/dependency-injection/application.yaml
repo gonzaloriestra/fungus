@@ -76,8 +76,8 @@ services:
     class: ../../controllers/Locations/LocationsGetController
     arguments: ["@fungus.locations.LocationsFinder"]
 
-  applications.fungus.controllers.LocationsByIdGetController:
-    class: ../../controllers/Locations/LocationsByIdGetController
+  applications.fungus.controllers.LocationByIdGetController:
+    class: ../../controllers/Locations/LocationByIdGetController
     arguments: ["@fungus.locations.LocationByIdFinder"]
 
   applications.fungus.controllers.LocationsDeleteController:
