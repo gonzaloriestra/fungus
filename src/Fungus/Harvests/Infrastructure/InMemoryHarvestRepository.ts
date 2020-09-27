@@ -51,10 +51,6 @@ export class InMemoryHarvestRepository implements HarvestRepository {
     this.harvests = harvests;
   }
 
-  nextIdentity(): HarvestId {
-    return HarvestId.create();
-  }
-
   findById(id: HarvestId): Harvest | undefined {
     return this.harvests.find((harvest) => harvest.id() === id);
   }

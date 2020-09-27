@@ -1,21 +1,22 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
+import LocationsFinder from '../../../../src/Fungus/Locations/Application/Find/LocationsFinder';
+
 import { Controller } from '../Controller';
-import LocationFinder from '../../../../src/Fungus/Locations/Application/Find/LocationFinder';
 
 export default class LocationsGetController implements Controller {
-  locationReader: LocationFinder;
+  locationsFinder: LocationsFinder;
 
-  constructor(locationReader: LocationFinder) {
-    this.locationReader = locationReader;
+  constructor(locationsFinder: LocationsFinder) {
+    this.locationsFinder = locationsFinder;
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      const locations = await this.locationReader.invoke();
+      const response = await this.locationsFinder.run();
 
-      return res.response(locations.data).code(httpStatus.OK);
+      return res.response(response.locations).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);
 

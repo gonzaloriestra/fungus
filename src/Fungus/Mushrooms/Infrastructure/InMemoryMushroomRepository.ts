@@ -16,10 +16,6 @@ export class InMemoryMushroomRepository implements MushroomRepository {
     this.mushrooms = mushrooms;
   }
 
-  nextIdentity(): MushroomId {
-    return MushroomId.create();
-  }
-
   add(mushroom: Mushroom): void {
     this.mushrooms.push(mushroom);
   }

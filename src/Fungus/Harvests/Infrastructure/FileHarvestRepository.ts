@@ -35,10 +35,6 @@ export class FileHarvestRepository implements HarvestRepository {
     });
   }
 
-  nextIdentity(): HarvestId {
-    return HarvestId.create();
-  }
-
   findById(id: HarvestId): Harvest | undefined {
     return this.harvests.find((harvest) => harvest.id() === id);
   }

@@ -34,10 +34,6 @@ export class InMemoryLocationRepository implements LocationRepository {
     this.locations = locations;
   }
 
-  nextIdentity(): LocationId {
-    return LocationId.create();
-  }
-
   add(location: Location): void {
     this.locations.push(location);
   }

@@ -1,9 +1,9 @@
-import { Location } from '../../Domain/Location';
+import { FindLocationResponse } from './FindLocationResponse';
 
 export class FindLocationsResponse {
-  readonly data: Array<{ id: string; name: string }>;
+  readonly locations: Array<FindLocationResponse>;
 
-  constructor(locations: Array<Location>) {
-    this.data = locations.map((location) => ({ id: location.id().value(), name: location.name() }));
+  constructor(locations: Array<FindLocationResponse>) {
+    this.locations = locations;
   }
 }

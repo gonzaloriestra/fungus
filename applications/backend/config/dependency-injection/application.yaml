@@ -56,8 +56,8 @@ services:
     class: ../../../../src/Fungus/Locations/Application/create/LocationCreator
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
-  fungus.locations.LocationFinder:
-    class: ../../../../src/Fungus/Locations/Application/Find/LocationFinder
+  fungus.locations.LocationsFinder:
+    class: ../../../../src/Fungus/Locations/Application/Find/LocationsFinder
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   fungus.locations.LocationByIdFinder:
@@ -74,7 +74,7 @@ services:
 
   applications.fungus.controllers.LocationsGetController:
     class: ../../controllers/Locations/LocationsGetController
-    arguments: ["@fungus.locations.LocationFinder"]
+    arguments: ["@fungus.locations.LocationsFinder"]
 
   applications.fungus.controllers.LocationsByIdGetController:
     class: ../../controllers/Locations/LocationsByIdGetController
