@@ -12,10 +12,10 @@ export default class LocationCreator {
     this.repository = repository;
   }
 
-  invoke({ id, name, coordinates }: CreateLocationRequest): void {
+  invoke({ id, name, area }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
-    const location = new Location({ id, name, coordinates });
+    const location = new Location({ id, name, area });
 
     this.repository.add(location);
   }

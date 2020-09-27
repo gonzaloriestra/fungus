@@ -11,7 +11,7 @@ export class Area {
     return this._coordinates;
   }
 
-  toPrimitives(): object {
+  toPrimitives(): Array<{ latitude: number; longitude: number }> {
     return this._coordinates.map((coordinate) => ({
       latitude: coordinate.latitude(),
       longitude: coordinate.longitude(),

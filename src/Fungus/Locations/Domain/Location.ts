@@ -1,15 +1,15 @@
 import { LocationId } from './LocationId';
-import { Coordinate } from './Coordinate';
+import { Area } from './Area';
 
 export class Location {
   _id: LocationId;
   _name: string;
-  _coordinates: Array<Coordinate>;
+  _area: Area;
 
-  constructor({ id, name, coordinates }: { id: LocationId; name?: string; coordinates?: Array<Coordinate> }) {
+  constructor({ id, name, area }: { id: LocationId; name: string; area: Area }) {
     this._id = id;
-    this._name = name || '';
-    this._coordinates = coordinates || [];
+    this._name = name;
+    this._area = area;
   }
 
   id(): LocationId {
@@ -20,8 +20,8 @@ export class Location {
     return this._name;
   }
 
-  coordinates(): Array<Coordinate> {
-    return this._coordinates;
+  area(): Area {
+    return this._area;
   }
 
   equalTo(aLocation: Location): boolean {
@@ -31,15 +31,12 @@ export class Location {
   toPrimitives(): {
     id: string;
     name: string;
-    coordinates: Array<{ latitude: number; longitude: number }>;
+    area: Array<{ latitude: number; longitude: number }>;
   } {
     return {
       id: this._id.value(),
       name: this._name,
-      coordinates: this._coordinates.map((coordinate) => ({
-        latitude: coordinate.latitude(),
-        longitude: coordinate.longitude(),
-      })),
+      area: this._area.toPrimitives(),
     };
   }
 }

@@ -5,6 +5,7 @@ import { Mushroom } from '../../Mushrooms/Domain/Mushroom';
 
 import { HarvestId } from './HarvestId';
 import { LocationId } from '../../Locations/Domain/LocationId';
+import { Area } from '../../Locations/Domain/Area';
 import { MushroomId } from '../../Mushrooms/Domain/MushroomId';
 // To-Do Share kernel ?? we are using code from differents modules
 export class Harvest {
@@ -46,8 +47,8 @@ export class Harvest {
   }
 
   location(): Location {
-    // ToDo Recover the location
-    return new Location({ id: this._locationId });
+    // To-Do Recover the location ? aggretation
+    return new Location({ id: this._locationId, name: '', area: new Area({ coordinates: [] }) });
   }
 
   mushroom(): Mushroom | undefined {
