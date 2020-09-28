@@ -5,6 +5,7 @@ import LocationCreator from '../../../../src/Fungus/Locations/Application/Create
 import { LocationId } from '../../../../src/Fungus/Locations/Domain/LocationId';
 import { Area } from '../../../../src/Fungus/Locations/Domain/Area';
 import { LocationAlreadyExist } from '../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
+import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';
 
 import { Controller } from '../Controller';
 
@@ -17,11 +18,10 @@ export default class LocationPutController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const locationId = req.params.id;
-    // @ts-ignore
-    const { name, coordinates } = req.payload;
+    const { name, coordinates } = req.payload as { name: string; coordinates: { coordinates: Array<Coordinate> } };
 
     try {
-      await this.locationCreator.invoke({ id: new LocationId(locationId), name, area: new Area(coordinates) });
+      await this.locationCreator.run({ id: new LocationId(locationId), name, area: new Area(coordinates) });
     } catch (error) {
       console.error(error.message);
 
