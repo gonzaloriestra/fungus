@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Icon, Item as SemanticItem, Container } from 'semantic-ui-react';
+import { Header, Icon, Item as SemanticItem, Container, Button } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 
 import Location from './models/Location';
@@ -19,6 +19,7 @@ export default function Locations({ locations }: LocationsProps): JSX.Element {
         <Header.Content>Locations</Header.Content>
       </Header>
       <Container>
+        <Button primary>Add Location</Button>
         <SemanticItem.Group divided>
           {locations.map((location) => (
             <Item key={location.id} title={location.name} imageSrc="/map.svg" detailsUrl={`locations/${location.id}`} />
