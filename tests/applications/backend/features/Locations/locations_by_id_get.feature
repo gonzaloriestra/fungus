@@ -10,6 +10,7 @@ Feature: Recover all the locations
     When I send a GET request to "/locations/942b2922-ef5b-4369-af82-a332222a7d12"
     Then the response status code should be 200
     And the response should be an element with id "942b2922-ef5b-4369-af82-a332222a7d12"
+    And the response should contain "area" not empty
 
   Scenario: Not found when the location does not exist
     Given the location store empty

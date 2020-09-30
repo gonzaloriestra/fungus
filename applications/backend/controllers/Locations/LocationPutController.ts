@@ -18,10 +18,17 @@ export default class LocationPutController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const locationId = req.params.id;
-    const { name, coordinates } = req.payload as { name: string; coordinates: { coordinates: Array<Coordinate> } };
+    const { name, coordinates } = req.payload as {
+      name: string;
+      coordinates: Array<{ latitude: number; longitude: number }>;
+    };
 
     try {
-      await this.locationCreator.run({ id: new LocationId(locationId), name, area: new Area(coordinates) });
+      await this.locationCreator.run({
+        id: new LocationId(locationId),
+        name,
+        area: new Area({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
+      });
     } catch (error) {
       console.error(error.message);
 

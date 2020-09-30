@@ -41,3 +41,11 @@ Then('the response should contains an element with id {string}', (id: string) =>
 Then('the response should be an element with id {string}', (id: string) => {
   assert.equal(_response.body.id, id);
 });
+
+Then('the response should contain {string} not empty', (attribute: string) => {
+  if (Array.isArray(_response.body[attribute])) {
+    assert.notEqual(_response.body[attribute].lenght, 0);
+  } else {
+    assert.notEqual(_response.body[attribute], undefined);
+  }
+});

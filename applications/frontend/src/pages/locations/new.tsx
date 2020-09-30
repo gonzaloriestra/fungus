@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { GetServerSideProps } from 'next';
 import { Header, Icon, Form, Button } from 'semantic-ui-react';
+import { useRouter } from 'next/router';
 
-import Location from './models/Location';
-import getLocation from './queries/getLocation';
 import Map from './components/Map';
-import HarvestList from './components/HarvestList';
-import getHarvestsByLocationId from './queries/getHarvestsByLocationId';
+import addLocation from './queries/addLocation';
 
 type LocationDetailsProps = {};
 
 export default function LocationDetails({}: LocationDetailsProps): JSX.Element {
   const [name, setName] = useState('');
+  const [area, setArea] = useState([]);
+  const router = useRouter();
 
-  const handleOnSubmit = () => {
-    console.log(name);
+  const handleOnSubmit = async () => {
+    await addLocation({ name, area });
+
+    router.push('/locations');
   };
 
   return (
@@ -36,7 +37,7 @@ export default function LocationDetails({}: LocationDetailsProps): JSX.Element {
               height: '500px',
             }}
           >
-            <Map mode="edit" initialZoom={5} />
+            <Map mode="edit" initialZoom={5} onLocationCreated={(area): void => setArea(area)} />
           </div>
         </Form.Field>
         <Form.Field>
