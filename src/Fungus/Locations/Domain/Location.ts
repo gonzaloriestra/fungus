@@ -6,7 +6,7 @@ export class Location {
   _id: LocationId;
   _name: string;
   _area: Area;
-
+  // To-Do get a better name from area
   constructor({ id, name, area }: { id: LocationId; name: string; area: Area }) {
     this._id = id;
     this._name = name;
