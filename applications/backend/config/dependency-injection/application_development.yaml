@@ -1,2 +1,24 @@
 imports:
   - { resource: ./application.yaml }
+services:
+  # Locations
+  # To-Do use a generic name for this repository so the other definition can be in the applñication.yaml
+  fungus.locations.FileLocationRepository:
+    class: ../../../../src/Fungus/Locations/Infrastructure/FileLocationRepository
+    arguments: []
+
+  fungus.locations.LocationCreator:
+    class: ../../../../src/Fungus/Locations/Application/create/LocationCreator
+    arguments: ["@fungus.locations.FileLocationRepository"]
+
+  fungus.locations.LocationsFinder:
+    class: ../../../../src/Fungus/Locations/Application/Find/LocationsFinder
+    arguments: ["@fungus.locations.FileLocationRepository"]
+
+  fungus.locations.LocationByIdFinder:
+    class: ../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder
+    arguments: ["@fungus.locations.FileLocationRepository"]
+
+  fungus.locations.LocationCleaner:
+    class: ../../../../src/Fungus/Locations/Application/clean/LocationCleaner
+    arguments: ["@fungus.locations.FileLocationRepository"]

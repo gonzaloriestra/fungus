@@ -1,5 +1,6 @@
 import { LocationId } from './LocationId';
 import { Area } from './Area';
+import { Coordinate } from './Coordinate';
 
 export class Location {
   _id: LocationId;
@@ -38,5 +39,25 @@ export class Location {
       name: this._name,
       area: this._area.toPrimitives(),
     };
+  }
+
+  static fromPrimitives({
+    id,
+    name,
+    area,
+  }: {
+    id: string;
+    name: string;
+    area: Array<{ latitude: number; longitude: number }>;
+  }): Location {
+    return new Location({
+      id: new LocationId(id),
+      name,
+      area: new Area({
+        coordinates: area.map(
+          (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
+        ),
+      }),
+    });
   }
 }
