@@ -38,8 +38,15 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const resLocation = await getLocation({ id: params.id });
-  //To-Do: Control when there is not harvest available for a location
-  const resHarvests = await getHarvestsByLocationId({ locationId: params.id });
+
+  let harvests;
+  try {
+    const resHarvests = await getHarvestsByLocationId({ locationId: params.id });
+    harvests = resHarvests?.data;
+  } catch (error) {
+    harvests = [];
+  }
+
   // To-Do: Controls errors
-  return { props: { location: resLocation.data, harvests: resHarvests.data } };
+  return { props: { location: resLocation.data, harvests } };
 };
