@@ -3,6 +3,7 @@ import request from 'supertest';
 import faker from 'faker';
 
 import app from '../../../../../applications/backend/app';
+import assert from 'assert';
 
 Given('a mushroom with id {string} already defined', async (id: string) => {
   const body = {
@@ -10,4 +11,10 @@ Given('a mushroom with id {string} already defined', async (id: string) => {
   };
 
   await request(app.listener).put(`/mushrooms/${id}`).send(body);
+});
+
+Given('the mushroom store empty', async () => {
+  const response = await request(app.listener).delete('/mushrooms').send();
+
+  assert.strictEqual(response.status, 204);
 });

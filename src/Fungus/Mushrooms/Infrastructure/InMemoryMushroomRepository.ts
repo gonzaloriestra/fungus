@@ -34,4 +34,8 @@ export class InMemoryMushroomRepository implements MushroomRepository {
   _filterByScientificName(scientificName: string): Array<Mushroom> {
     return this.mushrooms.filter((mushroom) => mushroom.scientificName() === scientificName);
   }
+
+  searchAll(): Array<Mushroom> {
+    return this.mushrooms;
+  }
 }
