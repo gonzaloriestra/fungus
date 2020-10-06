@@ -1,12 +1,13 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { Header, Icon } from 'semantic-ui-react';
+import { Button, Header, Icon } from 'semantic-ui-react';
 
 import Location from './models/Location';
 import getLocation from './queries/getLocation';
 import Map from './components/Map';
 import HarvestList from './components/HarvestList';
 import getHarvestsByLocationId from './queries/getHarvestsByLocationId';
+import Link from 'next/link';
 
 type LocationDetailsProps = {
   location: Location;
@@ -32,6 +33,9 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
         <Header.Content>Harvests</Header.Content>
       </Header>
       <HarvestList harvests={harvests} />
+      <Link href="/harvests/new">
+        <Button primary>Add Harvest</Button>
+      </Link>
     </>
   );
 }

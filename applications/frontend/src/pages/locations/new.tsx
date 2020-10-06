@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 import Map from './components/Map';
 import addLocation from './queries/addLocation';
 
-type LocationDetailsProps = {};
+type NewLocationProps = {};
 
-export default function LocationDetails({}: LocationDetailsProps): JSX.Element {
+export default function NewLocation({}: NewLocationProps): JSX.Element {
   const [name, setName] = useState('');
   const [area, setArea] = useState([]);
   const router = useRouter();
@@ -44,7 +44,9 @@ export default function LocationDetails({}: LocationDetailsProps): JSX.Element {
           <label>Name</label>
           <input placeholder="Name" onChange={(e): void => setName(e.target.value)} />
         </Form.Field>
-        <Button type="submit">Add</Button>
+        <Button type="submit" primary>
+          Save
+        </Button>
       </Form>
     </>
   );
