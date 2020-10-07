@@ -13,7 +13,7 @@ Feature: Recover all the mushrooms
     And the response should contains an element with id "60009cff-f2de-4c7d-82b9-b1046d8ba1b2"
 
   Scenario: Return empty response when there are not mushrooms registered
-    Given the location store empty
+    Given the mushroom store empty
     When I send a GET request to "/mushrooms"
     Then the response status code should be 200
     And the response should be empty

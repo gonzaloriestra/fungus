@@ -43,9 +43,25 @@ services:
     class: ../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
     arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
 
+  fungus.mushrooms.MushroomsCleaner:
+    class: ../../../../src/Fungus/Mushrooms/Application/clean/MushroomsCleaner
+    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
+
+  fungus.mushrooms.MushroomsSearcher:
+    class: ../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher
+    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
+
   applications.fungus.controllers.MushroomPutController:
     class: ../../controllers/Mushrooms/MushroomPutController
     arguments: ["@fungus.mushrooms.MushroomCreator"]
+
+  applications.fungus.controllers.MushroomsDeleteController:
+    class: ../../controllers/Mushrooms/MushroomsDeleteController
+    arguments: ["@fungus.mushrooms.MushroomsCleaner"]
+
+  applications.fungus.controllers.MushroomsGetController:
+    class: ../../controllers/Mushrooms/MushroomsGetController
+    arguments: ["@fungus.mushrooms.MushroomsSearcher"]
 
   #  Locations
   fungus.locations.InMemoryLocationRepository:

@@ -53,7 +53,7 @@ export class Harvest {
 
   mushroom(): Mushroom | undefined {
     if (this._mushroomId) {
-      return new Mushroom({ id: this._mushroomId });
+      return new Mushroom({ id: this._mushroomId, scientificName: '' });
     }
 
     return;

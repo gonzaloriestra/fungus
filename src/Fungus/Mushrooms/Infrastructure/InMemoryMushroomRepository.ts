@@ -38,4 +38,8 @@ export class InMemoryMushroomRepository implements MushroomRepository {
   searchAll(): Array<Mushroom> {
     return this.mushrooms;
   }
+
+  clean(): void {
+    this.mushrooms = [];
+  }
 }
