@@ -1,96 +1,114 @@
 import * as fs from 'fs';
 
 import { Harvest } from '../../../../../src/Fungus/Harvests/Domain/Harvest';
-import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
-
 import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
 import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
-import exp from 'constants';
+import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
+import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
 
-it('empty test', () => {
-  expect(true).toBeTruthy();
+describe('FileHarvestRepository', () => {
+  const filePath = 'harvests.test.txt';
+  let subject: FileHarvestRepository;
+
+  beforeAll((done) => {
+    fs.open(filePath, 'w', (err) => {
+      if (err) throw err;
+
+      done();
+    });
+  });
+
+  afterAll(() => {
+    fs.unlinkSync(filePath);
+  });
+
+  describe('.add', () => {
+    beforeAll((done) => {
+      fs.writeFile(filePath, '', (err) => {
+        if (err) throw err;
+
+        subject = new FileHarvestRepository({ filePath });
+        done();
+      });
+    });
+
+    it('should add a new Harvest to the repository', () => {
+      const harvest = new Harvest({
+        locationId: LocationId.create(),
+        date: new Date(),
+      });
+
+      subject.add(harvest);
+
+      expect(subject.count()).toEqual(1);
+    });
+  });
+
+  describe('.findById', () => {
+    beforeAll((done) => {
+      fs.writeFile(filePath, '', (err) => {
+        if (err) throw err;
+
+        subject = new FileHarvestRepository({ filePath });
+        done();
+      });
+    });
+
+    it('should find existing Harvest from the repository', () => {
+      const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
+
+      subject.add(harvest);
+
+      expect(subject.findById(harvest.id())).toBeDefined();
+    });
+
+    it('should not find Harvest which are not included in the repository', () => {
+      const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
+
+      expect(subject.findById(harvest.id())).toBeUndefined();
+    });
+  });
+
+  describe('.filterBy', () => {
+    const today = new Date();
+    const pastDate = new Date('1985-12-19');
+    const locationIdOne = LocationId.create();
+    const locationOne = new Location({ id: locationIdOne, name: 'Item One', area: new Area({ coordinates: [] }) });
+    const locationIdTwo = LocationId.create();
+
+    const todayHarvest = new Harvest({ locationId: locationIdOne, date: today });
+    const pastHarvest = new Harvest({ locationId: locationIdTwo, date: pastDate });
+
+    beforeAll((done) => {
+      fs.writeFile(filePath, '', (err) => {
+        if (err) throw err;
+
+        subject = new FileHarvestRepository({ filePath });
+        subject.add(todayHarvest);
+        subject.add(pastHarvest);
+
+        done();
+      });
+    });
+
+    it('should return all harvests when no params are defined', () => {
+      const result = subject.filterBy();
+
+      expect(result.length).toEqual(2);
+    });
+
+    it('should filter by date', () => {
+      const result = subject.filterBy({ date: pastDate });
+
+      expect(result.length).toEqual(1);
+      expect(result[0].isEqual(pastHarvest)).toBeTruthy();
+    });
+
+    it('should filter by location', () => {
+      const result = subject.filterBy({ location: locationOne });
+
+      expect(result.length).toEqual(1);
+      expect(result[0].isEqual(todayHarvest)).toBeTruthy();
+    });
+  });
 });
-// describe('FileHarvestRepository', () => {
-//   const filePath = 'testHarvestRepository.txt';
-//
-//   describe('.add', () => {
-//     afterAll(() => {
-//       fs.unlinkSync(filePath);
-//     });
-//
-//     it('should add a new Harvest to the repository', () => {
-//       const harvestRepository = new FileHarvestRepository({ filePath });
-//       const harvest = new Harvest({
-//         locationId: LocationId.create(),
-//         date: new Date(),
-//       });
-//
-//       harvestRepository.add(harvest);
-//
-//       expect(harvestRepository.count()).toEqual(1);
-//     });
-//   });
-//
-//   describe('.findById', () => {
-//     afterAll(() => {
-//       fs.unlinkSync(filePath);
-//     });
-//
-//     it('should find existing Harvest from the repository', () => {
-//       const harvestRepository = new FileHarvestRepository({ filePath });
-//       const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
-//
-//       harvestRepository.add(harvest);
-//
-//       expect(harvestRepository.findById(harvest.id())).toBeDefined();
-//     });
-//
-//     it('should not find Harvest which are not included in the repository', () => {
-//       const harvestRepository = new FileHarvestRepository({ filePath });
-//       const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
-//
-//       expect(harvestRepository.findById(harvest.id())).toBeUndefined();
-//     });
-//   });
-//
-//   describe('.filterBy', () => {
-//     const today = new Date();
-//     const pastDate = new Date('1985-12-19');
-//     const locationIdOne = LocationId.create();
-//     const locationOne = new Item({ id: locationIdOne, name: 'Item One', coordinates: [] });
-//     const locationIdTwo = LocationId.create();
-//
-//     const harvestRepository = new FileHarvestRepository({ filePath });
-//     const todayHarvest = new Harvest({ locationId: locationIdOne, date: today });
-//     const pastHarvest = new Harvest({ locationId: locationIdTwo, date: pastDate });
-//
-//     beforeAll(() => {
-//       harvestRepository.add(todayHarvest);
-//       harvestRepository.add(pastHarvest);
-//     });
-//
-//     afterAll(() => {
-//       fs.unlinkSync(filePath);
-//     });
-//
-//     it('should return all harvests when no params are defined', () => {
-//       const result = harvestRepository.filterBy();
-//
-//       expect(result.length).toEqual(2);
-//     });
-//
-//     it('should filter by date', () => {
-//       const result = harvestRepository.filterBy({ date: pastDate });
-//
-//       expect(result.length).toEqual(1);
-//       expect(result[0].isEqual(pastHarvest)).toBeTruthy();
-//     });
-//
-//     it('should filter by location', () => {
-//       const result = harvestRepository.filterBy({ location: locationOne });
-//
-//       expect(result.length).toEqual(1);
-//       expect(result[0].isEqual(todayHarvest)).toBeTruthy();
-//     });
-//   });
-// });

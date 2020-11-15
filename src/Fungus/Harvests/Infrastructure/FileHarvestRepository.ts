@@ -1,7 +1,10 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 
+// To-Do accessing to other context, it should be via LocationId which could be in the Shared context
 import { Location } from '../../Locations/Domain/Location';
+
+import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
@@ -76,5 +79,9 @@ export class FileHarvestRepository implements HarvestRepository {
 
   _filterByLocation(location: Location): Array<Harvest> {
     return this.harvests.filter((harvest) => harvest.location().equalTo(location));
+  }
+
+  clean(): void {
+    throw new MethodNotImplemented();
   }
 }
