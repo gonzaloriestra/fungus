@@ -17,4 +17,13 @@ export class Area {
       longitude: coordinate.longitude(),
     }));
   }
+
+  static fromPrimitives({ coordinates }: { coordinates: Array<any> }): Area {
+    // To-Do add fromPrimitives to coordinate object
+    return new Area({
+      coordinates: coordinates.map(
+        (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
+      ),
+    });
+  }
 }

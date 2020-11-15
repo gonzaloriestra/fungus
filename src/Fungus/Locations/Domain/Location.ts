@@ -25,8 +25,12 @@ export class Location {
     return this._area;
   }
 
-  equalTo(aLocation: Location): boolean {
-    return this.id().equalTo(aLocation.id());
+  equalTo(location: Location): boolean {
+    return this.id().equalTo(location.id());
+  }
+
+  idEqualTo(id: LocationId): boolean {
+    return this._id.equalTo(id);
   }
 
   toPrimitives(): {
@@ -41,23 +45,11 @@ export class Location {
     };
   }
 
-  static fromPrimitives({
-    id,
-    name,
-    area,
-  }: {
-    id: string;
-    name: string;
-    area: Array<{ latitude: number; longitude: number }>;
-  }): Location {
+  static fromPrimitives({ id, name, area }: { id: string; name: string; area: any }): Location {
     return new Location({
       id: new LocationId(id),
       name,
-      area: new Area({
-        coordinates: area.map(
-          (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
-        ),
-      }),
+      area: Area.fromPrimitives(area),
     });
   }
 }

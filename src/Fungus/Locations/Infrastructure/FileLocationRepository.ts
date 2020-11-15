@@ -4,8 +4,6 @@ import * as readline from 'readline';
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
 import { LocationId } from '../Domain/LocationId';
-import { Area } from '../Domain/Area';
-import { Coordinate } from '../Domain/Coordinate';
 
 export class FileLocationRepository implements LocationRepository {
   locations: Array<Location>;
@@ -32,29 +30,18 @@ export class FileLocationRepository implements LocationRepository {
     lineReader.on('line', (line) => {
       const json = JSON.parse(line);
 
-      const location = new Location({
-        id: new LocationId(json._id._id),
-        name: json._name,
-        area: new Area({
-          coordinates: json._area._coordinates.map(
-            (coordinate: any) => new Coordinate({ latitude: coordinate._latitude, longitude: coordinate._longitude }),
-          ),
-        }),
-      });
-
-      this.locations.push(location);
+      this.locations.push(Location.fromPrimitives(json));
     });
   }
 
   findById(id: LocationId): Location | undefined {
-    //To-Do equalTo should be into location value object
-    return this.locations.find((location) => location.id().equalTo(id));
+    return this.locations.find((location) => location.idEqualTo(id));
   }
 
   add(location: Location): void {
     this.locations.push(location);
 
-    fs.appendFile(this.filePath, `${JSON.stringify(location)}\n`, (err) => {
+    fs.appendFile(this.filePath, `${JSON.stringify(location.toPrimitives())}\n`, (err) => {
       if (err) throw err; // To-Do Define own error
     });
   }
