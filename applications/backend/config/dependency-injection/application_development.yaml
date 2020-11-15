@@ -22,3 +22,8 @@ services:
   fungus.locations.LocationCleaner:
     class: ../../../../src/Fungus/Locations/Application/clean/LocationCleaner
     arguments: ["@fungus.locations.FileLocationRepository"]
+
+  #  Harvests
+  fungus.harvests.HarvestCreator:
+    class: ../../../../src/Fungus/Harvests/Application/create/HarvestCreator
+    arguments: ["@fungus.harvests.InMemoryHarvestRepository", "@fungus.mushrooms.InMemoryMushroomRepository", "@fungus.locations.FileLocationRepository"]

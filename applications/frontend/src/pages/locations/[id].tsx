@@ -33,7 +33,7 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
         <Header.Content>Harvests</Header.Content>
       </Header>
       <HarvestList harvests={harvests} />
-      <Link href="/harvests/new">
+      <Link href={`/harvests/new?locationId=${location.id}`}>
         <Button primary>Add Harvest</Button>
       </Link>
     </>

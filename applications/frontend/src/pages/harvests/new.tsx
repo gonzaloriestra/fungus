@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Header, Icon, Form, Button } from 'semantic-ui-react';
+import { Header, Icon, Form, Button, Select } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
 import addHarvest from './queries/addHarvest';
+import { GetServerSideProps } from 'next';
+import getMushrooms from './queries/getMushrooms';
 
-type NewHarvestProps = { locationId: string };
+type NewHarvestProps = { mushrooms: Array<{ id: string; scientificName: string }> };
 
-export default function NewHarvest({ locationId }: NewHarvestProps): JSX.Element {
+export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element {
   const [date, setDate] = useState('');
   const [mushroomId, setMushroomId] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -14,10 +16,16 @@ export default function NewHarvest({ locationId }: NewHarvestProps): JSX.Element
   const router = useRouter();
 
   const handleOnSubmit = async () => {
+    const locationId = router.query.locationId;
+
     await addHarvest({ date, locationId, mushroomId, quantity });
 
     router.push(`/locations/${locationId}`);
   };
+
+  function transformMushroomsInOptions() {
+    return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));
+  }
 
   return (
     <>
@@ -38,7 +46,11 @@ export default function NewHarvest({ locationId }: NewHarvestProps): JSX.Element
         </Form.Field>
         <Form.Field>
           <label>Mushroom</label>
-          <input placeholder="mushroom" onChange={(e): void => setMushroomId(e.target.value)} />
+          <Select
+            placeholder="Mushroom"
+            options={transformMushroomsInOptions()}
+            onChange={(_, data): void => setMushroomId(data.value)}
+          />
         </Form.Field>
         <Form.Field>
           <label>Quantity</label>
@@ -51,3 +63,9 @@ export default function NewHarvest({ locationId }: NewHarvestProps): JSX.Element
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await getMushrooms();
+
+  return { props: { mushrooms: res.data } };
+};
