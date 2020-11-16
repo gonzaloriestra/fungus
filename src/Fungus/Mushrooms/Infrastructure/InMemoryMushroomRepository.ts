@@ -2,6 +2,7 @@ import { MushroomRepository } from '../Domain/MushroomRepository';
 import { MushroomId } from '../Domain/MushroomId';
 import { Mushroom } from '../Domain/Mushroom';
 
+// To-Do this is temporal, so we should remove it
 const initialMushrooms = [
   new Mushroom({ id: new MushroomId('9f201a5a-4cbb-427c-935d-0a52b0bf4742'), scientificName: 'Boletus Edulis' }),
   new Mushroom({ id: new MushroomId('0ce9affe-79b3-473c-9c0d-31976d04e149'), scientificName: 'Amanita Caesarea' }),
