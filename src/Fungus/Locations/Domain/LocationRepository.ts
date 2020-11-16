@@ -1,5 +1,5 @@
 import { Location } from './Location';
-import { LocationId } from './LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 export interface LocationRepository {
   add: (location: Location) => void;

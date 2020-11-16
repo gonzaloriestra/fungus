@@ -1,4 +1,4 @@
-import { LocationId } from './LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 import { Area } from './Area';
 import { Coordinate } from './Coordinate';
 

@@ -3,7 +3,7 @@ import { MushroomId } from '../../../Mushrooms/Domain/MushroomId';
 import { MushroomDoesNotExist } from '../../../Mushrooms/Domain/MushroomDoesNotExist';
 
 import { LocationDoesNotExist } from '../../../Locations/Domain/LocationDoesNotExist';
-import { LocationId } from '../../../Locations/Domain/LocationId';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
 import { HarvestId } from '../../Domain/HarvestId';

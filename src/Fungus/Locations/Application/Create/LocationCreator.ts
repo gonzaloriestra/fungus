@@ -1,7 +1,7 @@
 import { Location } from '../../Domain/Location';
 import { LocationRepository } from '../../Domain/LocationRepository';
 import { LocationAlreadyExist } from '../../Domain/LocationAlreadyExist';
-import { LocationId } from '../../Domain/LocationId';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 

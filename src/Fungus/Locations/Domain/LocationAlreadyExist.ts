@@ -1,4 +1,4 @@
-import { LocationId } from './LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 export class LocationAlreadyExist extends Error {
   constructor(id: LocationId) {

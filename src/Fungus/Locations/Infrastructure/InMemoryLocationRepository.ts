@@ -1,5 +1,5 @@
 import { LocationRepository } from '../Domain/LocationRepository';
-import { LocationId } from '../Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 import { Location } from '../Domain/Location';
 import { Coordinate } from '../Domain/Coordinate';
 import { Area } from '../Domain/Area';

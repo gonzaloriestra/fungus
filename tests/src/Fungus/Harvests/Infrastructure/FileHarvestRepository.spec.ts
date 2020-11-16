@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 import { Harvest } from '../../../../../src/Fungus/Harvests/Domain/Harvest';
 import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
-import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
 import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';

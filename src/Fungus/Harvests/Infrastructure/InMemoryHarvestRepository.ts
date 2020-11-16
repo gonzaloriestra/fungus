@@ -3,7 +3,7 @@ import { Location } from '../../Locations/Domain/Location';
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
-import { LocationId } from '../../Locations/Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 import { MushroomId } from '../../Mushrooms/Domain/MushroomId';
 
 const initialHarvests = [

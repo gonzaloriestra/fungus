@@ -1,5 +1,5 @@
 import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
-import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
 
 describe('Location', () => {

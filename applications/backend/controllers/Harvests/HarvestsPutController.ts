@@ -6,7 +6,7 @@ import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
 import { MushroomId } from '../../../../src/Fungus/Mushrooms/Domain/MushroomId';
 import { HarvestAlreadyExist } from '../../../../src/Fungus/Harvests/Domain/HarvestAlreadyExist';
 import { MushroomDoesNotExist } from '../../../../src/Fungus/Mushrooms/Domain/MushroomDoesNotExist';
-import { LocationId } from '../../../../src/Fungus/Locations/Domain/LocationId';
+import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
 
 import { Controller } from '../Controller';
 import { LocationDoesNotExist } from '../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';

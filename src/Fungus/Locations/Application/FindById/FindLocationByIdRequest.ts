@@ -1,4 +1,4 @@
-import { LocationId } from '../../Domain/LocationId';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 export type FindLocationByIdRequest = {
   locationId: LocationId;

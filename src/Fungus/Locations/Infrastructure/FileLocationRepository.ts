@@ -3,7 +3,7 @@ import * as readline from 'readline';
 
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
-import { LocationId } from '../Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 export class FileLocationRepository implements LocationRepository {
   locations: Array<Location>;
