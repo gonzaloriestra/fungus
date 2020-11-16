@@ -1,4 +1,4 @@
-import { MushroomId } from '../../Domain/MushroomId';
+import { MushroomId } from '../../../Shared/Domain/MushroomId';
 
 export type CreateMushroomRequest = {
   id: MushroomId;

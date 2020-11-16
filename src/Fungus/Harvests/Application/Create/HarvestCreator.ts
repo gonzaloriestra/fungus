@@ -1,5 +1,5 @@
 import { MushroomRepository } from '../../../Mushrooms/Domain/MushroomRepository';
-import { MushroomId } from '../../../Mushrooms/Domain/MushroomId';
+import { MushroomId } from '../../../Shared/Domain/MushroomId';
 import { MushroomDoesNotExist } from '../../../Mushrooms/Domain/MushroomDoesNotExist';
 
 import { LocationDoesNotExist } from '../../../Locations/Domain/LocationDoesNotExist';

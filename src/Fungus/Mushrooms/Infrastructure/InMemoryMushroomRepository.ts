@@ -1,5 +1,5 @@
 import { MushroomRepository } from '../Domain/MushroomRepository';
-import { MushroomId } from '../Domain/MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 import { Mushroom } from '../Domain/Mushroom';
 
 // To-Do this is temporal, so we should remove it

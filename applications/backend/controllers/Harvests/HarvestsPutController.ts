@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 
 import HarvestCreator from '../../../../src/Fungus/Harvests/Application/Create/HarvestCreator';
 import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
-import { MushroomId } from '../../../../src/Fungus/Mushrooms/Domain/MushroomId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
 import { HarvestAlreadyExist } from '../../../../src/Fungus/Harvests/Domain/HarvestAlreadyExist';
 import { MushroomDoesNotExist } from '../../../../src/Fungus/Mushrooms/Domain/MushroomDoesNotExist';
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';

@@ -5,7 +5,7 @@ import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infras
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
-import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
+import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/MushroomId';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';

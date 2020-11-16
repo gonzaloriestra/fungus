@@ -1,5 +1,5 @@
 import { Mushroom } from './Mushroom';
-import { MushroomId } from './MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 export interface MushroomRepository {
   add: (mushroom: Mushroom) => void;

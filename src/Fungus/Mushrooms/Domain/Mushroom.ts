@@ -1,4 +1,4 @@
-import { MushroomId } from './MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 export class Mushroom {
   _id: MushroomId;
