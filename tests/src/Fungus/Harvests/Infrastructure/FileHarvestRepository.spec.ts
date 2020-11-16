@@ -5,6 +5,7 @@ import { FileHarvestRepository } from '../../../../../src/Fungus/Harvests/Infras
 import { LocationId } from '../../../../../src/Fungus/Locations/Domain/LocationId';
 import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
 import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
+import { MushroomId } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomId';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';
@@ -36,6 +37,7 @@ describe('FileHarvestRepository', () => {
       const harvest = new Harvest({
         locationId: LocationId.create(),
         date: new Date(),
+        mushroomId: MushroomId.create(),
       });
 
       subject.add(harvest);
@@ -55,7 +57,11 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should find existing Harvest from the repository', () => {
-      const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
+      const harvest = new Harvest({
+        locationId: LocationId.create(),
+        date: new Date(),
+        mushroomId: MushroomId.create(),
+      });
 
       subject.add(harvest);
 
@@ -63,7 +69,11 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should not find Harvest which are not included in the repository', () => {
-      const harvest = new Harvest({ locationId: LocationId.create(), date: new Date() });
+      const harvest = new Harvest({
+        locationId: LocationId.create(),
+        date: new Date(),
+        mushroomId: MushroomId.create(),
+      });
 
       expect(subject.findById(harvest.id())).toBeUndefined();
     });
@@ -76,8 +86,8 @@ describe('FileHarvestRepository', () => {
     const locationOne = new Location({ id: locationIdOne, name: 'Item One', area: new Area({ coordinates: [] }) });
     const locationIdTwo = LocationId.create();
 
-    const todayHarvest = new Harvest({ locationId: locationIdOne, date: today });
-    const pastHarvest = new Harvest({ locationId: locationIdTwo, date: pastDate });
+    const todayHarvest = new Harvest({ locationId: locationIdOne, date: today, mushroomId: MushroomId.create() });
+    const pastHarvest = new Harvest({ locationId: locationIdTwo, date: pastDate, mushroomId: MushroomId.create() });
 
     beforeAll((done) => {
       fs.writeFile(filePath, '', (err) => {

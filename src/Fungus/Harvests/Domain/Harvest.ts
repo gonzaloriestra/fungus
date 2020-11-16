@@ -1,10 +1,6 @@
 import { isEqual } from 'lodash';
 
-import { Location } from '../../Locations/Domain/Location';
-import { Mushroom } from '../../Mushrooms/Domain/Mushroom';
-
 import { LocationId } from '../../Locations/Domain/LocationId';
-import { Area } from '../../Locations/Domain/Area';
 import { MushroomId } from '../../Mushrooms/Domain/MushroomId';
 
 import { HarvestId } from './HarvestId';
@@ -13,7 +9,7 @@ export class Harvest {
   _id: HarvestId;
   _date: Date;
   _locationId: LocationId;
-  _mushroomId?: MushroomId;
+  _mushroomId: MushroomId;
   // To-Do better in a value object
   _quantity?: number;
 
@@ -27,7 +23,7 @@ export class Harvest {
     id?: HarvestId;
     locationId: LocationId;
     date: Date;
-    mushroomId?: MushroomId;
+    mushroomId: MushroomId;
     quantity?: number;
   }) {
     this._id = id;
@@ -45,17 +41,12 @@ export class Harvest {
     return this._date;
   }
 
-  location(): Location {
-    // To-Do Recover the location ? aggretation
-    return new Location({ id: this._locationId, name: '', area: new Area({ coordinates: [] }) });
+  locationId(): LocationId {
+    return this._locationId;
   }
 
-  mushroom(): Mushroom | undefined {
-    if (this._mushroomId) {
-      return new Mushroom({ id: this._mushroomId, scientificName: '' });
-    }
-
-    return;
+  mushroomId(): MushroomId {
+    return this._mushroomId;
   }
 
   quantity(): number | undefined {

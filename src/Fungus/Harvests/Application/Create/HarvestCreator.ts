@@ -33,7 +33,7 @@ export default class HarvestCreator {
     this.ensureMushroomExist(mushroomId);
     this.ensureLocationExist(locationId);
 
-    const harvest = new Harvest({ id, locationId, date: new Date(date), quantity });
+    const harvest = new Harvest({ id, locationId, mushroomId, date: new Date(date), quantity });
 
     this.harvestRepository.add(harvest);
   }

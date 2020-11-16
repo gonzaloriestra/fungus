@@ -78,7 +78,7 @@ export class FileHarvestRepository implements HarvestRepository {
   }
 
   _filterByLocation(location: Location): Array<Harvest> {
-    return this.harvests.filter((harvest) => harvest.location().equalTo(location));
+    return this.harvests.filter((harvest) => location.idEqualTo(harvest.locationId()));
   }
 
   clean(): void {

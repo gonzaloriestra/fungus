@@ -8,8 +8,8 @@ export class FindHarvestsByLocationResponse {
     this.data = harvests.map((harvest) => ({
       id: harvest.id().value(),
       date: harvest.date().toString(),
-      locationId: harvest.location().id().value(),
-      mushroomId: harvest.mushroom()?.id().value(),
+      locationId: harvest.locationId().value(),
+      mushroomId: harvest.mushroomId().value(),
       quantity: harvest.quantity(),
     }));
   }
