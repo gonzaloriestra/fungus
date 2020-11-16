@@ -6,6 +6,7 @@ export interface MushroomRepository {
   // To-Do implement the criteria pattern
   findById: (id: MushroomId) => Mushroom | undefined;
   filterBy: ({ scientificName }: { scientificName?: string }) => Array<Mushroom>;
+  // To-Do rename for all
   searchAll: () => Array<Mushroom>;
   clean: () => void;
 }

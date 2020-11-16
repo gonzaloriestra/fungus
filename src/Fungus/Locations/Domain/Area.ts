@@ -1,5 +1,8 @@
 import { Coordinate } from './Coordinate';
 
+type Primitives = Array<{ latitude: number; longitude: number }>;
+
+// To-Do Consider to use Array<Coordinate> directly as we do in other cases. Area right now it just a collection of
 export class Area {
   _coordinates: Array<Coordinate>;
 
@@ -11,17 +14,17 @@ export class Area {
     return this._coordinates;
   }
 
-  toPrimitives(): Array<{ latitude: number; longitude: number }> {
+  toPrimitives(): Primitives {
     return this._coordinates.map((coordinate) => ({
       latitude: coordinate.latitude(),
       longitude: coordinate.longitude(),
     }));
   }
 
-  static fromPrimitives({ coordinates }: { coordinates: Array<any> }): Area {
+  static fromPrimitives(primitives: Primitives): Area {
     // To-Do add fromPrimitives to coordinate object
     return new Area({
-      coordinates: coordinates.map(
+      coordinates: primitives.map(
         (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
       ),
     });

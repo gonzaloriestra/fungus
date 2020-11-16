@@ -1,12 +1,14 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
+
 import { Area } from './Area';
-import { Coordinate } from './Coordinate';
+
+type Primitives = { id: string; name: string; area: any };
 
 export class Location {
   _id: LocationId;
   _name: string;
   _area: Area;
-  // To-Do get a better name from area
+  // To-Do get a better name from area or event use directly Array<Coordinates>
   constructor({ id, name, area }: { id: LocationId; name: string; area: Area }) {
     this._id = id;
     this._name = name;
@@ -33,11 +35,7 @@ export class Location {
     return this._id.equalTo(id);
   }
 
-  toPrimitives(): {
-    id: string;
-    name: string;
-    area: Array<{ latitude: number; longitude: number }>;
-  } {
+  toPrimitives(): Primitives {
     return {
       id: this._id.value(),
       name: this._name,
@@ -45,7 +43,7 @@ export class Location {
     };
   }
 
-  static fromPrimitives({ id, name, area }: { id: string; name: string; area: any }): Location {
+  static fromPrimitives({ id, name, area }: Primitives): Location {
     return new Location({
       id: new LocationId(id),
       name,

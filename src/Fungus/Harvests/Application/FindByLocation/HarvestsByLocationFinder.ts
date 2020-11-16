@@ -1,9 +1,10 @@
-import { Location } from '../../../Locations/Domain/Location';
 import { HarvestRepository } from '../../Domain/HarvestRepository';
+
+import { Location } from '../../../Locations/Domain/Location';
+import { Area } from '../../../Locations/Domain/Area';
 
 import { FindHarvestsByLocationResponse } from './FindHarvestsByLocationResponse';
 import { FindHarvestsByLocationRequest } from './FindHarvestsByLocationRequest';
-import { Area } from '../../../Locations/Domain/Area';
 
 export default class HarvestsByLocationFinder {
   repository: HarvestRepository;
