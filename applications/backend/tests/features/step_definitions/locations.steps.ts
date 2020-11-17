@@ -3,7 +3,7 @@ import request from 'supertest';
 import faker from 'faker';
 import assert from 'assert';
 
-import app from '../../../app';
+import app from '../../../src/app';
 
 Given('a location with id {string} already defined', async (id: string) => {
   const body = {

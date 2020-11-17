@@ -17,6 +17,7 @@
   "include": [
     "src/**/**.ts",
     "tests/**/**.ts",
+    "applications/**/**.ts",
     "package*.json",
     "project*.json"
   ],

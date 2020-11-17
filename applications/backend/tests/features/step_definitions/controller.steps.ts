@@ -2,7 +2,7 @@ import assert from 'assert';
 import { Then, When } from 'cucumber';
 import request from 'supertest';
 
-import app from '../../../app';
+import app from '../../../src/app';
 
 let _request: request.Test;
 let _response: request.Response;

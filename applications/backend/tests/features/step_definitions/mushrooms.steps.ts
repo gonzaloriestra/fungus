@@ -3,7 +3,7 @@ import request from 'supertest';
 import assert from 'assert';
 import faker from 'faker';
 
-import app from '../../../app';
+import app from '../../../src/app';
 
 Given('a mushroom with id {string} already defined', async (id: string) => {
   const body = {

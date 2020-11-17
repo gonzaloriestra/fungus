@@ -1,6 +1,6 @@
 import { Server } from 'hapi';
 
-import { registerRoutes } from './src/routes';
+import { registerRoutes } from './routes';
 
 const app = new Server({
   host: process.env.HOST || 'localhost',

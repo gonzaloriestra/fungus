@@ -3,7 +3,7 @@ import request from 'supertest';
 import faker from 'faker';
 import assert from 'assert';
 
-import app from '../../../app';
+import app from '../../../src/app';
 
 Given(
   'a harvest of mushroom {string} with id {string} in the location {string}',
