@@ -1,7 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import MushroomsSearcher from '../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher';
+import MushroomsSearcher from '../../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher';
 
 import { Controller } from '../Controller';
 

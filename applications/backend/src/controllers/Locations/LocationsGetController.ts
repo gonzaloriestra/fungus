@@ -1,7 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import LocationsFinder from '../../../../src/Fungus/Locations/Application/Find/LocationsFinder';
+import LocationsFinder from '../../../../../src/Fungus/Locations/Application/Find/LocationsFinder';
 
 import { Controller } from '../Controller';
 

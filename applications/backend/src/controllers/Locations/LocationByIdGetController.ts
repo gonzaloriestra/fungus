@@ -1,11 +1,11 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import LocationByIdFinder from '../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
+import LocationByIdFinder from '../../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder';
 
 import { Controller } from '../Controller';
-import { LocationDoesNotExist } from '../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
 
 export default class LocationByIdGetController implements Controller {
   locationByIdFinder: LocationByIdFinder;

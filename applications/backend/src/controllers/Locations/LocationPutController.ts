@@ -1,11 +1,11 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import LocationCreator from '../../../../src/Fungus/Locations/Application/Create/LocationCreator';
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import { Area } from '../../../../src/Fungus/Locations/Domain/Area';
-import { LocationAlreadyExist } from '../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
-import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';
+import LocationCreator from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
+import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
+import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
+import { Coordinate } from '../../../../../src/Fungus/Locations/Domain/Coordinate';
 
 import { Controller } from '../Controller';
 

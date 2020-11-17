@@ -7,19 +7,19 @@ services:
 
   #  Harvests
   fungus.harvests.InMemoryHarvestRepository:
-    class: ../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
+    class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
     arguments: []
 
   fungus.harvests.HarvestCreator:
-    class: ../../../../src/Fungus/Harvests/Application/create/HarvestCreator
+    class: ../../../../../src/Fungus/Harvests/Application/create/HarvestCreator
     arguments: ["@fungus.harvests.InMemoryHarvestRepository", "@fungus.mushrooms.InMemoryMushroomRepository", "@fungus.locations.InMemoryLocationRepository"]
 
   fungus.harvests.HarvestCleaner:
-    class: ../../../../src/Fungus/Harvests/Application/clean/HarvestCleaner
+    class: ../../../../../src/Fungus/Harvests/Application/clean/HarvestCleaner
     arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
 
   fungus.harvests.HarvestsByLocationFinder:
-    class: ../../../../src/Fungus/Harvests/Application/FindByLocation/HarvestsByLocationFinder
+    class: ../../../../../src/Fungus/Harvests/Application/FindByLocation/HarvestsByLocationFinder
     arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
 
   applications.fungus.controllers.HarvestsPutController:
@@ -36,19 +36,19 @@ services:
 
   #  Mushrooms
   fungus.mushrooms.InMemoryMushroomRepository:
-    class: ../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
+    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
     arguments: []
 
   fungus.mushrooms.MushroomCreator:
-    class: ../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
+    class: ../../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
     arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
 
   fungus.mushrooms.MushroomsCleaner:
-    class: ../../../../src/Fungus/Mushrooms/Application/clean/MushroomsCleaner
+    class: ../../../../../src/Fungus/Mushrooms/Application/clean/MushroomsCleaner
     arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
 
   fungus.mushrooms.MushroomsSearcher:
-    class: ../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher
+    class: ../../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher
     arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
 
   applications.fungus.controllers.MushroomPutController:
@@ -65,23 +65,23 @@ services:
 
   #  Locations
   fungus.locations.InMemoryLocationRepository:
-    class: ../../../../src/Fungus/Locations/Infrastructure/InMemoryLocationRepository
+    class: ../../../../../src/Fungus/Locations/Infrastructure/InMemoryLocationRepository
     arguments: []
 
   fungus.locations.LocationCreator:
-    class: ../../../../src/Fungus/Locations/Application/create/LocationCreator
+    class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   fungus.locations.LocationsFinder:
-    class: ../../../../src/Fungus/Locations/Application/Find/LocationsFinder
+    class: ../../../../../src/Fungus/Locations/Application/Find/LocationsFinder
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   fungus.locations.LocationByIdFinder:
-    class: ../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder
+    class: ../../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   fungus.locations.LocationCleaner:
-    class: ../../../../src/Fungus/Locations/Application/clean/LocationCleaner
+    class: ../../../../../src/Fungus/Locations/Application/clean/LocationCleaner
     arguments: ["@fungus.locations.InMemoryLocationRepository"]
 
   applications.fungus.controllers.LocationPutController:

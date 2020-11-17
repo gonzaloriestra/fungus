@@ -2,18 +2,18 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import MushroomsCleaner from '../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner';
+import LocationCleaner from '../../../../../src/Fungus/Locations/Application/Clean/LocationCleaner';
 
-export default class MushroomsDeleteController implements Controller {
-  mushroomsCleaner: MushroomsCleaner;
+export default class LocationsDeleteController implements Controller {
+  locationCleaner: LocationCleaner;
 
-  constructor(mushroomsCleaner: MushroomsCleaner) {
-    this.mushroomsCleaner = mushroomsCleaner;
+  constructor(locationCleaner: LocationCleaner) {
+    this.locationCleaner = locationCleaner;
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.mushroomsCleaner.invoke();
+      await this.locationCleaner.invoke();
 
       return res.response().code(httpStatus.NO_CONTENT);
     } catch (error) {

@@ -2,18 +2,18 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import LocationCleaner from '../../../../src/Fungus/Locations/Application/Clean/LocationCleaner';
+import HarvestCleaner from '../../../../../src/Fungus/Harvests/Application/Clean/HarvestCleaner';
 
-export default class LocationsDeleteController implements Controller {
-  locationCleaner: LocationCleaner;
+export default class HarvestsDeleteController implements Controller {
+  harvestCleaner: HarvestCleaner;
 
-  constructor(locationCleaner: LocationCleaner) {
-    this.locationCleaner = locationCleaner;
+  constructor(harvestCleaner: HarvestCleaner) {
+    this.harvestCleaner = harvestCleaner;
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.locationCleaner.invoke();
+      await this.harvestCleaner.invoke();
 
       return res.response().code(httpStatus.NO_CONTENT);
     } catch (error) {
