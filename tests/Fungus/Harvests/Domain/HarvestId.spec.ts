@@ -1,4 +1,4 @@
-import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
+import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
 
 describe('HarvestId', () => {
   it('should be able to another id with the same value', () => {

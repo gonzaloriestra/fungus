@@ -1,5 +1,5 @@
-import { Harvest } from '../../../../../src/Fungus/Harvests/Domain/Harvest';
-import { Location } from '../../../../../src/Fungus/Locations/Domain/Location';
+import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
+import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 
 it('empty test', () => {
   expect(true).toBeTruthy();
