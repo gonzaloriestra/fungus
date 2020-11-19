@@ -1,4 +1,4 @@
-import { Location } from '../../Locations/Domain/Location';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { Harvest } from './Harvest';
 import { HarvestId } from './HarvestId';
@@ -6,9 +6,8 @@ import { HarvestId } from './HarvestId';
 export interface HarvestRepository {
   add: (harvest: Harvest) => void;
   count: () => number;
-  // To-Do consider implement criteria pattern
-  filterBy: ({ date, location }: { date?: Date; location?: Location }) => Array<Harvest>;
+  filterBy: ({ date, locationId }: { date?: Date; locationId?: LocationId }) => Array<Harvest>;
   findById: (id: HarvestId) => Harvest | undefined;
-  all: () => Harvest[];
+  all: () => Array<Harvest>;
   clean: () => void;
 }

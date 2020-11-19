@@ -35,7 +35,6 @@ export class InMemoryLocationRepository implements LocationRepository {
   locations: Array<Location>;
 
   constructor({ locations = initialLocations }: { locations?: Array<Location> } = {}) {
-    console.log('TO BE REMOVED');
     this.locations = locations;
   }
 

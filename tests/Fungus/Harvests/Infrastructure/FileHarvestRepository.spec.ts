@@ -3,8 +3,6 @@ import * as fs from 'fs';
 import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
 import { FileHarvestRepository } from '../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
-import { Area } from '../../../../src/Fungus/Locations/Domain/Area';
 import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
 
 describe('FileHarvestRepository', () => {
@@ -83,7 +81,6 @@ describe('FileHarvestRepository', () => {
     const today = new Date();
     const pastDate = new Date('1985-12-19');
     const locationIdOne = LocationId.create();
-    const locationOne = new Location({ id: locationIdOne, name: 'Item One', area: new Area({ coordinates: [] }) });
     const locationIdTwo = LocationId.create();
 
     const todayHarvest = new Harvest({ locationId: locationIdOne, date: today, mushroomId: MushroomId.create() });
@@ -115,7 +112,7 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should filter by location', () => {
-      const result = subject.filterBy({ location: locationOne });
+      const result = subject.filterBy({ locationId: locationIdOne });
 
       expect(result.length).toEqual(1);
       expect(result[0].isEqual(todayHarvest)).toBeTruthy();

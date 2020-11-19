@@ -1,10 +1,9 @@
-import { Location } from '../../Locations/Domain/Location';
+import { LocationId } from '../../Shared/Domain/LocationId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
-import { LocationId } from '../../Shared/Domain/LocationId';
-import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 const initialHarvests = [
   new Harvest({
@@ -71,11 +70,11 @@ export class InMemoryHarvestRepository implements HarvestRepository {
     this.harvests = [];
   }
 
-  filterBy({ date, location }: { date?: Date; location?: Location } = {}): Array<Harvest> {
+  filterBy({ date, locationId }: { date?: Date; locationId?: LocationId } = {}): Array<Harvest> {
     if (date) {
       return this._filterByDate(date);
-    } else if (location) {
-      return this._filterByLocation(location);
+    } else if (locationId) {
+      return this._filterByLocationId(locationId);
     } else {
       return this.harvests;
     }
@@ -90,7 +89,7 @@ export class InMemoryHarvestRepository implements HarvestRepository {
     );
   }
 
-  _filterByLocation(location: Location): Array<Harvest> {
-    return this.harvests.filter((harvest) => location.idEqualTo(harvest.locationId()));
+  _filterByLocationId(locationId: LocationId): Array<Harvest> {
+    return this.harvests.filter((harvest) => harvest.locationId().equalTo(locationId));
   }
 }

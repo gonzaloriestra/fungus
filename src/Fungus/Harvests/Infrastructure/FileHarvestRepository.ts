@@ -1,10 +1,8 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 
-// To-Do accessing to other context, it should be via LocationId which could be in the Shared context
-import { Location } from '../../Locations/Domain/Location';
-
 import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
@@ -58,11 +56,11 @@ export class FileHarvestRepository implements HarvestRepository {
     return this.harvests;
   }
 
-  filterBy({ date, location }: { date?: Date; location?: Location } = {}): Array<Harvest> {
+  filterBy({ date, locationId }: { date?: Date; locationId?: LocationId } = {}): Array<Harvest> {
     if (date) {
       return this._filterByDate(date);
-    } else if (location) {
-      return this._filterByLocation(location);
+    } else if (locationId) {
+      return this._filterByLocationId(locationId);
     } else {
       return this.harvests;
     }
@@ -77,8 +75,8 @@ export class FileHarvestRepository implements HarvestRepository {
     );
   }
 
-  _filterByLocation(location: Location): Array<Harvest> {
-    return this.harvests.filter((harvest) => location.idEqualTo(harvest.locationId()));
+  _filterByLocationId(locationId: LocationId): Array<Harvest> {
+    return this.harvests.filter((harvest) => harvest.locationId().equalTo(locationId));
   }
 
   clean(): void {
