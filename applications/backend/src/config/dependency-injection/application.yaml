@@ -1,27 +1,26 @@
 
 services:
-  #  Health Checks
+  ##  Health Checks
+  # Controllers
   applications.fungus.controllers.StatusGetController:
     class: ../../controllers/HealthChecks/StatusGetController
     arguments: []
 
-  #  Harvests
-  fungus.harvests.InMemoryHarvestRepository:
-    class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository
-    arguments: []
-
+  ##  Harvests
+  # Services
   fungus.harvests.HarvestCreator:
     class: ../../../../../src/Fungus/Harvests/Application/create/HarvestCreator
-    arguments: ["@fungus.harvests.InMemoryHarvestRepository", "@fungus.mushrooms.InMemoryMushroomRepository", "@fungus.locations.InMemoryLocationRepository"]
+    arguments: ["@fungus.harvests.HarvestRepository", "@fungus.mushrooms.MushroomRepository", "@fungus.locations.LocationRepository"]
 
   fungus.harvests.HarvestCleaner:
     class: ../../../../../src/Fungus/Harvests/Application/clean/HarvestCleaner
-    arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
+    arguments: ["@fungus.harvests.HarvestRepository"]
 
   fungus.harvests.HarvestsByLocationFinder:
     class: ../../../../../src/Fungus/Harvests/Application/FindByLocation/HarvestsByLocationFinder
-    arguments: ["@fungus.harvests.InMemoryHarvestRepository"]
+    arguments: ["@fungus.harvests.HarvestRepository"]
 
+  # Controllers
   applications.fungus.controllers.HarvestsPutController:
     class: ../../controllers/Harvests/HarvestsPutController
     arguments: ["@fungus.harvests.HarvestCreator"]
@@ -34,23 +33,21 @@ services:
     class: ../../controllers/Harvests/HarvestsByLocationGetController
     arguments: ["@fungus.harvests.HarvestsByLocationFinder"]
 
-  #  Mushrooms
-  fungus.mushrooms.InMemoryMushroomRepository:
-    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
-    arguments: []
-
+  ##  Mushrooms
+  # Services
   fungus.mushrooms.MushroomCreator:
     class: ../../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
-    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
+    arguments: ["@fungus.mushrooms.MushroomRepository"]
 
   fungus.mushrooms.MushroomsCleaner:
     class: ../../../../../src/Fungus/Mushrooms/Application/clean/MushroomsCleaner
-    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
+    arguments: ["@fungus.mushrooms.MushroomRepository"]
 
   fungus.mushrooms.MushroomsSearcher:
     class: ../../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher
-    arguments: ["@fungus.mushrooms.InMemoryMushroomRepository"]
+    arguments: ["@fungus.mushrooms.MushroomRepository"]
 
+  # Controllers
   applications.fungus.controllers.MushroomPutController:
     class: ../../controllers/Mushrooms/MushroomPutController
     arguments: ["@fungus.mushrooms.MushroomCreator"]
@@ -63,27 +60,25 @@ services:
     class: ../../controllers/Mushrooms/MushroomsGetController
     arguments: ["@fungus.mushrooms.MushroomsSearcher"]
 
-  #  Locations
-  fungus.locations.InMemoryLocationRepository:
-    class: ../../../../../src/Fungus/Locations/Infrastructure/InMemoryLocationRepository
-    arguments: []
-
+  ##  Locations
+  # Services
   fungus.locations.LocationCreator:
     class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
-    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+    arguments: ["@fungus.locations.LocationRepository"]
 
   fungus.locations.LocationsFinder:
     class: ../../../../../src/Fungus/Locations/Application/Find/LocationsFinder
-    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+    arguments: ["@fungus.locations.LocationRepository"]
 
   fungus.locations.LocationByIdFinder:
     class: ../../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder
-    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+    arguments: ["@fungus.locations.LocationRepository"]
 
   fungus.locations.LocationCleaner:
     class: ../../../../../src/Fungus/Locations/Application/clean/LocationCleaner
-    arguments: ["@fungus.locations.InMemoryLocationRepository"]
+    arguments: ["@fungus.locations.LocationRepository"]
 
+  # Controllers
   applications.fungus.controllers.LocationPutController:
     class: ../../controllers/Locations/LocationPutController
     arguments: ["@fungus.locations.LocationCreator"]

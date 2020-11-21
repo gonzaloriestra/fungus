@@ -1,2 +1,18 @@
 imports:
   - { resource: ./application.yaml }
+
+services:
+  ##  Harvests
+  fungus.harvests.HarvestRepository:
+    class: ../../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository
+    arguments: []
+
+  ##  Mushrooms
+  fungus.mushrooms.MushroomRepository:
+    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
+    arguments: []
+
+  ##  Locations
+  fungus.locations.LocationRepository:
+    class: ../../../../../src/Fungus/Locations/Infrastructure/FileLocationRepository
+    arguments: []

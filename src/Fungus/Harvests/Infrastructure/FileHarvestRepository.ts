@@ -7,6 +7,7 @@ import { LocationId } from '../../Shared/Domain/LocationId';
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
+import { Location } from '../../Locations/Domain/Location';
 
 export class FileHarvestRepository implements HarvestRepository {
   harvests: Array<Harvest>;
@@ -31,8 +32,9 @@ export class FileHarvestRepository implements HarvestRepository {
 
     lineReader.on('close', onFinish);
     lineReader.on('line', (line) => {
-      const harvest = JSON.parse(line);
-      this.harvests.push(harvest);
+      const json = JSON.parse(line);
+
+      this.harvests.push(Harvest.fromPrimitives(json));
     });
   }
 
@@ -43,7 +45,7 @@ export class FileHarvestRepository implements HarvestRepository {
   add(harvest: Harvest): void {
     this.harvests.push(harvest);
 
-    fs.appendFile(this.filePath, `${JSON.stringify(harvest)}\n`, (err) => {
+    fs.appendFile(this.filePath, `${JSON.stringify(harvest.toPrimitives())}\n`, (err) => {
       if (err) throw err; // TODO Define own error
     });
   }

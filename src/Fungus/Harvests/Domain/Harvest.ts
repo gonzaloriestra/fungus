@@ -5,6 +5,8 @@ import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { HarvestId } from './HarvestId';
 
+type Primitives = { id: string; date: string; locationId: string; mushroomId: string; quantity?: number };
+
 export class Harvest {
   _id: HarvestId;
   _date: Date;
@@ -55,5 +57,25 @@ export class Harvest {
 
   isEqual(harvest: Harvest): boolean {
     return isEqual(this, harvest);
+  }
+
+  toPrimitives(): Primitives {
+    return {
+      id: this._id.value(),
+      date: this._date.toUTCString(),
+      locationId: this._locationId.value(),
+      mushroomId: this._mushroomId.value(),
+      quantity: this._quantity,
+    };
+  }
+
+  static fromPrimitives({ id, date, locationId, mushroomId, quantity }: Primitives): Harvest {
+    return new Harvest({
+      id: new HarvestId(id),
+      date: new Date(date),
+      locationId: new LocationId(locationId),
+      mushroomId: new MushroomId(mushroomId),
+      quantity,
+    });
   }
 }
