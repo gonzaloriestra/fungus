@@ -24,7 +24,7 @@ export default class HarvestsPutController implements Controller {
     const { date, mushroomId, locationId, quantity } = req.payload;
 
     try {
-      await this.harvestCreator.invoke({
+      await this.harvestCreator.run({
         id: new HarvestId(harvestId),
         mushroomId: new MushroomId(mushroomId),
         locationId: new LocationId(locationId),

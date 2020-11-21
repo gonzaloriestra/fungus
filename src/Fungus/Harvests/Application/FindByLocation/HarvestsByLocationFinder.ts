@@ -10,7 +10,7 @@ export default class HarvestsByLocationFinder {
     this.repository = repository;
   }
 
-  invoke({ locationId }: FindHarvestsByLocationRequest): FindHarvestsByLocationResponse {
+  run({ locationId }: FindHarvestsByLocationRequest): FindHarvestsByLocationResponse {
     return new FindHarvestsByLocationResponse(this.repository.filterBy({ locationId }));
   }
 }

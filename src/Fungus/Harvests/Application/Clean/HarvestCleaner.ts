@@ -7,7 +7,7 @@ export default class HarvestCleaner {
     this.repository = repository;
   }
 
-  invoke(): void {
+  run(): void {
     this.repository.clean();
   }
 }

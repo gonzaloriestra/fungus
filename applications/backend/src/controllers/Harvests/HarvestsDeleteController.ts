@@ -13,7 +13,7 @@ export default class HarvestsDeleteController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.harvestCleaner.invoke();
+      await this.harvestCleaner.run();
 
       return res.response().code(httpStatus.NO_CONTENT);
     } catch (error) {

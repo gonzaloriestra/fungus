@@ -34,8 +34,8 @@ const initialLocations: Array<Location> = [
 export class InMemoryLocationRepository implements LocationRepository {
   locations: Array<Location>;
 
-  constructor({ locations = initialLocations }: { locations?: Array<Location> } = {}) {
-    this.locations = locations;
+  constructor({ locations }: { locations?: Array<Location> } = {}) {
+    this.locations = locations || [];
   }
 
   add(location: Location): void {

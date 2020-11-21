@@ -29,7 +29,7 @@ export default class HarvestCreator {
     this.locationRepository = locationRepository;
   }
 
-  invoke({ id, mushroomId, locationId, date, quantity }: CreateHarvestRequest): void {
+  run({ id, mushroomId, locationId, date, quantity }: CreateHarvestRequest): void {
     this.ensureHarvestDoesNotExist(id);
     this.ensureMushroomExist(mushroomId);
     this.ensureLocationExist(locationId);

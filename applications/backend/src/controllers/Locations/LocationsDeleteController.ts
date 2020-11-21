@@ -1,8 +1,9 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import { Controller } from '../Controller';
 import LocationCleaner from '../../../../../src/Fungus/Locations/Application/Clean/LocationCleaner';
+
+import { Controller } from '../Controller';
 
 export default class LocationsDeleteController implements Controller {
   locationCleaner: LocationCleaner;
@@ -13,7 +14,7 @@ export default class LocationsDeleteController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.locationCleaner.invoke();
+      await this.locationCleaner.run();
 
       return res.response().code(httpStatus.NO_CONTENT);
     } catch (error) {
