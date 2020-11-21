@@ -14,7 +14,7 @@ export class FileHarvestRepository implements HarvestRepository {
 
   constructor({
     harvests = [],
-    filePath = 'harvests.txt',
+    filePath = 'database/harvests.txt',
     onLoad,
   }: { harvests?: Array<Harvest>; filePath?: string; onLoad?: () => void } = {}) {
     this.harvests = harvests;
