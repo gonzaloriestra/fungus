@@ -19,6 +19,20 @@ Given(
   },
 );
 
+Given(
+  'a harvest of mushroom {string} with id {string} in the location {string} and date {string}',
+  async (mushroomId: string, harvestId: string, locationId: string, date: string) => {
+    const body = {
+      date: new Date(date),
+      mushroomId: mushroomId,
+      locationId: locationId,
+      quantity: faker.random.number({ min: 1, max: 5 }),
+    };
+
+    await request(app.listener).put(`/harvests/${harvestId}`).send(body);
+  },
+);
+
 Given('the harvest store empty', async () => {
   const response = await request(app.listener).delete('/harvests').send();
 
