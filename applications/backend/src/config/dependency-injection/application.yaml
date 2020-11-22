@@ -1,10 +1,15 @@
 
 services:
   ##  Forecasts
+  # Services
+  fungus.forecasts.ForecastsGenerator:
+    class: ../../../../../src/Fungus/Forecasts/Application/generate/ForecastsGenerator
+    arguments: []
+
   # Controllers
   applications.fungus.controllers.ForecastsGetController:
     class: ../../controllers/Forecasts/ForecastsGetController
-    arguments: []
+    arguments: ["@fungus.forecasts.ForecastsGenerator"]
 
   ##  Health Checks
   # Controllers
