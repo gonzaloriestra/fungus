@@ -1,5 +1,11 @@
 
 services:
+  ##  Forecasts
+  # Controllers
+  applications.fungus.controllers.ForecastsGetController:
+    class: ../../controllers/Forecasts/ForecastsGetController
+    arguments: []
+
   ##  Health Checks
   # Controllers
   applications.fungus.controllers.StatusGetController:
