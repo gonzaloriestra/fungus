@@ -6,7 +6,7 @@ import Date from '../../Shared/Domain/Date';
 
 import { HarvestId } from './HarvestId';
 
-type Primitives = { id: string; date: string; locationId: string; mushroomId: string; quantity?: number };
+export type Primitives = { id: string; date: string; locationId: string; mushroomId: string; quantity?: number };
 
 export class Harvest {
   _id: HarvestId;

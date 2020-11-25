@@ -101,21 +101,21 @@ describe('FileHarvestRepository', () => {
     it('should return all harvests when no params are defined', () => {
       const result = subject.filterBy();
 
-      expect(result.length).toEqual(2);
+      expect(result.count()).toEqual(2);
     });
 
     it('should filter by date', () => {
       const result = subject.filterBy({ date: pastDate });
 
-      expect(result.length).toEqual(1);
-      expect(result[0].isEqual(pastHarvest)).toBeTruthy();
+      expect(result.count()).toEqual(1);
+      expect(result.toArray()[0].isEqual(pastHarvest)).toBeTruthy();
     });
 
     it('should filter by location', () => {
       const result = subject.filterBy({ locationId: locationIdOne });
 
-      expect(result.length).toEqual(1);
-      expect(result[0].isEqual(todayHarvest)).toBeTruthy();
+      expect(result.count()).toEqual(1);
+      expect(result.toArray()[0].isEqual(todayHarvest)).toBeTruthy();
     });
   });
 });

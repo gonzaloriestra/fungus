@@ -1,13 +1,12 @@
 import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
 import { HarvestRepository } from '../../../Harvests/Domain/HarvestRepository';
 
-import { LocationId } from '../../../Shared/Domain/LocationId';
 import Date from '../../../Shared/Domain/Date';
 import { Forecast } from '../../Domain/Forecast';
 
 import { GenerateForecastsResponse } from './GenerateForecastsResponse';
 import { GenerateForecastsRequest } from './GenerateForecastsRequest';
-import { Harvest } from '../../../Harvests/Domain/Harvest';
+import { Harvests } from '../../../Harvests/Domain/Harvests';
 
 export default class ForecastsGenerator {
   private locationRepository: LocationRepository;
@@ -29,20 +28,18 @@ export default class ForecastsGenerator {
 
       return new Forecast({
         locationId: location.id(),
+        // To-Do pipeline pattenr to apply probability different specifications
         probability: this.calculateProbabilityBasedOnHarvests({ date, harvests }),
       });
     });
 
-    // Maybe time for a domain service where the probability is calculate based on location and harvest's locations
+    // Maybe time for an application service where the probability is calculate based on location and harvest's locations
 
     return new GenerateForecastsResponse({ date, forecasts });
   }
 
-  private calculateProbabilityBasedOnHarvests({ date, harvests }: { date: Date; harvests: Array<Harvest> }): number {
-    // To-Do median could be calculate by a Harvests (collection)
-    const median = harvests.reduce((median, harvest) => {
-      return median ? (median + harvest.date().dayOfYear()) / 2 : harvest.date().dayOfYear();
-    }, 0);
+  private calculateProbabilityBasedOnHarvests({ date, harvests }: { date: Date; harvests: Harvests }): number {
+    const median = harvests.median();
     const deviation = 5;
 
     return Math.round(100 * Math.exp(-((date.dayOfYear() - median) / (2 * deviation))));

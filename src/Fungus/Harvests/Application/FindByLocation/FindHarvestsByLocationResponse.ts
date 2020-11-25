@@ -1,16 +1,10 @@
-import { Harvest } from '../../Domain/Harvest';
+import { Harvests, Primitives } from '../../Domain/Harvests';
 
 export class FindHarvestsByLocationResponse {
-  // To-Do How to avoid this definitions
-  readonly data: Array<{ id: string; date: string; locationId: string; mushroomId?: string; quantity?: number }>;
+  readonly data: Primitives;
 
-  constructor(harvests: Array<Harvest>) {
-    this.data = harvests.map((harvest) => ({
-      id: harvest.id().value(),
-      date: harvest.date().toString(),
-      locationId: harvest.locationId().value(),
-      mushroomId: harvest.mushroomId().value(),
-      quantity: harvest.quantity(),
-    }));
+  constructor(harvests: Harvests) {
+    // To-Do No sure if it is good here, delegate the definition of the response to the domain
+    this.data = harvests.toPrimitives();
   }
 }
