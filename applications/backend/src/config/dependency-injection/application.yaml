@@ -4,7 +4,7 @@ services:
   # Services
   fungus.forecasts.ForecastsGenerator:
     class: ../../../../../src/Fungus/Forecasts/Application/generate/ForecastsGenerator
-    arguments: []
+    arguments: ["@fungus.locations.LocationRepository", "@fungus.harvests.HarvestRepository"]
 
   # Controllers
   applications.fungus.controllers.ForecastsGetController:
