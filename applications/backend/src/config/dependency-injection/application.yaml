@@ -4,7 +4,7 @@ services:
   # Services
   fungus.forecasts.ForecastsGenerator:
     class: ../../../../../src/Fungus/Forecasts/Application/generate/ForecastsGenerator
-    arguments: ["@fungus.locations.LocationRepository", "@fungus.harvests.HarvestRepository"]
+    arguments: ["@fungus.locations.LocationQuery", "@fungus.harvests.HarvestRepository"]
 
   # Controllers
   applications.fungus.controllers.ForecastsGetController:
@@ -87,6 +87,11 @@ services:
 
   fungus.locations.LocationCleaner:
     class: ../../../../../src/Fungus/Locations/Application/clean/LocationCleaner
+    arguments: ["@fungus.locations.LocationRepository"]
+
+  # Queries
+  fungus.locations.LocationQuery:
+    class: ../../../../../src/Fungus/Shared/Infrastructure/Locations/RepositoryLocationQuery
     arguments: ["@fungus.locations.LocationRepository"]
 
   # Controllers

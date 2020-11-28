@@ -4,7 +4,7 @@ import * as readline from 'readline';
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
 import { LocationId } from '../../Shared/Domain/LocationId';
-import {MethodNotImplemented} from "../../Shared/Domain/MethodNotImplemented";
+import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 
 export class FileLocationRepository implements LocationRepository {
   locations: Array<Location>;

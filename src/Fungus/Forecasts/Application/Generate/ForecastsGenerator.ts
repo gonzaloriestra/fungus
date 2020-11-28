@@ -1,33 +1,33 @@
-import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
 import { HarvestRepository } from '../../../Harvests/Domain/HarvestRepository';
 
 import Date from '../../../Shared/Domain/Date';
-import { Forecast } from '../../Domain/Forecast';
+import { LocationQuery } from '../../../Shared/Application/Locations/LocationQuery';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 import { GenerateForecastsResponse } from './GenerateForecastsResponse';
 import { GenerateForecastsRequest } from './GenerateForecastsRequest';
 import { Harvests } from '../../../Harvests/Domain/Harvests';
 
+import { Forecast } from '../../Domain/Forecast';
+
 export default class ForecastsGenerator {
-  private locationRepository: LocationRepository;
-  // It could be a provider <---- LocationQuery  -  RepositoryLocationQuery
-  // CQRS with queries
-  // In the same module
+  private locationQuery: LocationQuery;
+  // To-Do Make the same for harvests
   private harvestRepository: HarvestRepository;
 
-  constructor(locationRepository: LocationRepository, harvestRepository: HarvestRepository) {
-    this.locationRepository = locationRepository;
+  constructor(locationQuery: LocationQuery, harvestRepository: HarvestRepository) {
+    this.locationQuery = locationQuery;
     this.harvestRepository = harvestRepository;
   }
 
   run({ date }: GenerateForecastsRequest): object {
-    const locations = this.locationRepository.all();
+    const locations = this.locationQuery.all();
 
     const forecasts = locations.map((location) => {
-      const harvests = this.harvestRepository.filterBy({ locationId: location.id() });
+      const harvests = this.harvestRepository.filterBy({ locationId: new LocationId(location.id()) });
 
       return new Forecast({
-        locationId: location.id(),
+        locationId: new LocationId(location.id()),
         // To-Do pipeline pattenr to apply probability different specifications
         probability: this.calculateProbabilityBasedOnHarvests({ date, harvests }),
       });
