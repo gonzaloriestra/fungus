@@ -1,5 +1,3 @@
-import { HarvestRepository } from '../../../Harvests/Domain/HarvestRepository';
-
 import Date from '../../../Shared/Domain/Date';
 import { LocationQuery } from '../../../Shared/Application/Locations/LocationQuery';
 import { LocationId } from '../../../Shared/Domain/LocationId';
@@ -9,22 +7,25 @@ import { GenerateForecastsRequest } from './GenerateForecastsRequest';
 import { Harvests } from '../../../Harvests/Domain/Harvests';
 
 import { Forecast } from '../../Domain/Forecast';
+import { HarvestQuery } from '../../../Shared/Application/Harvests/HarvestQuery';
+import { HarvestView } from '../../../Shared/Application/Harvests/HarvestView';
+import { HarvestsView } from '../../../Shared/Application/Harvests/HarvestsView';
 
 export default class ForecastsGenerator {
   private locationQuery: LocationQuery;
   // To-Do Make the same for harvests
-  private harvestRepository: HarvestRepository;
+  private harvestQuery: HarvestQuery;
 
-  constructor(locationQuery: LocationQuery, harvestRepository: HarvestRepository) {
+  constructor(locationQuery: LocationQuery, harvestQuery: HarvestQuery) {
     this.locationQuery = locationQuery;
-    this.harvestRepository = harvestRepository;
+    this.harvestQuery = harvestQuery;
   }
 
   run({ date }: GenerateForecastsRequest): object {
     const locations = this.locationQuery.all();
 
     const forecasts = locations.map((location) => {
-      const harvests = this.harvestRepository.filterBy({ locationId: new LocationId(location.id()) });
+      const harvests = this.harvestQuery.filterBy({ locationId: location.id() });
 
       return new Forecast({
         locationId: new LocationId(location.id()),
@@ -38,9 +39,13 @@ export default class ForecastsGenerator {
     return new GenerateForecastsResponse({ date, forecasts });
   }
 
-  private calculateProbabilityBasedOnHarvests({ date, harvests }: { date: Date; harvests: Harvests }): number {
+  private calculateProbabilityBasedOnHarvests({ date, harvests }: { date: Date; harvests: HarvestsView }): number {
     const median = harvests.median();
     const deviation = 5;
+
+    if (!median) {
+      return 0;
+    }
 
     return Math.round(100 * Math.exp(-((date.dayOfYear() - median) / (2 * deviation))));
   }
