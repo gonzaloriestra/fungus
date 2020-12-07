@@ -6,6 +6,7 @@ import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
 import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
 // To-Do User HarvestMother in all places
 import HarvestMother from '../Domain/HarvestMother';
+import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';
@@ -53,11 +54,7 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should find existing Harvest from the repository', () => {
-      const harvest = new Harvest({
-        locationId: LocationId.create(),
-        date: new Date(),
-        mushroomId: MushroomId.create(),
-      });
+      const harvest = HarvestMother.random();
 
       subject.add(harvest);
 
@@ -65,11 +62,7 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should not find Harvest which are not included in the repository', () => {
-      const harvest = new Harvest({
-        locationId: LocationId.create(),
-        date: new Date(),
-        mushroomId: MushroomId.create(),
-      });
+      const harvest = HarvestMother.random();
 
       expect(subject.findById(harvest.id())).toBeUndefined();
     });
@@ -81,8 +74,20 @@ describe('FileHarvestRepository', () => {
     const locationIdOne = LocationId.create();
     const locationIdTwo = LocationId.create();
 
-    const todayHarvest = new Harvest({ locationId: locationIdOne, date: today, mushroomId: MushroomId.create() });
-    const pastHarvest = new Harvest({ locationId: locationIdTwo, date: pastDate, mushroomId: MushroomId.create() });
+    const todayHarvest = HarvestMother.create({
+      id: HarvestId.create(),
+      locationId: locationIdOne,
+      date: today,
+      mushroomId: MushroomId.create(),
+      quantity: 2,
+    });
+    const pastHarvest = new Harvest({
+      id: HarvestId.create(),
+      locationId: locationIdTwo,
+      date: pastDate,
+      mushroomId: MushroomId.create(),
+      quantity: 4,
+    });
 
     beforeAll((done) => {
       fs.writeFile(filePath, '', (err) => {
