@@ -16,4 +16,15 @@ describe('HarvestCleaner', () => {
 
     expect(repository.count()).toEqual(0);
   });
+
+  it('should work when there are not Harvests in the repository', () => {
+    const repository = new InMemoryHarvestRepository();
+    expect(repository.count()).toEqual(0);
+
+    const subject = new HarvestCleaner(repository);
+
+    subject.run();
+
+    expect(repository.count()).toEqual(0);
+  });
 });
