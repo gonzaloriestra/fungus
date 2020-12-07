@@ -1,4 +1,3 @@
-# To-Do Move test folder with their applications
 Feature: Recover all the locations
   In order to view the details of an specific location
   As an user
