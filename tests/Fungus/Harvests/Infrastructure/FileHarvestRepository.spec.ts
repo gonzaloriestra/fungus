@@ -1,12 +1,8 @@
 import * as fs from 'fs';
 
-import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
 import { FileHarvestRepository } from '../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
-// To-Do User HarvestMother in all places
+
 import HarvestMother from '../Domain/HarvestMother';
-import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';
@@ -69,24 +65,12 @@ describe('FileHarvestRepository', () => {
   });
 
   describe('.filterBy', () => {
-    const today = new Date();
-    const pastDate = new Date('1985-12-19');
-    const locationIdOne = LocationId.create();
-    const locationIdTwo = LocationId.create();
-
     const todayHarvest = HarvestMother.create({
-      id: HarvestId.create(),
-      locationId: locationIdOne,
-      date: today,
-      mushroomId: MushroomId.create(),
-      quantity: 2,
+      date: new Date(),
     });
-    const pastHarvest = new Harvest({
-      id: HarvestId.create(),
-      locationId: locationIdTwo,
+    const pastDate = new Date('1985-12-19');
+    const pastHarvest = HarvestMother.create({
       date: pastDate,
-      mushroomId: MushroomId.create(),
-      quantity: 4,
     });
 
     beforeAll((done) => {
@@ -115,7 +99,7 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should filter by location', () => {
-      const result = subject.filterBy({ locationId: locationIdOne });
+      const result = subject.filterBy({ locationId: todayHarvest.locationId() });
 
       expect(result.count()).toEqual(1);
       expect(result.toArray()[0].isEqual(todayHarvest)).toBeTruthy();

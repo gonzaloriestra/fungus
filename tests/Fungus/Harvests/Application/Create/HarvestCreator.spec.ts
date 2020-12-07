@@ -13,6 +13,7 @@ import LocationMother from '../../../Locations/Domain/LocationMother';
 
 describe('HarvestCreator', () => {
   it('should remove all the existing Harvest', () => {
+    // To-Do instead a InMemory, it should be a mock
     const harvestRepository: HarvestRepository = new InMemoryHarvestRepository();
     // To-Do Avoid repositories here, we should use the queries
     const mushroomRepository: MushroomRepository = new InMemoryMushroomRepository();

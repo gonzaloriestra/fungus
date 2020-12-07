@@ -1,15 +1,13 @@
 import Date from '../../../Shared/Domain/Date';
 import { LocationQuery } from '../../../Shared/Application/Locations/LocationQuery';
 import { LocationId } from '../../../Shared/Domain/LocationId';
+import { HarvestQuery } from '../../../Shared/Application/Harvests/HarvestQuery';
+import { HarvestsView } from '../../../Shared/Application/Harvests/HarvestsView';
 
 import { GenerateForecastsResponse } from './GenerateForecastsResponse';
 import { GenerateForecastsRequest } from './GenerateForecastsRequest';
-import { Harvests } from '../../../Harvests/Domain/Harvests';
 
 import { Forecast } from '../../Domain/Forecast';
-import { HarvestQuery } from '../../../Shared/Application/Harvests/HarvestQuery';
-import { HarvestView } from '../../../Shared/Application/Harvests/HarvestView';
-import { HarvestsView } from '../../../Shared/Application/Harvests/HarvestsView';
 
 export default class ForecastsGenerator {
   private locationQuery: LocationQuery;
@@ -21,6 +19,7 @@ export default class ForecastsGenerator {
     this.harvestQuery = harvestQuery;
   }
 
+  // To-Do add some test here, it does not work properly: 2020-11-10 and 2020-12-10 and day for forecast 2020-11-10
   run({ date }: GenerateForecastsRequest): object {
     const locations = this.locationQuery.all();
 

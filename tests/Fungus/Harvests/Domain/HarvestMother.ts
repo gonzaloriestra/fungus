@@ -8,28 +8,22 @@ import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
 
 export default class HarvestMother {
   static create({
-    id,
-    locationId,
-    date,
-    mushroomId,
-    quantity,
+    id = HarvestId.create(),
+    locationId = LocationId.create(),
+    date = faker.date.past(),
+    mushroomId = MushroomId.create(),
+    quantity = faker.random.number({ min: 1, max: 5 }),
   }: {
-    id: HarvestId;
-    locationId: LocationId;
-    date: Date;
-    mushroomId: MushroomId;
-    quantity: number;
-  }): Harvest {
+    id?: HarvestId;
+    locationId?: LocationId;
+    date?: Date;
+    mushroomId?: MushroomId;
+    quantity?: number;
+  } = {}): Harvest {
     return new Harvest({ id, locationId, date, mushroomId, quantity });
   }
 
   static random(): Harvest {
-    return this.create({
-      id: HarvestId.create(),
-      locationId: LocationId.create(),
-      date: faker.date.past(),
-      mushroomId: MushroomId.create(),
-      quantity: faker.random.number({ min: 1, max: 5 }),
-    });
+    return this.create();
   }
 }
