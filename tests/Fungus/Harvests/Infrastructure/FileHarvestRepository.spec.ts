@@ -4,6 +4,8 @@ import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
 import { FileHarvestRepository } from '../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
 import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+// To-Do User HarvestMother in all places
+import HarvestMother from '../Domain/HarvestMother';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';
@@ -32,11 +34,7 @@ describe('FileHarvestRepository', () => {
     });
 
     it('should add a new Harvest to the repository', () => {
-      const harvest = new Harvest({
-        locationId: LocationId.create(),
-        date: new Date(),
-        mushroomId: MushroomId.create(),
-      });
+      const harvest = HarvestMother.random();
 
       subject.add(harvest);
 
