@@ -17,41 +17,25 @@ describe('ForecastsGenerator', () => {
     mockHarvestQuery = new HarvestQueryMock();
   });
 
-  it('should return 100 of probability when there is only one harvests for the specific day', () => {
-    const forecastDay = new Date('2020-12-19');
-    mockLocationQuery.returnOnAll([LocationViewMother.random()]);
-    const harvest = HarvestViewMother.create({ date: forecastDay.toDateString() });
-    // To-Do returnOnFilterBy when the param is...
-    mockHarvestQuery.returnOnFilterBy(HarvestsViewMother.create({ harvests: [harvest], median: 354 }));
-    const subject = new ForecastsGenerator(mockLocationQuery, mockHarvestQuery);
+  test.each([
+    ['2020-12-18', ['2020-12-19'], 354, 9048],
+    ['2020-12-18', ['2020-12-19'], 354, 9048],
+    ['2020-12-19', ['2020-12-19'], 354, 10000],
+    ['2020-11-10', ['2020-11-10', '2020-12-10'], 330, 0],
+  ])(
+    'should return the right probability based on your historical harvests',
+    (forecastDay, harvestDates, median, expected) => {
+      mockLocationQuery.returnOnAll([LocationViewMother.random()]);
+      const harvests = harvestDates.map((harvestDate) =>
+        HarvestViewMother.create({ date: new Date(harvestDate).toDateString() }),
+      );
+      // To-Do returnOnFilterBy when the param is...
+      mockHarvestQuery.returnOnFilterBy(HarvestsViewMother.create({ harvests, median }));
+      const subject = new ForecastsGenerator(mockLocationQuery, mockHarvestQuery);
 
-    const response = subject.run({ date: forecastDay });
+      const response = subject.run({ date: new Date(forecastDay) });
 
-    expect(response.data.forecasts[0].probability).toEqual(10000);
-  });
-
-  it('should return 0 for 2020-11-10 when we have harvests in 2020-11-10 and 2020-12-10', () => {
-    const forecastDay = new Date('2020-11-10');
-    mockLocationQuery.returnOnAll([LocationViewMother.random()]);
-    const harvestNov = HarvestViewMother.create({ date: forecastDay.toDateString() });
-    const harvestDec = HarvestViewMother.create({ date: '2020-12-10' });
-    mockHarvestQuery.returnOnFilterBy(HarvestsViewMother.create({ harvests: [harvestNov, harvestDec], median: 330 }));
-    const subject = new ForecastsGenerator(mockLocationQuery, mockHarvestQuery);
-
-    const response = subject.run({ date: forecastDay });
-
-    expect(response.data.forecasts[0].probability).toEqual(0);
-  });
-
-  it('should return 9048 (90.48%) when the forecast of for a day before of an unique harvest', () => {
-    const forecastDay = new Date('2020-12-18');
-    mockLocationQuery.returnOnAll([LocationViewMother.random()]);
-    const harvest = HarvestViewMother.create({ date: new Date('2020-12-19').toDateString() });
-    mockHarvestQuery.returnOnFilterBy(HarvestsViewMother.create({ harvests: [harvest], median: 354 }));
-    const subject = new ForecastsGenerator(mockLocationQuery, mockHarvestQuery);
-
-    const response = subject.run({ date: forecastDay });
-
-    expect(response.data.forecasts[0].probability).toEqual(9048);
-  });
+      expect(response.data.forecasts[0].probability).toEqual(expected);
+    },
+  );
 });

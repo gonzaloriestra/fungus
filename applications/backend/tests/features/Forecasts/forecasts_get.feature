@@ -16,7 +16,7 @@ Feature: Get forecasts
       "forecasts": [
         {
           "locationId": "85c2cec-f362-432e-a136-5440816a584b",
-          "probability": "100"
+          "probability": 10000
         }
       ]
     }
@@ -35,7 +35,7 @@ Feature: Get forecasts
       "forecasts": [
         {
           "locationId": "85c2cec-f362-432e-a136-5440816a584b",
-          "probability": "64"
+          "probability": 1320
         }
       ]
     }
