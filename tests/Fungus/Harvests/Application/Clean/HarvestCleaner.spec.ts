@@ -5,6 +5,7 @@ import HarvestMother from '../../Domain/HarvestMother';
 
 describe('HarvestCleaner', () => {
   it('should remove all the existing Harvest', () => {
+    // To-Do mock the repository
     const repository = new InMemoryHarvestRepository();
     repository.add(HarvestMother.random());
     repository.add(HarvestMother.random());
@@ -18,6 +19,7 @@ describe('HarvestCleaner', () => {
   });
 
   it('should work when there are not Harvests in the repository', () => {
+    // To-Do Mock the repository
     const repository = new InMemoryHarvestRepository();
     expect(repository.count()).toEqual(0);
 

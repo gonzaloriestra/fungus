@@ -20,7 +20,7 @@ export default class ForecastsGenerator {
   }
 
   // To-Do add some test here, it does not work properly: 2020-11-10 and 2020-12-10 and day for forecast 2020-11-10
-  run({ date }: GenerateForecastsRequest): object {
+  run({ date }: GenerateForecastsRequest): GenerateForecastsResponse {
     const locations = this.locationQuery.all();
 
     const forecasts = locations.map((location) => {
@@ -46,6 +46,6 @@ export default class ForecastsGenerator {
       return 0;
     }
 
-    return Math.round(100 * Math.exp(-((date.dayOfYear() - median) / (2 * deviation))));
+    return Math.round(100 * Math.exp(-(Math.pow(date.dayOfYear() - median, 2) / (2 * deviation))) * 100);
   }
 }
