@@ -12,12 +12,12 @@ type MapProps = {
   mode?: string;
   location?: Location;
   initialZoom?: number;
-  onLocationCreated?: (area: Array<Coordinate>) => void;
+  onLocationCreated?: (zone: Array<Coordinate>) => void;
 };
 
-function mapPositionFromArea(area): LatLngExpression {
-  if (area && area.length) {
-    return { lat: area[0].latitude, lng: area[0].longitude };
+function mapPositionFromZone(zone): LatLngExpression {
+  if (zone && zone.midpoint) {
+    return { lat: zone.midpoint.latitude, lng: zone.midpoint.longitude };
   }
 }
 
@@ -27,7 +27,7 @@ const Map = ({
   initialZoom = 15,
   onLocationCreated = (): void => {},
 }: MapProps): JSX.Element => {
-  const initialPosition = mapPositionFromArea(location?.area) || { lat: 42.829022, lng: -4.849545 };
+  const initialPosition = mapPositionFromZone(location?.zone) || { lat: 42.829022, lng: -4.849545 };
 
   const [position] = useState(initialPosition);
   const [zoom] = useState(initialZoom);
@@ -66,9 +66,9 @@ const Map = ({
       return null;
     }
 
-    const area = location?.area;
+    const zone = location?.zone;
 
-    return <Polygon positions={area.map((coordinate) => [coordinate.latitude, coordinate.longitude])} />;
+    return <Polygon positions={zone.coordinates.map((coordinate) => [coordinate.latitude, coordinate.longitude])} />;
   };
 
   return (

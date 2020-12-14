@@ -1,9 +1,11 @@
+import { Location } from '../../Domain/Location';
+
 export class FindLocationResponse {
   readonly id: string;
   readonly name: string;
 
-  constructor({ id, name }: { id: string; name: string }) {
-    this.id = id;
-    this.name = name;
+  constructor(location: Location) {
+    this.id = location.id().value();
+    this.name = location.name();
   }
 }

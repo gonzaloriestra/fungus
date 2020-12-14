@@ -16,10 +16,6 @@ export default class LocationsFinder {
   }
 
   toResponse() {
-    return (location: Location): FindLocationResponse =>
-      new FindLocationResponse({
-        id: location.id().value(),
-        name: location.name(),
-      });
+    return (location: Location): FindLocationResponse => new FindLocationResponse(location);
   }
 }

@@ -1,9 +1,9 @@
 import { LocationId } from '../../../Shared/Domain/LocationId';
 
-import { Area } from '../../Domain/Area';
+import { Zone } from '../../Domain/Zone';
 
 export type CreateLocationRequest = {
   id: LocationId;
   name: string;
-  area: Area;
+  zone: Zone;
 };

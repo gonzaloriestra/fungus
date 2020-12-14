@@ -1,11 +1,16 @@
+import { Location } from '../../Domain/Location';
+
 export class FindLocationByIdResponse {
   readonly id: string;
   readonly name: string;
-  readonly area?: Array<{ latitude: number; longitude: number }>;
+  readonly zone: {
+    midpoint: { latitude: number; longitude: number };
+    coordinates: Array<{ latitude: number; longitude: number }>;
+  };
 
-  constructor({ id, name, area }: { id: string; name: string; area: Array<{ latitude: number; longitude: number }> }) {
-    this.id = id;
-    this.name = name;
-    this.area = area;
+  constructor(location: Location) {
+    this.id = location.id().value();
+    this.name = location.name();
+    this.zone = { midpoint: location.zone().midpoint().toPrimitives(), coordinates: location.zone().toPrimitives() };
   }
 }

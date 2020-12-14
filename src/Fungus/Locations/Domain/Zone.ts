@@ -1,9 +1,8 @@
 import { Coordinate } from './Coordinate';
 
-type Primitives = Array<{ latitude: number; longitude: number }>;
+export type Primitives = Array<{ latitude: number; longitude: number }>;
 
-// To-Do Consider to use Array<Coordinate> directly as we do in other cases. Area right now it just a collection of
-export class Area {
+export class Zone {
   _coordinates: Array<Coordinate>;
 
   constructor({ coordinates }: { coordinates: Array<Coordinate> }) {
@@ -14,6 +13,18 @@ export class Area {
     return this._coordinates;
   }
 
+  midpoint(): Coordinate {
+    // To-Do it does not working as expected
+    return this._coordinates.reduce((midpoint, coordinate) => {
+      return midpoint
+        ? new Coordinate({
+            latitude: (coordinate.latitude() + midpoint.latitude()) / 2,
+            longitude: (coordinate.longitude() + midpoint.longitude()) / 2,
+          })
+        : coordinate;
+    });
+  }
+
   toPrimitives(): Primitives {
     return this._coordinates.map((coordinate) => ({
       latitude: coordinate.latitude(),
@@ -21,9 +32,8 @@ export class Area {
     }));
   }
 
-  static fromPrimitives(primitives: Primitives): Area {
-    // To-Do add fromPrimitives to coordinate object
-    return new Area({
+  static fromPrimitives(primitives: Primitives): Zone {
+    return new Zone({
       coordinates: primitives.map(
         (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
       ),

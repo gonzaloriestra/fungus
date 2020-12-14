@@ -2,18 +2,18 @@ import faker from 'faker';
 
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
 
-import { Area } from '../../../../src/Fungus/Locations/Domain/Area';
+import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 
-import AreaMother from './AreaMother';
+import ZoneMother from './ZoneMother';
 
 export default class LocationMother {
   static create({
     id = LocationId.create(),
     name = faker.random.word(),
-    area = AreaMother.random(),
-  }: { id?: LocationId; name?: string; area?: Area } = {}): Location {
-    return new Location({ id, name, area });
+    zone = ZoneMother.random(),
+  }: { id?: LocationId; name?: string; zone?: Zone } = {}): Location {
+    return new Location({ id, name, zone });
   }
 
   static random(): Location {

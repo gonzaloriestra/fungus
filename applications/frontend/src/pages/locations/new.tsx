@@ -9,11 +9,11 @@ type NewLocationProps = {};
 
 export default function NewLocation({}: NewLocationProps): JSX.Element {
   const [name, setName] = useState('');
-  const [area, setArea] = useState([]);
+  const [zone, setZone] = useState([]);
   const router = useRouter();
 
   const handleOnSubmit = async () => {
-    await addLocation({ name, area });
+    await addLocation({ name, zone });
 
     router.push('/locations');
   };
@@ -37,7 +37,7 @@ export default function NewLocation({}: NewLocationProps): JSX.Element {
               height: '500px',
             }}
           >
-            <Map mode="edit" initialZoom={5} onLocationCreated={(area): void => setArea(area)} />
+            <Map mode="edit" initialZoom={5} onLocationCreated={(zone): void => setZone(zone)} />
           </div>
         </Form.Field>
         <Form.Field>

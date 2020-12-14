@@ -13,10 +13,13 @@ export default class LocationCreator {
     this.repository = repository;
   }
 
-  run({ id, name, area }: CreateLocationRequest): void {
+  run({ id, name, zone }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
-    const location = new Location({ id, name, area });
+    // To-Do add the weatherStation to the Location
+    // zone.midpoint();
+
+    const location = new Location({ id, name, zone });
 
     this.repository.add(location);
   }

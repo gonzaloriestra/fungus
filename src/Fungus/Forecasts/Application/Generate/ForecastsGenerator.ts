@@ -8,10 +8,10 @@ import { GenerateForecastsResponse } from './GenerateForecastsResponse';
 import { GenerateForecastsRequest } from './GenerateForecastsRequest';
 
 import { Forecast } from '../../Domain/Forecast';
+import { LocationView } from '../../../Shared/Application/Locations/LocationView';
 
 export default class ForecastsGenerator {
   private locationQuery: LocationQuery;
-  // To-Do Make the same for harvests
   private harvestQuery: HarvestQuery;
 
   constructor(locationQuery: LocationQuery, harvestQuery: HarvestQuery) {
@@ -19,7 +19,6 @@ export default class ForecastsGenerator {
     this.harvestQuery = harvestQuery;
   }
 
-  // To-Do add some test here, it does not work properly: 2020-11-10 and 2020-12-10 and day for forecast 2020-11-10
   run({ date }: GenerateForecastsRequest): GenerateForecastsResponse {
     const locations = this.locationQuery.all();
 
@@ -38,8 +37,19 @@ export default class ForecastsGenerator {
     return new GenerateForecastsResponse({ date, forecasts });
   }
 
+  private calculateProbabilityBasedOnPrecipitation({ date, location }: { date: Date; location: LocationView }): number {
+    // To-Do
+    // get station associated to the location
+    // const weatherStation = this.weatherStationRepository.findById(location.weatherStationId());
+    // const precipitation = weatherStation.earlyPeriodPrecipitation(date);
+    // rain before 10 days mora than 40 l
+    // return precipitation >= 40 ? 1 : 0;
+    return 0;
+  }
+
   private calculateProbabilityBasedOnHarvests({ date, harvests }: { date: Date; harvests: HarvestsView }): number {
     const median = harvests.median();
+    // To-Do get the desviation for the mushrooms type
     const deviation = 5;
 
     if (!median) {

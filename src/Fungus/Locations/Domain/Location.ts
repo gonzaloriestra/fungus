@@ -1,18 +1,31 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
 
-import { Area } from './Area';
+import { Zone, Primitives as ZonePrimitives } from './Zone';
+import { WeatherStationId } from './WeatherStationId';
 
-type Primitives = { id: string; name: string; area: any };
+export type Primitives = { id: string; name: string; zone: ZonePrimitives; weatherStationId?: string };
 
 export class Location {
   _id: LocationId;
   _name: string;
-  _area: Area;
-  // To-Do get a better name from area or event use directly Array<Coordinates>
-  constructor({ id, name, area }: { id: LocationId; name: string; area: Area }) {
+  _zone: Zone;
+  _weatherStationId?: WeatherStationId;
+
+  constructor({
+    id,
+    name,
+    zone,
+    weatherStationId,
+  }: {
+    id: LocationId;
+    name: string;
+    zone: Zone;
+    weatherStationId?: WeatherStationId;
+  }) {
     this._id = id;
     this._name = name;
-    this._area = area;
+    this._zone = zone;
+    this._weatherStationId = weatherStationId;
   }
 
   id(): LocationId {
@@ -23,8 +36,12 @@ export class Location {
     return this._name;
   }
 
-  area(): Area {
-    return this._area;
+  zone(): Zone {
+    return this._zone;
+  }
+
+  weatherStationId(): WeatherStationId | undefined {
+    return this._weatherStationId;
   }
 
   equalTo(location: Location): boolean {
@@ -39,15 +56,17 @@ export class Location {
     return {
       id: this._id.value(),
       name: this._name,
-      area: this._area.toPrimitives(),
+      zone: this._zone.toPrimitives(),
+      weatherStationId: this._weatherStationId?.value(),
     };
   }
 
-  static fromPrimitives({ id, name, area }: Primitives): Location {
+  static fromPrimitives({ id, name, zone, weatherStationId }: Primitives): Location {
     return new Location({
       id: new LocationId(id),
       name,
-      area: Area.fromPrimitives(area),
+      zone: Zone.fromPrimitives(zone),
+      weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
     });
   }
 }

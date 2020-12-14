@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 
 import LocationCreator from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
-import { Area } from '../../../../../src/Fungus/Locations/Domain/Area';
+import { Zone } from '../../../../../src/Fungus/Locations/Domain/Zone';
 import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
 import { Coordinate } from '../../../../../src/Fungus/Locations/Domain/Coordinate';
 
@@ -27,7 +27,7 @@ export default class LocationPutController implements Controller {
       await this.locationCreator.run({
         id: new LocationId(locationId),
         name,
-        area: new Area({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
+        zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
       });
     } catch (error) {
       console.error(error.message);
