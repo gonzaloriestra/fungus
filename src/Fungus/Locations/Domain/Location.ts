@@ -2,6 +2,7 @@ import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { Zone, Primitives as ZonePrimitives } from './Zone';
 import { WeatherStationId } from './WeatherStationId';
+import { Coordinate } from './Coordinate';
 
 export type Primitives = { id: string; name: string; zone: ZonePrimitives; weatherStationId?: string };
 
@@ -40,6 +41,10 @@ export class Location {
     return this._zone;
   }
 
+  midpoint(): Coordinate {
+    return this._zone.midpoint();
+  }
+
   weatherStationId(): WeatherStationId | undefined {
     return this._weatherStationId;
   }
@@ -68,5 +73,9 @@ export class Location {
       zone: Zone.fromPrimitives(zone),
       weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
     });
+  }
+
+  assignWeatherStationId(weatherStationId: WeatherStationId): void {
+    this._weatherStationId = weatherStationId;
   }
 }

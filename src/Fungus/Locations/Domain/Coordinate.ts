@@ -17,6 +17,13 @@ export class Coordinate {
     return this._longitude;
   }
 
+  distanceTo(coordinate: Coordinate): number {
+    const latitudeDiff = this.latitude() - coordinate.latitude();
+    const longitudeDiff = this.longitude() - coordinate.longitude();
+
+    return Math.sqrt(latitudeDiff * latitudeDiff + longitudeDiff * longitudeDiff);
+  }
+
   toPrimitives(): Primitives {
     return {
       latitude: this.latitude(),

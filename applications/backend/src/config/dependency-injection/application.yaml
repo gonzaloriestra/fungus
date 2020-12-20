@@ -80,7 +80,7 @@ services:
   # Services
   fungus.locations.LocationCreator:
     class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
-    arguments: ["@fungus.locations.LocationRepository"]
+    arguments: ["@fungus.locations.LocationRepository", "@fungus.locations.WeatherStationRepository"]
 
   fungus.locations.LocationsFinder:
     class: ../../../../../src/Fungus/Locations/Application/Find/LocationsFinder
