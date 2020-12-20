@@ -14,15 +14,13 @@ export class Zone {
   }
 
   midpoint(): Coordinate {
-    // To-Do it does not working as expected
-    return this._coordinates.reduce((midpoint, coordinate) => {
-      return midpoint
-        ? new Coordinate({
-            latitude: (coordinate.latitude() + midpoint.latitude()) / 2,
-            longitude: (coordinate.longitude() + midpoint.longitude()) / 2,
-          })
-        : coordinate;
-    });
+    const calculateAverage = (coordinates: Array<number>): number =>
+      coordinates.reduce((average, currentCoordinate) => average + currentCoordinate, 0) / coordinates.length;
+
+    const midpointLatitude = calculateAverage(this._coordinates.map((coordinate) => coordinate.latitude()));
+    const midpointLongitude = calculateAverage(this._coordinates.map((coordinate) => coordinate.longitude()));
+
+    return new Coordinate({ latitude: midpointLatitude, longitude: midpointLongitude });
   }
 
   toPrimitives(): Primitives {
