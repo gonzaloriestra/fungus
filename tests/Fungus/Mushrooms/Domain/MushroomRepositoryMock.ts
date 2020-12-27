@@ -7,7 +7,13 @@ import { Mushrooms } from '../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
 
 export default class MushroomRepositoryMock implements MushroomRepository {
   private mockAll = jest.fn();
+  private mockAdd = jest.fn();
+  private mockFindById = jest.fn();
+  private mockFindByScientificName = jest.fn();
+
   private mushrooms: Mushrooms = new Mushrooms();
+  private mushroomFindById?: Mushroom = undefined;
+  private mushroomFindByScientificName?: Mushroom = undefined;
 
   all(): Mushrooms {
     this.mockAll();
@@ -27,14 +33,40 @@ export default class MushroomRepositoryMock implements MushroomRepository {
   }
 
   findById(_: MushroomId): Mushroom | undefined {
-    throw new MethodNotImplemented();
+    this.mockFindById();
+    return this.mushroomFindById;
+  }
+
+  returnOnFindById(mushroom: Mushroom): void {
+    this.mushroomFindById = mushroom;
+  }
+
+  assertFindByIdHasBeenCalled(): void {
+    expect(this.mockFindById).toHaveBeenCalled();
   }
 
   add(_: Mushroom): void {
-    throw new MethodNotImplemented();
+    this.mockAdd();
+  }
+
+  assertAddHasBeenCalled(): void {
+    expect(this.mockAdd).toHaveBeenCalled();
+  }
+
+  assertAddHasNotBeenCalled(): void {
+    expect(this.mockAdd).not.toHaveBeenCalled();
   }
 
   findByScientificName(_: string): Mushroom | undefined {
-    throw new MethodNotImplemented();
+    this.mockFindByScientificName();
+    return this.mushroomFindByScientificName;
+  }
+
+  returnOnFindByScientificName(mushroom: Mushroom): void {
+    this.mushroomFindByScientificName = mushroom;
+  }
+
+  assertFindByScientificNameHasBeenCalled(): void {
+    expect(this.mockFindByScientificName).toHaveBeenCalled();
   }
 }

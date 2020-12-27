@@ -20,7 +20,7 @@ export default class MushroomPutController implements Controller {
     const { scientificName } = req.payload;
 
     try {
-      await this.mushroomCreator.invoke({ id: new MushroomId(mushroomId), scientificName });
+      await this.mushroomCreator.run({ id: new MushroomId(mushroomId), scientificName });
     } catch (error) {
       console.error(error.message);
 
