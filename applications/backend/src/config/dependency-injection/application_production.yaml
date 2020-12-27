@@ -9,7 +9,7 @@ services:
 
   ##  Mushrooms
   fungus.mushrooms.MushroomRepository:
-    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
+    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/FileMushroomRepository
     arguments: []
 
   ##  Locations
@@ -19,4 +19,4 @@ services:
 
   fungus.locations.WeatherStationRepository:
     class: ../../../../../src/Fungus/Locations/Infrastructure/InMemoryAEMETWeatherStationRepository
-    arguments: [ ]
+    arguments: []

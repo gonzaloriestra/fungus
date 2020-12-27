@@ -9,7 +9,7 @@ services:
 
   ##  Mushrooms
   fungus.mushrooms.MushroomRepository:
-    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/InMemoryMushroomRepository
+    class: ../../../../../src/Fungus/Mushrooms/Infrastructure/FileMushroomRepository
     arguments: []
 
   ##  Locations
