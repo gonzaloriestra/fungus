@@ -1,5 +1,6 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
 
+// Rename to prediction
 export class Forecast {
   _locationId: LocationId;
   // To-Do maybe a value object
