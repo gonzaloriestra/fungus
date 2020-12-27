@@ -1,6 +1,6 @@
-import MushroomsCleaner from '../../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner';
+import { MushroomsCleaner } from '../../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner';
 
-import MushroomRepositoryMock from '../../Domain/MushroomRepositoryMock';
+import { MushroomRepositoryMock } from '../../Domain/MushroomRepositoryMock';
 
 describe('MushroomCleaner', () => {
   let mockMushroomRepository: MushroomRepositoryMock;

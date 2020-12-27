@@ -8,7 +8,7 @@ import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
 import { HarvestRepository } from '../../../../../src/Fungus/Harvests/Domain/HarvestRepository';
 import { MushroomRepository } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomRepository';
 import { LocationRepository } from '../../../../../src/Fungus/Locations/Domain/LocationRepository';
-import MushroomMother from '../../../Mushrooms/Domain/MushroomMother';
+import { MushroomMother } from '../../../Mushrooms/Domain/MushroomMother';
 import LocationMother from '../../../Locations/Domain/LocationMother';
 
 describe('HarvestCreator', () => {

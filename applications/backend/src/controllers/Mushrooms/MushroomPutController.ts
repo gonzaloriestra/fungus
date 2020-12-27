@@ -1,7 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import MushroomCreator from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
+import { MushroomCreator } from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
 import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 import { MushroomWithSameScientificNameAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomWithSameScientificNameAlreadyExist';
 

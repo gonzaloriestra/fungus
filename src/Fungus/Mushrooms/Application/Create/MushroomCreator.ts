@@ -3,11 +3,11 @@ import { MushroomId } from '../../../Shared/Domain/Mushrooms/MushroomId';
 import { Mushroom } from '../../Domain/Mushroom';
 import { MushroomWithSameScientificNameAlreadyExist } from '../../Domain/MushroomWithSameScientificNameAlreadyExist';
 import { MushroomRepository } from '../../Domain/MushroomRepository';
-
-import { CreateMushroomRequest } from './CreateMushroomRequest';
 import { MushroomAlreadyExist } from '../../Domain/MushroomAlreadyExist';
 
-export default class MushroomCreator {
+import { CreateMushroomRequest } from './CreateMushroomRequest';
+
+export class MushroomCreator {
   private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {

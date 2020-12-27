@@ -3,7 +3,7 @@ import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
 import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 import { Mushrooms } from '../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
 
-export default class MushroomRepositoryMock implements MushroomRepository {
+export class MushroomRepositoryMock implements MushroomRepository {
   private mockAll = jest.fn();
   private mockAdd = jest.fn();
   private mockFindById = jest.fn();

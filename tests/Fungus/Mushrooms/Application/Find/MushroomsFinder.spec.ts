@@ -1,8 +1,9 @@
-import MushroomsFinder from '../../../../../src/Fungus/Mushrooms/Application/Find/MushroomsFinder';
+import { MushroomsFinder } from '../../../../../src/Fungus/Mushrooms/Application/Find/MushroomsFinder';
 
-import MushroomMother from '../../Domain/MushroomMother';
-import MushroomRepositoryMock from '../../Domain/MushroomRepositoryMock';
 import { Mushrooms } from '../../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
+
+import { MushroomMother } from '../../Domain/MushroomMother';
+import { MushroomRepositoryMock } from '../../Domain/MushroomRepositoryMock';
 
 describe('MushroomsFinder', () => {
   let mockMushroomRepository: MushroomRepositoryMock;

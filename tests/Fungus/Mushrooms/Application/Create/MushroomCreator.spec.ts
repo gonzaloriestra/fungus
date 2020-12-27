@@ -1,11 +1,11 @@
 import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
-import MushroomCreator from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
+import { MushroomCreator } from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
 import { Mushroom } from '../../../../../src/Fungus/Mushrooms/Domain/Mushroom';
 import { MushroomAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomAlreadyExist';
 import { MushroomWithSameScientificNameAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomWithSameScientificNameAlreadyExist';
 
-import MushroomRepositoryMock from '../../Domain/MushroomRepositoryMock';
+import { MushroomRepositoryMock } from '../../Domain/MushroomRepositoryMock';
 
 describe('MushroomCreator', () => {
   let mockMushroomRepository: MushroomRepositoryMock;

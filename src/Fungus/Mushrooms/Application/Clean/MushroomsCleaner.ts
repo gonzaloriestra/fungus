@@ -1,6 +1,6 @@
 import { MushroomRepository } from '../../Domain/MushroomRepository';
 
-export default class MushroomsCleaner {
+export class MushroomsCleaner {
   private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {

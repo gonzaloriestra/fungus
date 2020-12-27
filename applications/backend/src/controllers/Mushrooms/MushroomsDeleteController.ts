@@ -2,7 +2,7 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
-import MushroomsCleaner from '../../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner';
+import { MushroomsCleaner } from '../../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner';
 
 export default class MushroomsDeleteController implements Controller {
   mushroomsCleaner: MushroomsCleaner;

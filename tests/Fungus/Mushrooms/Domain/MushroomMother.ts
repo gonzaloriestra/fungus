@@ -4,7 +4,7 @@ import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/Mushr
 
 import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
 
-export default class MushroomMother {
+export class MushroomMother {
   static create({
     id = MushroomId.create(),
     scientificName = faker.random.words(),
