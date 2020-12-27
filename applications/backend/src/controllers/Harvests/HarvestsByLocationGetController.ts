@@ -1,7 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 import HarvestsByLocationFinder from '../../../../../src/Fungus/Harvests/Application/FindByLocation/HarvestsByLocationFinder';
 
 import { Controller } from '../Controller';

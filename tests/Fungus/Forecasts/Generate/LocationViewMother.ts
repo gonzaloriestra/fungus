@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { LocationView } from '../../../../../src/Fungus/Shared/Application/Locations/LocationView';
+import { LocationView } from '../../../../src/Fungus/Forecasts/Application/Generate/LocationView';
 
 export default class LocationViewMother {
   static create({

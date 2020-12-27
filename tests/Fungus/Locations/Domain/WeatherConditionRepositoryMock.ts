@@ -1,4 +1,4 @@
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
 import { WeatherConditionRepository } from '../../../../src/Fungus/Locations/Domain/WeatherConditionRepository';
 import { WeatherConditions } from '../../../../src/Fungus/Locations/Domain/WeatherConditions';

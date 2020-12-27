@@ -1,5 +1,3 @@
-import { MethodNotImplemented } from '../../../../src/Fungus/Shared/Domain/MethodNotImplemented';
-
 import { WeatherStationRepository } from '../../../../src/Fungus/Locations/Domain/WeatherStationRepository';
 import { WeatherStation } from '../../../../src/Fungus/Locations/Domain/WeatherStation';
 import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';

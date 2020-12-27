@@ -3,9 +3,9 @@ import fs from 'fs';
 
 import { AggregateRoot } from '../Domain/AggregateRoot';
 
-import AddingRegisterToFileFailed from './AddingRegisterToFileFailed';
+import { AddingRegisterToFileFailed } from './AddingRegisterToFileFailed';
 
-export default class FileRepository {
+export class FileRepository {
   private readonly _filePath: string;
 
   constructor({ filePath }: { filePath: string }) {

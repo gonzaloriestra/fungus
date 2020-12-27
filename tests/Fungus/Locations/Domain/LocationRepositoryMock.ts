@@ -1,5 +1,5 @@
 import { MethodNotImplemented } from '../../../../src/Fungus/Shared/Domain/MethodNotImplemented';
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 
 import { LocationRepository } from '../../../../src/Fungus/Locations/Domain/LocationRepository';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
@@ -22,14 +22,14 @@ export default class LocationRepositoryMock implements LocationRepository {
   }
 
   all(): Array<Location> {
-    throw new MethodNotImplemented();
+    throw new MethodNotImplemented('LocationRepositoryMock.all');
   }
 
   add(_: Location): void {
-    throw new MethodNotImplemented();
+    throw new MethodNotImplemented('LocationRepositoryMock.add');
   }
 
   clean(): void {
-    throw new MethodNotImplemented();
+    throw new MethodNotImplemented('LocationRepositoryMock.clean');
   }
 }

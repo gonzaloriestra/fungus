@@ -1,5 +1,5 @@
 import Date from '../../Shared/Domain/Date';
-import { MushroomId } from '../../Shared/Domain/MushroomId';
+import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
 
 import { WeatherCondition } from './WeatherCondition';
 import { WeatherStation } from './WeatherStation';

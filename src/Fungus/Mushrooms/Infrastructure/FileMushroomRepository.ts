@@ -1,7 +1,7 @@
 import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
-import { MushroomId } from '../../Shared/Domain/MushroomId';
+import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
 
-import FileRepository from '../../Shared/Infrastructure/FileRepository';
+import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
 
 import { MushroomRepository } from '../Domain/MushroomRepository';
 import { Mushrooms } from '../Domain/Mushrooms';
@@ -46,6 +46,6 @@ export class FileMushroomRepository extends FileRepository implements MushroomRe
   }
 
   clean(): void {
-    throw new MethodNotImplemented();
+    throw new MethodNotImplemented('FileMushroomRepository.clean');
   }
 }

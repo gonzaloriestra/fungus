@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class Id {
-  _id: string;
-
-  static create(): Id {
-    return new Id(uuidv4());
-  }
+  private readonly _id: string;
 
   constructor(id: string) {
     this._id = id;
+  }
+
+  static create(): Id {
+    return new Id(uuidv4());
   }
 
   value(): string {

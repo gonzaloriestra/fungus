@@ -3,10 +3,10 @@ import httpStatus from 'http-status';
 
 import HarvestCreator from '../../../../../src/Fungus/Harvests/Application/Create/HarvestCreator';
 import { HarvestId } from '../../../../../src/Fungus/Harvests/Domain/HarvestId';
-import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/MushroomId';
+import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 import { HarvestAlreadyExist } from '../../../../../src/Fungus/Harvests/Domain/HarvestAlreadyExist';
 import { MushroomDoesNotExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomDoesNotExist';
-import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 
 import { Controller } from '../Controller';
 import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';

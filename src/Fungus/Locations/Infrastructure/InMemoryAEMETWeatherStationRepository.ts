@@ -3,7 +3,7 @@ import { WeatherStation } from '../Domain/WeatherStation';
 import { WeatherStationRepository } from '../Domain/WeatherStationRepository';
 import { WeatherStationId } from '../Domain/WeatherStationId';
 import { Coordinate } from '../Domain/Coordinate';
-import { LocationId } from '../../Shared/Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/Locations/LocationId';
 
 // To-Do Define in a external file yml or json object
 const initialWeatherStations = [

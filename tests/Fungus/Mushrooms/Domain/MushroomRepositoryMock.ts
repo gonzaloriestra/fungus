@@ -1,8 +1,6 @@
-import { MethodNotImplemented } from '../../../../src/Fungus/Shared/Domain/MethodNotImplemented';
-
 import { MushroomRepository } from '../../../../src/Fungus/Mushrooms/Domain/MushroomRepository';
 import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 import { Mushrooms } from '../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
 
 export default class MushroomRepositoryMock implements MushroomRepository {

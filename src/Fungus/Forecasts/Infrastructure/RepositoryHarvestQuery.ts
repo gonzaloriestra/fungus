@@ -1,11 +1,11 @@
-import { Harvest } from '../../../Harvests/Domain/Harvest';
-import { HarvestRepository } from '../../../Harvests/Domain/HarvestRepository';
+import { Harvest } from '../../Harvests/Domain/Harvest';
+import { HarvestRepository } from '../../Harvests/Domain/HarvestRepository';
 
-import { LocationId } from '../../Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/Locations/LocationId';
 
-import { HarvestQuery } from '../../Application/Harvests/HarvestQuery';
-import { HarvestView } from '../../Application/Harvests/HarvestView';
-import { HarvestsView } from '../../Application/Harvests/HarvestsView';
+import { HarvestQuery } from '../Application/Generate/HarvestQuery';
+import { HarvestView } from '../Application/Generate/HarvestView';
+import { HarvestsView } from '../Application/Generate/HarvestsView';
 
 export class RepositoryHarvestQuery implements HarvestQuery {
   repository: HarvestRepository;

@@ -1,14 +1,14 @@
 import Date from '../../../Shared/Domain/Date';
-import { LocationQuery } from '../../../Shared/Application/Locations/LocationQuery';
-import { LocationId } from '../../../Shared/Domain/LocationId';
-import { HarvestQuery } from '../../../Shared/Application/Harvests/HarvestQuery';
-import { HarvestsView } from '../../../Shared/Application/Harvests/HarvestsView';
+import { LocationQuery } from './LocationQuery';
+import { LocationId } from '../../../Shared/Domain/Locations/LocationId';
+import { HarvestQuery } from './HarvestQuery';
+import { HarvestsView } from './HarvestsView';
 
 import { GenerateForecastsResponse } from './GenerateForecastsResponse';
 import { GenerateForecastsRequest } from './GenerateForecastsRequest';
 
 import { Forecast } from '../../Domain/Forecast';
-import { LocationView } from '../../../Shared/Application/Locations/LocationView';
+import { LocationView } from './LocationView';
 
 export default class ForecastsGenerator {
   private locationQuery: LocationQuery;

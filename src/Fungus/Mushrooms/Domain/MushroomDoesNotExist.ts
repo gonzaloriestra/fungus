@@ -1,4 +1,4 @@
-import { MushroomId } from '../../Shared/Domain/MushroomId';
+import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
 
 export class MushroomDoesNotExist extends Error {
   constructor(id: MushroomId) {

@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { HarvestView } from '../../../../../src/Fungus/Shared/Application/Harvests/HarvestView';
+import { HarvestView } from '../../../../src/Fungus/Forecasts/Application/Generate/HarvestView';
 
 export default class HarvestViewMother {
   static create({

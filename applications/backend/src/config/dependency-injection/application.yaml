@@ -33,7 +33,7 @@ services:
 
   # Queries
   fungus.harvests.HarvestQuery:
-    class: ../../../../../src/Fungus/Shared/Infrastructure/Harvests/RepositoryHarvestQuery
+    class: ../../../../../src/Fungus/Forecasts/Infrastructure/RepositoryHarvestQuery
     arguments: [ "@fungus.harvests.HarvestRepository" ]
 
   # Controllers
@@ -96,7 +96,7 @@ services:
 
   # Queries
   fungus.locations.LocationQuery:
-    class: ../../../../../src/Fungus/Shared/Infrastructure/Locations/RepositoryLocationQuery
+    class: ../../../../../src/Fungus/Forecasts/Infrastructure/RepositoryLocationQuery
     arguments: ["@fungus.locations.LocationRepository"]
 
   # Controllers

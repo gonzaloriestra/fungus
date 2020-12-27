@@ -2,11 +2,11 @@ import Date from '../../../../src/Fungus/Shared/Domain/Date';
 
 import ForecastsGenerator from '../../../../src/Fungus/Forecasts/Application/Generate/ForecastsGenerator';
 
-import LocationQueryMock from '../../Shared/Application/Locations/LocationQueryMock';
-import LocationViewMother from '../../Shared/Application/Locations/LocationViewMother';
-import HarvestQueryMock from '../../Shared/Application/Harvests/HarvestQueryMock';
-import HarvestsViewMother from '../../Shared/Application/Harvests/HarvestsViewMother';
-import HarvestViewMother from '../../Shared/Application/Harvests/HarvestViewMother';
+import LocationQueryMock from './LocationQueryMock';
+import LocationViewMother from './LocationViewMother';
+import HarvestQueryMock from './HarvestQueryMock';
+import HarvestsViewMother from './HarvestsViewMother';
+import HarvestViewMother from './HarvestViewMother';
 
 describe('ForecastsGenerator', () => {
   let mockLocationQuery: LocationQueryMock;

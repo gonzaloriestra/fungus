@@ -1,4 +1,4 @@
-import { LocationId } from '../../Shared/Domain/LocationId';
+import { LocationId } from '../../Shared/Domain/Locations/LocationId';
 
 import { Zone, Primitives as ZonePrimitives } from './Zone';
 import { WeatherStationId } from './WeatherStationId';

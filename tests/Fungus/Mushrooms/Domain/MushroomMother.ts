@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
 import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
 

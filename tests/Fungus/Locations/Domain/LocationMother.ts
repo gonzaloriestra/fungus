@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 
 import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';

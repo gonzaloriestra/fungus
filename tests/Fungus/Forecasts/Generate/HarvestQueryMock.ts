@@ -1,5 +1,5 @@
-import { HarvestQuery } from '../../../../../src/Fungus/Shared/Application/Harvests/HarvestQuery';
-import { HarvestsView } from '../../../../../src/Fungus/Shared/Application/Harvests/HarvestsView';
+import { HarvestQuery } from '../../../../src/Fungus/Forecasts/Application/Generate/HarvestQuery';
+import { HarvestsView } from '../../../../src/Fungus/Forecasts/Application/Generate/HarvestsView';
 
 export default class HarvestQueryMock implements HarvestQuery {
   private mockFilterBy = jest.fn();

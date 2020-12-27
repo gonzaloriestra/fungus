@@ -1,7 +1,7 @@
 import faker from 'faker';
 
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/LocationId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
 import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
 import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
