@@ -16,6 +16,7 @@ export const register = (app: Server): void => {
     handler: mushroomPutController.run.bind(mushroomPutController),
   });
 
+  // To-Do only in test enviroment it should be
   const mushroomsDeleteController: MushroomsDeleteController = container.get(
     'applications.fungus.controllers.MushroomsDeleteController',
   );

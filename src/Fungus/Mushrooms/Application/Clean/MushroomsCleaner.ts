@@ -1,14 +1,13 @@
 import { MushroomRepository } from '../../Domain/MushroomRepository';
 
 export default class MushroomsCleaner {
-  repository: MushroomRepository;
+  private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
-  // To-Do rename to run
-  invoke(): void {
-    this.repository.clean();
+  run(): void {
+    this._repository.clean();
   }
 }

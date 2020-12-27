@@ -3,13 +3,13 @@ import { MushroomRepository } from '../../Domain/MushroomRepository';
 import { FindMushroomsResponse } from './FindMushroomsResponse';
 
 export default class MushroomsFinder {
-  repository: MushroomRepository;
+  private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
   run(): FindMushroomsResponse {
-    return new FindMushroomsResponse(this.repository.all().toPrimitives());
+    return new FindMushroomsResponse(this._repository.all().toPrimitives());
   }
 }

@@ -10,6 +10,7 @@ export default class MushroomRepositoryMock implements MushroomRepository {
   private mockAdd = jest.fn();
   private mockFindById = jest.fn();
   private mockFindByScientificName = jest.fn();
+  private mockClean = jest.fn();
 
   private mushrooms: Mushrooms = new Mushrooms();
   private mushroomFindById?: Mushroom = undefined;
@@ -29,7 +30,11 @@ export default class MushroomRepositoryMock implements MushroomRepository {
   }
 
   clean(): void {
-    throw new MethodNotImplemented();
+    this.mockClean();
+  }
+
+  assertCleanHasBeenCalled(): void {
+    expect(this.mockClean).toHaveBeenCalled();
   }
 
   findById(_: MushroomId): Mushroom | undefined {

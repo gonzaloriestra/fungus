@@ -8,10 +8,10 @@ import { CreateMushroomRequest } from './CreateMushroomRequest';
 import { MushroomAlreadyExist } from '../../Domain/MushroomAlreadyExist';
 
 export default class MushroomCreator {
-  repository: MushroomRepository;
+  private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
   run({ id, scientificName }: CreateMushroomRequest): void {
@@ -20,11 +20,11 @@ export default class MushroomCreator {
 
     const mushroom = new Mushroom({ id, scientificName });
 
-    this.repository.add(mushroom);
+    this._repository.add(mushroom);
   }
 
   private ensureMushroomWithSameScientificNameDoesNotExist(scientificName: string): void {
-    const existentMushroom = this.repository.findByScientificName(scientificName);
+    const existentMushroom = this._repository.findByScientificName(scientificName);
 
     if (existentMushroom) {
       throw new MushroomWithSameScientificNameAlreadyExist(scientificName);
@@ -32,7 +32,7 @@ export default class MushroomCreator {
   }
 
   private ensureMushroomDoesNotExist(id: MushroomId): void {
-    const existentMushroom = this.repository.findById(id);
+    const existentMushroom = this._repository.findById(id);
 
     if (existentMushroom) {
       throw new MushroomAlreadyExist(id);

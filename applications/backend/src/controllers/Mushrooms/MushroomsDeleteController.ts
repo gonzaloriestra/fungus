@@ -13,7 +13,7 @@ export default class MushroomsDeleteController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      await this.mushroomsCleaner.invoke();
+      await this.mushroomsCleaner.run();
 
       return res.response().code(httpStatus.NO_CONTENT);
     } catch (error) {

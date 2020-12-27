@@ -13,29 +13,29 @@ const initialMushrooms = [
 ];
 
 export class InMemoryMushroomRepository implements MushroomRepository {
-  private mushrooms: Mushrooms;
+  private _mushrooms: Mushrooms;
 
   constructor({ mushrooms = new Mushrooms({ mushrooms: initialMushrooms }) }: { mushrooms?: Mushrooms } = {}) {
-    this.mushrooms = mushrooms;
+    this._mushrooms = mushrooms;
   }
 
   add(mushroom: Mushroom): void {
-    this.mushrooms.add(mushroom);
+    this._mushrooms.add(mushroom);
   }
 
   findById(id: MushroomId): Mushroom | undefined {
-    return this.mushrooms.findById(id);
+    return this._mushrooms.findById(id);
   }
 
   findByScientificName(scientificName: string): Mushroom | undefined {
-    return this.mushrooms.findByScientificName(scientificName);
+    return this._mushrooms.findByScientificName(scientificName);
   }
 
   all(): Mushrooms {
-    return this.mushrooms;
+    return this._mushrooms;
   }
 
   clean(): void {
-    this.mushrooms = new Mushrooms();
+    this._mushrooms = new Mushrooms();
   }
 }
