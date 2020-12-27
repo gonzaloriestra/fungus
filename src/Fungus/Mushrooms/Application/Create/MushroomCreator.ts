@@ -11,6 +11,7 @@ export default class MushroomCreator {
     this.repository = repository;
   }
 
+  // To-Do rename to run
   invoke({ id, scientificName }: CreateMushroomRequest): void {
     this.ensureMushroomWithSameScientificNameDoesNotExist(scientificName);
 
@@ -20,9 +21,9 @@ export default class MushroomCreator {
   }
 
   ensureMushroomWithSameScientificNameDoesNotExist(scientificName: string): void {
-    const existentMushroom = this.repository.filterBy({ scientificName });
+    const existentMushroom = this.repository.findByScientificName(scientificName);
 
-    if (0 !== existentMushroom.length) {
+    if (existentMushroom) {
       throw new MushroomWithSameScientificNameAlreadyExist(scientificName);
     }
   }

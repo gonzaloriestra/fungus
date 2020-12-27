@@ -7,6 +7,7 @@ export default class MushroomsCleaner {
     this.repository = repository;
   }
 
+  // To-Do rename to run
   invoke(): void {
     this.repository.clean();
   }

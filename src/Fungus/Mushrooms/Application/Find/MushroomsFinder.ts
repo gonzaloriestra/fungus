@@ -4,7 +4,7 @@ import { Mushroom } from '../../Domain/Mushroom';
 import { MushroomsResponse } from './MushroomsResponse';
 import { MushroomResponse } from './MushroomResponse';
 
-export default class MushroomsSearcher {
+export default class MushroomsFinder {
   repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {
@@ -12,7 +12,8 @@ export default class MushroomsSearcher {
   }
 
   run(): MushroomsResponse {
-    return new MushroomsResponse(this.repository.searchAll().map(this.toResponse()));
+    // To-Do collection of mushrooms
+    return new MushroomsResponse(this.repository.all().map(this.toResponse()));
   }
 
   toResponse() {

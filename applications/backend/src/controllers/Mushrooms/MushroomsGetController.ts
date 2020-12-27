@@ -1,20 +1,20 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import MushroomsSearcher from '../../../../../src/Fungus/Mushrooms/Application/SearchAll/MushroomsSearcher';
+import MushroomsFinder from '../../../../../src/Fungus/Mushrooms/Application/Find/MushroomsFinder';
 
 import { Controller } from '../Controller';
 
 export default class MushroomsGetController implements Controller {
-  mushroomsSearcher: MushroomsSearcher;
+  mushroomsFinder: MushroomsFinder;
 
-  constructor(mushroomsSearcher: MushroomsSearcher) {
-    this.mushroomsSearcher = mushroomsSearcher;
+  constructor(mushroomsFinder: MushroomsFinder) {
+    this.mushroomsFinder = mushroomsFinder;
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     try {
-      const response = await this.mushroomsSearcher.run();
+      const response = await this.mushroomsFinder.run();
 
       return res.response(response.mushrooms).code(httpStatus.OK);
     } catch (error) {

@@ -25,18 +25,11 @@ export class InMemoryMushroomRepository implements MushroomRepository {
     return this.mushrooms.find((mushroom) => mushroom.id().equalTo(id));
   }
 
-  filterBy({ scientificName }: { scientificName?: string } = {}): Array<Mushroom> {
-    if (scientificName) {
-      return this._filterByScientificName(scientificName);
-    }
-    return this.mushrooms;
+  findByScientificName(scientificName: string): Mushroom | undefined {
+    return this.mushrooms.find((mushroom) => mushroom.scientificName() === scientificName);
   }
 
-  _filterByScientificName(scientificName: string): Array<Mushroom> {
-    return this.mushrooms.filter((mushroom) => mushroom.scientificName() === scientificName);
-  }
-
-  searchAll(): Array<Mushroom> {
+  all(): Array<Mushroom> {
     return this.mushrooms;
   }
 

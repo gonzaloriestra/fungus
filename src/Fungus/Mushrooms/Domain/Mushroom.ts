@@ -1,8 +1,8 @@
 import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 export class Mushroom {
-  _id: MushroomId;
-  _scientificName: string;
+  private readonly _id: MushroomId;
+  private readonly _scientificName: string;
 
   constructor({ id, scientificName }: { id: MushroomId; scientificName: string }) {
     this._id = id;
