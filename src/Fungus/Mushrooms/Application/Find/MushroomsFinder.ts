@@ -1,8 +1,6 @@
 import { MushroomRepository } from '../../Domain/MushroomRepository';
-import { Mushroom } from '../../Domain/Mushroom';
 
-import { MushroomsResponse } from './MushroomsResponse';
-import { MushroomResponse } from './MushroomResponse';
+import { FindMushroomsResponse } from './FindMushroomsResponse';
 
 export default class MushroomsFinder {
   repository: MushroomRepository;
@@ -11,12 +9,7 @@ export default class MushroomsFinder {
     this.repository = repository;
   }
 
-  run(): MushroomsResponse {
-    // To-Do collection of mushrooms
-    return new MushroomsResponse(this.repository.all().map(this.toResponse()));
-  }
-
-  toResponse() {
-    return (mushroom: Mushroom): MushroomResponse => new MushroomResponse(mushroom.toPrimitives());
+  run(): FindMushroomsResponse {
+    return new FindMushroomsResponse(this.repository.all().toPrimitives());
   }
 }

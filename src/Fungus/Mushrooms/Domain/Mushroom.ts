@@ -1,5 +1,7 @@
 import { MushroomId } from '../../Shared/Domain/MushroomId';
 
+export type Primitives = { id: string; scientificName: string };
+
 export class Mushroom {
   private readonly _id: MushroomId;
   private readonly _scientificName: string;
@@ -17,10 +19,7 @@ export class Mushroom {
     return this._scientificName;
   }
 
-  toPrimitives(): {
-    id: string;
-    scientificName: string;
-  } {
+  toPrimitives(): Primitives {
     return {
       id: this._id.value(),
       scientificName: this._scientificName,

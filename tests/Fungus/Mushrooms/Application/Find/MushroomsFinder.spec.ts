@@ -2,6 +2,7 @@ import MushroomsFinder from '../../../../../src/Fungus/Mushrooms/Application/Fin
 
 import MushroomMother from '../../Domain/MushroomMother';
 import MushroomRepositoryMock from '../../Domain/MushroomRepositoryMock';
+import { Mushrooms } from '../../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
 
 describe('MushroomsFinder', () => {
   let mockMushroomRepository: MushroomRepositoryMock;
@@ -13,12 +14,13 @@ describe('MushroomsFinder', () => {
   it('should return all existing mushrooms successfully', () => {
     const mushroomOne = MushroomMother.random();
     const mushroomTwo = MushroomMother.random();
-    mockMushroomRepository.returnOnAll([mushroomOne, mushroomTwo]);
+    mockMushroomRepository.returnOnAll(new Mushrooms({ mushrooms: [mushroomOne, mushroomTwo] }));
 
     const subject = new MushroomsFinder(mockMushroomRepository);
 
     const response = subject.run();
 
+    mockMushroomRepository.assertAllHasBeenCalled();
     expect(response.mushrooms.length).toEqual(2);
   });
 });

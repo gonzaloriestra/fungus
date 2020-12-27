@@ -1,6 +1,8 @@
-import { MushroomRepository } from '../Domain/MushroomRepository';
 import { MushroomId } from '../../Shared/Domain/MushroomId';
+
+import { MushroomRepository } from '../Domain/MushroomRepository';
 import { Mushroom } from '../Domain/Mushroom';
+import { Mushrooms } from '../Domain/Mushrooms';
 
 // To-Do this is temporal, so we should remove it
 const initialMushrooms = [
@@ -11,29 +13,29 @@ const initialMushrooms = [
 ];
 
 export class InMemoryMushroomRepository implements MushroomRepository {
-  mushrooms: Array<Mushroom>;
+  private mushrooms: Mushrooms;
 
-  constructor({ mushrooms = initialMushrooms }: { mushrooms?: Array<Mushroom> } = {}) {
+  constructor({ mushrooms = new Mushrooms({ mushrooms: initialMushrooms }) }: { mushrooms?: Mushrooms } = {}) {
     this.mushrooms = mushrooms;
   }
 
   add(mushroom: Mushroom): void {
-    this.mushrooms.push(mushroom);
+    this.mushrooms.add(mushroom);
   }
 
   findById(id: MushroomId): Mushroom | undefined {
-    return this.mushrooms.find((mushroom) => mushroom.id().equalTo(id));
+    return this.mushrooms.findById(id);
   }
 
   findByScientificName(scientificName: string): Mushroom | undefined {
-    return this.mushrooms.find((mushroom) => mushroom.scientificName() === scientificName);
+    return this.mushrooms.findByScientificName(scientificName);
   }
 
-  all(): Array<Mushroom> {
+  all(): Mushrooms {
     return this.mushrooms;
   }
 
   clean(): void {
-    this.mushrooms = [];
+    this.mushrooms = new Mushrooms();
   }
 }
