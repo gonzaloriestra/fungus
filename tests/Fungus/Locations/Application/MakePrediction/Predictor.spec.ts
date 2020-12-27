@@ -1,39 +1,38 @@
 import Date from '../../../../../src/Fungus/Shared/Domain/Date';
+
 import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/MushroomId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 
 import Predictor from '../../../../../src/Fungus/Locations/Application/MakePrediction/Predictor';
 
-import MushroomQueryMock from '../../../Shared/Application/Mushrooms/MushroomQueryMock';
-import MushroomViewMother from '../../../Shared/Application/Mushrooms/MushroomViewMother';
-import LocationRepositoryMock from '../../Domain/LocationRepositoryMock';
-import LocationMother from '../../Domain/LocationMother';
+import WeatherConditionRepositoryMock from '../../Domain/WeatherConditionRepositoryMock';
+import WeatherConditionsMother from '../../Domain/WeatherConditionsMother';
+import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
+import WeatherStationMother from '../../Domain/WeatherStationMother';
 
 describe('Predictor', () => {
-  let mockLocationRepository: LocationRepositoryMock;
-  let mockMushroomQuery: MushroomQueryMock;
+  let mockWeatherConditionRepository: WeatherConditionRepositoryMock;
+  let mockWeatherStationRepository: WeatherStationRepositoryMock;
 
   beforeEach(() => {
-    mockLocationRepository = new LocationRepositoryMock();
-    mockMushroomQuery = new MushroomQueryMock();
+    mockWeatherConditionRepository = new WeatherConditionRepositoryMock();
+    mockWeatherStationRepository = new WeatherStationRepositoryMock();
   });
 
   it('should return a prediction of a mushroom sprout in a location', () => {
     const predictionDate = '2020-12-19';
-    const mushroom = MushroomViewMother.random();
-    const location = LocationMother.random();
-    mockMushroomQuery.returnOnFindById(mushroom);
-    mockLocationRepository.returnOnFindById(location);
-
-    const subject = new Predictor(mockMushroomQuery, mockLocationRepository);
+    mockWeatherConditionRepository.returnOnFindByMushroom(WeatherConditionsMother.random());
+    mockWeatherStationRepository.returnOnFindByLocation(WeatherStationMother.random());
+    const subject = new Predictor(mockWeatherStationRepository, mockWeatherConditionRepository);
 
     const response = subject.run({
       date: new Date(predictionDate),
-      mushroomId: new MushroomId(mushroom.id()),
-      locationId: location.id(),
+      mushroomId: MushroomId.create(),
+      locationId: LocationId.create(),
     });
 
-    mockMushroomQuery.assertFindByIdHasBeenCalled();
-    mockLocationRepository.assertFindByIdHasBeenCalled();
+    mockWeatherConditionRepository.assertFindByMushroomHasBeenCalled();
+    mockWeatherStationRepository.assertFindByLocationHasBeenCalled();
     expect(response.data.probability).toBeDefined();
   });
 });

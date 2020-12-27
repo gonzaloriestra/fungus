@@ -1,6 +1,7 @@
-import { Location } from './Location';
+import { LocationId } from '../../Shared/Domain/LocationId';
+
 import { WeatherStation } from './WeatherStation';
 
 export interface WeatherStationRepository {
-  findByLocation: (id: Location) => WeatherStation | undefined;
+  findByLocation: (id: LocationId) => WeatherStation | undefined;
 }

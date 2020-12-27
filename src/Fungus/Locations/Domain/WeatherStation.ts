@@ -8,6 +8,7 @@ export class WeatherStation {
   _description: string;
 
   constructor({
+    // To-Do Rename to id
     weatherStationId,
     externalId,
     location,

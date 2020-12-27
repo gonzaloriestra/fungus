@@ -1,28 +1,31 @@
-import { MushroomQuery } from '../../../Shared/Application/Mushrooms/MushroomQuery';
-
-import { LocationRepository } from '../../Domain/LocationRepository';
+import { WeatherConditionRepository } from '../../Domain/WeatherConditionRepository';
+import { WeatherStationRepository } from '../../Domain/WeatherStationRepository';
 
 import { MakePredictionResponse } from './MakePredictionResponse';
 import { MakePredictionRequest } from './MakePredictionRequest';
 
 export default class Predictor {
-  private locationRepository: LocationRepository;
-  private mushroomQuery: MushroomQuery;
+  private readonly weatherConditionRepository: WeatherConditionRepository;
+  private readonly weatherStationRepository: WeatherStationRepository;
 
-  constructor(mushroomQuery: MushroomQuery, locationRepository: LocationRepository) {
-    this.locationRepository = locationRepository;
-    this.mushroomQuery = mushroomQuery;
+  constructor(
+    weatherStationRepository: WeatherStationRepository,
+    weatherConditionRepository: WeatherConditionRepository,
+  ) {
+    this.weatherStationRepository = weatherStationRepository;
+    this.weatherConditionRepository = weatherConditionRepository;
   }
 
   run({ date, mushroomId, locationId }: MakePredictionRequest): MakePredictionResponse {
-    const mushroom = this.mushroomQuery.findById(mushroomId);
-    // To-do get the list of weather conditions associated
+    const weatherStation = this.weatherStationRepository.findByLocation(locationId);
+    const weatherConditions = this.weatherConditionRepository.findByMushroom(mushroomId);
 
-    const location = this.locationRepository.findById(locationId);
-    // const weatherContionsPercentMet = location.meetWeatherConditions({ weatherConditions, date });
-    const weatherContionsPercentMet = 10000;
-    // To-do const result = location.satisfies({ weatherCondition, date });
-    // new
+    if (!weatherConditions || !weatherStation) {
+      return new MakePredictionResponse({ probability: 0 });
+    }
+
+    const weatherContionsPercentMet = weatherConditions.areMet({ date, weatherStation });
+
     return new MakePredictionResponse({ probability: weatherContionsPercentMet });
   }
 }
