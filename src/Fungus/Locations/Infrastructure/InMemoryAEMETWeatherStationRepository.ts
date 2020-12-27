@@ -3,6 +3,7 @@ import { WeatherStation } from '../Domain/WeatherStation';
 import { WeatherStationRepository } from '../Domain/WeatherStationRepository';
 import { WeatherStationId } from '../Domain/WeatherStationId';
 import { Coordinate } from '../Domain/Coordinate';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 // To-Do Define in a external file yml or json object
 const initialWeatherStations = [
@@ -63,13 +64,15 @@ export class InMemoryAEMETWeatherStationRepository implements WeatherStationRepo
     this.weatherStations = weatherStations || [];
   }
 
-  findByLocation(location: Location): WeatherStation | undefined {
-    const midpoint = location.midpoint();
+  findById(id: WeatherStationId): WeatherStation | undefined {
+    return this.weatherStations.find((weatherStation) => weatherStation.weatherStationId().equalTo(id));
+  }
 
+  findByProximity(coordinate: Coordinate): WeatherStation | undefined {
     return this.weatherStations.reduce((closestWeatherStation, currentWeatherStation) => {
       if (
         !closestWeatherStation ||
-        currentWeatherStation.distanceTo(midpoint) < closestWeatherStation.distanceTo(midpoint)
+        currentWeatherStation.distanceTo(coordinate) < closestWeatherStation.distanceTo(coordinate)
       ) {
         return currentWeatherStation;
       }

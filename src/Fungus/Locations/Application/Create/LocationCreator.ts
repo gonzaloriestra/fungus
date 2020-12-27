@@ -21,7 +21,8 @@ export default class LocationCreator {
 
     const location = new Location({ id, name, zone });
 
-    const weatherStation = this.weatherStationRepository.findByLocation(location);
+    const weatherStation = this.weatherStationRepository.findByProximity(location.midpoint());
+
     if (weatherStation) {
       location.assignWeatherStationId(weatherStation.weatherStationId());
     }
