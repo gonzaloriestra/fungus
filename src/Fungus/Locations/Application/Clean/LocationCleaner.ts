@@ -1,13 +1,13 @@
 import { LocationRepository } from '../../Domain/LocationRepository';
 
-export default class LocationCleaner {
-  repository: LocationRepository;
+export class LocationCleaner {
+  private readonly _repository: LocationRepository;
 
   constructor(repository: LocationRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
   run(): void {
-    this.repository.clean();
+    this._repository.clean();
   }
 }

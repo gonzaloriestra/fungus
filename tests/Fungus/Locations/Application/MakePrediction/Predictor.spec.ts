@@ -9,7 +9,7 @@ import WeatherConditionRepositoryMock from '../../Domain/WeatherConditionReposit
 import WeatherConditionsMother from '../../Domain/WeatherConditionsMother';
 import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
 import WeatherStationMother from '../../Domain/WeatherStationMother';
-import LocationRepositoryMock from '../../Domain/LocationRepositoryMock';
+import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
 import LocationMother from '../../Domain/LocationMother';
 
 describe('Predictor', () => {

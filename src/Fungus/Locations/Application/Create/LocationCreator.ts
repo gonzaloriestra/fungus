@@ -7,31 +7,28 @@ import { WeatherStationRepository } from '../../Domain/WeatherStationRepository'
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 
-export default class LocationCreator {
-  locationRepository: LocationRepository;
-  weatherStationRepository: WeatherStationRepository;
+// To-Do Add test here
+export class LocationCreator {
+  private readonly _locationRepository: LocationRepository;
+  private readonly _weatherStationRepository: WeatherStationRepository;
 
   constructor(locationRepository: LocationRepository, weatherStationRepository: WeatherStationRepository) {
-    this.locationRepository = locationRepository;
-    this.weatherStationRepository = weatherStationRepository;
+    this._locationRepository = locationRepository;
+    this._weatherStationRepository = weatherStationRepository;
   }
 
   run({ id, name, zone }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
-    const location = new Location({ id, name, zone });
+    const weatherStation = this._weatherStationRepository.findByProximity(zone.midpoint());
 
-    const weatherStation = this.weatherStationRepository.findByProximity(location.midpoint());
+    const location = new Location({ id, name, zone, weatherStationId: weatherStation?.weatherStationId() });
 
-    if (weatherStation) {
-      location.assignWeatherStationId(weatherStation.weatherStationId());
-    }
-
-    this.locationRepository.add(location);
+    this._locationRepository.add(location);
   }
 
   ensureLocationDoesNotExist(id: LocationId): void {
-    const existentLocation = this.locationRepository.findById(id);
+    const existentLocation = this._locationRepository.findById(id);
 
     if (existentLocation) {
       throw new LocationAlreadyExist(id);

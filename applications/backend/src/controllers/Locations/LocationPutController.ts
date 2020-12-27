@@ -1,7 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import LocationCreator from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
+import { LocationCreator } from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 import { Zone } from '../../../../../src/Fungus/Locations/Domain/Zone';
 import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
