@@ -3,13 +3,13 @@ import { LocationRepository } from '../../Domain/LocationRepository';
 import { FindLocationsResponse } from './FindLocationsResponse';
 
 export default class LocationsFinder {
-  repository: LocationRepository;
+  private readonly _repository: LocationRepository;
 
   constructor(repository: LocationRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
   run(): FindLocationsResponse {
-    return new FindLocationsResponse(this.repository.all().toPrimitives());
+    return new FindLocationsResponse(this._repository.all().toPrimitives());
   }
 }

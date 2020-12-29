@@ -5,14 +5,14 @@ import { FindLocationByIdResponse } from './FindLocationByIdResponse';
 import { FindLocationByIdRequest } from './FindLocationByIdRequest';
 
 export default class LocationByIdFinder {
-  repository: LocationRepository;
+  private readonly _repository: LocationRepository;
 
   constructor(repository: LocationRepository) {
-    this.repository = repository;
+    this._repository = repository;
   }
 
   run({ locationId }: FindLocationByIdRequest): FindLocationByIdResponse {
-    const location = this.repository.findById(locationId);
+    const location = this._repository.findById(locationId);
 
     if (!location) {
       throw new LocationDoesNotExist(locationId);

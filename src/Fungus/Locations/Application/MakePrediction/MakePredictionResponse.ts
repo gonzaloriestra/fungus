@@ -1,8 +1,9 @@
-export class MakePredictionResponse {
-  // To-Do How to avoid this definitions
-  readonly prediction: { probability: number };
+import { Primitives } from '../../Domain/Prediction';
 
-  constructor({ probability }: { probability: number }) {
-    this.prediction = { probability };
+export class MakePredictionResponse {
+  readonly prediction: Primitives;
+
+  constructor(prediction: Primitives) {
+    this.prediction = prediction;
   }
 }
