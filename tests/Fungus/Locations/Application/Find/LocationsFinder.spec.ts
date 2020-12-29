@@ -1,22 +1,27 @@
-import { InMemoryLocationRepository } from '../../../../../src/Fungus/Locations/Infrastructure/InMemoryLocationRepository';
-
-import { LocationRepository } from '../../../../../src/Fungus/Locations/Domain/LocationRepository';
-import LocationMother from '../../../Locations/Domain/LocationMother';
 import LocationsFinder from '../../../../../src/Fungus/Locations/Application/Find/LocationsFinder';
 
-describe('LocationsFinder', () => {
-  it('should return all existing locations successfully', () => {
-    // To-Do instead a InMemory, it should be a mock
-    const locationRepository: LocationRepository = new InMemoryLocationRepository();
-    const locationOne = LocationMother.random();
-    locationRepository.add(locationOne);
-    const locationTwo = LocationMother.random();
-    locationRepository.add(locationTwo);
+import { Locations } from '../../../../../src/Fungus/Locations/Domain/Locations';
 
-    const subject = new LocationsFinder(locationRepository);
+import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
+import LocationMother from '../../../Locations/Domain/LocationMother';
+
+describe('LocationsFinder', () => {
+  let mockLocationRepository: LocationRepositoryMock;
+
+  beforeEach(() => {
+    mockLocationRepository = new LocationRepositoryMock();
+  });
+
+  it('should return all existing locations successfully', () => {
+    const locationOne = LocationMother.random();
+    const locationTwo = LocationMother.random();
+    mockLocationRepository.returnOnAll(new Locations({ locations: [locationOne, locationTwo] }));
+
+    const subject = new LocationsFinder(mockLocationRepository);
 
     const response = subject.run();
 
+    mockLocationRepository.assertAllHasBeenCalled();
     expect(response.locations.length).toEqual(2);
   });
 });

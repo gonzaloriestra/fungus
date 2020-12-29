@@ -9,8 +9,10 @@ export class LocationRepositoryMock implements LocationRepository {
   private mockFindById = jest.fn();
   private mockClean = jest.fn();
   private mockAdd = jest.fn();
+  private mockAll = jest.fn();
 
   private location?: Location = undefined;
+  private locations: Locations = new Locations();
 
   findById(_: LocationId): Location | undefined {
     this.mockFindById();
@@ -26,7 +28,16 @@ export class LocationRepositoryMock implements LocationRepository {
   }
 
   all(): Locations {
-    throw new MethodNotImplemented('LocationRepositoryMock.all');
+    this.mockAll();
+    return this.locations;
+  }
+
+  returnOnAll(locations: Locations): void {
+    this.locations = locations;
+  }
+
+  assertAllHasBeenCalled(): void {
+    expect(this.mockAll).toHaveBeenCalled();
   }
 
   add(_: Location): void {
@@ -34,7 +45,7 @@ export class LocationRepositoryMock implements LocationRepository {
   }
 
   assertAddHasBeenCalled(): void {
-    expect(this.mockFindById).toHaveBeenCalled();
+    expect(this.mockAdd).toHaveBeenCalled();
   }
 
   clean(): void {
