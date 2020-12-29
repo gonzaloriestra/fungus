@@ -19,7 +19,7 @@ export class LocationRepositoryMock implements LocationRepository {
     return this.location;
   }
 
-  returnOnFindById(location: Location): void {
+  returnOnFindById(location?: Location): void {
     this.location = location;
   }
 

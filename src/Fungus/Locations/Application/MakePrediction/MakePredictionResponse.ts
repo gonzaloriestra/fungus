@@ -1,8 +1,8 @@
 export class MakePredictionResponse {
   // To-Do How to avoid this definitions
-  readonly data: { probability: number };
+  readonly prediction: { probability: number };
 
   constructor({ probability }: { probability: number }) {
-    this.data = { probability };
+    this.prediction = { probability };
   }
 }

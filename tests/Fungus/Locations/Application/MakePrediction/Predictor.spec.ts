@@ -58,6 +58,6 @@ describe('Predictor', () => {
     mockLocationRepository.assertFindByIdHasBeenCalled();
     mockWeatherConditionRepository.assertFindByMushroomHasBeenCalled();
     mockWeatherStationRepository.assertFindByHasBeenCalled();
-    expect(response.data.probability).toBeDefined();
+    expect(response.prediction.probability).toBeDefined();
   });
 });

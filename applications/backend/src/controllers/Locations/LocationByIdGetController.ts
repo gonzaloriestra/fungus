@@ -20,7 +20,7 @@ export default class LocationByIdGetController implements Controller {
 
       const response = await this.locationByIdFinder.run({ locationId });
 
-      return res.response(response.data).code(httpStatus.OK);
+      return res.response(response.location).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);
 
