@@ -1,7 +1,7 @@
-import { WeatherStationRepository } from '../../../../src/Fungus/Locations/Domain/WeatherStationRepository';
-import { WeatherStation } from '../../../../src/Fungus/Locations/Domain/WeatherStation';
+import { WeatherStationRepository } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStationRepository';
+import { WeatherStation } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStation';
 import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';
-import { WeatherStationId } from '../../../../src/Fungus/Locations/Domain/WeatherStationId';
+import { WeatherStationId } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStationId';
 
 export default class WeatherStationRepositoryMock implements WeatherStationRepository {
   private mockFindBy = jest.fn();

@@ -1,7 +1,7 @@
 import { LocationId } from '../../Shared/Domain/Locations/LocationId';
 
 import { Zone, Primitives as ZonePrimitives } from './Zone';
-import { WeatherStationId } from './WeatherStationId';
+import { WeatherStationId } from './WeatherStations/WeatherStationId';
 
 export type Primitives = { id: string; name: string; zone: ZonePrimitives; weatherStationId?: string };
 

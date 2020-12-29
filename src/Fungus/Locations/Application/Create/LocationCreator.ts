@@ -3,7 +3,7 @@ import { LocationId } from '../../../Shared/Domain/Locations/LocationId';
 import { Location } from '../../Domain/Location';
 import { LocationRepository } from '../../Domain/LocationRepository';
 import { LocationAlreadyExist } from '../../Domain/LocationAlreadyExist';
-import { WeatherStationRepository } from '../../Domain/WeatherStationRepository';
+import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 

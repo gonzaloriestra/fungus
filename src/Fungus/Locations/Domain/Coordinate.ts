@@ -1,8 +1,8 @@
-type Primitives = { latitude: number; longitude: number };
+export type Primitives = { latitude: number; longitude: number };
 
 export class Coordinate {
-  _latitude: number;
-  _longitude: number;
+  private readonly _latitude: number;
+  private readonly _longitude: number;
 
   constructor({ latitude, longitude }: Primitives) {
     this._latitude = latitude;

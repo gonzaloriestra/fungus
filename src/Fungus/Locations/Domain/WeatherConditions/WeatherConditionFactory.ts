@@ -1,8 +1,8 @@
 import { WeatherCondition } from './WeatherCondition';
-import AccumulatedPrecipitation, { Primitives } from './AccumulatedPrecipitation';
+import { AccumulatedPrecipitation, Primitives } from './AccumulatedPrecipitation';
 import { WeatherConditionNotSupported } from './WeatherConditionNotSupported';
 
-export default class WeatherConditionFactory {
+export class WeatherConditionFactory {
   static fromPrimitives({ type, ...attrs }: { type: string }): WeatherCondition {
     switch (type) {
       case 'accumulatedPrecipitation':

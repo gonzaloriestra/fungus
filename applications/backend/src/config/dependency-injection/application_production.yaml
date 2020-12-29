@@ -18,5 +18,5 @@ services:
     arguments: []
 
   fungus.locations.WeatherStationRepository:
-    class: ../../../../../src/Fungus/Locations/Infrastructure/InMemoryAEMETWeatherStationRepository
+    class: ../../../../../src/Fungus/Locations/Infrastructure/WeatherStations/InMemoryAEMETWeatherStationRepository
     arguments: []

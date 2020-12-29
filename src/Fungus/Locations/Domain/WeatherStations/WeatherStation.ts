@@ -1,32 +1,32 @@
+import { Coordinate } from '../Coordinate';
 import { WeatherStationId } from './WeatherStationId';
-import { Coordinate } from './Coordinate';
+import { WeatherService } from './WeatherService';
 
 export class WeatherStation {
-  _weatherStationId: WeatherStationId;
-  _externalId: string;
-  _location: Coordinate;
-  _description: string;
+  private readonly _id: WeatherStationId;
+  private readonly _externalId: string;
+  private readonly _location: Coordinate;
+  private readonly _description: string;
 
   constructor({
-    // To-Do Rename to id
-    weatherStationId,
+    id,
     externalId,
     location,
     description,
   }: {
-    weatherStationId: WeatherStationId;
+    id: WeatherStationId;
     externalId: string;
     location: Coordinate;
     description: string;
   }) {
-    this._weatherStationId = weatherStationId;
+    this._id = id;
     this._externalId = externalId;
     this._location = location;
     this._description = description;
   }
 
   weatherStationId(): WeatherStationId {
-    return this._weatherStationId;
+    return this._id;
   }
 
   externalId(): string {
@@ -43,5 +43,17 @@ export class WeatherStation {
 
   distanceTo(coordinate: Coordinate): number {
     return this._location.distanceTo(coordinate);
+  }
+
+  precipitation({
+    from,
+    to,
+    weatherService,
+  }: {
+    from: Date;
+    to: Date;
+    weatherService: WeatherService;
+  }): Promise<number> {
+    return weatherService.precipitation({ from, to, id: this._externalId });
   }
 }

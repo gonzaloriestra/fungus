@@ -1,9 +1,9 @@
-import { Coordinate } from './Coordinate';
+import { Coordinate, Primitives as CoordinatePrimivites } from './Coordinate';
 
-export type Primitives = Array<{ latitude: number; longitude: number }>;
+export type Primitives = Array<CoordinatePrimivites>;
 
 export class Zone {
-  _coordinates: Array<Coordinate>;
+  private readonly _coordinates: Array<Coordinate>;
 
   constructor({ coordinates }: { coordinates: Array<Coordinate> }) {
     this._coordinates = coordinates || [];

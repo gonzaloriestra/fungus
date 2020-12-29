@@ -3,9 +3,9 @@ import * as readline from 'readline';
 
 import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
 
-import { WeatherConditionRepository } from '../Domain/WeatherConditionRepository';
-import { WeatherConditions } from '../Domain/WeatherConditions';
-import WeatherConditionFactory from '../Domain/WeatherConditionFactory';
+import { WeatherConditionRepository } from '../Domain/WeatherConditions/WeatherConditionRepository';
+import { WeatherConditions } from '../Domain/WeatherConditions/WeatherConditions';
+import { WeatherConditionFactory } from '../Domain/WeatherConditions/WeatherConditionFactory';
 
 export class FileWeatherConditionRepository implements WeatherConditionRepository {
   weatherConditions: WeatherConditions;
