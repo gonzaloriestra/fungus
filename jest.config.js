@@ -4,4 +4,5 @@ module.exports = {
   cacheDirectory: '.cache/jestCache',
   modulePathIgnorePatterns: ['dist/'],
   coveragePathIgnorePatterns: ['dist/', 'node_modules/'],
+  setupFiles: ['./config'],
 };

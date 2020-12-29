@@ -3,8 +3,7 @@ import axios from 'axios';
 import { WeatherService } from '../../Domain/WeatherStations/WeatherService';
 
 const BASE_URL = 'https://opendata.aemet.es/opendata/api';
-const API_KEY =
-  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXJnaW9zYW5jaGV6bWFyY29zQGdtYWlsLmNvbSIsImp0aSI6ImY0MGQyMDcwLTIwMTktNGJkMS1iM2JkLThmZjFjNTNlY2E0NSIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjA3MzYyOTA4LCJ1c2VySWQiOiJmNDBkMjA3MC0yMDE5LTRiZDEtYjNiZC04ZmYxYzUzZWNhNDUiLCJyb2xlIjoiIn0.uW1-AkXV6zXVsAsR2nVQYWLaV9gnzrCU2TklU4-MeDE';
+const API_KEY = process.env.API_KEY_AEMET;
 
 type ResponseDataWasGenerated = { estado: number; datos?: string };
 type ResponseWeatherValues = Array<{ prec?: string }>;

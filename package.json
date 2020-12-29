@@ -13,9 +13,9 @@
   },
   "scripts": {
     "start:dev:frontend": "NODE_ENV=development next dev applications/frontend",
-    "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 applications/backend/server.ts",
+    "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 -r dotenv/config applications/backend/server.ts dotenv_config_path=./config/.env.development",
     "start:frontend": "NODE_ENV=production next start applications/frontend",
-    "start:backend": "NODE_ENV=production node dist/src/applications/fungus/backend/server",
+    "start:backend": "NODE_ENV=production node -r dotenv/config dist/src/applications/fungus/backend/server dotenv_config_path=./config/.env.production",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
@@ -29,6 +29,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "copy": "^0.3.2",
+    "dotenv": "^8.2.0",
     "glob": "^7.1.6",
     "hapi": "^18.1.0",
     "http-status": "^1.4.2",
