@@ -16,4 +16,4 @@ Feature: Recover all the locations
     Given the location store empty
     When I send a GET request to "/locations"
     Then the response status code should be 200
-    And the response should be empty
+    And the response should be an empty array

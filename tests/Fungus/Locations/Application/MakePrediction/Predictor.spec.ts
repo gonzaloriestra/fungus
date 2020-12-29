@@ -28,7 +28,7 @@ describe('Predictor', () => {
     weatherService = new AEMETWeatherService();
   });
 
-  it.skip('should return a prediction of a mushroom sprout in a location', async () => {
+  it('should return a prediction of a mushroom sprout in a location', async () => {
     const predictionDate = '2020-11-20';
     mockLocationRepository.returnOnFindById(LocationMother.random());
     mockWeatherConditionRepository.returnOnFindByMushroom(
