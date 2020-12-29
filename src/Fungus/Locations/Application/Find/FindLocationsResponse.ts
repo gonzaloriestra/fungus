@@ -1,9 +1,9 @@
-import { FindLocationResponse } from './FindLocationResponse';
+import { Primitives } from '../../Domain/Locations';
 
 export class FindLocationsResponse {
-  readonly locations: Array<FindLocationResponse>;
+  readonly locations: Primitives;
 
-  constructor(locations: Array<FindLocationResponse>) {
+  constructor(locations: Primitives) {
     this.locations = locations;
   }
 }

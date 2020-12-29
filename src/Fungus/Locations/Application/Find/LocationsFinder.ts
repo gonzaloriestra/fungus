@@ -1,8 +1,6 @@
 import { LocationRepository } from '../../Domain/LocationRepository';
-import { Location } from '../../Domain/Location';
 
 import { FindLocationsResponse } from './FindLocationsResponse';
-import { FindLocationResponse } from './FindLocationResponse';
 
 export default class LocationsFinder {
   repository: LocationRepository;
@@ -12,10 +10,6 @@ export default class LocationsFinder {
   }
 
   run(): FindLocationsResponse {
-    return new FindLocationsResponse(this.repository.all().map(this.toResponse()));
-  }
-
-  toResponse() {
-    return (location: Location): FindLocationResponse => new FindLocationResponse(location);
+    return new FindLocationsResponse(this.repository.all().toPrimitives());
   }
 }

@@ -2,27 +2,28 @@ import { LocationId } from '../../Shared/Domain/Locations/LocationId';
 
 import { LocationRepository } from '../Domain/LocationRepository';
 import { Location } from '../Domain/Location';
+import { Locations } from '../Domain/Locations';
 
 export class InMemoryLocationRepository implements LocationRepository {
-  locations: Array<Location>;
+  private _locations: Locations;
 
-  constructor({ locations }: { locations?: Array<Location> } = {}) {
-    this.locations = locations || [];
+  constructor({ locations }: { locations?: Locations } = {}) {
+    this._locations = locations || new Locations();
   }
 
   add(location: Location): void {
-    this.locations.push(location);
+    this._locations.add(location);
   }
 
   findById(id: LocationId): Location | undefined {
-    return this.locations.find((location) => location.id().equalTo(id));
+    return this._locations.findById(id);
   }
 
-  all(): Array<Location> {
-    return this.locations;
+  all(): Locations {
+    return this._locations;
   }
 
   clean(): void {
-    this.locations = [];
+    this._locations = new Locations();
   }
 }
