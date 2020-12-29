@@ -5,26 +5,29 @@ import { WeatherCondition } from './WeatherCondition';
 import { WeatherStation } from '../WeatherStations/WeatherStation';
 import { WeatherService } from '../WeatherStations/WeatherService';
 
-export type Primitives = { mushroomId: string; accumulation: number; periodInDays: number };
+export type Primitives = { mushroomId: string; accumulation: number; daysRange: number; daysBefore: number };
 
-// To-Do this should be the initial AccumulatedPrecipitation, so we need to add an grown period
 export class AccumulatedPrecipitation implements WeatherCondition {
   private readonly _mushroomId: MushroomId;
   private readonly _accumulation: number;
-  private readonly _periodInDays: number;
+  private readonly _daysRange: number;
+  private readonly _daysBefore: number;
 
   constructor({
     mushroomId,
     accumulation,
-    periodInDays,
+    daysRange,
+    daysBefore,
   }: {
     mushroomId: MushroomId;
     accumulation: number;
-    periodInDays: number;
+    daysRange: number;
+    daysBefore: number;
   }) {
     this._mushroomId = mushroomId;
     this._accumulation = accumulation;
-    this._periodInDays = periodInDays;
+    this._daysRange = daysRange;
+    this._daysBefore = daysBefore;
   }
 
   async isMet({
@@ -37,11 +40,10 @@ export class AccumulatedPrecipitation implements WeatherCondition {
     weatherService: WeatherService;
   }): Promise<number> {
     // To-Do An entity require a service to execute the check, should I consider another approach?
-    const accumulatedPrecipitation = await weatherStation.precipitation({
-      from: new Date(date.setDate(date.getDate() - this._periodInDays)),
-      to: date,
-      weatherService,
-    });
+    const to = new Date(date.setDate(date.getDate() - this._daysBefore));
+    const from = new Date(date.setDate(to.getDate() - this._daysRange));
+
+    const accumulatedPrecipitation = await weatherStation.precipitation({ from, to, weatherService });
     // To-Do value object for the results
     return accumulatedPrecipitation >= this._accumulation ? 10000 : 0;
   }
@@ -50,11 +52,12 @@ export class AccumulatedPrecipitation implements WeatherCondition {
     return this._mushroomId;
   }
 
-  static fromPrimitives({ mushroomId, accumulation, periodInDays }: Primitives): AccumulatedPrecipitation {
+  static fromPrimitives({ mushroomId, accumulation, daysRange, daysBefore }: Primitives): AccumulatedPrecipitation {
     return new AccumulatedPrecipitation({
       mushroomId: new MushroomId(mushroomId),
       accumulation,
-      periodInDays,
+      daysRange,
+      daysBefore,
     });
   }
 }

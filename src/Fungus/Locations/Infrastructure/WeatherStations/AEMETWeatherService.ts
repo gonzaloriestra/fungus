@@ -22,25 +22,29 @@ export class AEMETWeatherService implements WeatherService {
       const responseDataGenerated = await axios.get<ResponseDataWasGenerated>(path);
       if (responseDataGenerated.data.estado != 200 || !responseDataGenerated.data.datos) {
         // To-Do throw domain exceptions here
-        throw new Error();
+        throw new Error('No data');
       }
       console.log('----------------->responseDataGenerated.data.datos: ', responseDataGenerated.data.datos);
       const responseWeatherValues = await axios.get<ResponseWeatherValues>(responseDataGenerated.data.datos);
       console.log('----------------->responseWeatherValues: ', responseWeatherValues);
 
       const result = responseWeatherValues.data.reduce(
-        (total, dailyWeatherData) => total + (dailyWeatherData.prec ? Number(dailyWeatherData.prec) : 0),
+        (total, dailyWeatherData) =>
+          total + (dailyWeatherData.prec ? Number(dailyWeatherData.prec.replace(',', '.')) : 0),
         0,
       );
       console.log('----------------->result: ', result);
       return result;
     } catch (error) {
+      console.log(error);
       throw new Error();
     }
   }
-
+  // To-Do move to date object
   private formatUTCDate(date: Date, startDay: boolean): string {
     // 2020-08-01T00:00:00UTC OR 2020-08-01T23:59:49UTC
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}T${startDay ? '00:00:00' : '23:59:59'}UTC`;
+    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}T${
+      startDay ? '00:00:00' : '23:59:59'
+    }UTC`;
   }
 }

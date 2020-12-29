@@ -28,16 +28,17 @@ describe('Predictor', () => {
     weatherService = new AEMETWeatherService();
   });
 
-  it.skip('should return a prediction of a mushroom sprout in a location', async () => {
-    const predictionDate = '2020-12-19';
+  it('should return a prediction of a mushroom sprout in a location', async () => {
+    const predictionDate = '2020-11-20';
     mockLocationRepository.returnOnFindById(LocationMother.random());
     mockWeatherConditionRepository.returnOnFindByMushroom(
       WeatherConditionsMother.create({
         type: 'accumulatedPrecipitation',
         // @ts-ignore
-        mushroomId: 'asdasd',
+        mushroomId: '0cfd076b-a46f-48dc-a734-2fa87b31a751',
         accumulation: 20,
-        periodInDays: 7,
+        daysRange: 30,
+        daysBefore: 1,
       }),
     );
     mockWeatherStationRepository.returnOnFindBy(WeatherStationMother.create({ externalId: '2235U' }));

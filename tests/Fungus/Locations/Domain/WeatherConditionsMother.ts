@@ -13,8 +13,9 @@ export default class WeatherConditionsMother {
     return this.create({
       type: 'accumulatedPrecipitation',
       // @ts-ignore
-      accumulation: faker.random.number(),
-      periodInDays: faker.random.number(),
+      accumulation: faker.random.number(200),
+      dateRage: faker.random.number(10),
+      daysBefore: faker.random.number(60),
     });
   }
 }
