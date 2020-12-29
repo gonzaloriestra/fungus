@@ -1,49 +1,58 @@
 import axios from 'axios';
 
 import { WeatherService } from '../../Domain/WeatherStations/WeatherService';
+import { WeatherServiceDoesNotWork } from '../../Domain/WeatherStations/WeatherServiceDoesNotWork';
+import { ResponseWithoutData } from '../../Domain/WeatherStations/ResponseWithoutData';
+
+type ResponseDataWasGenerated = { estado: number; datos?: string };
+type ResponseWeatherValues = Array<{ prec?: string }>;
 
 const BASE_URL = 'https://opendata.aemet.es/opendata/api';
 const API_KEY = process.env.API_KEY_AEMET;
 
-type ResponseDataWasGenerated = { estado: number; datos?: string };
-type ResponseWeatherValues = Array<{ prec?: string }>;
 export class AEMETWeatherService implements WeatherService {
-  async precipitation({ from, to, id }: { from: Date; to: Date; id: string }): Promise<number> {
+  async precipitation(params: { from: Date; to: Date; id: string }): Promise<number> {
     // To-Do test eveything
-    // To-Do add secrets support
-    // To-Do control errors
-    const path = `${BASE_URL}/valores/climatologicos/diarios/datos/fechaini/${this.formatUTCDate(
-      from,
-      true,
-    )}/fechafin/${this.formatUTCDate(to, false)}/estacion/${id}?api_key=${API_KEY}`;
-    console.log('----------------->PATH: ', path);
-    try {
-      const responseDataGenerated = await axios.get<ResponseDataWasGenerated>(path);
-      if (responseDataGenerated.data.estado != 200 || !responseDataGenerated.data.datos) {
-        // To-Do throw domain exceptions here
-        throw new Error('No data');
-      }
-      console.log('----------------->responseDataGenerated.data.datos: ', responseDataGenerated.data.datos);
-      const responseWeatherValues = await axios.get<ResponseWeatherValues>(responseDataGenerated.data.datos);
-      console.log('----------------->responseWeatherValues: ', responseWeatherValues);
+    const weatherValues = await this.getWeatherValues(params);
 
-      const result = responseWeatherValues.data.reduce(
-        (total, dailyWeatherData) =>
-          total + (dailyWeatherData.prec ? Number(dailyWeatherData.prec.replace(',', '.')) : 0),
-        0,
-      );
-      console.log('----------------->result: ', result);
-      return result;
+    return this.sumPrecipitation(weatherValues);
+  }
+
+  private sumPrecipitation(weatherValues: ResponseWeatherValues): number {
+    return weatherValues.reduce(
+      (total, dailyWeatherData) =>
+        total + (dailyWeatherData.prec ? Number(dailyWeatherData.prec.replace(',', '.')) : 0),
+      0,
+    );
+  }
+
+  private async getWeatherValues(params: { from: Date; to: Date; id: string }): Promise<ResponseWeatherValues> {
+    try {
+      const dataUrl = await this.generateWeatherValuesUrl(params);
+
+      const responseWeatherValues = await axios.get<ResponseWeatherValues>(dataUrl);
+
+      return responseWeatherValues.data;
     } catch (error) {
-      console.log(error);
-      throw new Error();
+      if (error instanceof ResponseWithoutData) {
+        throw error;
+      } else {
+        throw new WeatherServiceDoesNotWork();
+      }
     }
   }
-  // To-Do move to date object
-  private formatUTCDate(date: Date, startDay: boolean): string {
-    // 2020-08-01T00:00:00UTC OR 2020-08-01T23:59:49UTC
-    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}T${
-      startDay ? '00:00:00' : '23:59:59'
-    }UTC`;
+
+  private async generateWeatherValuesUrl({ from, to, id }: { from: Date; to: Date; id: string }): Promise<string> {
+    const formattedFrom = from.UTCFormat({ resetTime: true });
+    const formattedTo = to.UTCFormat();
+    const path = `${BASE_URL}/valores/climatologicos/diarios/datos/fechaini/${formattedFrom}/fechafin/${formattedTo}/estacion/${id}?api_key=${API_KEY}`;
+
+    const responseDataGenerated = await axios.get<ResponseDataWasGenerated>(path);
+
+    if (responseDataGenerated.data.estado != 200 || !responseDataGenerated.data.datos) {
+      throw new ResponseWithoutData();
+    }
+
+    return responseDataGenerated.data.datos;
   }
 }
