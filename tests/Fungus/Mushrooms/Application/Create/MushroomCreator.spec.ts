@@ -1,11 +1,11 @@
 import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
 import { MushroomCreator } from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
-import { Mushroom } from '../../../../../src/Fungus/Mushrooms/Domain/Mushroom';
 import { MushroomAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomAlreadyExist';
 import { MushroomWithSameScientificNameAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomWithSameScientificNameAlreadyExist';
 
 import { MushroomRepositoryMock } from '../../Domain/MushroomRepositoryMock';
+import { MushroomMother } from '../../Domain/MushroomMother';
 
 describe('MushroomCreator', () => {
   let mockMushroomRepository: MushroomRepositoryMock;
@@ -25,7 +25,7 @@ describe('MushroomCreator', () => {
   });
 
   it('should not create existing mushrooms', () => {
-    const mushroom = new Mushroom({ id: MushroomId.create(), scientificName: 'Amanita Caesarea' });
+    const mushroom = MushroomMother.random();
     mockMushroomRepository.returnOnFindById(mushroom);
     const subject = new MushroomCreator(mockMushroomRepository);
 
@@ -35,7 +35,7 @@ describe('MushroomCreator', () => {
   });
 
   it('should not create mushrooms with same scientific name', () => {
-    const mushroom = new Mushroom({ id: MushroomId.create(), scientificName: 'Amanita Caesarea' });
+    const mushroom = MushroomMother.random();
     mockMushroomRepository.returnOnFindByScientificName(mushroom);
     const subject = new MushroomCreator(mockMushroomRepository);
 

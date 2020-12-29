@@ -3,10 +3,13 @@ import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/Locat
 
 import { LocationRepository } from '../../../../src/Fungus/Locations/Domain/LocationRepository';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
+import { Locations } from '../../../../src/Fungus/Locations/Domain/Locations';
 
 export class LocationRepositoryMock implements LocationRepository {
   private mockFindById = jest.fn();
   private mockClean = jest.fn();
+  private mockAdd = jest.fn();
+
   private location?: Location = undefined;
 
   findById(_: LocationId): Location | undefined {
@@ -22,12 +25,16 @@ export class LocationRepositoryMock implements LocationRepository {
     expect(this.mockFindById).toHaveBeenCalled();
   }
 
-  all(): Array<Location> {
+  all(): Locations {
     throw new MethodNotImplemented('LocationRepositoryMock.all');
   }
 
   add(_: Location): void {
-    throw new MethodNotImplemented('LocationRepositoryMock.add');
+    this.mockAdd();
+  }
+
+  assertAddHasBeenCalled(): void {
+    expect(this.mockFindById).toHaveBeenCalled();
   }
 
   clean(): void {

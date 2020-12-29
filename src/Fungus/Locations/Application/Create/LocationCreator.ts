@@ -7,7 +7,6 @@ import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherSt
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 
-// To-Do Add test here
 export class LocationCreator {
   private readonly _locationRepository: LocationRepository;
   private readonly _weatherStationRepository: WeatherStationRepository;
@@ -27,7 +26,7 @@ export class LocationCreator {
     this._locationRepository.add(location);
   }
 
-  ensureLocationDoesNotExist(id: LocationId): void {
+  private ensureLocationDoesNotExist(id: LocationId): void {
     const existentLocation = this._locationRepository.findById(id);
 
     if (existentLocation) {
