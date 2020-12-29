@@ -18,6 +18,6 @@ export default class LocationByIdFinder {
       throw new LocationDoesNotExist(locationId);
     }
 
-    return new FindLocationByIdResponse(location);
+    return new FindLocationByIdResponse(location.toPrimitives());
   }
 }
