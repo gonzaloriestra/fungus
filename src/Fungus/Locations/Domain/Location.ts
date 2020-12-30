@@ -1,15 +1,16 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
 import { WeatherStationId } from '../../Shared/Domain/WeatherStationId';
+import { AggregateRoot } from '../../Shared/Domain/AggregateRoot';
 
 import { Zone, Primitives as ZonePrimitives } from './Zone';
 
 export type Primitives = { id: string; name: string; zone: ZonePrimitives; weatherStationId?: string };
 
-export class Location {
-  _id: LocationId;
-  _name: string;
-  _zone: Zone;
-  _weatherStationId?: WeatherStationId;
+export class Location extends AggregateRoot {
+  private readonly _id: LocationId;
+  private readonly _name: string;
+  private readonly _zone: Zone;
+  private readonly _weatherStationId?: WeatherStationId;
 
   constructor({
     id,
@@ -22,6 +23,8 @@ export class Location {
     zone: Zone;
     weatherStationId?: WeatherStationId;
   }) {
+    super();
+
     this._id = id;
     this._name = name;
     this._zone = zone;

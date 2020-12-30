@@ -4,7 +4,7 @@ import { WeatherStation } from '../../../../src/Fungus/Predictions/Domain/Weathe
 import { WeatherStationId } from '../../../../src/Fungus/Shared/Domain/WeatherStationId';
 import { Coordinate } from '../../../../src/Fungus/Shared/Domain/Coordinate';
 
-import CoordinateMother from '../../Locations/Domain/CoordinateMother';
+import CoordinateMother from '../../Shared/Domain/CoordinateMother';
 
 export default class WeatherStationMother {
   static create({

@@ -1,55 +1,43 @@
-import * as fs from 'fs';
-import * as readline from 'readline';
+import { LocationId } from '../../Shared/Domain/LocationId';
+import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
+import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
 
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
-import { LocationId } from '../../Shared/Domain/LocationId';
-import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { Locations } from '../Domain/Locations';
 
-export class FileLocationRepository implements LocationRepository {
-  locations: Locations;
-  filePath: string;
+export class FileLocationRepository extends FileRepository implements LocationRepository {
+  private readonly _locations: Locations;
 
   constructor({
     locations = new Locations(),
     filePath = 'database/locations.txt',
     onLoad,
   }: { locations?: Locations; filePath?: string; onLoad?: () => void } = {}) {
-    this.locations = locations;
-    this.filePath = filePath;
+    super({ filePath });
 
-    this.__fetch({ onFinish: onLoad });
-  }
+    this._locations = locations;
 
-  __fetch({ onFinish = (): void => undefined }: { onFinish?: () => void } = {}): void {
-    const lineReader = readline.createInterface({
-      input: fs.createReadStream(this.filePath),
-      crlfDelay: Infinity,
-    });
-
-    lineReader.on('close', onFinish);
-    lineReader.on('line', (line) => {
-      const json = JSON.parse(line);
-
-      this.locations.add(Location.fromPrimitives(json));
+    this.readAll({
+      onLineRead: (json) => {
+        this._locations.add(Location.fromPrimitives(json));
+      },
+      onFinish: onLoad,
     });
   }
 
   findById(id: LocationId): Location | undefined {
-    return this.locations.findById(id);
+    return this._locations.findById(id);
   }
 
   add(location: Location): void {
-    this.locations.add(location);
+    this._locations.add(location);
 
-    fs.appendFile(this.filePath, `${JSON.stringify(location.toPrimitives())}\n`, (err) => {
-      if (err) throw err; // To-Do Define own error
-    });
+    this.write(location);
   }
 
   all(): Locations {
-    return this.locations;
+    return this._locations;
   }
 
   clean(): void {

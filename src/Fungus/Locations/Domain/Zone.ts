@@ -1,6 +1,6 @@
-import { Coordinate, Primitives as CoordinatePrimivites } from '../../Shared/Domain/Coordinate';
+import { Coordinate, Primitives as CoordinatePrimitives } from '../../Shared/Domain/Coordinate';
 
-export type Primitives = Array<CoordinatePrimivites>;
+export type Primitives = Array<CoordinatePrimitives>;
 
 export class Zone {
   private readonly _coordinates: Array<Coordinate>;

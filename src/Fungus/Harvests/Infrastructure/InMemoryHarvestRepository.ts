@@ -6,33 +6,33 @@ import { Harvest } from '../Domain/Harvest';
 import { Harvests } from '../Domain/Harvests';
 
 export class InMemoryHarvestRepository implements HarvestRepository {
-  harvests: Harvests;
+  private _harvests: Harvests;
 
   constructor({ harvests }: { harvests?: Harvests } = {}) {
-    this.harvests = harvests || new Harvests({ harvests: [] });
+    this._harvests = harvests || new Harvests({ harvests: [] });
   }
 
   findById(id: HarvestId): Harvest | undefined {
-    return this.harvests.find(id);
+    return this._harvests.find(id);
   }
 
   add(harvest: Harvest): void {
-    this.harvests.add(harvest);
+    this._harvests.add(harvest);
   }
 
   count(): number {
-    return this.harvests.count();
+    return this._harvests.count();
   }
 
   all(): Harvests {
-    return this.harvests;
+    return this._harvests;
   }
 
   clean(): void {
-    this.harvests = new Harvests({ harvests: [] });
+    this._harvests = new Harvests({ harvests: [] });
   }
 
   filterBy({ date, locationId }: { date?: Date; locationId?: LocationId } = {}): Harvests {
-    return this.harvests.filterBy({ date, locationId });
+    return this._harvests.filterBy({ date, locationId });
   }
 }
