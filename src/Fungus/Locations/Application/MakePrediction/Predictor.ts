@@ -1,5 +1,6 @@
 import { WeatherConditionRepository } from '../../Domain/WeatherConditions/WeatherConditionRepository';
 import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
+
 import { LocationRepository } from '../../Domain/LocationRepository';
 import { WeatherService } from '../../Domain/WeatherStations/WeatherService';
 
@@ -30,7 +31,6 @@ export default class Predictor {
     const weatherStationId = location?.weatherStationId();
 
     const weatherConditions = this._weatherConditionRepository.findByMushroom(mushroomId);
-    console.log('weather codndasa', weatherConditions);
     let weatherStation;
     if (weatherStationId) {
       weatherStation = this._weatherStationRepository.findById(weatherStationId);
