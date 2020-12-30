@@ -34,7 +34,7 @@ export class WeatherConditions {
     this.weatherConditions.push(weatherCondition);
   }
 
-  findByMushroom(mushroomId: MushroomId): WeatherConditions | undefined {
+  findByMushroom(mushroomId: MushroomId): WeatherConditions {
     const weatherConditions = this.weatherConditions.filter((weatherCondition) =>
       weatherCondition.mushroomId().equalTo(mushroomId),
     );

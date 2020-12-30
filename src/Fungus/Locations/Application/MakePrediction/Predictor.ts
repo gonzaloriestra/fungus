@@ -30,6 +30,7 @@ export default class Predictor {
     const weatherStationId = location?.weatherStationId();
 
     const weatherConditions = this._weatherConditionRepository.findByMushroom(mushroomId);
+    console.log('weather codndasa', weatherConditions);
     let weatherStation;
     if (weatherStationId) {
       weatherStation = this._weatherStationRepository.findById(weatherStationId);

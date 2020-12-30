@@ -13,16 +13,20 @@ import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
 import LocationMother from '../../Domain/LocationMother';
 import { WeatherService } from '../../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherService';
 import { AEMETWeatherService } from '../../../../../src/Fungus/Locations/Infrastructure/WeatherStations/AEMETWeatherService';
+import { LocationRepository } from '../../../../../src/Fungus/Locations/Domain/LocationRepository';
+import { WeatherStationRepository } from '../../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStationRepository';
+import { WeatherConditionRepository } from '../../../../../src/Fungus/Locations/Domain/WeatherConditions/WeatherConditionRepository';
+import { InMemoryWeatherConditionRepository } from '../../../../../src/Fungus/Locations/Infrastructure/WeatherConditions/InMemoryWeatherConditionRepository';
 
 describe('Predictor', () => {
   let mockLocationRepository: LocationRepositoryMock;
-  let mockWeatherConditionRepository: WeatherConditionRepositoryMock;
+  let mockWeatherConditionRepository: WeatherConditionRepository;
   let mockWeatherStationRepository: WeatherStationRepositoryMock;
   let weatherService: WeatherService;
 
   beforeEach(() => {
     mockLocationRepository = new LocationRepositoryMock();
-    mockWeatherConditionRepository = new WeatherConditionRepositoryMock();
+    mockWeatherConditionRepository = new InMemoryWeatherConditionRepository();
     mockWeatherStationRepository = new WeatherStationRepositoryMock();
     // To-Do Mock the service
     weatherService = new AEMETWeatherService();
@@ -31,16 +35,16 @@ describe('Predictor', () => {
   it('should return a prediction of a mushroom sprout in a location', async () => {
     const predictionDate = '2020-11-20';
     mockLocationRepository.returnOnFindById(LocationMother.random());
-    mockWeatherConditionRepository.returnOnFindByMushroom(
-      WeatherConditionsMother.create({
-        type: 'accumulatedPrecipitation',
-        // @ts-ignore
-        mushroomId: '0cfd076b-a46f-48dc-a734-2fa87b31a751',
-        accumulation: 20,
-        daysRange: 30,
-        daysBefore: 1,
-      }),
-    );
+    // mockWeatherConditionRepository.returnOnFindByMushroom(
+    //   WeatherConditionsMother.create({
+    //     type: 'accumulatedPrecipitation',
+    //     // @ts-ignore
+    //     mushroomId: 'de66c4dc-59c6-48d9-99a3-8d729f2154e7',
+    //     accumulation: 20,
+    //     daysRange: 30,
+    //     daysBefore: 1,
+    //   }),
+    // );
     mockWeatherStationRepository.returnOnFindBy(WeatherStationMother.create({ externalId: '2235U' }));
     const subject = new Predictor(
       mockLocationRepository,
@@ -51,12 +55,12 @@ describe('Predictor', () => {
 
     const response = await subject.run({
       date: new Date(predictionDate),
-      mushroomId: MushroomId.create(),
+      mushroomId: new MushroomId('de66c4dc-59c6-48d9-99a3-8d729f2154e7'),
       locationId: LocationId.create(),
     });
 
     mockLocationRepository.assertFindByIdHasBeenCalled();
-    mockWeatherConditionRepository.assertFindByMushroomHasBeenCalled();
+    // mockWeatherConditionRepository.assertFindByMushroomHasBeenCalled();
     mockWeatherStationRepository.assertFindByHasBeenCalled();
     expect(response.prediction.probability).toBeDefined();
   });
