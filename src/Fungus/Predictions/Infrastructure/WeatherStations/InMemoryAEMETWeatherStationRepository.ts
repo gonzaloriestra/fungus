@@ -1,7 +1,7 @@
-import { Coordinate } from '../../../Locations/Domain/Coordinate';
+import { Coordinate } from '../../../Shared/Domain/Coordinate';
 import { WeatherStation } from '../../Domain/WeatherStations/WeatherStation';
 import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
-import { WeatherStationId } from '../../../Shared/Domain/Predictions/WeatherStations/WeatherStationId';
+import { WeatherStationId } from '../../../Shared/Domain/WeatherStationId';
 
 // To-Do Define in a external file yml or json object
 const initialWeatherStations = [

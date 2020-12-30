@@ -1,4 +1,4 @@
-import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { MushroomRepository } from '../Domain/MushroomRepository';
 import { Mushroom } from '../Domain/Mushroom';

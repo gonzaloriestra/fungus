@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as readline from 'readline';
 
 import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';

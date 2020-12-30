@@ -1,5 +1,5 @@
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
-import { WeatherStationId } from '../../Shared/Domain/Predictions/WeatherStations/WeatherStationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
+import { WeatherStationId } from '../../Shared/Domain/WeatherStationId';
 
 import { Zone, Primitives as ZonePrimitives } from './Zone';
 

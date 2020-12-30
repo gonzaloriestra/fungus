@@ -1,6 +1,6 @@
 import { MushroomRepository } from '../../../../src/Fungus/Mushrooms/Domain/MushroomRepository';
 import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
 import { Mushrooms } from '../../../../src/Fungus/Mushrooms/Domain/Mushrooms';
 
 export class MushroomRepositoryMock implements MushroomRepository {

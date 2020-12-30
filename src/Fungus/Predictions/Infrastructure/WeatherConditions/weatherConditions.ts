@@ -1,4 +1,4 @@
-import { MushroomId } from '../../../Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../../Shared/Domain/MushroomId';
 
 import { AccumulatedPrecipitation } from '../../Domain/WeatherConditions/AccumulatedPrecipitation';
 

@@ -1,4 +1,4 @@
-import { Coordinate, Primitives as CoordinatePrimivites } from './Coordinate';
+import { Coordinate, Primitives as CoordinatePrimivites } from '../../Shared/Domain/Coordinate';
 
 export type Primitives = Array<CoordinatePrimivites>;
 

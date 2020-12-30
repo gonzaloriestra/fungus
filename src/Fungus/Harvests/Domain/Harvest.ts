@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash';
 
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
-import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
+import { LocationId } from '../../Shared/Domain/LocationId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 import Date from '../../Shared/Domain/Date';
 
 import { HarvestId } from './HarvestId';

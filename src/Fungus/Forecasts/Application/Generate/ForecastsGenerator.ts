@@ -1,6 +1,6 @@
 import Date from '../../../Shared/Domain/Date';
 import { LocationQuery } from './LocationQuery';
-import { LocationId } from '../../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 import { HarvestQuery } from './HarvestQuery';
 import { HarvestsView } from './HarvestsView';
 

@@ -1,4 +1,4 @@
-import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 import { AggregateRoot } from '../../Shared/Domain/AggregateRoot';
 
 export type Primitives = { id: string; scientificName: string };

@@ -1,4 +1,4 @@
-import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
 
 import { LocationCreator } from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';

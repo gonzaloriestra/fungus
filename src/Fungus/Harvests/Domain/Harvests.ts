@@ -1,6 +1,6 @@
 import { Harvest, Primitives as HarvestPrimitives } from './Harvest';
 import { HarvestId } from './HarvestId';
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 export type Primitives = Array<HarvestPrimitives>;
 

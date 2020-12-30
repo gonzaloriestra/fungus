@@ -1,5 +1,5 @@
 import { MethodNotImplemented } from '../../../../src/Fungus/Shared/Domain/MethodNotImplemented';
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
 
 import { LocationRepository } from '../../../../src/Fungus/Locations/Domain/LocationRepository';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';

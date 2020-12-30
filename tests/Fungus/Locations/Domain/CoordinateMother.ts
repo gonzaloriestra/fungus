@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';
+import { Coordinate } from '../../../../src/Fungus/Shared/Domain/Coordinate';
 
 export default class CoordinateMother {
   static create({

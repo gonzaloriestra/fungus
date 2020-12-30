@@ -1,4 +1,4 @@
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 // Rename to prediction
 export class Forecast {

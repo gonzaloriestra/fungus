@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 
-import { MushroomId } from '../../Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { WeatherConditionRepository } from '../Domain/WeatherConditions/WeatherConditionRepository';
 import { WeatherConditions } from '../Domain/WeatherConditions/WeatherConditions';

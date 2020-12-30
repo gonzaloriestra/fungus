@@ -1,7 +1,7 @@
 import Date from '../../../../../src/Fungus/Shared/Domain/Date';
 
-import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
-import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
+import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/MushroomId';
+import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 
 import Predictor from '../../../../../src/Fungus/Predictions/Application/Make/Predictor';
 

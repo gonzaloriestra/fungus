@@ -1,4 +1,4 @@
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { Harvest } from './Harvest';
 import { HarvestId } from './HarvestId';

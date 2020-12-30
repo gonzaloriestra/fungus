@@ -3,7 +3,7 @@ import * as readline from 'readline';
 
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { Locations } from '../Domain/Locations';
 

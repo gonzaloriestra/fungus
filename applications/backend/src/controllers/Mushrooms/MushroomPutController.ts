@@ -2,7 +2,7 @@ import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
 import { MushroomCreator } from '../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator';
-import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
+import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/MushroomId';
 import { MushroomWithSameScientificNameAlreadyExist } from '../../../../../src/Fungus/Mushrooms/Domain/MushroomWithSameScientificNameAlreadyExist';
 
 import { Controller } from '../Controller';

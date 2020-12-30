@@ -1,7 +1,7 @@
 import { Harvest } from '../../Harvests/Domain/Harvest';
 import { HarvestRepository } from '../../Harvests/Domain/HarvestRepository';
 
-import { LocationId } from '../../Shared/Domain/Locations/LocationId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
 import { HarvestQuery } from '../Application/Generate/HarvestQuery';
 import { HarvestView } from '../Application/Generate/HarvestView';
