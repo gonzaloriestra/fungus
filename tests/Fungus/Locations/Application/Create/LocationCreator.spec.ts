@@ -4,8 +4,8 @@ import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain
 import { LocationCreator } from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
 
 import ZoneMother from '../../Domain/ZoneMother';
-import LocationMother from '../../Domain/LocationMother';
-import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
+import LocationMother from '../../../Predictions/Domain/LocationMother';
+import WeatherStationRepositoryMock from '../../../Predictions/Domain/WeatherStationRepositoryMock';
 import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
 
 describe('LocationCreator', () => {

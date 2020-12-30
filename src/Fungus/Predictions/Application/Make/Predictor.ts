@@ -1,7 +1,7 @@
 import { WeatherConditionRepository } from '../../Domain/WeatherConditions/WeatherConditionRepository';
 import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
 
-import { LocationRepository } from '../../Domain/LocationRepository';
+import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
 import { WeatherService } from '../../Domain/WeatherStations/WeatherService';
 
 import { MakePredictionRequest } from './MakePredictionRequest';

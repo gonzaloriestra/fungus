@@ -5,8 +5,8 @@ import { LocationId } from '../../../../src/Fungus/Shared/Domain/Locations/Locat
 import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 
-import ZoneMother from './ZoneMother';
-import { WeatherStationId } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStationId';
+import ZoneMother from '../../Locations/Domain/ZoneMother';
+import { WeatherStationId } from '../../../../src/Fungus/Shared/Domain/Predictions/WeatherStations/WeatherStationId';
 
 export default class LocationMother {
   static create({

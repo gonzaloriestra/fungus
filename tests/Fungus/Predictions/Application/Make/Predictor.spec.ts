@@ -3,16 +3,16 @@ import Date from '../../../../../src/Fungus/Shared/Domain/Date';
 import { MushroomId } from '../../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/Locations/LocationId';
 
-import Predictor from '../../../../../src/Fungus/Locations/Application/MakePrediction/Predictor';
+import Predictor from '../../../../../src/Fungus/Predictions/Application/Make/Predictor';
 
 import WeatherConditionRepositoryMock from '../../Domain/WeatherConditionRepositoryMock';
 import WeatherConditionsMother from '../../Domain/WeatherConditionsMother';
 import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
 import WeatherStationMother from '../../Domain/WeatherStationMother';
-import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
+import { LocationRepositoryMock } from '../../../Locations/Domain/LocationRepositoryMock';
 import LocationMother from '../../Domain/LocationMother';
-import { WeatherService } from '../../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherService';
-import { AEMETWeatherService } from '../../../../../src/Fungus/Locations/Infrastructure/WeatherStations/AEMETWeatherService';
+import { WeatherService } from '../../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherService';
+import { AEMETWeatherService } from '../../../../../src/Fungus/Predictions/Infrastructure/WeatherStations/AEMETWeatherService';
 
 describe('Predictor', () => {
   let mockLocationRepository: LocationRepositoryMock;

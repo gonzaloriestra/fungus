@@ -1,5 +1,5 @@
-import { Coordinate } from '../Coordinate';
-import { WeatherStationId } from './WeatherStationId';
+import { Coordinate } from '../../../Locations/Domain/Coordinate';
+import { WeatherStationId } from '../../../Shared/Domain/Predictions/WeatherStations/WeatherStationId';
 import { WeatherService } from './WeatherService';
 
 export class WeatherStation {

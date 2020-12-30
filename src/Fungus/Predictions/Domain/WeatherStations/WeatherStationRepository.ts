@@ -1,6 +1,6 @@
 import { WeatherStation } from './WeatherStation';
-import { WeatherStationId } from './WeatherStationId';
-import { Coordinate } from '../Coordinate';
+import { WeatherStationId } from '../../../Shared/Domain/Predictions/WeatherStations/WeatherStationId';
+import { Coordinate } from '../../../Locations/Domain/Coordinate';
 
 export interface WeatherStationRepository {
   findById: (id: WeatherStationId) => WeatherStation | undefined;

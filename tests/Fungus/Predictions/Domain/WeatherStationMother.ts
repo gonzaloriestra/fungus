@@ -1,10 +1,10 @@
 import faker from 'faker';
 
-import { WeatherStation } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStation';
-import { WeatherStationId } from '../../../../src/Fungus/Locations/Domain/WeatherStations/WeatherStationId';
+import { WeatherStation } from '../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherStation';
+import { WeatherStationId } from '../../../../src/Fungus/Shared/Domain/Predictions/WeatherStations/WeatherStationId';
 import { Coordinate } from '../../../../src/Fungus/Locations/Domain/Coordinate';
 
-import CoordinateMother from './CoordinateMother';
+import CoordinateMother from '../../Locations/Domain/CoordinateMother';
 
 export default class WeatherStationMother {
   static create({

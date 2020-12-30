@@ -1,5 +1,6 @@
 export type Primitives = { latitude: number; longitude: number };
 
+// To-Do maybe better in shared
 export class Coordinate {
   private readonly _latitude: number;
   private readonly _longitude: number;

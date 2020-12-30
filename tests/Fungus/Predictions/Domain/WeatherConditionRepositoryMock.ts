@@ -1,7 +1,7 @@
 import { MushroomId } from '../../../../src/Fungus/Shared/Domain/Mushrooms/MushroomId';
 
-import { WeatherConditionRepository } from '../../../../src/Fungus/Locations/Domain/WeatherConditions/WeatherConditionRepository';
-import { WeatherConditions } from '../../../../src/Fungus/Locations/Domain/WeatherConditions/WeatherConditions';
+import { WeatherConditionRepository } from '../../../../src/Fungus/Predictions/Domain/WeatherConditions/WeatherConditionRepository';
+import { WeatherConditions } from '../../../../src/Fungus/Predictions/Domain/WeatherConditions/WeatherConditions';
 
 export default class WeatherConditionRepositoryMock implements WeatherConditionRepository {
   private mockFindByMushroom = jest.fn();

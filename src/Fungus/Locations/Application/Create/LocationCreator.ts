@@ -3,7 +3,7 @@ import { LocationId } from '../../../Shared/Domain/Locations/LocationId';
 import { Location } from '../../Domain/Location';
 import { LocationRepository } from '../../Domain/LocationRepository';
 import { LocationAlreadyExist } from '../../Domain/LocationAlreadyExist';
-import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
+import { WeatherStationRepository } from '../../../Predictions/Domain/WeatherStations/WeatherStationRepository';
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 
@@ -19,6 +19,7 @@ export class LocationCreator {
   run({ id, name, zone }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
+    // To-Do We can define a query for this instead of using the repository
     const weatherStation = this._weatherStationRepository.findByProximity(zone.midpoint());
 
     const location = new Location({ id, name, zone, weatherStationId: weatherStation?.weatherStationId() });
