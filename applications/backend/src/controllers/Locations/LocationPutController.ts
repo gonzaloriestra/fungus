@@ -30,7 +30,7 @@ export default class LocationPutController implements Controller {
         id: new LocationId(locationId),
         name,
         zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
-        weatherStationId: new WeatherStationId(weatherStationId),
+        weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
       });
     } catch (error) {
       console.error(error.message);

@@ -22,6 +22,9 @@ export default function Home(): JSX.Element {
         <Header as="h2">
           <Link href="/forecasts">Check forecasts</Link>
         </Header>
+        <Header as="h2">
+          <Link href="/predictions">Make predictions</Link>
+        </Header>
       </main>
     </div>
   );
