@@ -1,6 +1,6 @@
 import { Coordinate, Primitives as CoordinatePrimitives } from '../../Shared/Domain/Coordinate';
 
-export type Primitives = { coordinates: Array<CoordinatePrimitives> };
+export type Primitives = { coordinates: Array<CoordinatePrimitives>; midpoint?: CoordinatePrimitives };
 
 export class Zone {
   private readonly _coordinates: Array<Coordinate>;
@@ -24,11 +24,17 @@ export class Zone {
   }
 
   toPrimitives(): Primitives {
+    const midpoint = this.midpoint();
+
     return {
       coordinates: this._coordinates.map((coordinate) => ({
         latitude: coordinate.latitude(),
         longitude: coordinate.longitude(),
       })),
+      midpoint: {
+        latitude: midpoint.latitude(),
+        longitude: midpoint.longitude(),
+      },
     };
   }
 
