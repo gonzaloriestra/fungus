@@ -2,6 +2,15 @@ imports:
   - { resource: ./application.yaml }
 
 services:
+  ##  Predictions
+  fungus.predictions.WeatherStationRepository:
+    class: ../../../../../src/Fungus/Predictions/Infrastructure/WeatherStations/InMemoryAEMETWeatherStationRepository
+    arguments: []
+
+  fungus.predictions.WeatherConditionRepository:
+    class: ../../../../../src/Fungus/Predictions/Infrastructure/WeatherConditions/InMemoryWeatherConditionRepository
+    arguments: []
+
   ##  Harvests
   fungus.harvests.HarvestRepository:
     class: ../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository

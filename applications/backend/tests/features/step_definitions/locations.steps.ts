@@ -20,6 +20,7 @@ Given('a location with id {string} already defined', async (id: string) => {
         longitude: '-4.885334',
       },
     ],
+    weatherStationId: faker.random.uuid(),
   };
 
   await httpClient(app.listener).put(`/locations/${id}`).send(body);
