@@ -15,6 +15,12 @@ When('I send a PUT request to {string} with body:', (route: string, body: string
   _request = request(app.listener).put(route).send(JSON.parse(body));
 });
 
+Then('the response should be {int} with payload:', async (status: number, response: string) => {
+  _response = await _request.expect(status);
+
+  assert.deepEqual(_response.body, JSON.parse(response));
+});
+
 Then('the response status code should be {int}', async (status: number) => {
   _response = await _request.expect(status);
 });

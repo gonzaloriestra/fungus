@@ -1,6 +1,6 @@
 import { Coordinate, Primitives as CoordinatePrimitives } from '../../Shared/Domain/Coordinate';
 
-export type Primitives = Array<CoordinatePrimitives>;
+export type Primitives = { coordinates: Array<CoordinatePrimitives> };
 
 export class Zone {
   private readonly _coordinates: Array<Coordinate>;
@@ -24,15 +24,17 @@ export class Zone {
   }
 
   toPrimitives(): Primitives {
-    return this._coordinates.map((coordinate) => ({
-      latitude: coordinate.latitude(),
-      longitude: coordinate.longitude(),
-    }));
+    return {
+      coordinates: this._coordinates.map((coordinate) => ({
+        latitude: coordinate.latitude(),
+        longitude: coordinate.longitude(),
+      })),
+    };
   }
 
   static fromPrimitives(primitives: Primitives): Zone {
     return new Zone({
-      coordinates: primitives.map(
+      coordinates: primitives.coordinates.map(
         (coordinate) => new Coordinate({ latitude: coordinate.latitude, longitude: coordinate.longitude }),
       ),
     });

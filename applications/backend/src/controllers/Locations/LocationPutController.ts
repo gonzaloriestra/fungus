@@ -8,6 +8,7 @@ import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain
 import { Coordinate } from '../../../../../src/Fungus/Shared/Domain/Coordinate';
 
 import { Controller } from '../Controller';
+import { WeatherStationId } from '../../../../../src/Fungus/Shared/Domain/WeatherStationId';
 
 export default class LocationPutController implements Controller {
   locationCreator: LocationCreator;
@@ -18,9 +19,10 @@ export default class LocationPutController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const locationId = req.params.id;
-    const { name, coordinates } = req.payload as {
+    const { name, coordinates, weatherStationId } = req.payload as {
       name: string;
       coordinates: Array<{ latitude: number; longitude: number }>;
+      weatherStationId: string;
     };
 
     try {
@@ -28,6 +30,7 @@ export default class LocationPutController implements Controller {
         id: new LocationId(locationId),
         name,
         zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
+        weatherStationId: new WeatherStationId(weatherStationId),
       });
     } catch (error) {
       console.error(error.message);

@@ -17,13 +17,17 @@ export class LocationCreator {
     this._weatherStationRepository = weatherStationRepository;
   }
 
-  run({ id, name, zone }: CreateLocationRequest): void {
+  run({ id, name, zone, weatherStationId }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
     // To-Do We can define a query for this instead of using the repository
-    const weatherStation = this._weatherStationRepository.findByProximity(zone.midpoint());
+    let assignedWeatherStationId = weatherStationId;
+    if (!assignedWeatherStationId) {
+      const weatherStation = this._weatherStationRepository.findByProximity(zone.midpoint());
+      assignedWeatherStationId = weatherStation?.weatherStationId();
+    }
 
-    const location = new Location({ id, name, zone, weatherStationId: weatherStation?.weatherStationId() });
+    const location = new Location({ id, name, zone, weatherStationId: assignedWeatherStationId });
 
     this._locationRepository.add(location);
   }
