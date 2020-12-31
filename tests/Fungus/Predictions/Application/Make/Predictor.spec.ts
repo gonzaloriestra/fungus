@@ -11,21 +11,16 @@ import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryM
 import WeatherStationMother from '../../Domain/WeatherStationMother';
 import { LocationRepositoryMock } from '../../../Locations/Domain/LocationRepositoryMock';
 import LocationMother from '../../Domain/LocationMother';
-import { WeatherService } from '../../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherService';
-import { AEMETWeatherService } from '../../../../../src/Fungus/Predictions/Infrastructure/WeatherStations/AEMETWeatherService';
 
 describe('Predictor', () => {
   let mockLocationRepository: LocationRepositoryMock;
   let mockWeatherConditionRepository: WeatherConditionRepositoryMock;
   let mockWeatherStationRepository: WeatherStationRepositoryMock;
-  let weatherService: WeatherService;
 
   beforeEach(() => {
     mockLocationRepository = new LocationRepositoryMock();
     mockWeatherConditionRepository = new WeatherConditionRepositoryMock();
     mockWeatherStationRepository = new WeatherStationRepositoryMock();
-    // To-Do Mock the service
-    weatherService = new AEMETWeatherService();
   });
 
   it('should return a prediction of a mushroom sprout in a location', async () => {
@@ -42,12 +37,7 @@ describe('Predictor', () => {
       }),
     );
     mockWeatherStationRepository.returnOnFindBy(WeatherStationMother.create({ externalId: '2235U' }));
-    const subject = new Predictor(
-      mockLocationRepository,
-      mockWeatherStationRepository,
-      mockWeatherConditionRepository,
-      weatherService,
-    );
+    const subject = new Predictor(mockLocationRepository, mockWeatherStationRepository, mockWeatherConditionRepository);
 
     const response = await subject.run({
       date: new Date(predictionDate),

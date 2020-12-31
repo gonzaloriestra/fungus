@@ -9,6 +9,7 @@ import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
 import { Harvests } from '../Domain/Harvests';
 
+// To-Do Extend from File repository
 export class FileHarvestRepository implements HarvestRepository {
   harvests: Harvests;
   filePath: string;

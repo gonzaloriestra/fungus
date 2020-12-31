@@ -3,7 +3,6 @@ import { MushroomId } from '../../../Shared/Domain/MushroomId';
 
 import { WeatherCondition } from './WeatherCondition';
 import { WeatherStation } from '../WeatherStations/WeatherStation';
-import { WeatherService } from '../WeatherStations/WeatherService';
 
 export class WeatherConditions {
   private readonly weatherConditions: Array<WeatherCondition>;
@@ -12,18 +11,10 @@ export class WeatherConditions {
     this.weatherConditions = weatherConditions || [];
   }
 
-  async areMet({
-    date,
-    weatherStation,
-    weatherService,
-  }: {
-    date: Date;
-    weatherStation: WeatherStation;
-    weatherService: WeatherService;
-  }): Promise<number> {
+  async areMet({ date, weatherStation }: { date: Date; weatherStation: WeatherStation }): Promise<number> {
     return await this.weatherConditions.reduce(
       async (result: Promise<number>, weatherCondition: WeatherCondition): Promise<number> => {
-        const condition = await weatherCondition.isMet({ date, weatherStation, weatherService });
+        const condition = await weatherCondition.isMet({ date, weatherStation });
         return condition < 10000 ? 0 : result;
       },
       Promise.resolve(10000),

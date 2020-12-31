@@ -7,53 +7,41 @@ export class WeatherStation {
   private readonly _externalId: string;
   private readonly _location: Coordinate;
   private readonly _description: string;
+  private readonly _gauges: WeatherService;
 
   constructor({
     id,
     externalId,
     location,
     description,
+    gauges,
   }: {
     id: WeatherStationId;
     externalId: string;
     location: Coordinate;
     description: string;
+    gauges: WeatherService;
   }) {
     this._id = id;
     this._externalId = externalId;
     this._location = location;
     this._description = description;
+    this._gauges = gauges;
   }
 
   weatherStationId(): WeatherStationId {
     return this._id;
   }
 
-  externalId(): string {
-    return this._externalId;
-  }
-
   location(): Coordinate {
     return this._location;
-  }
-
-  description(): string {
-    return this._description;
   }
 
   distanceTo(coordinate: Coordinate): number {
     return this._location.distanceTo(coordinate);
   }
 
-  precipitation({
-    from,
-    to,
-    weatherService,
-  }: {
-    from: Date;
-    to: Date;
-    weatherService: WeatherService;
-  }): Promise<number> {
-    return weatherService.precipitation({ from, to, id: this._externalId });
+  precipitation({ from, to }: { from: Date; to: Date }): Promise<number> {
+    return this._gauges.precipitation({ from, to, id: this._externalId });
   }
 }
