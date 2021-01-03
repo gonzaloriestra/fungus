@@ -29,7 +29,8 @@ Feature: Recover all the locations
             "longitude": -4.885334
           }
         },
-        "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a"
+        "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a",
+        "userId": "399299d7-c7a3-4a4c-be01-140b3974343e"
       },
       {
         "id": "15569f95-3ff3-40d7-9e78-59e0ec0486e8",
@@ -47,7 +48,8 @@ Feature: Recover all the locations
             "longitude": -4.885334
           }
         },
-        "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a"
+        "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a",
+        "userId": "399299d7-c7a3-4a4c-be01-140b3974343e"
       }
     ]
     """

@@ -7,6 +7,7 @@ import ZoneMother from '../../Domain/ZoneMother';
 import LocationMother from '../../../Predictions/Domain/LocationMother';
 import WeatherStationRepositoryMock from '../../../Predictions/Domain/WeatherStationRepositoryMock';
 import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
+import { UserId } from '../../../../../src/Fungus/Shared/Domain/UserId';
 
 describe('LocationCreator', () => {
   let mockLocationRepository: LocationRepositoryMock;
@@ -20,7 +21,12 @@ describe('LocationCreator', () => {
   it('should create a new location executing all preconditions', () => {
     const subject = new LocationCreator(mockLocationRepository, mockWeatherStationRepository);
 
-    subject.run({ id: LocationId.create(), name: 'Pinar de Guardo', zone: ZoneMother.random() });
+    subject.run({
+      id: LocationId.create(),
+      name: 'Pinar de Guardo',
+      zone: ZoneMother.random(),
+      userId: UserId.create(),
+    });
 
     mockLocationRepository.assertFindByIdHasBeenCalled();
     mockLocationRepository.assertAddHasBeenCalled();
@@ -32,9 +38,9 @@ describe('LocationCreator', () => {
     mockLocationRepository.returnOnFindById(location);
     const subject = new LocationCreator(mockLocationRepository, mockWeatherStationRepository);
 
-    expect(() => subject.run({ id: location.id(), name: location.name(), zone: location.zone() })).toThrow(
-      LocationAlreadyExist,
-    );
+    expect(() =>
+      subject.run({ id: location.id(), name: location.name(), zone: location.zone(), userId: UserId.create() }),
+    ).toThrow(LocationAlreadyExist);
 
     mockLocationRepository.assertFindByIdHasBeenCalled();
   });

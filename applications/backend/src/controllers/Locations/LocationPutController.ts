@@ -1,14 +1,16 @@
 import { Request, ResponseObject, ResponseToolkit } from 'hapi';
 import httpStatus from 'http-status';
 
-import { LocationCreator } from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
-import { Zone } from '../../../../../src/Fungus/Locations/Domain/Zone';
-import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
+import { UserId } from '../../../../../src/Fungus/Shared/Domain/UserId';
 import { Coordinate } from '../../../../../src/Fungus/Shared/Domain/Coordinate';
+import { WeatherStationId } from '../../../../../src/Fungus/Shared/Domain/WeatherStationId';
+
+import { LocationCreator } from '../../../../../src/Fungus/Locations/Application/Create/LocationCreator';
+import { LocationAlreadyExist } from '../../../../../src/Fungus/Locations/Domain/LocationAlreadyExist';
+import { Zone } from '../../../../../src/Fungus/Locations/Domain/Zone';
 
 import { Controller } from '../Controller';
-import { WeatherStationId } from '../../../../../src/Fungus/Shared/Domain/WeatherStationId';
 
 export default class LocationPutController implements Controller {
   locationCreator: LocationCreator;
@@ -31,6 +33,8 @@ export default class LocationPutController implements Controller {
         name,
         zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
         weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
+        // To-Do It should be gotten from the Authorization
+        userId: new UserId('399299d7-c7a3-4a4c-be01-140b3974343e'),
       });
     } catch (error) {
       console.error(error.message);

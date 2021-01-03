@@ -17,7 +17,7 @@ export class LocationCreator {
     this._weatherStationRepository = weatherStationRepository;
   }
 
-  run({ id, name, zone, weatherStationId }: CreateLocationRequest): void {
+  run({ id, name, zone, weatherStationId, userId }: CreateLocationRequest): void {
     this.ensureLocationDoesNotExist(id);
 
     // To-Do We can define a query for this instead of using the repository
@@ -27,7 +27,7 @@ export class LocationCreator {
       assignedWeatherStationId = weatherStation?.weatherStationId();
     }
 
-    const location = new Location({ id, name, zone, weatherStationId: assignedWeatherStationId });
+    const location = new Location({ id, name, zone, weatherStationId: assignedWeatherStationId, userId });
 
     this._locationRepository.add(location);
   }

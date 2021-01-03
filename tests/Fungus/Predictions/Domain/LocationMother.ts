@@ -1,6 +1,7 @@
 import faker from 'faker';
 
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+import { UserId } from '../../../../src/Fungus/Shared/Domain/UserId';
 
 import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
@@ -14,8 +15,15 @@ export default class LocationMother {
     name = faker.random.word(),
     zone = ZoneMother.random(),
     weatherStationId = WeatherStationId.create(),
-  }: { id?: LocationId; name?: string; zone?: Zone; weatherStationId?: WeatherStationId } = {}): Location {
-    return new Location({ id, name, zone, weatherStationId });
+    userId = UserId.create(),
+  }: {
+    id?: LocationId;
+    name?: string;
+    zone?: Zone;
+    weatherStationId?: WeatherStationId;
+    userId?: UserId;
+  } = {}): Location {
+    return new Location({ id, name, zone, weatherStationId, userId });
   }
 
   static random(): Location {
