@@ -1,4 +1,4 @@
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 
 import container from '../config/dependency-injection';
 
@@ -30,6 +30,7 @@ export const register = (app: Server): void => {
   app.route({
     method: 'GET',
     path: '/locations',
+    options: { auth: 'jwt' },
     handler: locationsGetController.run.bind(locationsGetController),
   });
 

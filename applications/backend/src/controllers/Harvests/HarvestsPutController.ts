@@ -1,4 +1,4 @@
-import { Request, ResponseObject, ResponseToolkit } from 'hapi';
+import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
 import httpStatus from 'http-status';
 
 import HarvestCreator from '../../../../../src/Fungus/Harvests/Application/Create/HarvestCreator';

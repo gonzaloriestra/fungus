@@ -1,6 +1,4 @@
-import { Server } from 'hapi';
-
-import { registerRoutes } from './routes';
+import { Server } from '@hapi/hapi';
 
 const app = new Server({
   host: process.env.HOST || 'localhost',
@@ -11,7 +9,5 @@ const app = new Server({
     },
   },
 });
-
-registerRoutes(app);
 
 export default app;

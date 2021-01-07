@@ -1,4 +1,4 @@
-import { Request, ResponseObject, ResponseToolkit } from 'hapi';
+import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
 import httpStatus from 'http-status';
 
 import { MushroomsFinder } from '../../../../../src/Fungus/Mushrooms/Application/Find/MushroomsFinder';

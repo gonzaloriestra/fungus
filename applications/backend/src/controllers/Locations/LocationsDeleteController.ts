@@ -1,4 +1,4 @@
-import { Request, ResponseObject, ResponseToolkit } from 'hapi';
+import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
 import httpStatus from 'http-status';
 
 import { LocationCleaner } from '../../../../../src/Fungus/Locations/Application/Clean/LocationCleaner';

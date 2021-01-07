@@ -1,4 +1,4 @@
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 import glob from 'glob';
 
 import { Route } from './Route';

@@ -1,4 +1,4 @@
-import { Request, ResponseObject, ResponseToolkit } from 'hapi';
+import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
 import httpStatus from 'http-status';
 
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
@@ -20,6 +20,7 @@ export default class LocationPutController implements Controller {
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
+    const { userId } = req.auth.credentials as { userId: string };
     const locationId = req.params.id;
     const { name, coordinates, weatherStationId } = req.payload as {
       name: string;
@@ -33,8 +34,7 @@ export default class LocationPutController implements Controller {
         name,
         zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
         weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
-        // To-Do It should be gotten from the Authorization
-        userId: new UserId('399299d7-c7a3-4a4c-be01-140b3974343e'),
+        userId: new UserId(userId),
       });
     } catch (error) {
       console.error(error.message);

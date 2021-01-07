@@ -27,11 +27,12 @@
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "@hapi/hapi": "^20.0.3",
+    "@hapi/jwt": "^2.0.1",
     "axios": "^0.20.0",
     "copy": "^0.3.2",
     "dotenv": "^8.2.0",
     "glob": "^7.1.6",
-    "hapi": "^18.1.0",
     "http-status": "^1.4.2",
     "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
@@ -51,7 +52,7 @@
     "@types/cucumber": "^6.0.1",
     "@types/faker": "^4.1.11",
     "@types/glob": "^7.1.1",
-    "@types/hapi": "^18.0.3",
+    "@types/hapi__hapi": "^20.0.3",
     "@types/jest": "^25.1.4",
     "@types/lodash": "^4.14.149",
     "@types/node": "^14.10.2",
