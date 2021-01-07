@@ -5,6 +5,7 @@ import app from './src/app';
 /**
  * Error Handler. Provides full stack - remove for production
  */
+// @ts-ignore
 import Jwt from '@hapi/jwt';
 
 import { registerRoutes } from './src/routes';

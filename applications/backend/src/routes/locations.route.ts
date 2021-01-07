@@ -24,6 +24,7 @@ export const register = (app: Server): void => {
   app.route({
     method: 'PUT',
     path: '/locations/{id}',
+    options: { auth: 'jwt' },
     handler: locationPutController.run.bind(locationPutController),
   });
 
