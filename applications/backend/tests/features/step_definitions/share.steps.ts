@@ -1,40 +1,34 @@
 import assert from 'assert';
 import { Then, When } from 'cucumber';
 import request from 'supertest';
+import { isEmpty } from 'lodash';
 
-import app from '../../../src/app';
+import httpClient from './httpClient';
 
-let _request: request.Test;
 let _response: request.Response;
 
-When('I send a GET request to {string}', (route: string) => {
-  _request = request(app.listener).get(route);
+When('I send a GET request to {string}', async (path: string) => {
+  _response = await httpClient.get({ path });
 });
 
-When('I send a PUT request to {string} with body:', (route: string, body: string) => {
-  _request = request(app.listener).put(route).send(JSON.parse(body));
+When('I send a PUT request to {string} with body:', async (path: string, details: string) => {
+  const body = JSON.parse(details);
+
+  _response = await httpClient.put({ path, body });
 });
 
 Then('the response should be {int} with payload:', async (status: number, response: string) => {
-  _response = await _request.expect(status);
+  assert.strictEqual(_response.status, status);
 
   assert.deepEqual(_response.body, JSON.parse(response));
 });
 
 Then('the response status code should be {int}', async (status: number) => {
-  _response = await _request.expect(status);
+  assert.strictEqual(_response.status, status);
 });
 
 Then('the response should be empty', () => {
-  assert.deepEqual(_response.body, {});
-});
-
-Then('the response should be an empty array', () => {
-  assert.deepEqual(_response.body, []);
-});
-
-Then('the response should be:', (response: string) => {
-  assert.deepEqual(_response.body, JSON.parse(response));
+  assert.equal(isEmpty(_response.body), true);
 });
 
 Then('the response should be a collection of {int} elements', (numberOfElements: string) => {

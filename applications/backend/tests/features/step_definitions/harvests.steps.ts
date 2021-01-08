@@ -1,9 +1,8 @@
 import { Given } from 'cucumber';
-import request from 'supertest';
 import faker from 'faker';
 import assert from 'assert';
 
-import app from '../../../src/app';
+import client from './httpClient';
 
 Given(
   'a harvest of mushroom {string} with id {string} in the location {string}',
@@ -15,7 +14,9 @@ Given(
       quantity: faker.random.number({ min: 1, max: 5 }),
     };
 
-    await request(app.listener).put(`/harvests/${harvestId}`).send(body);
+    const response = await client.put({ path: `/harvests/${harvestId}`, body });
+
+    assert.strictEqual(response.status, 201);
   },
 );
 
@@ -29,12 +30,14 @@ Given(
       quantity: faker.random.number({ min: 1, max: 5 }),
     };
 
-    await request(app.listener).put(`/harvests/${harvestId}`).send(body);
+    const response = await client.put({ path: `/harvests/${harvestId}`, body });
+
+    assert.strictEqual(response.status, 201);
   },
 );
 
 Given('the harvest store empty', async () => {
-  const response = await request(app.listener).delete('/harvests').send();
+  const response = await client.delete({ path: `/harvests` });
 
   assert.strictEqual(response.status, 204);
 });

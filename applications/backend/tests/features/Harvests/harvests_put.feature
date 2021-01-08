@@ -3,15 +3,19 @@ Feature: Register a new harvest
   As a user
   I want to define a new harvest
 
+  Background:
+    Given the mushroom store empty
+    And the location store empty
+
   Scenario: A valid new harvest
     Given a mushroom with id "841d8c5e-bcac-43e3-9961-3ac28096a495" already defined
-    Given a location with id "85c2cec-f362-432e-a136-5440816a584b" already defined
+    And a location with id "9ac90b12-eacb-4bda-812d-9a47d9b627a0" already defined
     When I send a PUT request to "/harvests/ef8ac118-8d7f-49cc-abec-78e0d05af80a" with body:
     """
     {
       "date": "2019-10-15",
       "mushroomId": "841d8c5e-bcac-43e3-9961-3ac28096a495",
-      "locationId": "85c2cec-f362-432e-a136-5440816a584b",
+      "locationId": "9ac90b12-eacb-4bda-812d-9a47d9b627a0",
       "quantity": "5"
     }
     """

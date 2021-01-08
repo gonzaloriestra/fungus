@@ -30,7 +30,7 @@ Feature: Recover all the locations
           }
         },
         "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a",
-        "userId": "399299d7-c7a3-4a4c-be01-140b3974343e"
+        "userId": "cd578dee-a7d6-4c22-ae86-b8c0f74949a8"
       },
       {
         "id": "15569f95-3ff3-40d7-9e78-59e0ec0486e8",
@@ -49,7 +49,7 @@ Feature: Recover all the locations
           }
         },
         "weatherStationId": "cda55a23-ea2b-42f3-a390-c29110586b6a",
-        "userId": "399299d7-c7a3-4a4c-be01-140b3974343e"
+        "userId": "cd578dee-a7d6-4c22-ae86-b8c0f74949a8"
       }
     ]
     """
@@ -57,4 +57,4 @@ Feature: Recover all the locations
   Scenario: Return empty response when there are not locations registered
     When I send a GET request to "/locations"
     Then the response status code should be 200
-    And the response should be an empty array
+    And the response should be empty

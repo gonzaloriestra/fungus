@@ -16,8 +16,8 @@ export default class MushroomPutController implements Controller {
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
     const mushroomId = req.params.id;
-    // @ts-ignore
-    const { scientificName } = req.payload;
+
+    const { scientificName } = req.payload as { scientificName: string };
 
     try {
       await this.mushroomCreator.run({ id: new MushroomId(mushroomId), scientificName });

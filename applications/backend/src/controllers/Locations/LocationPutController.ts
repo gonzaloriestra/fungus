@@ -20,7 +20,7 @@ export default class LocationPutController implements Controller {
   }
 
   async run(req: Request, res: ResponseToolkit): Promise<ResponseObject> {
-    const { userId } = req.auth.credentials as { userId: string };
+    const { userId } = req.auth?.credentials as { userId: string };
     const locationId = req.params.id;
     const { name, coordinates, weatherStationId } = req.payload as {
       name: string;
