@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Header, Icon, Container, Form, Select, Button, Label } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 import getMushrooms from '../harvests/queries/getMushrooms';
-import getMyLocations from '../locations/queries/getLocations';
+import getMyLocations from '../locations/queries/getMyLocations';
 import makePrediction from './queries/makePrediction';
 
 type PredictionsProps = {
