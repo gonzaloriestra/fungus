@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 
 import Location from './models/Location';
-import getLocations from './queries/getLocations';
+import getMyLocations from './queries/getLocations';
 
 import Item from './components/Item';
 
@@ -34,7 +34,7 @@ export default function Locations({ locations }: LocationsProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await getLocations();
+  const res = await getMyLocations();
 
   return { props: { locations: res.data } };
 };

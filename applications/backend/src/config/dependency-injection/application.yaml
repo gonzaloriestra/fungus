@@ -93,8 +93,8 @@ services:
     class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
     arguments: ["@fungus.locations.LocationRepository", "@fungus.locations.WeatherStationRepository"]
 
-  fungus.locations.LocationsFinder:
-    class: ../../../../../src/Fungus/Locations/Application/Find/LocationsFinder
+  fungus.locations.LocationsByUserIdFinder:
+    class: ../../../../../src/Fungus/Locations/Application/FindByUserId/LocationsByUserIdFinder
     arguments: ["@fungus.locations.LocationRepository"]
 
   fungus.locations.LocationByIdFinder:
@@ -115,9 +115,9 @@ services:
     class: ../../controllers/Locations/LocationPutController
     arguments: ["@fungus.locations.LocationCreator"]
 
-  applications.fungus.controllers.LocationsGetController:
-    class: ../../controllers/Locations/LocationsGetController
-    arguments: ["@fungus.locations.LocationsFinder"]
+  applications.fungus.controllers.MyLocationsGetController:
+    class: ../../controllers/Locations/MyLocationsGetController
+    arguments: ["@fungus.locations.LocationsByUserIdFinder"]
 
   applications.fungus.controllers.LocationByIdGetController:
     class: ../../controllers/Locations/LocationByIdGetController

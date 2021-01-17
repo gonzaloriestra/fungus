@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Header, Icon, Container, Form, Select, Button, Label } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 import getMushrooms from '../harvests/queries/getMushrooms';
-import getLocations from '../locations/queries/getLocations';
+import getMyLocations from '../locations/queries/getLocations';
 import makePrediction from './queries/makePrediction';
 
 type PredictionsProps = {
@@ -76,7 +76,7 @@ export default function Predictions({ locations, mushrooms }: PredictionsProps):
 export const getServerSideProps: GetServerSideProps = async () => {
   const resMushrooms = await getMushrooms();
   // To-Do Share this query
-  const resLocations = await getLocations();
+  const resLocations = await getMyLocations();
 
   return { props: { mushrooms: resMushrooms.data, locations: resLocations.data } };
 };
