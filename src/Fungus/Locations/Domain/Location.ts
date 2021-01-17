@@ -40,6 +40,10 @@ export class Location extends AggregateRoot {
     return this._id;
   }
 
+  userId(): UserId {
+    return this._userId;
+  }
+
   name(): string {
     return this._name;
   }

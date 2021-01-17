@@ -1,5 +1,7 @@
-import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
+import { UserId } from '../../../../src/Fungus/Shared/Domain/UserId';
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+
+import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 
 describe('Location', () => {
@@ -10,6 +12,7 @@ describe('Location', () => {
         id: LocationId.create(),
         name: 'location one',
         zone: new Zone({ coordinates: [] }),
+        userId: UserId.create(),
       });
 
       expect(subject.equalTo(subject)).toBeTruthy();
@@ -20,11 +23,13 @@ describe('Location', () => {
         id: LocationId.create(),
         name: 'location one',
         zone: new Zone({ coordinates: [] }),
+        userId: UserId.create(),
       });
       const subjectTwo = new Location({
         id: LocationId.create(),
         name: 'location two',
         zone: new Zone({ coordinates: [] }),
+        userId: UserId.create(),
       });
 
       expect(subjectOne.equalTo(subjectTwo)).toBeFalsy();

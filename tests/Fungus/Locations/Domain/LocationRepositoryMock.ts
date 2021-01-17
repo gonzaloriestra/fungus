@@ -1,15 +1,16 @@
-import { MethodNotImplemented } from '../../../../src/Fungus/Shared/Domain/MethodNotImplemented';
 import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+import { UserId } from '../../../../src/Fungus/Shared/Domain/UserId';
 
 import { LocationRepository } from '../../../../src/Fungus/Locations/Domain/LocationRepository';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 import { Locations } from '../../../../src/Fungus/Locations/Domain/Locations';
 
 export class LocationRepositoryMock implements LocationRepository {
-  private mockFindById = jest.fn();
-  private mockClean = jest.fn();
   private mockAdd = jest.fn();
+  private mockClean = jest.fn();
   private mockAll = jest.fn();
+  private mockFindById = jest.fn();
+  private mockFindByUserId = jest.fn();
 
   private location?: Location = undefined;
   private locations: Locations = new Locations();
@@ -25,6 +26,19 @@ export class LocationRepositoryMock implements LocationRepository {
 
   assertFindByIdHasBeenCalled(): void {
     expect(this.mockFindById).toHaveBeenCalled();
+  }
+
+  findByUserId(_: UserId): Locations | undefined {
+    this.mockFindByUserId();
+    return this.locations;
+  }
+
+  returnOnFindByUserId(locations?: Locations): void {
+    this.locations = locations || new Locations();
+  }
+
+  assertFindByUserIdHasBeenCalled(): void {
+    expect(this.mockFindByUserId).toHaveBeenCalled();
   }
 
   all(): Locations {

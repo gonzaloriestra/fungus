@@ -1,4 +1,5 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
+import { UserId } from '../../Shared/Domain/UserId';
 
 import { LocationRepository } from '../Domain/LocationRepository';
 import { Location } from '../Domain/Location';
@@ -15,15 +16,19 @@ export class InMemoryLocationRepository implements LocationRepository {
     this._locations.add(location);
   }
 
-  findById(id: LocationId): Location | undefined {
-    return this._locations.findById(id);
+  clean(): void {
+    this._locations = new Locations();
   }
 
   all(): Locations {
     return this._locations;
   }
 
-  clean(): void {
-    this._locations = new Locations();
+  findById(id: LocationId): Location | undefined {
+    return this._locations.findById(id);
+  }
+
+  findByUserId(userId: UserId): Locations | undefined {
+    return this._locations.findByUserId(userId);
   }
 }

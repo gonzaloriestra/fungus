@@ -6,7 +6,7 @@ import { UserId } from '../../../../src/Fungus/Shared/Domain/UserId';
 import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
 import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
 
-import ZoneMother from '../../Locations/Domain/ZoneMother';
+import ZoneMother from './ZoneMother';
 import { WeatherStationId } from '../../../../src/Fungus/Shared/Domain/WeatherStationId';
 
 export default class LocationMother {

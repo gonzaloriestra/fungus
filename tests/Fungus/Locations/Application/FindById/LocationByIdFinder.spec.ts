@@ -2,7 +2,7 @@ import LocationByIdFinder from '../../../../../src/Fungus/Locations/Application/
 import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
 
 import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
-import LocationMother from '../../../Predictions/Domain/LocationMother';
+import LocationMother from '../../Domain/LocationMother';
 
 describe('LocationByIdFinder', () => {
   let mockLocationRepository: LocationRepositoryMock;

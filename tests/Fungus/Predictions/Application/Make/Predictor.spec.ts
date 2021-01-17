@@ -10,7 +10,7 @@ import WeatherConditionsMother from '../../Domain/WeatherConditionsMother';
 import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
 import WeatherStationMother from '../../Domain/WeatherStationMother';
 import { LocationRepositoryMock } from '../../../Locations/Domain/LocationRepositoryMock';
-import LocationMother from '../../Domain/LocationMother';
+import LocationMother from '../../../Locations/Domain/LocationMother';
 
 describe('Predictor', () => {
   let mockLocationRepository: LocationRepositoryMock;

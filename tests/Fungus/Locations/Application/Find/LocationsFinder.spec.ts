@@ -3,7 +3,7 @@ import LocationsFinder from '../../../../../src/Fungus/Locations/Application/Fin
 import { Locations } from '../../../../../src/Fungus/Locations/Domain/Locations';
 
 import { LocationRepositoryMock } from '../../Domain/LocationRepositoryMock';
-import LocationMother from '../../../Predictions/Domain/LocationMother';
+import LocationMother from '../../Domain/LocationMother';
 
 describe('LocationsFinder', () => {
   let mockLocationRepository: LocationRepositoryMock;

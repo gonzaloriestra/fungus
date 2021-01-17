@@ -5,6 +5,7 @@ import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
 import { Location } from '../Domain/Location';
 import { LocationRepository } from '../Domain/LocationRepository';
 import { Locations } from '../Domain/Locations';
+import { UserId } from '../../Shared/Domain/UserId';
 
 export class FileLocationRepository extends FileRepository implements LocationRepository {
   private readonly _locations: Locations;
@@ -28,6 +29,10 @@ export class FileLocationRepository extends FileRepository implements LocationRe
 
   findById(id: LocationId): Location | undefined {
     return this._locations.findById(id);
+  }
+
+  findByUserId(userId: UserId): Locations | undefined {
+    return this._locations.findByUserId(userId);
   }
 
   add(location: Location): void {
