@@ -4,7 +4,7 @@ services:
   # Services
   fungus.predictions.Predictor:
     class: ../../../../../src/Fungus/Predictions/Application/make/Predictor
-    arguments: [ "@fungus.locations.LocationRepository", "@fungus.predictions.WeatherStationRepository", "@fungus.predictions.WeatherConditionRepository" ]
+    arguments: [ "@fungus.locations.LocationRepository", "@fungus.predictions.WeatherStationRepository", "@fungus.predictions.ConditionRepository" ]
 
   # Controllers
   fungus.controllers.PredictionsGetController:

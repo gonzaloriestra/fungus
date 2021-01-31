@@ -7,8 +7,8 @@ services:
     class: ../../../../../src/Fungus/Predictions/Infrastructure/WeatherStations/InMemoryAEMETWeatherStationRepository
     arguments: []
 
-  fungus.predictions.WeatherConditionRepository:
-    class: ../../../../../src/Fungus/Predictions/Infrastructure/WeatherConditions/InMemoryWeatherConditionRepository
+  fungus.predictions.ConditionRepository:
+    class: ../../../../../src/Fungus/Predictions/Infrastructure/InMemoryConditionRepository
     arguments: []
 
   ##  Harvests

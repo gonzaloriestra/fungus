@@ -11,6 +11,7 @@ export class AccumulatedPrecipitation implements WeatherCondition {
   private readonly _accumulation: number;
   private readonly _daysRange: number;
   private readonly _daysBefore: number;
+  private _weatherStation?: WeatherStation;
 
   constructor({
     mushroomId,
@@ -29,11 +30,21 @@ export class AccumulatedPrecipitation implements WeatherCondition {
     this._daysBefore = daysBefore;
   }
 
-  async isMet({ date, weatherStation }: { date: Date; weatherStation: WeatherStation }): Promise<number> {
+  assignWeatherStation({ weatherStation }: { weatherStation: WeatherStation }): void {
+    this._weatherStation = weatherStation;
+  }
+
+  async isMet({ date }: { date: Date }): Promise<number> {
+    // To-Do how to avoid this check, or maybe it is require if we want to have weather conditions without weather station assigned to calculate met
+    if (!this._weatherStation) {
+      // To-Do Throw exception
+      return 0;
+    }
+
     const to = new Date(date.setDate(date.getDate() - this._daysBefore));
     const from = new Date(date.setDate(to.getDate() - this._daysRange));
 
-    const accumulatedPrecipitation = await weatherStation.precipitation({ from, to });
+    const accumulatedPrecipitation = await this._weatherStation.precipitation({ from, to });
     // To-Do value object for the results
     return accumulatedPrecipitation >= this._accumulation ? 10000 : 0;
   }
@@ -49,5 +60,9 @@ export class AccumulatedPrecipitation implements WeatherCondition {
       daysRange,
       daysBefore,
     });
+  }
+
+  isWeatherCondition(): boolean {
+    return true;
   }
 }

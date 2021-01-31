@@ -1,15 +1,15 @@
 import faker from 'faker';
 
-import { WeatherConditions } from '../../../../src/Fungus/Predictions/Domain/WeatherConditions/WeatherConditions';
 import { WeatherConditionFactory } from '../../../../src/Fungus/Predictions/Domain/WeatherConditions/WeatherConditionFactory';
+import { Conditions } from '../../../../src/Fungus/Predictions/Domain/Conditions';
 
-export default class WeatherConditionsMother {
-  static create({ type, ...attrs }: { type: string }): WeatherConditions {
-    return new WeatherConditions({ weatherConditions: [WeatherConditionFactory.fromPrimitives({ type, ...attrs })] });
+export default class ConditionsMother {
+  static create({ type, ...attrs }: { type: string }): Conditions {
+    return new Conditions({ conditions: [WeatherConditionFactory.fromPrimitives({ type, ...attrs })] });
   }
 
   // To-Do avoid this ts-ignore
-  static random(): WeatherConditions {
+  static random(): Conditions {
     return this.create({
       type: 'accumulatedPrecipitation',
       // @ts-ignore
