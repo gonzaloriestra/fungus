@@ -1,34 +1,21 @@
 import { WeatherStationRepository } from '../../Domain/WeatherStations/WeatherStationRepository';
-
-import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
-
-import { MakePredictionRequest } from './MakePredictionRequest';
-import { MakePredictionResponse } from './MakePredictionResponse';
 import { ConditionRepository } from '../../Domain/ConditionRepository';
 import { LocationQuery } from '../../Domain/LocationQuery';
-import { HarvestQuery } from '../../Domain/HarvestQuery';
-import { LocationId } from '../../../Shared/Domain/LocationId';
-import Date from '../../../Shared/Domain/Date';
-import { HarvestsView } from '../../Domain/HarvestsView';
+
+import { MakePredictionResponse } from './MakePredictionResponse';
+import { MakePredictionRequest } from './MakePredictionRequest';
 
 export default class Predictor {
-  private readonly _locationRepository: LocationRepository;
   private readonly _conditionRepository: ConditionRepository;
   private readonly _weatherStationRepository: WeatherStationRepository;
-  // private locationQuery: LocationQuery;
-  // private harvestQuery: HarvestQuery;
-
-  // constructor(locationQuery: LocationQuery, harvestQuery: HarvestQuery) {
-  //   this.locationQuery = locationQuery;
-  //   this.harvestQuery = harvestQuery;
-  // }
+  private readonly _locationQuery: LocationQuery;
 
   constructor(
-    locationRepository: LocationRepository,
+    locationQuery: LocationQuery,
     weatherStationRepository: WeatherStationRepository,
     conditionRepository: ConditionRepository,
   ) {
-    this._locationRepository = locationRepository;
+    this._locationQuery = locationQuery;
     this._weatherStationRepository = weatherStationRepository;
     this._conditionRepository = conditionRepository;
   }
@@ -50,8 +37,7 @@ export default class Predictor {
     //
     // return new GenerateForecastsResponse({ date, forecasts });
 
-    // To-Do it could be a query if we extract from location
-    const location = this._locationRepository.findById(locationId);
+    const location = this._locationQuery.findById(locationId);
     const weatherStationId = location?.weatherStationId();
 
     let weatherStation;

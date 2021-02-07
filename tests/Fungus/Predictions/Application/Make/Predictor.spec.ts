@@ -6,25 +6,25 @@ import Predictor from '../../../../../src/Fungus/Predictions/Application/Make/Pr
 
 import WeatherStationRepositoryMock from '../../Domain/WeatherStationRepositoryMock';
 import WeatherStationMother from '../../Domain/WeatherStationMother';
-import { LocationRepositoryMock } from '../../../Locations/Domain/LocationRepositoryMock';
-import LocationMother from '../../../Locations/Domain/LocationMother';
 import ConditionRepositoryMock from '../../Domain/ConditionRepositoryMock';
 import ConditionsMother from '../../Domain/ConditionsMother';
+import LocationQueryMock from '../../Domain/LocationQueryMock';
+import LocationViewMother from '../../Domain/LocationViewMother';
 
 describe('Predictor', () => {
-  let mockLocationRepository: LocationRepositoryMock;
+  let mockLocationQuery: LocationQueryMock;
   let mockConditionRepository: ConditionRepositoryMock;
   let mockWeatherStationRepository: WeatherStationRepositoryMock;
 
   beforeEach(() => {
-    mockLocationRepository = new LocationRepositoryMock();
+    mockLocationQuery = new LocationQueryMock();
     mockConditionRepository = new ConditionRepositoryMock();
     mockWeatherStationRepository = new WeatherStationRepositoryMock();
   });
 
   it.skip('should return a prediction of a mushroom sprout in a location', async () => {
     const predictionDate = '2020-11-20';
-    mockLocationRepository.returnOnFindById(LocationMother.random());
+    mockLocationQuery.returnOnFindById(LocationViewMother.random());
     mockConditionRepository.returnOnFindByMushroom(
       ConditionsMother.create({
         type: 'accumulatedPrecipitation',
@@ -36,7 +36,7 @@ describe('Predictor', () => {
       }),
     );
     mockWeatherStationRepository.returnOnFindBy(WeatherStationMother.create({ externalId: '2235U' }));
-    const subject = new Predictor(mockLocationRepository, mockWeatherStationRepository, mockConditionRepository);
+    const subject = new Predictor(mockLocationQuery, mockWeatherStationRepository, mockConditionRepository);
 
     const response = await subject.run({
       date: new Date(predictionDate),
@@ -44,7 +44,7 @@ describe('Predictor', () => {
       locationId: LocationId.create(),
     });
 
-    mockLocationRepository.assertFindByIdHasBeenCalled();
+    mockLocationQuery.assertFindByIdHasBeenCalled();
     mockConditionRepository.assertFindByMushroomHasBeenCalled();
     mockWeatherStationRepository.assertFindByHasBeenCalled();
     expect(response.prediction.probability).toBeDefined();
