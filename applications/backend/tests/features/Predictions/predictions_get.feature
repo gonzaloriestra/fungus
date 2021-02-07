@@ -1,4 +1,4 @@
-Feature: Get forecasts
+Feature: Get prediction
   In order to know where I can find mushrooms
   As a user
   I want to get some predictions based on mycological conditions

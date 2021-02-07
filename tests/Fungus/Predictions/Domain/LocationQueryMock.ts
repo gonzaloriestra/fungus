@@ -1,5 +1,5 @@
-import { LocationQuery } from '../../../../src/Fungus/Forecasts/Application/Generate/LocationQuery';
-import { LocationView } from '../../../../src/Fungus/Forecasts/Application/Generate/LocationView';
+import { LocationQuery } from '../../../../src/Fungus/Predictions/Domain/LocationQuery';
+import { LocationView } from '../../../../src/Fungus/Predictions/Domain/LocationView';
 
 export default class LocationQueryMock implements LocationQuery {
   private mockAll = jest.fn();

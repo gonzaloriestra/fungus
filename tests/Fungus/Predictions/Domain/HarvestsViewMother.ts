@@ -1,7 +1,7 @@
 import faker from 'faker';
 
-import { HarvestsView } from '../../../../src/Fungus/Forecasts/Application/Generate/HarvestsView';
-import { HarvestView } from '../../../../src/Fungus/Forecasts/Application/Generate/HarvestView';
+import { HarvestsView } from '../../../../src/Fungus/Predictions/Domain/HarvestsView';
+import { HarvestView } from '../../../../src/Fungus/Predictions/Domain/HarvestView';
 
 import HarvestViewMother from './HarvestViewMother';
 

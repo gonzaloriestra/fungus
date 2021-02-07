@@ -3,9 +3,9 @@ import { HarvestRepository } from '../../Harvests/Domain/HarvestRepository';
 
 import { LocationId } from '../../Shared/Domain/LocationId';
 
-import { HarvestQuery } from '../Application/Generate/HarvestQuery';
-import { HarvestView } from '../Application/Generate/HarvestView';
-import { HarvestsView } from '../Application/Generate/HarvestsView';
+import { HarvestQuery } from '../Domain/HarvestQuery';
+import { HarvestView } from '../Domain/HarvestView';
+import { HarvestsView } from '../Domain/HarvestsView';
 
 export class RepositoryHarvestQuery implements HarvestQuery {
   repository: HarvestRepository;

@@ -1,7 +1,7 @@
 import { LocationRepository } from '../../Locations/Domain/LocationRepository';
 
-import { LocationQuery } from '../Application/Generate/LocationQuery';
-import { LocationView } from '../Application/Generate/LocationView';
+import { LocationQuery } from '../Domain/LocationQuery';
+import { LocationView } from '../Domain/LocationView';
 
 export class RepositoryLocationQuery implements LocationQuery {
   repository: LocationRepository;

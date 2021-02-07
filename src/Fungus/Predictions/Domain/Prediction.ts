@@ -1,6 +1,7 @@
 export type Primitives = { probability: number };
 
 export class Prediction {
+  // To-Do maybe a value object
   private readonly _probability: number;
 
   constructor({ probability }: Primitives) {
