@@ -1,7 +1,8 @@
-import { WeatherStationRepository } from '../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherStationRepository';
-import { WeatherStation } from '../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherStation';
 import { Coordinate } from '../../../../src/Fungus/Shared/Domain/Coordinate';
 import { WeatherStationId } from '../../../../src/Fungus/Shared/Domain/WeatherStationId';
+
+import { WeatherStationRepository } from '../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherStationRepository';
+import { WeatherStation } from '../../../../src/Fungus/Predictions/Domain/WeatherStations/WeatherStation';
 
 export default class WeatherStationRepositoryMock implements WeatherStationRepository {
   private mockFindBy = jest.fn();
@@ -17,11 +18,11 @@ export default class WeatherStationRepositoryMock implements WeatherStationRepos
     return this.weatherStation;
   }
 
-  returnOnFindBy(weatherStation: WeatherStation): void {
+  returnOnFindById(weatherStation: WeatherStation): void {
     this.weatherStation = weatherStation;
   }
 
-  assertFindByHasBeenCalled(): void {
+  assertFindByIdHasBeenCalled(): void {
     expect(this.mockFindBy).toHaveBeenCalled();
   }
 }

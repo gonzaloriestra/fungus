@@ -38,6 +38,7 @@ export default class Predictor {
     // return new GenerateForecastsResponse({ date, forecasts });
 
     const location = this._locationQuery.findById(locationId);
+
     const weatherStationId = location?.weatherStationId();
 
     let weatherStation;

@@ -22,7 +22,7 @@ describe('Predictor', () => {
     mockWeatherStationRepository = new WeatherStationRepositoryMock();
   });
 
-  it.skip('should return a prediction of a mushroom sprout in a location', async () => {
+  it('should return a prediction of a mushroom sprout in a location', async () => {
     const predictionDate = '2020-11-20';
     mockLocationQuery.returnOnFindById(LocationViewMother.random());
     mockConditionRepository.returnOnFindByMushroom(
@@ -35,7 +35,7 @@ describe('Predictor', () => {
         daysBefore: 1,
       }),
     );
-    mockWeatherStationRepository.returnOnFindBy(WeatherStationMother.create({ externalId: '2235U' }));
+    mockWeatherStationRepository.returnOnFindById(WeatherStationMother.create({ externalId: '2235U' }));
     const subject = new Predictor(mockLocationQuery, mockWeatherStationRepository, mockConditionRepository);
 
     const response = await subject.run({
@@ -46,7 +46,7 @@ describe('Predictor', () => {
 
     mockLocationQuery.assertFindByIdHasBeenCalled();
     mockConditionRepository.assertFindByMushroomHasBeenCalled();
-    mockWeatherStationRepository.assertFindByHasBeenCalled();
+    mockWeatherStationRepository.assertFindByIdHasBeenCalled();
     expect(response.prediction.probability).toBeDefined();
   });
 });

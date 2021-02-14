@@ -1,7 +1,7 @@
 // To-Do Check if this dependencies should be here or we need to follow another approach
 import { MushroomRepository } from '../../../Mushrooms/Domain/MushroomRepository';
 import { MushroomDoesNotExist } from '../../../Mushrooms/Domain/MushroomDoesNotExist';
-import { LocationDoesNotExist } from '../../../Locations/Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
 import { LocationRepository } from '../../../Locations/Domain/LocationRepository';
 
 import { LocationId } from '../../../Shared/Domain/LocationId';

@@ -1,5 +1,5 @@
 import { LocationRepository } from '../../Domain/LocationRepository';
-import { LocationDoesNotExist } from '../../Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
 
 import { FindLocationByIdResponse } from './FindLocationByIdResponse';
 import { FindLocationByIdRequest } from './FindLocationByIdRequest';

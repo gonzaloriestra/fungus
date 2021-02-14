@@ -13,4 +13,8 @@ Feature: Get prediction
       "probability": 0
     }
     """
-#To-do define test when mushroom does not exist, location does not exist, happy path..
+  Scenario: Return expection LocationDoesNotExist when the location has not been defined
+    Given a mushroom with id "7d5663a2-6979-4e43-931c-1d7afcbc41f8" already defined
+    When I send a GET request to "/locations/b096aefd-6303-482b-8797-8af9b3159345/mushrooms/7d5663a2-6979-4e43-931c-1d7afcbc41f8/predictions?date=2020-11-10"
+    Then the response status code should be 404
+#To-do define test when mushroom does not exist happy path..

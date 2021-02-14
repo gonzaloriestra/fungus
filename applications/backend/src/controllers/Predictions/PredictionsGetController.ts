@@ -7,6 +7,7 @@ import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import Predictor from '../../../../../src/Fungus/Predictions/Application/Make/Predictor';
 
 import { Controller } from '../Controller';
+import { LocationDoesNotExist } from '../../../../../src/Fungus/Shared/Domain/LocationDoesNotExist';
 
 export default class PredictionsGetController implements Controller {
   private readonly _predictor: Predictor;
@@ -33,6 +34,10 @@ export default class PredictionsGetController implements Controller {
       return res.response(response.prediction).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);
+
+      if (error instanceof LocationDoesNotExist) {
+        return res.response(error.message).code(httpStatus.NOT_FOUND);
+      }
 
       return res.response(error.message).code(httpStatus.INTERNAL_SERVER_ERROR);
     }

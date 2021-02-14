@@ -1,8 +1,10 @@
+import { LocationId } from '../../Shared/Domain/LocationId';
+
 import { LocationRepository } from '../../Locations/Domain/LocationRepository';
 
 import { LocationQuery } from '../Domain/LocationQuery';
 import { LocationView } from '../Domain/LocationView';
-import { LocationId } from '../../Shared/Domain/LocationId';
+import { LocationDoesNotExist } from '../../Shared/Domain/LocationDoesNotExist';
 
 export class RepositoryLocationQuery implements LocationQuery {
   repository: LocationRepository;
@@ -18,11 +20,11 @@ export class RepositoryLocationQuery implements LocationQuery {
   }
 
   // To-Do throw Expection when it does not exists
-  findById(id: LocationId): LocationView | undefined {
+  findById(id: LocationId): LocationView {
     const location = this.repository.findById(id);
 
     if (!location) {
-      return location;
+      throw new LocationDoesNotExist(id);
     }
 
     return new LocationView(location.toPrimitives());

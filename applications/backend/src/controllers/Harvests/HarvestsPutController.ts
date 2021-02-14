@@ -9,7 +9,7 @@ import { MushroomDoesNotExist } from '../../../../../src/Fungus/Mushrooms/Domain
 import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 
 import { Controller } from '../Controller';
-import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../../../src/Fungus/Shared/Domain/LocationDoesNotExist';
 
 export default class HarvestsPutController implements Controller {
   harvestCreator: HarvestCreator;

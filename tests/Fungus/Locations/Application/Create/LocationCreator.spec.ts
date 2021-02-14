@@ -30,7 +30,7 @@ describe('LocationCreator', () => {
 
     mockLocationRepository.assertFindByIdHasBeenCalled();
     mockLocationRepository.assertAddHasBeenCalled();
-    mockWeatherStationRepository.assertFindByHasBeenCalled();
+    mockWeatherStationRepository.assertFindByIdHasBeenCalled();
   });
 
   it('should not create existing location', () => {

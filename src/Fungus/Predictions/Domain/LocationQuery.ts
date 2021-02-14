@@ -4,5 +4,5 @@ import { LocationView } from './LocationView';
 
 export interface LocationQuery {
   all: () => Array<LocationView>;
-  findById: (id: LocationId) => LocationView | undefined;
+  findById: (id: LocationId) => LocationView;
 }

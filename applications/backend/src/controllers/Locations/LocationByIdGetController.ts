@@ -5,7 +5,7 @@ import { LocationId } from '../../../../../src/Fungus/Shared/Domain/LocationId';
 import LocationByIdFinder from '../../../../../src/Fungus/Locations/Application/FindById/LocationByIdFinder';
 
 import { Controller } from '../Controller';
-import { LocationDoesNotExist } from '../../../../../src/Fungus/Locations/Domain/LocationDoesNotExist';
+import { LocationDoesNotExist } from '../../../../../src/Fungus/Shared/Domain/LocationDoesNotExist';
 
 export default class LocationByIdGetController implements Controller {
   locationByIdFinder: LocationByIdFinder;
