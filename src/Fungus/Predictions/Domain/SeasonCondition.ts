@@ -15,6 +15,17 @@ export class SeasonCondition implements Condition {
   }
 
   async isMet({ date }: { date: Date }): Promise<number> {
+    if (date.getMonth() >= this._from.getMonth() && date.getMonth() <= this._to.getMonth()) {
+      console.log(
+        `Condition SeasonCondition met as ${date.getMonth()} is into the period between ${this._from.getMonth()} and ${this._to.getMonth()}`,
+      );
+      return 10000;
+    }
+    console.log(
+      `Condition SeasonCondition is NOT met as ${date.getMonth()} is not into the period between ${this._from.getMonth()} and ${this._to.getMonth()}`,
+    );
+    return 0;
+
     return date.getMonth() >= this._from.getMonth() && date.getMonth() <= this._to.getMonth() ? 10000 : 0;
   }
 

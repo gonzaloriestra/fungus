@@ -8,27 +8,28 @@ import { AEMETWeatherService } from './AEMETWeatherService';
 
 // To-Do Define in a external file yml or json object
 const initialWeatherStations = [
-  new WeatherStation({
-    id: new WeatherStationId('6710d132-b875-48c9-ad37-9660ead515ab'),
-    externalId: '2362C',
-    location: new Coordinate({ latitude: 42.893772, longitude: -4.713714 }),
-    description: 'CAMPORREDONDO DE ALBA  CUEVA DORADA',
-    gauges: new AEMETWeatherService(),
-  }),
-  new WeatherStation({
-    id: new WeatherStationId('024f48a4-8ebc-4424-a97c-0997b7afa3d4'),
-    externalId: '2276B',
-    location: new Coordinate({ latitude: 42.568817, longitude: -4.575109 }),
-    description: 'VILLAELES DE VALDAVIA',
-    gauges: new AEMETWeatherService(),
-  }),
-  new WeatherStation({
-    id: new WeatherStationId('1a9a401b-cd8b-4c47-a04e-cd1dc0e242de'),
-    externalId: '2568D',
-    location: new Coordinate({ latitude: 42.523502, longitude: -4.851026 }),
-    description: 'VILLAPUN',
-    gauges: new AEMETWeatherService(),
-  }),
+  // To-Do Support Weather station without historical data
+  // new WeatherStation({
+  //   id: new WeatherStationId('6710d132-b875-48c9-ad37-9660ead515ab'),
+  //   externalId: '2362C',
+  //   location: new Coordinate({ latitude: 42.893772, longitude: -4.713714 }),
+  //   description: 'CAMPORREDONDO DE ALBA  CUEVA DORADA',
+  //   gauges: new AEMETWeatherService(),
+  // }),
+  // new WeatherStation({
+  //   id: new WeatherStationId('024f48a4-8ebc-4424-a97c-0997b7afa3d4'),
+  //   externalId: '2276B',
+  //   location: new Coordinate({ latitude: 42.568817, longitude: -4.575109 }),
+  //   description: 'VILLAELES DE VALDAVIA',
+  //   gauges: new AEMETWeatherService(),
+  // }),
+  // new WeatherStation({
+  //   id: new WeatherStationId('1a9a401b-cd8b-4c47-a04e-cd1dc0e242de'),
+  //   externalId: '2568D',
+  //   location: new Coordinate({ latitude: 42.523502, longitude: -4.851026 }),
+  //   description: 'VILLAPUN',
+  //   gauges: new AEMETWeatherService(),
+  // }),
   new WeatherStation({
     id: new WeatherStationId('f7623236-c5db-4c69-a498-26211f0cce38'),
     externalId: '2401X',
@@ -57,13 +58,13 @@ const initialWeatherStations = [
     description: 'PALENCIA-AUTILLA PINO',
     gauges: new AEMETWeatherService(),
   }),
-  new WeatherStation({
-    id: new WeatherStationId('e920ec94-dbb3-4f67-acc7-ea0208d6d943'),
-    externalId: '2243A',
-    location: new Coordinate({ latitude: 42.79806, longitude: -4.277134 }),
-    description: 'AGUILAR DE CAMPOO',
-    gauges: new AEMETWeatherService(),
-  }),
+  // new WeatherStation({
+  //   id: new WeatherStationId('e920ec94-dbb3-4f67-acc7-ea0208d6d943'),
+  //   externalId: '2243A',
+  //   location: new Coordinate({ latitude: 42.79806, longitude: -4.277134 }),
+  //   description: 'AGUILAR DE CAMPOO',
+  //   gauges: new AEMETWeatherService(),
+  // }),
 ];
 
 export class InMemoryAEMETWeatherStationRepository implements WeatherStationRepository {

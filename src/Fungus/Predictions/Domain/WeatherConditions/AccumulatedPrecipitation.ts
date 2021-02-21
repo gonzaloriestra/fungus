@@ -41,12 +41,18 @@ export class AccumulatedPrecipitation implements WeatherCondition {
       return 0;
     }
 
-    const to = new Date(date.setDate(date.getDate() - this._daysBefore));
-    const from = new Date(date.setDate(to.getDate() - this._daysRange));
+    const auxDate = new Date(date);
+    const to = new Date(auxDate.setDate(date.getDate() - this._daysBefore));
+    const from = new Date(auxDate.setDate(to.getDate() - this._daysRange));
 
     const accumulatedPrecipitation = await this._weatherStation.precipitation({ from, to });
     // To-Do value object for the results
-    return accumulatedPrecipitation >= this._accumulation ? 10000 : 0;
+    if (accumulatedPrecipitation >= this._accumulation) {
+      console.log(`Condition AccumulatedPrecipitation met with ${accumulatedPrecipitation} accumulated precipitation`);
+      return 10000;
+    }
+
+    return 0;
   }
 
   mushroomId(): MushroomId {

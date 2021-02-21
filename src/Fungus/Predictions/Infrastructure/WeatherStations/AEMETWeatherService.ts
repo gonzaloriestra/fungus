@@ -47,6 +47,8 @@ export class AEMETWeatherService implements WeatherService {
     const formattedTo = to.UTCFormat();
     const path = `${BASE_URL}/valores/climatologicos/diarios/datos/fechaini/${formattedFrom}/fechafin/${formattedTo}/estacion/${id}?api_key=${API_KEY}`;
 
+    // To-do Implement a log component
+    console.log(`Weather Station call with path: ${path}`);
     const responseDataGenerated = await axios.get<ResponseDataWasGenerated>(path);
 
     if (responseDataGenerated.data.estado != 200 || !responseDataGenerated.data.datos) {
