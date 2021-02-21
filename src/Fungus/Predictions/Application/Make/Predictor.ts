@@ -39,7 +39,7 @@ export default class Predictor {
 
     const location = this._locationQuery.findById(locationId);
 
-    const weatherStationId = location?.weatherStationId();
+    const weatherStationId = location.weatherStationId();
 
     let weatherStation;
     if (weatherStationId) {
