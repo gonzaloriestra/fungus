@@ -1,32 +1,25 @@
-import Date from '../../Shared/Domain/Date';
 import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { Condition } from './Condition';
+import { Season } from './Season';
 
 export class SeasonCondition implements Condition {
   private readonly _mushroomId: MushroomId;
-  private readonly _from: Date;
-  private readonly _to: Date;
+  private readonly _season: Season;
 
-  constructor({ mushroomId, from, to }: { mushroomId: MushroomId; from: Date; to: Date }) {
+  constructor({ mushroomId, season }: { mushroomId: MushroomId; season: Season }) {
     this._mushroomId = mushroomId;
-    this._from = from;
-    this._to = to;
+    this._season = season;
   }
 
   async isMet({ date }: { date: Date }): Promise<number> {
-    if (date.getMonth() >= this._from.getMonth() && date.getMonth() <= this._to.getMonth()) {
-      console.log(
-        `Condition SeasonCondition met as ${date.getMonth()} is into the period between ${this._from.getMonth()} and ${this._to.getMonth()}`,
-      );
+    if (this._season.isPeriod({ date })) {
+      console.log(`Condition SeasonCondition met as ${date.toUTCString()} is into the period`);
       return 10000;
     }
-    console.log(
-      `Condition SeasonCondition is NOT met as ${date.getMonth()} is not into the period between ${this._from.getMonth()} and ${this._to.getMonth()}`,
-    );
-    return 0;
 
-    return date.getMonth() >= this._from.getMonth() && date.getMonth() <= this._to.getMonth() ? 10000 : 0;
+    console.log(`Condition SeasonCondition is NOT met as ${date.toUTCString()} is not into the period`);
+    return 0;
   }
 
   mushroomId(): MushroomId {
