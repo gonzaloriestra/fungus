@@ -2,6 +2,8 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Button, Header, Icon } from 'semantic-ui-react';
 
+import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+
 import Location from './models/Location';
 import getLocation from './queries/getLocation';
 import Map from './components/Map';
@@ -40,7 +42,7 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async ({ params }) => {
   const resLocation = await getLocation({ id: params.id });
 
   let harvests;
@@ -53,4 +55,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   // To-Do: Controls errors
   return { props: { location: resLocation.data, harvests } };
-};
+});

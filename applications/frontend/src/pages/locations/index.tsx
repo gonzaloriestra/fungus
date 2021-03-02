@@ -3,6 +3,8 @@ import { Header, Icon, Item as SemanticItem, Container, Button } from 'semantic-
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 
+import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+
 import Location from './models/Location';
 import getMyLocations from './queries/getMyLocations';
 
@@ -33,8 +35,8 @@ export default function Locations({ locations }: LocationsProps): JSX.Element {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
   const res = await getMyLocations();
 
   return { props: { locations: res.data } };
-};
+});

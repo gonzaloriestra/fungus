@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Header, Icon, Form, Button, Select } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
+import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+
 import addHarvest from './queries/addHarvest';
 import { GetServerSideProps } from 'next';
 import getMushrooms from './queries/getMushrooms';
@@ -64,8 +66,8 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
   const res = await getMushrooms();
 
   return { props: { mushrooms: res.data } };
-};
+});

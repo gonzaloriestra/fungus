@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import 'semantic-ui-css/semantic.min.css';
 
+import AuthenticationMiddleware from '../authentication/AuthenticationMiddleware';
+
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -14,7 +16,9 @@ export default function App({ Component, pageProps }) {
         />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
       </Head>
-      <Component {...pageProps} />
+      <AuthenticationMiddleware>
+        <Component {...pageProps} />
+      </AuthenticationMiddleware>
     </>
   );
 }

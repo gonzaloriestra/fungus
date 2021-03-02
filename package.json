@@ -27,6 +27,7 @@
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.1.0",
     "@hapi/hapi": "^20.0.3",
     "@hapi/jwt": "^2.0.1",
     "axios": "^0.20.0",

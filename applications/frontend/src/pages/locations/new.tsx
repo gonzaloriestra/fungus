@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Header, Icon, Form, Button } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
+import { withClientAuthRequired } from '../../authentication/withAuthRequired';
+
 import Map from './components/Map';
 import addLocation from './queries/addLocation';
 
 type NewLocationProps = {};
 
-export default function NewLocation({}: NewLocationProps): JSX.Element {
+function NewLocation({}: NewLocationProps): JSX.Element {
   const [name, setName] = useState('');
   const [zone, setZone] = useState([]);
   const router = useRouter();
@@ -51,3 +53,5 @@ export default function NewLocation({}: NewLocationProps): JSX.Element {
     </>
   );
 }
+
+export default withClientAuthRequired(NewLocation);

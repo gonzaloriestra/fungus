@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Header, Icon, Container, Form, Select, Button, Label } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
+
+import withAuthRequired from '../../authentication/withAuthRequired';
+
 import getMushrooms from '../harvests/queries/getMushrooms';
 import getMyLocations from '../locations/queries/getMyLocations';
 import makePrediction from './queries/makePrediction';
@@ -73,10 +76,12 @@ export default function Predictions({ locations, mushrooms }: PredictionsProps):
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const resMushrooms = await getMushrooms();
-  // To-Do Share this query
-  const resLocations = await getMyLocations();
+export const getServerSideProps: GetServerSideProps = withAuthRequired({
+  async getServerSideProps() {
+    const resMushrooms = await getMushrooms();
+    // To-Do Share this query
+    const resLocations = await getMyLocations();
 
-  return { props: { mushrooms: resMushrooms.data, locations: resLocations.data } };
-};
+    return { props: { mushrooms: resMushrooms.data, locations: resLocations.data } };
+  },
+});
