@@ -6,10 +6,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 import AuthenticationButton from '../authentication/components/AuthenticationButton';
 
 export default function Home(): JSX.Element {
-  const { user, error, isLoading } = useUser();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  const { user } = useUser();
 
   return (
     <div>
