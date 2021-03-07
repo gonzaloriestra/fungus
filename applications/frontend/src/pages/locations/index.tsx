@@ -1,20 +1,29 @@
 import React from 'react';
 import { Header, Icon, Item as SemanticItem, Container, Button } from 'semantic-ui-react';
-import { GetServerSideProps } from 'next';
 import Link from 'next/link';
+import useSWR from 'swr';
 
-import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+import fetcher from '../../fetching/fetcher';
+import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
 import Location from './models/Location';
-import getMyLocations from './queries/getMyLocations';
 
 import Item from './components/Item';
 
-type LocationsProps = {
-  locations: Array<Location>;
-};
+function Locations(): JSX.Element {
+  const result = useSWR(`/api/me/locations`, fetcher);
 
-export default function Locations({ locations }: LocationsProps): JSX.Element {
+  const locations: Array<Location> = result.data;
+  const error: Error = result.error;
+
+  if (error) {
+    return <div>Loading failed: {error.message}</div>;
+  }
+
+  if (!locations) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Header as="h1">
@@ -35,8 +44,4 @@ export default function Locations({ locations }: LocationsProps): JSX.Element {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
-  const res = await getMyLocations();
-
-  return { props: { locations: res.data } };
-});
+export default withClientAuthRequired(Locations);

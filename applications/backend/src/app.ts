@@ -4,6 +4,8 @@ import Jwt from '@hapi/jwt';
 
 import { registerRoutes } from './routes';
 
+const JWT_SIGNING_SECRET = process.env.JWT_SIGNING_SECRET;
+
 /**
  * Initialize the app
  */
@@ -23,7 +25,7 @@ export default async function initialize(): Promise<Server> {
 
     server.auth.strategy('jwt', 'jwt', {
       keys: {
-        key: 'some_shared_secret',
+        key: JWT_SIGNING_SECRET,
       },
       verify: {
         aud: false,
@@ -33,9 +35,12 @@ export default async function initialize(): Promise<Server> {
         exp: false,
       },
       validate: (artifacts: { decoded: { payload: { userId: string } } }, _: any, __: any) => {
+        // @ts-ignore
+        const userId = artifacts?.decoded?.payload['http://fungus/user_id'];
+
         return {
           isValid: true,
-          credentials: { userId: artifacts.decoded.payload.userId },
+          credentials: { userId },
         };
       },
     });

@@ -12,7 +12,7 @@
     "yarn": ">=1.21.0"
   },
   "scripts": {
-    "start:dev:frontend": "NODE_ENV=development next dev applications/frontend",
+    "start:dev:frontend": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev applications/frontend",
     "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 -r dotenv/config applications/backend/server.ts dotenv_config_path=./config/.env.development",
     "start:frontend": "NODE_ENV=production next start applications/frontend",
     "start:backend": "NODE_ENV=production node -r dotenv/config dist/src/applications/fungus/backend/server dotenv_config_path=./config/.env.production",
@@ -46,6 +46,7 @@
     "react-leaflet-draw": "^0.19.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1",
+    "swr": "^0.4.2",
     "ts-node": "^8.9.1",
     "uuid": "^7.0.2"
   },

@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Header, Icon, Container, Form, Select, Button, Label } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
+import useSWR from 'swr';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+import fetcher from '../../fetching/fetcher';
 
 import getMushrooms from '../harvests/queries/getMushrooms';
-import getMyLocations from '../locations/queries/getMyLocations';
 import makePrediction from './queries/makePrediction';
+import Location from '../locations/models/Location';
 
 type PredictionsProps = {
   mushrooms: Array<{ id: string; scientificName: string }>;
   locations: Array<{ id: string; name: string }>;
 };
 
-export default function Predictions({ locations, mushrooms }: PredictionsProps): JSX.Element {
+export default function Predictions({ mushrooms }: PredictionsProps): JSX.Element {
   const [date, setDate] = useState();
   const [locationId, setLocationId] = useState();
   const [mushroomId, setMushroomId] = useState();
@@ -26,7 +28,19 @@ export default function Predictions({ locations, mushrooms }: PredictionsProps):
   };
 
   function transformLocationsInOptions() {
-    return locations.map((location) => ({ key: location.id, value: location.id, text: location.name }));
+    const result = useSWR(`/api/me/locations`, fetcher);
+    const locations: Array<Location> = result.data;
+    // const error: Error = result.error;
+
+    // if (error) {
+    //   return <div>Loading failed: {error.message}</div>;
+    // }
+
+    // if (!locations) {
+    //   return <div>Loading...</div>;
+    // }
+
+    return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name }));
   }
 
   function transformMushroomsInOptions() {
@@ -78,8 +92,6 @@ export default function Predictions({ locations, mushrooms }: PredictionsProps):
 
 export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
   const resMushrooms = await getMushrooms();
-  // To-Do Share this query
-  const resLocations = await getMyLocations();
 
-  return { props: { mushrooms: resMushrooms.data, locations: resLocations.data } };
+  return { props: { mushrooms: resMushrooms.data } };
 });
