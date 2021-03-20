@@ -9,9 +9,12 @@ import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 import Location from './models/Location';
 
 import Item from './components/Item';
+import { useUser } from '@auth0/nextjs-auth0';
 
 function Locations(): JSX.Element {
   const result = useSWR(`/api/me/locations`, fetcher);
+
+  const { user } = useUser();
 
   const locations: Array<Location> = result.data;
   const error: Error = result.error;
@@ -29,6 +32,10 @@ function Locations(): JSX.Element {
       <Header as="h1">
         <Icon name="map outline" />
         <Header.Content>Locations</Header.Content>
+        <Header.Content>Welcome {user ? ` ${user.nickname}` : ''}</Header.Content>
+      </Header>
+      <Header as="h2">
+        <Link href="/predictions">Make predictions</Link>
       </Header>
       <Container>
         <Link href="/locations/new">
