@@ -42,7 +42,7 @@ const HomepageContent = (): JSX.Element => (
 
 export default function Home(): JSX.Element {
   return (
-    <div>
+    <>
       <Head>
         <title>Fungus</title>
         <link rel="icon" href="/favicon.ico" />
@@ -56,6 +56,6 @@ export default function Home(): JSX.Element {
           <HomepageContent />
         </Segment>
       </main>
-    </div>
+    </>
   );
 }
