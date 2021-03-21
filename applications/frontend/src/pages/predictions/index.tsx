@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Header, Icon, Container, Form, Select, Button, Label } from 'semantic-ui-react';
+import { Button, Container, Form, Label, Select } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 import useSWR from 'swr';
 
@@ -9,6 +9,7 @@ import fetcher from '../../fetching/fetcher';
 import getMushrooms from '../harvests/queries/getMushrooms';
 import makePrediction from './queries/makePrediction';
 import Location from '../locations/models/Location';
+import Header, { ActivePage } from '../../components/Header';
 
 type PredictionsProps = {
   mushrooms: Array<{ id: string; scientificName: string }>;
@@ -49,10 +50,7 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
 
   return (
     <>
-      <Header as="h1">
-        <Icon name="map outline" />
-        <Header.Content>Predictions</Header.Content>
-      </Header>
+      <Header activePage={ActivePage.predictions} />
       <Container>
         <Form
           style={{
