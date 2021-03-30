@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { Button, Header, Icon } from 'semantic-ui-react';
+import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
@@ -10,6 +10,7 @@ import Map from './components/Map';
 import HarvestList from './components/HarvestList';
 import getHarvestsByLocationId from './queries/getHarvestsByLocationId';
 import Link from 'next/link';
+import Header, { ActivePage } from '../../components/Header';
 
 type LocationDetailsProps = {
   location: Location;
@@ -18,10 +19,7 @@ type LocationDetailsProps = {
 export default function LocationDetails({ location, harvests }: LocationDetailsProps): JSX.Element {
   return (
     <>
-      <Header as="h1">
-        <Icon name="map outline" />
-        <Header.Content>Location</Header.Content>
-      </Header>
+      <Header activePage={ActivePage.locations} />
       <div
         style={{
           height: '500px',
@@ -30,10 +28,10 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
       >
         <Map location={location} />
       </div>
-      <Header as="h2">
+      <SemanticHeader as="h2">
         <Icon name="calendar alternate outline" />
-        <Header.Content>Harvests</Header.Content>
-      </Header>
+        <SemanticHeader.Content>Harvests</SemanticHeader.Content>
+      </SemanticHeader>
       <HarvestList harvests={harvests} />
       <Link href={`/harvests/new?locationId=${location.id}`}>
         <Button primary>Add Harvest</Button>
