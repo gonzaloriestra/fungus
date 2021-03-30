@@ -38,7 +38,7 @@ function Locations(): JSX.Element {
         </Button>
         <SemanticItem.Group divided relaxed>
           {locations.map((location) => (
-            <Item key={location.id} title={location.name} detailsUrl={`locations/${location.id}`} />
+            <Item key={location.id} id={location.id} title={location.name} detailsUrl={`locations/${location.id}`} />
           ))}
         </SemanticItem.Group>
       </Container>

@@ -5,6 +5,7 @@ import { LocationRepository } from '../Domain/LocationRepository';
 import { Location } from '../Domain/Location';
 import { Locations } from '../Domain/Locations';
 
+// To-Do move to test folder as it is not production code
 export class InMemoryLocationRepository implements LocationRepository {
   private _locations: Locations;
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Container, Form, Label, Select } from 'semantic-ui-react';
+import { Button, Container, Form, Select, Header as SemanticHeader, Dimmer, Icon } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
 import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 import fetcher from '../../fetching/fetcher';
@@ -17,15 +18,28 @@ type PredictionsProps = {
 };
 
 export default function Predictions({ mushrooms }: PredictionsProps): JSX.Element {
+  const router = useRouter();
+
   const [date, setDate] = useState();
-  const [locationId, setLocationId] = useState();
+  const [locationId, setLocationId] = useState(router.query.locationId);
   const [mushroomId, setMushroomId] = useState();
   const [prediction, setPrediction] = useState();
+  const [active, setActive] = useState();
 
   const handleOnSubmit = async () => {
     const response = await makePrediction({ date, locationId, mushroomId });
 
     setPrediction(response?.data?.probability);
+
+    setActive(true);
+  };
+
+  const handleClose = (): void => setActive(false);
+
+  const handleOnChangeLocation = (_, data): void => {
+    setLocationId(data.value);
+
+    router.push(`predictions/?locationId=${data.value}`, undefined, { shallow: true });
   };
 
   function transformLocationsInOptions() {
@@ -52,37 +66,38 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
     <>
       <Header activePage={ActivePage.predictions} />
       <Container>
-        <Form
-          style={{
-            padding: '0 100px',
-          }}
-          onSubmit={handleOnSubmit}
-        >
+        <Form onSubmit={handleOnSubmit}>
           <Form.Field>
-            <label>Date</label>
-            <input type="date" placeholder="Date" onChange={(e): void => setDate(e.target.value)} />
+            <label>¿Cuándo?</label>
+            <input type="date" onChange={(e): void => setDate(e.target.value)} placeholder="Introduce fecha" />
           </Form.Field>
           <Form.Field>
-            <label>Mushroom</label>
+            <label>¿Qué seta?</label>
             <Select
-              placeholder="Mushroom"
+              placeholder="Seleciona especie"
               options={transformMushroomsInOptions()}
               onChange={(_, data): void => setMushroomId(data.value)}
             />
           </Form.Field>
           <Form.Field>
-            <label>Location</label>
+            <label>¿Para qué localización?</label>
             <Select
-              placeholder="Location"
+              placeholder="Seleciona localización"
               options={transformLocationsInOptions()}
-              onChange={(_, data): void => setLocationId(data.value)}
+              onChange={handleOnChangeLocation}
+              value={locationId}
             />
           </Form.Field>
-          <Button type="submit" primary>
-            Make prediction
+          <Button floated={'right'} type="submit" primary>
+            Mostrar predicción
           </Button>
         </Form>
-        <Label>{prediction}</Label>
+        <Dimmer active={active} onClickOutside={handleClose} page>
+          <SemanticHeader as="h2" icon inverted>
+            <Icon name="heart" />
+            <SemanticHeader.Subheader>{prediction}</SemanticHeader.Subheader>
+          </SemanticHeader>
+        </Dimmer>
       </Container>
     </>
   );

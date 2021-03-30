@@ -2,11 +2,12 @@ import React from 'react';
 import { Item as SemanticItem, Button, Icon } from 'semantic-ui-react';
 
 type ItemProps = {
+  id: string;
   title: string;
   detailsUrl: string;
 };
 
-const Item = ({ title, detailsUrl }: ItemProps): JSX.Element => {
+const Item = ({ id, title, detailsUrl }: ItemProps): JSX.Element => {
   return (
     <SemanticItem>
       <SemanticItem.Image as="a" href={detailsUrl}>
@@ -17,7 +18,7 @@ const Item = ({ title, detailsUrl }: ItemProps): JSX.Element => {
           {title}
         </SemanticItem.Header>
         <SemanticItem.Extra>
-          <Button as="a" href="/predictions" floated="right">
+          <Button as="a" href={`/predictions?locationId=${id}`} floated="right">
             Ver posibilidades de recolecta
             <Icon name="right chevron" />
           </Button>

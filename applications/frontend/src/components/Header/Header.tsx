@@ -9,7 +9,7 @@ type HeaderProps = { activePage: ActivePage };
 
 export default function Header({ activePage }: HeaderProps): JSX.Element {
   return (
-    <Menu size="large" inverted stackable>
+    <Menu size="large" pointing secondary>
       <Menu.Item link name="locations" href="/locations" active={activePage === ActivePage.locations}>
         Mis Zonas
       </Menu.Item>
