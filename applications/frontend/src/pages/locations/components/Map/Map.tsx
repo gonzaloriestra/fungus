@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Map as MapLeaflet, TileLayer, Polygon, FeatureGroup } from 'react-leaflet';
+import { Map as MapLeaflet, WMSTileLayer, TileLayer, Polygon, FeatureGroup } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
 import { EditControl } from 'react-leaflet-draw';
 
@@ -54,6 +54,16 @@ const Map = ({
             marker: false,
             circlemarker: false,
             polyline: false,
+            polygon: {
+              allowIntersection: false,
+              drawError: {
+                color: '#e1e100',
+                message: 'Oops! you cannot draw in that way.',
+              },
+              shapeOptions: {
+                color: '#b5cc18',
+              },
+            },
           }}
           onCreated={handleOnCreate}
         />
@@ -74,6 +84,7 @@ const Map = ({
   return (
     <MapLeaflet className={styles.container} center={position} zoom={zoom}>
       <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+      <WMSTileLayer url="https://www.ign.es/wms-inspire/ign-base" format="image/png" layers="IGNBaseOrto" transparent />
       {renderEditionMode(mode)}
       {renderLocation(location)}
     </MapLeaflet>
