@@ -31,6 +31,7 @@ const Map = ({
 
   const [position] = useState(initialPosition);
   const [zoom] = useState(initialZoom);
+  const [hasLocationDefined, setHasLocationDefined] = useState(mode === 'view');
 
   const renderEditionMode = (mode): JSX.Element => {
     if (mode !== 'edit') {
@@ -40,7 +41,15 @@ const Map = ({
       if (event.layer?.editing?.latlngs[0][0]) {
         const coordinates = event.layer?.editing?.latlngs[0][0];
 
+        setHasLocationDefined(true);
+
         onLocationCreated(coordinates.map((coordinate) => ({ latitude: coordinate.lat, longitude: coordinate.lng })));
+      }
+    };
+
+    const handleOnDelete = (event): void => {
+      if (event.layers?.getLayers().length > 0) {
+        setHasLocationDefined(false);
       }
     };
 
@@ -54,18 +63,21 @@ const Map = ({
             marker: false,
             circlemarker: false,
             polyline: false,
-            polygon: {
-              allowIntersection: false,
-              drawError: {
-                color: '#e1e100',
-                message: 'Oops! you cannot draw in that way.',
-              },
-              shapeOptions: {
-                color: '#b5cc18',
-              },
-            },
+            polygon: hasLocationDefined
+              ? false
+              : {
+                  allowIntersection: false,
+                  drawError: {
+                    color: '#e1e100',
+                    message: 'Oops! you cannot draw in that way.',
+                  },
+                  shapeOptions: {
+                    color: '#b5cc18',
+                  },
+                },
           }}
           onCreated={handleOnCreate}
+          onDeleted={handleOnDelete}
         />
       </FeatureGroup>
     );
