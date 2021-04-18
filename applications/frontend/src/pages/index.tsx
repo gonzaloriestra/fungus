@@ -16,7 +16,7 @@ const HomepageHeading = (): JSX.Element => (
     />
     <Button href="/locations" primary size="huge">
       Comenzar
-      <Icon name="right arrow" />
+      <Icon name="arrow right" />
     </Button>
   </Container>
 );

@@ -20,7 +20,7 @@ const Item = ({ id, title, detailsUrl }: ItemProps): JSX.Element => {
         <SemanticItem.Extra>
           <Button as="a" href={`/predictions?locationId=${id}`} floated="right">
             Ver posibilidades de recolecta
-            <Icon name="right chevron" />
+            <Icon name="chevron right" />
           </Button>
         </SemanticItem.Extra>
       </SemanticItem.Content>

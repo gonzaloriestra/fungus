@@ -51,7 +51,8 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
           <Select
             placeholder="Mushroom"
             options={transformMushroomsInOptions()}
-            onChange={(_, data): void => setMushroomId(data.value)}
+            // @ts-ignore
+            onChange={(_, data: { value: string}): void => setMushroomId(data.value)}
           />
         </Form.Field>
         <Form.Field>

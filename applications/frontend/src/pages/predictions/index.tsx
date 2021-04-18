@@ -20,11 +20,11 @@ type PredictionsProps = {
 export default function Predictions({ mushrooms }: PredictionsProps): JSX.Element {
   const router = useRouter();
 
-  const [date, setDate] = useState();
+  const [date, setDate] = useState('');
   const [locationId, setLocationId] = useState(router.query.locationId);
-  const [mushroomId, setMushroomId] = useState();
-  const [prediction, setPrediction] = useState();
-  const [active, setActive] = useState();
+  const [mushroomId, setMushroomId] = useState('');
+  const [prediction, setPrediction] = useState('');
+  const [active, setActive] = useState(false);
 
   const handleOnSubmit = async () => {
     const response = await makePrediction({ date, locationId, mushroomId });
@@ -76,6 +76,7 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
             <Select
               placeholder="Seleciona especie"
               options={transformMushroomsInOptions()}
+              // @ts-ignore
               onChange={(_, data): void => setMushroomId(data.value)}
             />
           </Form.Field>

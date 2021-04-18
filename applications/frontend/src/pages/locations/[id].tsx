@@ -14,6 +14,8 @@ import Header, { ActivePage } from '../../components/Header';
 
 type LocationDetailsProps = {
   location: Location;
+  // To-Do make a right model for harvests
+  harvests: object;
 };
 
 export default function LocationDetails({ location, harvests }: LocationDetailsProps): JSX.Element {
