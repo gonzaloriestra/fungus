@@ -1,11 +1,11 @@
 {
-  "name": "frontgus",
+  "name": "fungus_frontend",
   "version": "0.1.0",
-  "description": "",
+  "description": "Frontend application of Fungus",
   "private": true,
   "license": "",
   "repository": {
-    "url": "https://github.com/ssanchezmarc/fungus/applications/frontend"
+    "url": "https://github.com/ssanchezmarc/fungus/tree/master/applications/frontend"
   },
   "engines": {
     "node": ">=14.16.1",
@@ -17,10 +17,7 @@
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
-    "build": "next build",
-    "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:di": "copy src/applications/**/*.{json,yaml} dist/src/applications",
-    "build:clean": "rm -r dist; exit 0"
+    "build": "next build"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.1.0",
