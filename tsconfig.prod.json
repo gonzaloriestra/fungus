@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
   "baseUrl": ".",
-  "exclude": ["node_modules", "tests", "applications/backend/tests"]
+  "exclude": ["node_modules", "tests", "applications/backend/tests", "applications/frontend"]
 }

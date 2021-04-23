@@ -12,7 +12,8 @@ const JWT_SIGNING_SECRET = process.env.JWT_SIGNING_SECRET;
 export default async function initialize(): Promise<Server> {
   try {
     const server = new Server({
-      host: process.env.HOST || 'localhost',
+      // To-Do localhost for dev and for prod will be 0.0.0.0
+      host: process.env.HOST || '0.0.0.0',
       port: process.env.PORT || 3001,
       routes: {
         cors: {

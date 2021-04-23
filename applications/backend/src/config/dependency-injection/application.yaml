@@ -3,7 +3,7 @@ services:
   ##  Predictions
   # Services
   fungus.predictions.Predictor:
-    class: ../../../../../src/Fungus/Predictions/Application/make/Predictor
+    class: ../../../../../src/Fungus/Predictions/Application/Make/Predictor
     arguments: [ "@fungus.locations.LocationQuery", "@fungus.predictions.WeatherStationRepository", "@fungus.predictions.ConditionRepository" ]
 
   # Controllers
@@ -20,11 +20,11 @@ services:
   ##  Harvests
   # Services
   fungus.harvests.HarvestCreator:
-    class: ../../../../../src/Fungus/Harvests/Application/create/HarvestCreator
+    class: ../../../../../src/Fungus/Harvests/Application/Create/HarvestCreator
     arguments: ["@fungus.harvests.HarvestRepository", "@fungus.mushrooms.MushroomRepository", "@fungus.locations.LocationRepository"]
 
   fungus.harvests.HarvestCleaner:
-    class: ../../../../../src/Fungus/Harvests/Application/clean/HarvestCleaner
+    class: ../../../../../src/Fungus/Harvests/Application/Clean/HarvestCleaner
     arguments: ["@fungus.harvests.HarvestRepository"]
 
   fungus.harvests.HarvestsByLocationFinder:
@@ -52,11 +52,11 @@ services:
   ##  Mushrooms
   # Services
   fungus.mushrooms.MushroomCreator:
-    class: ../../../../../src/Fungus/Mushrooms/Application/create/MushroomCreator
+    class: ../../../../../src/Fungus/Mushrooms/Application/Create/MushroomCreator
     arguments: ["@fungus.mushrooms.MushroomRepository"]
 
   fungus.mushrooms.MushroomsCleaner:
-    class: ../../../../../src/Fungus/Mushrooms/Application/clean/MushroomsCleaner
+    class: ../../../../../src/Fungus/Mushrooms/Application/Clean/MushroomsCleaner
     arguments: ["@fungus.mushrooms.MushroomRepository"]
 
   fungus.mushrooms.MushroomsFinder:
@@ -79,7 +79,7 @@ services:
   ##  Locations
   # Services
   fungus.locations.LocationCreator:
-    class: ../../../../../src/Fungus/Locations/Application/create/LocationCreator
+    class: ../../../../../src/Fungus/Locations/Application/Create/LocationCreator
     arguments: ["@fungus.locations.LocationRepository", "@fungus.locations.WeatherStationRepository"]
 
   fungus.locations.LocationsByUserIdFinder:
@@ -91,7 +91,7 @@ services:
     arguments: ["@fungus.locations.LocationRepository"]
 
   fungus.locations.LocationCleaner:
-    class: ../../../../../src/Fungus/Locations/Application/clean/LocationCleaner
+    class: ../../../../../src/Fungus/Locations/Application/Clean/LocationCleaner
     arguments: ["@fungus.locations.LocationRepository"]
 
   # Queries

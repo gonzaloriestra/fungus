@@ -15,7 +15,7 @@
     "start:dev:frontend": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev applications/frontend",
     "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 -r dotenv/config applications/backend/server.ts dotenv_config_path=./config/.env.development",
     "start:frontend": "NODE_ENV=production next start applications/frontend",
-    "start:backend": "NODE_ENV=production node -r dotenv/config dist/src/applications/fungus/backend/server dotenv_config_path=./config/.env.production",
+    "start:backend": "NODE_ENV=production node -r dotenv/config dist/applications/backend/server dotenv_config_path=./config/.env.production",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
@@ -23,7 +23,7 @@
     "build:frontend": "next build applications/frontend",
     "build:backend": "yarn run build:clean && yarn run build:tsc && yarn run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:di": "copy src/applications/**/*.{json,yaml} dist/src/applications",
+    "build:di": "copy applications/backend/**/*.{json,yaml} dist/applications/backend",
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
