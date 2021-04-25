@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Map as MapLeaflet, WMSTileLayer, TileLayer, Polygon, FeatureGroup } from 'react-leaflet';
-import { LatLngExpression } from 'leaflet';
 import { EditControl } from 'react-leaflet-draw';
 
 import Location from '../../models/Location';
@@ -15,7 +14,7 @@ type MapProps = {
   onLocationCreated?: (zone: Array<Coordinate>) => void;
 };
 
-function mapPositionFromZone(zone): LatLngExpression {
+function mapPositionFromZone(zone): { lat: number; lng: number } {
   if (zone && zone.midpoint) {
     return { lat: zone.midpoint.latitude, lng: zone.midpoint.longitude };
   }

@@ -4,11 +4,11 @@ import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
-import Location from './models/Location';
-import getLocation from './queries/getLocation';
-import Map from './components/Map';
-import HarvestList from './components/HarvestList';
-import getHarvestsByLocationId from './queries/getHarvestsByLocationId';
+import Location from '../../models/Location';
+import getLocation from '../../queries/getLocation';
+import Map from '../../components/Map';
+import HarvestList from '../../components/HarvestList';
+import getHarvestsByLocationId from '../../queries/getHarvestsByLocationId';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 

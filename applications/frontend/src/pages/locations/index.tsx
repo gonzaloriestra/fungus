@@ -7,12 +7,12 @@ import Link from 'next/link';
 import fetcher from '../../fetching/fetcher';
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import Location from './models/Location';
+import Location from '../../models/Location';
 
-import Item from './components/Item';
+import Item from '../../components/Item';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
-import NewLocationModal from './components/NewLocationModal';
+import NewLocationModal from '../../components/NewLocationModal';
 
 function Locations(): JSX.Element {
   const result = useSWR(`/api/me/locations`, fetcher);

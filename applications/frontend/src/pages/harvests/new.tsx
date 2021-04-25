@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
-import addHarvest from './queries/addHarvest';
+import addHarvest from '../../queries/addHarvest';
 import { GetServerSideProps } from 'next';
-import getMushrooms from './queries/getMushrooms';
+import getMushrooms from '../../queries/getMushrooms';
 
 type NewHarvestProps = { mushrooms: Array<{ id: string; scientificName: string }> };
 

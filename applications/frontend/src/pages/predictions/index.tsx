@@ -7,9 +7,9 @@ import { useRouter } from 'next/router';
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 import fetcher from '../../fetching/fetcher';
 
-import getMushrooms from '../harvests/queries/getMushrooms';
-import makePrediction from './queries/makePrediction';
-import Location from '../locations/models/Location';
+import getMushrooms from '../../queries/getMushrooms';
+import makePrediction from '../../queries/makePrediction';
+import Location from '../../models/Location';
 import Header, { ActivePage } from '../../components/Header';
 
 type PredictionsProps = {
