@@ -9,6 +9,10 @@ COPY ./tsconfig.json ./tsconfig.json
 RUN yarn install
 
 COPY ./src /app/src/
+COPY ./.env.local ./.env.local
+COPY ./.env.production ./.env.production
+
+RUN yarn build
 
 EXPOSE 3000
-CMD ["yarn", "start:dev"]
+CMD ["yarn", "start"]

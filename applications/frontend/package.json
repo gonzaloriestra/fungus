@@ -13,11 +13,11 @@
   },
   "scripts": {
     "start:dev": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
     "start": "NODE_ENV=production next start",
     "test": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
-    "test:unit:watch": "NODE_ENV=test jest --watch",
-    "build": "next build"
+    "test:unit:watch": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.1.0",

@@ -1,16 +1,13 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
-import axios from 'axios';
+import client from '../../../queries/client';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
     const { accessToken } = await getAccessToken(req, res);
 
     // To-Do create a API client for locations const client = new BillingApiClient(accessToken);
-    const result = await axios('http://localhost:3001/me/locations', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const result = await client.get({ path: '/me/locations', accessToken });
+
     res.status(200).json(result.data);
   } catch (error) {
     console.error(error);
