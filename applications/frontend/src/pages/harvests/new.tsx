@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
-import addHarvest from '../../queries/addHarvest';
+import add from '../../fetching/harvests/add';
 import { GetServerSideProps } from 'next';
-import getMushrooms from '../../queries/getMushrooms';
+import getMushrooms from '../../fetching/getMushrooms';
 
 type NewHarvestProps = { mushrooms: Array<{ id: string; scientificName: string }> };
 
@@ -20,7 +20,7 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
   const handleOnSubmit = async () => {
     const locationId = router.query.locationId;
 
-    await addHarvest({ date, locationId, mushroomId, quantity });
+    await add({ date, locationId, mushroomId, quantity });
 
     router.push(`/locations/${locationId}`);
   };
@@ -52,7 +52,7 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
             placeholder="Mushroom"
             options={transformMushroomsInOptions()}
             // @ts-ignore
-            onChange={(_, data: { value: string}): void => setMushroomId(data.value)}
+            onChange={(_, data: { value: string }): void => setMushroomId(data.value)}
           />
         </Form.Field>
         <Form.Field>

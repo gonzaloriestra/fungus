@@ -5,10 +5,10 @@ import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
 import Location from '../../models/Location';
-import getLocation from '../../queries/getLocation';
+import getLocation from '../../fetching/getLocation';
 import Map from '../../components/Map';
 import HarvestList from '../../components/HarvestList';
-import getHarvestsByLocationId from '../../queries/getHarvestsByLocationId';
+import getHarvestsByLocationId from '../../fetching/getHarvestsByLocationId';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 

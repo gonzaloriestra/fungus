@@ -7,8 +7,8 @@ import { useRouter } from 'next/router';
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 import fetcher from '../../fetching/fetcher';
 
-import getMushrooms from '../../queries/getMushrooms';
-import makePrediction from '../../queries/makePrediction';
+import getMushrooms from '../../fetching/getMushrooms';
+import makePrediction from '../../fetching/makePrediction';
 import Location from '../../models/Location';
 import Header, { ActivePage } from '../../components/Header';
 
