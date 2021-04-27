@@ -1,25 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
 import { Button, Container, Icon, Item as SemanticItem } from 'semantic-ui-react';
-import useSWR, { mutate } from 'swr';
+import { mutate } from 'swr';
 import Link from 'next/link';
 
-import fetcher from '../../fetching/fetcher';
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
-
-import Location from '../../models/Location';
 
 import Item from '../../components/Item';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
 import NewLocationModal from '../../components/NewLocationModal';
+import useMyLocations from '../../fetching/useMyLocations';
 
 function Locations(): JSX.Element {
-  const result = useSWR(`/api/me/locations`, fetcher);
+  const { locations, isLoading, error } = useMyLocations();
   const router = useRouter();
-
-  const locations: Array<Location> = result.data;
-  const error: Error = result.error;
 
   const handleOnSaveNewLocation = () => {
     mutate('/api/me/locations');
@@ -29,7 +24,7 @@ function Locations(): JSX.Element {
     return <div>Loading failed: {error.message}</div>;
   }
 
-  if (!locations) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 

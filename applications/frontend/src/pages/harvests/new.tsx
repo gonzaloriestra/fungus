@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
 
-import add from '../../fetching/harvests/add';
+import addHarvest from '../../fetching/harvests/add';
 import { GetServerSideProps } from 'next';
 import getMushrooms from '../../fetching/getMushrooms';
 
@@ -20,7 +20,7 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
   const handleOnSubmit = async () => {
     const locationId = router.query.locationId;
 
-    await add({ date, locationId, mushroomId, quantity });
+    await addHarvest({ date, locationId, mushroomId, quantity });
 
     router.push(`/locations/${locationId}`);
   };

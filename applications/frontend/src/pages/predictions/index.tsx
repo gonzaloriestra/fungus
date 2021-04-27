@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Container, Form, Select, Header as SemanticHeader, Dimmer, Icon } from 'semantic-ui-react';
 import { GetServerSideProps } from 'next';
-import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
 import { withServerAuthRequired } from '../../authentication/withAuthRequired';
-import fetcher from '../../fetching/fetcher';
 
 import getMushrooms from '../../fetching/getMushrooms';
 import makePrediction from '../../fetching/makePrediction';
-import Location from '../../models/Location';
 import Header, { ActivePage } from '../../components/Header';
+import useMyLocations from '../../fetching/useMyLocations';
 
 type PredictionsProps = {
   mushrooms: Array<{ id: string; scientificName: string }>;
@@ -43,17 +41,7 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
   };
 
   function transformLocationsInOptions() {
-    const result = useSWR(`/api/me/locations`, fetcher);
-    const locations: Array<Location> = result.data;
-    // const error: Error = result.error;
-
-    // if (error) {
-    //   return <div>Loading failed: {error.message}</div>;
-    // }
-
-    // if (!locations) {
-    //   return <div>Loading...</div>;
-    // }
+    const { locations } = useMyLocations();
 
     return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name }));
   }

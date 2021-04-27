@@ -8,7 +8,6 @@
     "url": "https://github.com/ssanchezmarc/fungus/tree/master/applications/frontend"
   },
   "engines": {
-    "node": ">=14.16.1",
     "yarn": ">=1.21.0"
   },
   "scripts": {
