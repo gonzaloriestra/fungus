@@ -6,7 +6,7 @@ export default withApiAuthRequired(async function (req, res) {
   try {
     const { accessToken } = await getAccessToken(req, res);
 
-    const result = await BackendClient.get({ path: '/me/locations', accessToken });
+    const result = await BackendClient.get({ path: '/mushrooms', accessToken });
 
     res.status(200).json(result.data);
     res.end();

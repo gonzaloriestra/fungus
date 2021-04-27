@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import { Button, Container, Form, Select, Header as SemanticHeader, Dimmer, Icon } from 'semantic-ui-react';
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
-import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import getMushrooms from '../../fetching/getMushrooms';
 import makePrediction from '../../fetching/makePrediction';
 import Header, { ActivePage } from '../../components/Header';
 import useMyLocations from '../../fetching/useMyLocations';
+import useMushrooms from '../../fetching/useMushrooms';
 
-type PredictionsProps = {
-  mushrooms: Array<{ id: string; scientificName: string }>;
-  locations: Array<{ id: string; name: string }>;
-};
-
-export default function Predictions({ mushrooms }: PredictionsProps): JSX.Element {
+function Predictions(): JSX.Element {
   const router = useRouter();
+
+  const { mushrooms, isLoading: isLoadingMushrooms, error: errorMushrooms } = useMushrooms();
+  const { locations, isLoading: isLoadingLocations, error: errorLocations } = useMyLocations();
 
   const [date, setDate] = useState('');
   const [locationId, setLocationId] = useState(router.query.locationId);
@@ -41,13 +38,23 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
   };
 
   function transformLocationsInOptions() {
-    const { locations } = useMyLocations();
-
     return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name }));
   }
 
   function transformMushroomsInOptions() {
     return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));
+  }
+
+  if (errorMushrooms) {
+    return <div>Loading failed: {errorMushrooms.message}</div>;
+  }
+
+  if (errorLocations) {
+    return <div>Loading failed: {errorLocations.message}</div>;
+  }
+
+  if (isLoadingMushrooms || isLoadingLocations) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -92,8 +99,4 @@ export default function Predictions({ mushrooms }: PredictionsProps): JSX.Elemen
   );
 }
 
-export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
-  const resMushrooms = await getMushrooms();
-
-  return { props: { mushrooms: resMushrooms.data } };
-});
+export default withClientAuthRequired(Predictions);

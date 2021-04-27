@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { Header, Icon, Form, Button, Select } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
-import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
 import addHarvest from '../../fetching/harvests/add';
-import { GetServerSideProps } from 'next';
-import getMushrooms from '../../fetching/getMushrooms';
+import useMushrooms from '../../fetching/useMushrooms';
 
-type NewHarvestProps = { mushrooms: Array<{ id: string; scientificName: string }> };
-
-export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element {
+function NewHarvest(): JSX.Element {
+  const { mushrooms, isLoading, error } = useMushrooms();
   const [date, setDate] = useState('');
   const [mushroomId, setMushroomId] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -27,6 +25,14 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
 
   function transformMushroomsInOptions() {
     return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));
+  }
+
+  if (error) {
+    return <div>Loading failed: {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -67,8 +73,4 @@ export default function NewHarvest({ mushrooms }: NewHarvestProps): JSX.Element 
   );
 }
 
-export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async () => {
-  const res = await getMushrooms();
-
-  return { props: { mushrooms: res.data } };
-});
+export default withClientAuthRequired(NewHarvest);
