@@ -7,13 +7,12 @@ import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 import makePrediction from '../../fetching/makePrediction';
 import Header, { ActivePage } from '../../components/Header';
 import useMyLocations from '../../fetching/useMyLocations';
-import useMushrooms from '../../fetching/useMushrooms';
+import MushroomsSelector from '../../components/MushroomsSelector';
 
 function Predictions(): JSX.Element {
   const router = useRouter();
 
-  const { mushrooms, isLoading: isLoadingMushrooms, error: errorMushrooms } = useMushrooms();
-  const { locations, isLoading: isLoadingLocations, error: errorLocations } = useMyLocations();
+  const { locations, isLoading, error } = useMyLocations();
 
   const [date, setDate] = useState('');
   const [locationId, setLocationId] = useState(router.query.locationId);
@@ -41,19 +40,11 @@ function Predictions(): JSX.Element {
     return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name }));
   }
 
-  function transformMushroomsInOptions() {
-    return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));
-  }
-
-  if (errorMushrooms) {
-    return <div>Loading failed: {errorMushrooms.message}</div>;
-  }
-
-  if (errorLocations) {
+  if (error) {
     return <div>Loading failed: {errorLocations.message}</div>;
   }
 
-  if (isLoadingMushrooms || isLoadingLocations) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -67,13 +58,7 @@ function Predictions(): JSX.Element {
             <input type="date" onChange={(e): void => setDate(e.target.value)} placeholder="Introduce fecha" />
           </Form.Field>
           <Form.Field>
-            <label>¿Qué seta?</label>
-            <Select
-              placeholder="Seleciona especie"
-              options={transformMushroomsInOptions()}
-              // @ts-ignore
-              onChange={(_, data): void => setMushroomId(data.value)}
-            />
+            <MushroomsSelector onSelect={setMushroomId} />
           </Form.Field>
           <Form.Field>
             <label>¿Para qué localización?</label>

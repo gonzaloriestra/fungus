@@ -1,9 +1,10 @@
 import useSWR from 'swr';
 
+import Mushroom from '../models/Mushroom';
+
 import fetcher from './fetcher';
 
-// To-Do Model of mushrooms type NewHarvestProps = { mushrooms: Array<{ id: string; scientificName: string }> };
-export default function (): { mushrooms?: Array<object>; isLoading: boolean; error: Error } {
+export default function (): { mushrooms?: Array<Mushroom>; isLoading: boolean; error: Error } {
   const { data, error } = useSWR(`/api/mushrooms`, fetcher);
 
   return {
