@@ -1,4 +1,4 @@
-import BackendClient from './BackendClient';
+import BackendClient from '../commands/BackendClient';
 
 type QueryResponse = {
   data: object;

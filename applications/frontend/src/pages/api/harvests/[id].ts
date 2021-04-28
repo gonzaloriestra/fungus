@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import BackendClient from '../../../queries/BackendClient';
+import BackendClient from '../../../commands/BackendClient';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
