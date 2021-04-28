@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownItemProps, Select } from 'semantic-ui-react';
 
-import useMushrooms from '../../fetching/useMushrooms';
+import useMushrooms from '../../queries/useMushrooms';
 
 type MushroomsSelectorProps = { onSelect: (value: string) => void };
 
