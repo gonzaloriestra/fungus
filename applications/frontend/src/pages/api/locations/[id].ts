@@ -4,6 +4,7 @@ import axios from 'axios';
 export default withApiAuthRequired(async function locations(req, res) {
   try {
     const id = req.query.id;
+    console.log('EMTRASR');
     const { name, zone } = JSON.parse(req.body);
 
     const { accessToken } = await getAccessToken(req, res);
@@ -18,7 +19,7 @@ export default withApiAuthRequired(async function locations(req, res) {
         },
       },
     );
-    res.status(201);
+    res.status(201).end();
   } catch (error) {
     console.error(error);
     res.status(error.status || 500).end(error.message);

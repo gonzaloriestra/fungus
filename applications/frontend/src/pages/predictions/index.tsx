@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import makePrediction from '../../queries/makePrediction';
+import makePrediction from '../../commands/makePrediction';
 import Header, { ActivePage } from '../../components/Header';
 import useMyLocations from '../../queries/useMyLocations';
 import MushroomsSelector from '../../components/MushroomsSelector';
@@ -23,7 +23,7 @@ function Predictions(): JSX.Element {
   const handleOnSubmit = async () => {
     const response = await makePrediction({ date, locationId, mushroomId });
 
-    setPrediction(response?.data?.probability);
+    setPrediction(response?.probability);
 
     setActive(true);
   };
