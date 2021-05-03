@@ -1,24 +1,26 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
 import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
-import { withServerAuthRequired } from '../../authentication/withAuthRequired';
+import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import Location from '../../models/Location';
-import getLocation from '../../queries/getLocation';
+import useMyLocation from '../../queries/useMyLocation';
 import Map from '../../components/Map';
 import HarvestList from '../../components/HarvestList';
-import getHarvestsByLocationId from '../../queries/getHarvestsByLocationId';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
+import { useRouter } from 'next/router';
+import getHarvestsByLocationId from '../../queries/getHarvestsByLocationId';
 
-type LocationDetailsProps = {
-  location: Location;
-  // To-Do make a right model for harvests
-  harvests: object;
-};
+const LocationDetails = (): JSX.Element => {
+  const router = useRouter();
 
-export default function LocationDetails({ location, harvests }: LocationDetailsProps): JSX.Element {
+  const { location, isLoading, error } = useMyLocation({ id: router.query.id });
+
+  if (error) {
+    // To-Do Implement error behaviour
+    return <div>Loading failed: {error.message}</div>;
+  }
+
   return (
     <>
       <Header activePage={ActivePage.locations} />
@@ -28,31 +30,19 @@ export default function LocationDetails({ location, harvests }: LocationDetailsP
           padding: '0 100px',
         }}
       >
-        <Map location={location} />
+        {/*To-Do implement spinner here for isLoading of location*/}
+        {location && <Map location={location} />}
       </div>
       <SemanticHeader as="h2">
         <Icon name="calendar alternate outline" />
         <SemanticHeader.Content>Harvests</SemanticHeader.Content>
       </SemanticHeader>
-      <HarvestList harvests={harvests} />
-      <Link href={`/harvests/new?locationId=${location.id}`}>
-        <Button primary>Add Harvest</Button>
-      </Link>
+      {/*<HarvestList harvests={harvests} />*/}
+      {/*<Link href={`/harvests/new?locationId=${location.id}`}>*/}
+      {/*  <Button primary>Add Harvest</Button>*/}
+      {/*</Link>*/}
     </>
   );
-}
+};
 
-export const getServerSideProps: GetServerSideProps = withServerAuthRequired(async ({ params }) => {
-  const resLocation = await getLocation({ id: params.id });
-
-  let harvests;
-  try {
-    const resHarvests = await getHarvestsByLocationId({ locationId: params.id });
-    harvests = resHarvests?.data;
-  } catch (error) {
-    harvests = [];
-  }
-
-  // To-Do: Controls errors
-  return { props: { location: resLocation.data, harvests } };
-});
+export default withClientAuthRequired(LocationDetails);
