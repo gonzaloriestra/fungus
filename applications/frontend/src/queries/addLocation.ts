@@ -6,7 +6,7 @@ export default function addLocation({ name, zone }: Location): void {
   const id = uuidv4();
 
   fetch(`http://localhost:3000/api/locations/${id}`, {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify({ name, zone }),
   });
 }

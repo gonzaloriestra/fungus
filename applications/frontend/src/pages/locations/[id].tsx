@@ -9,14 +9,19 @@ import HarvestList from '../../components/HarvestList';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
-import getHarvestsByLocationId from '../../queries/getHarvestsByLocationId';
+import useHarvestsByLocation from '../../queries/useHarvestsByLocation';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();
 
   const { location, isLoading, error } = useMyLocation({ id: router.query.id });
 
-  if (error) {
+  // To-Do move to another sub component maybe harvestList
+  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = useHarvestsByLocation({
+    locationId: router.query.id,
+  });
+
+  if (error || errorHarvests) {
     // To-Do Implement error behaviour
     return <div>Loading failed: {error.message}</div>;
   }
@@ -37,10 +42,14 @@ const LocationDetails = (): JSX.Element => {
         <Icon name="calendar alternate outline" />
         <SemanticHeader.Content>Harvests</SemanticHeader.Content>
       </SemanticHeader>
-      {/*<HarvestList harvests={harvests} />*/}
-      {/*<Link href={`/harvests/new?locationId=${location.id}`}>*/}
-      {/*  <Button primary>Add Harvest</Button>*/}
-      {/*</Link>*/}
+      {/*To-Do implement spinner here for isLoading of harvest*/}
+      {harvests && <HarvestList harvests={harvests} />}
+
+      {location && (
+        <Link href={`/harvests/new?locationId=${location.id}`}>
+          <Button primary>Add Harvest</Button>
+        </Link>
+      )}
     </>
   );
 };
