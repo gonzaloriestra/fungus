@@ -4,7 +4,7 @@ import Mushroom from '../models/Mushroom';
 
 import fetcher from './fetcher';
 
-export default function (): { mushrooms?: Array<Mushroom>; isLoading: boolean; error: Error } {
+export default function useMushrooms(): { mushrooms?: Array<Mushroom>; isLoading: boolean; error: Error } {
   const { data, error } = useSWR(`/api/mushrooms`, fetcher);
 
   return {

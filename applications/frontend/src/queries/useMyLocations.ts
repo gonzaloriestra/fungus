@@ -4,7 +4,7 @@ import Location from '../models/Location';
 
 import fetcher from './fetcher';
 
-export default function (): { locations?: Array<Location>; isLoading: boolean; error: Error } {
+export default function useMyLocations(): { locations?: Array<Location>; isLoading: boolean; error: Error } {
   const { data, error } = useSWR(`/api/me/locations`, fetcher);
 
   return {
