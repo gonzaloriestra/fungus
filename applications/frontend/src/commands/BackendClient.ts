@@ -1,10 +1,4 @@
-import axios from 'axios';
-
 const HOST = process.env.BACKEND_HOST;
-
-type QueryResponse = {
-  data: object;
-};
 
 export default {
   put({ path, body = {}, accessToken = '' }): Promise<Response> {
@@ -18,12 +12,20 @@ export default {
     });
   },
 
-  get({ path, accessToken = '' }): Promise<QueryResponse> {
-    // To-Do use fetch
-    return axios(`${HOST}${path}`, {
+  async get({ path, accessToken = '' }): Promise<Response> {
+    const response = await fetch(`${HOST}${path}`, {
+      method: 'GET',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
     });
+
+    if (!response.ok) {
+      // To-Do Control better the error, maybe not here
+      throw Error(`Something happens fetching the info!!! GET to ${HOST}${path}`);
+    }
+
+    return await response.json();
   },
 };

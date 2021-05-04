@@ -4,8 +4,13 @@ import APIClient from '../pages/api/APIClient';
 
 import Location from '../models/Location';
 
-export default function addLocation(location: Location): void {
+export default async function addLocation(location: Location): void {
   const id = uuidv4();
 
-  APIClient.put({ path: `/locations/${id}`, body: location });
+  const response = await APIClient.put({ path: `/locations/${id}`, body: location });
+
+  if (!response.ok) {
+    // To-Do custom exception here
+    throw Error('Sommething happens feching the info!!!');
+  }
 }

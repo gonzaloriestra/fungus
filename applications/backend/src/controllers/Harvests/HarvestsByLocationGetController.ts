@@ -19,10 +19,6 @@ export default class HarvestsByLocationGetController implements Controller {
 
       const harvests = await this.harvestsByLocationFinder.run({ locationId });
 
-      if (!harvests.data.length) {
-        return res.response().code(httpStatus.NOT_FOUND);
-      }
-
       return res.response(harvests.data).code(httpStatus.OK);
     } catch (error) {
       console.error(error.message);

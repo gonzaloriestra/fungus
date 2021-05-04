@@ -21,9 +21,14 @@ const LocationDetails = (): JSX.Element => {
     locationId: router.query.id,
   });
 
-  if (error || errorHarvests) {
+  if (error) {
     // To-Do Implement error behaviour
     return <div>Loading failed: {error.message}</div>;
+  }
+
+  if (errorHarvests) {
+    // To-Do Implement error behaviour
+    return <div>Loading failed: {errorHarvests.message}</div>;
   }
 
   return (

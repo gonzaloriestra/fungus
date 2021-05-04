@@ -15,7 +15,7 @@ export default withApiAuthRequired(async function locations(req, res) {
       accessToken,
     });
 
-    res.status(200).json(result.data);
+    res.status(200).json(result);
     res.end();
   } catch (error) {
     console.error(error);

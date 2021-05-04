@@ -8,7 +8,7 @@ export default withApiAuthRequired(async function (req, res) {
 
     const result = await BackendClient.get({ path: '/me/locations', accessToken });
 
-    res.status(200).json(result.data);
+    res.status(200).json(result);
     res.end();
   } catch (error) {
     console.error(error);

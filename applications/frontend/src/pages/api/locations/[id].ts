@@ -12,7 +12,7 @@ export default withApiAuthRequired(async function locations(req, res) {
     if (req.method === 'GET') {
       const result = await BackendClient.get({ path: `/locations/${id}`, accessToken });
 
-      res.status(200).json(result.data);
+      res.status(200).json(result);
       res.end();
     } else {
       const { name, zone } = JSON.parse(req.body);

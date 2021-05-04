@@ -26,6 +26,7 @@ export const register = (app: Server): void => {
   app.route({
     method: 'GET',
     path: '/locations/{id}/harvests',
+    options: { auth: 'jwt' },
     handler: harvestsByLocationGetController.run.bind(harvestsByLocationGetController),
   });
 
