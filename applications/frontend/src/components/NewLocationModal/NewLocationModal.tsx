@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
-import addLocation from '../../queries/addLocation';
+import addLocation from '../../commands/addLocation';
 
 import Map from '../Map';
 
