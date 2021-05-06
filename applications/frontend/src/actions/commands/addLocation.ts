@@ -4,13 +4,8 @@ import fetcher from '../fetcher';
 
 import Location from '../../models/Location';
 
-export default async function addLocation(location: Location): void {
+export default async function addLocation(location: Location): Promise<void> {
   const id = uuidv4();
 
-  const response = await fetcher.put(`/locations/${id}`, { body: location });
-
-  if (!response.ok) {
-    // To-Do custom exception here
-    throw Error('Sommething happens feching the info!!!');
-  }
+  await fetcher.put(`/locations/${id}`, { body: location });
 }

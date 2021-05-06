@@ -1,20 +1,25 @@
 const HOST = '/api';
 
 export default {
-  put(path: string, { body = {} } = {}): Promise<Response> {
-    return fetch(`${HOST}${path}`, {
+  async put(path: string, { body = {} } = {}): Promise<void> {
+    const response = await fetch(`${HOST}${path}`, {
       method: 'PUT',
       body: JSON.stringify(body),
     });
+
+    if (!response.ok) {
+      // To-Do custom exception here
+      throw Error('Sommething happens feching the info!!!');
+    }
   },
 
   async get<T>(path: string): Promise<T> {
-    const res = await fetch(`${HOST}${path}`);
+    const response = await fetch(`${HOST}${path}`);
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw Error('Something happens fetching the info!!!');
     }
 
-    return await res.json();
+    return await response.json();
   },
 };
