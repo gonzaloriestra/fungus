@@ -2,10 +2,10 @@ import useSWR from 'swr';
 
 import Location from '../../models/Location';
 
-import APIClient from '../APIClient';
+import fetcher from '../fetcher';
 
 export default function getLocation({ id }): { location?: Location; isLoading: boolean; error: Error } {
-  const { data, error } = useSWR<Location>(`/locations/${id}`, APIClient.get);
+  const { data, error } = useSWR<Location>(`/locations/${id}`, fetcher.get);
 
   return {
     location: data,

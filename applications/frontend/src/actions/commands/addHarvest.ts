@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import APIClient from '../APIClient';
+import fetcher from '../fetcher';
 
-export default async function addHarvest(harvest): void {
+export default async function addHarvest(harvest): Promise<void> {
   const id = uuidv4();
 
-  const response = await APIClient.put({ path: `/harvests/${id}`, body: harvest });
+  const response = await fetcher.put({ path: `/harvests/${id}`, body: harvest });
 
   if (!response.ok) {
     // To-Do custom exception here
