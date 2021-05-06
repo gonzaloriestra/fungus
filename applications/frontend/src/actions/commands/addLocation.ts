@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import APIClient from '../pages/api/APIClient';
+import APIClient from '../../pages/api/APIClient';
 
-import Location from '../models/Location';
+import Location from '../../models/Location';
 
 export default async function addLocation(location: Location): void {
   const id = uuidv4();

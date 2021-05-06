@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import addHarvest from '../../commands/addHarvests';
-import useMushrooms from '../../queries/useMushrooms';
+import addHarvest from '../../actions/commands/addHarvest';
+import getMushrooms from '../../actions/queries/getMushrooms';
 
 function NewHarvest(): JSX.Element {
-  const { mushrooms, isLoading, error } = useMushrooms();
+  const { mushrooms, isLoading, error } = getMushrooms();
   const [date, setDate] = useState('');
   const [mushroomId, setMushroomId] = useState('');
   const [quantity, setQuantity] = useState('');

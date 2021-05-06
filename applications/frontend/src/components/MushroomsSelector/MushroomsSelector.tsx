@@ -1,12 +1,12 @@
 import React from 'react';
 import { DropdownItemProps, Select } from 'semantic-ui-react';
 
-import useMushrooms from '../../queries/useMushrooms';
+import getMushrooms from '../../actions/queries/getMushrooms';
 
 type MushroomsSelectorProps = { onSelect: (value: string) => void };
 
 const MushroomsSelector = ({ onSelect }: MushroomsSelectorProps): JSX.Element => {
-  const { mushrooms, isLoading, error } = useMushrooms();
+  const { mushrooms, isLoading, error } = getMushrooms();
 
   function transformMushroomsInOptions(): Array<DropdownItemProps> {
     return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));

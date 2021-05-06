@@ -3,21 +3,21 @@ import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import useMyLocation from '../../queries/useMyLocation';
+import getLocation from '../../actions/queries/getLocation';
 import Map from '../../components/Map';
 import HarvestList from '../../components/HarvestList';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
-import useHarvestsByLocation from '../../queries/useHarvestsByLocation';
+import getHarvestsByLocation from '../../actions/queries/getHarvestsByLocation';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();
 
-  const { location, isLoading, error } = useMyLocation({ id: router.query.id });
+  const { location, isLoading, error } = getLocation({ id: router.query.id });
 
   // To-Do move to another sub component maybe harvestList
-  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = useHarvestsByLocation({
+  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = getHarvestsByLocation({
     locationId: router.query.id,
   });
 

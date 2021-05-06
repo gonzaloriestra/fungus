@@ -1,6 +1,6 @@
-import APIClient from '../pages/api/APIClient';
+import APIClient from '../../pages/api/APIClient';
 
-import Prediction from '../models/Prediction';
+import Prediction from '../../models/Prediction';
 
 export default async function makePrediction({ date, locationId, mushroomId }): Promise<Prediction> {
   const response = await APIClient.get({

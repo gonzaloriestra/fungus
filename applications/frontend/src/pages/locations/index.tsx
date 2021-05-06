@@ -10,10 +10,10 @@ import Item from '../../components/Item';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
 import NewLocationModal from '../../components/NewLocationModal';
-import useMyLocations from '../../queries/useMyLocations';
+import getMyLocations from '../../actions/queries/getMyLocations';
 
 function Locations(): JSX.Element {
-  const { locations, isLoading, error } = useMyLocations();
+  const { locations, isLoading, error } = getMyLocations();
   const router = useRouter();
 
   const handleOnSaveNewLocation = () => {

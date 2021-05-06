@@ -1,10 +1,10 @@
 import useSWR from 'swr';
 
-import Harvest from '../models/Harvest';
+import Harvest from '../../models/Harvest';
 
 import fetcher from './fetcher';
 
-export default function useHarvestsByLocation({
+export default function getHarvestsByLocation({
   locationId,
 }): { harvests?: Array<Harvest>; isLoading: boolean; error: Error } {
   const { data, error } = useSWR(`/api/harvests?locationId=${locationId}`, fetcher);

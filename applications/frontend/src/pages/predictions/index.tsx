@@ -4,15 +4,15 @@ import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import makePrediction from '../../commands/makePrediction';
+import makePrediction from '../../actions/commands/makePrediction';
 import Header, { ActivePage } from '../../components/Header';
-import useMyLocations from '../../queries/useMyLocations';
+import getMyLocations from '../../actions/queries/getMyLocations';
 import MushroomsSelector from '../../components/MushroomsSelector';
 
 function Predictions(): JSX.Element {
   const router = useRouter();
 
-  const { locations, isLoading, error } = useMyLocations();
+  const { locations, isLoading, error } = getMyLocations();
 
   const [date, setDate] = useState('');
   const [locationId, setLocationId] = useState(router.query.locationId);
