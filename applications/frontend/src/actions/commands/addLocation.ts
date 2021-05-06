@@ -7,7 +7,7 @@ import Location from '../../models/Location';
 export default async function addLocation(location: Location): void {
   const id = uuidv4();
 
-  const response = await fetcher.put({ path: `/locations/${id}`, body: location });
+  const response = await fetcher.put(`/locations/${id}`, { body: location });
 
   if (!response.ok) {
     // To-Do custom exception here

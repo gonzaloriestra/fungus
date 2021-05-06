@@ -1,7 +1,7 @@
 const HOST = '/api';
 
 export default {
-  put({ path, body = {} }): Promise<Response> {
+  put(path: string, { body = {} } = {}): Promise<Response> {
     return fetch(`${HOST}${path}`, {
       method: 'PUT',
       body: JSON.stringify(body),
