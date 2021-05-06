@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import APIClient from '../../pages/api/APIClient';
+import APIClient from '../APIClient';
 
 export default async function addHarvest(harvest): void {
   const id = uuidv4();

@@ -1,4 +1,4 @@
-import APIClient from '../../pages/api/APIClient';
+import APIClient from '../APIClient';
 
 import Prediction from '../../models/Prediction';
 
