@@ -1,13 +1,13 @@
 import useSWR from 'swr';
 
-import Harvest from '../../models/Harvest';
+import Harvests from '../../models/Harvests';
 
-import fetcher from './fetcher';
+import APIClient from '../APIClient';
 
 export default function getHarvestsByLocation({
   locationId,
-}): { harvests?: Array<Harvest>; isLoading: boolean; error: Error } {
-  const { data, error } = useSWR(`/api/harvests?locationId=${locationId}`, fetcher);
+}): { harvests?: Harvests; isLoading: boolean; error: Error } {
+  const { data, error } = useSWR<Harvests>(`/harvests?locationId=${locationId}`, APIClient.get);
 
   return {
     harvests: data,

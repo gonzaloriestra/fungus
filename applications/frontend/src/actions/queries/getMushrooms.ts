@@ -1,11 +1,11 @@
 import useSWR from 'swr';
 
-import Mushroom from '../../models/Mushroom';
+import Mushrooms from '../../models/Mushrooms';
 
-import fetcher from './fetcher';
+import APIClient from '../APIClient';
 
-export default function getMushrooms(): { mushrooms?: Array<Mushroom>; isLoading: boolean; error: Error } {
-  const { data, error } = useSWR(`/api/mushrooms`, fetcher);
+export default function getMushrooms(): { mushrooms?: Mushrooms; isLoading: boolean; error: Error } {
+  const { data, error } = useSWR<Mushrooms>(`/mushrooms`, APIClient.get);
 
   return {
     mushrooms: data,
