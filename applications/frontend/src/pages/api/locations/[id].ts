@@ -1,7 +1,7 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
-import axios from 'axios';
 
 import BackendClient from '../BackendClient';
+import addLocation from '../../../actions/server/locations/addLocation';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
@@ -16,16 +16,9 @@ export default withApiAuthRequired(async function locations(req, res) {
       res.end();
     } else {
       const { name, zone } = JSON.parse(req.body);
-      // To-Do create a API client for locations const client = new BillingApiClient(accessToken);
-      await axios.put(
-        `http://localhost:3001/locations/${id}`,
-        { name, coordinates: zone },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
+
+      await addLocation({ id, body: { name, coordinates: zone }, accessToken });
+
       res.status(201).end();
     }
   } catch (error) {
