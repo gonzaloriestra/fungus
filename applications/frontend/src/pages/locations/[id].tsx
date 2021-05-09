@@ -3,13 +3,13 @@ import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import getLocation from '../../actions/client/queries/getLocation';
+import getLocation from '../../actions/client/locations/getLocation';
 import Map from '../../components/Map';
 import HarvestList from '../../components/HarvestList';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
-import getHarvestsByLocation from '../../actions/client/queries/getHarvestsByLocation';
+import getHarvestsByLocation from '../../actions/client/harvests/getHarvestsByLocation';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();

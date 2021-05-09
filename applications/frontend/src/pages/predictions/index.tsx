@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import makePrediction from '../../actions/client/commands/makePrediction';
+import makePrediction from '../../actions/client/predictions/makePrediction';
 import Header, { ActivePage } from '../../components/Header';
-import getMyLocations from '../../actions/client/queries/getMyLocations';
+import getMyLocations from '../../actions/client/locations/getMyLocations';
 import MushroomsSelector from '../../components/MushroomsSelector';
 
 function Predictions(): JSX.Element {

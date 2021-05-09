@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
-import addHarvest from '../../actions/client/commands/addHarvest';
+import addHarvest from '../../actions/client/harvests/addHarvest';
 import MushroomsSelector from '../../components/MushroomsSelector';
 
 function NewHarvest(): JSX.Element {
