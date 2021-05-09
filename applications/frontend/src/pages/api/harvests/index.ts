@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import getByLocation from '../../../actions/server/harvests/getByLocation';
+import getByLocationId from '../../../actions/server/harvests/getByLocationId';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
@@ -8,7 +8,7 @@ export default withApiAuthRequired(async function locations(req, res) {
 
     const { accessToken } = await getAccessToken(req, res);
 
-    const harvests = await getByLocation({ locationId, accessToken });
+    const harvests = await getByLocationId({ locationId, accessToken });
 
     res.status(200).json(harvests);
     res.end();

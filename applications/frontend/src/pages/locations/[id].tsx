@@ -9,7 +9,7 @@ import HarvestList from '../../components/HarvestList';
 import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
-import getByLocation from '../../actions/client/harvests/getByLocation';
+import getByLocationId from '../../actions/client/harvests/getByLocationId';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const LocationDetails = (): JSX.Element => {
   const { location, isLoading, error } = getLocation({ id: router.query.id });
 
   // To-Do move to another sub component maybe harvestList
-  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = getByLocation({
+  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = getByLocationId({
     locationId: router.query.id,
   });
 

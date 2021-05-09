@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import add from '../../../actions/server/harvests/add';
+import addHarvest from '../../../actions/server/harvests/addHarvest';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
@@ -9,7 +9,7 @@ export default withApiAuthRequired(async function (req, res) {
 
     const { accessToken } = await getAccessToken(req, res);
 
-    await add({ id, body, accessToken });
+    await addHarvest({ id, body, accessToken });
 
     res.status(201).end();
   } catch (error) {
