@@ -7,7 +7,7 @@ function buildHeaders({ accessToken }: Params = {}) {
   return accessToken ? { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` } : {};
 }
 
-export default function fetcherBuilder({ host }: { host: string }) {
+export default function fetcher({ host }: { host: string }) {
   return {
     async get<T>(path: string, { accessToken }: Params = {}): Promise<T> {
       const response = await fetch(`${host}${path}`, {
@@ -36,4 +36,3 @@ export default function fetcherBuilder({ host }: { host: string }) {
     },
   };
 }
-

@@ -1,5 +1,5 @@
-import fetcherBuilder from '../fetcherBuilder';
+import fetcher from '../fetcher';
 
 const HOST = '/api';
 
-export default fetcherBuilder({ host: HOST });
+export default fetcher({ host: HOST });
