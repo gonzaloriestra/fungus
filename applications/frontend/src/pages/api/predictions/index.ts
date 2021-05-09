@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import BackendClient from '../BackendClient';
+import makePrediction from '../../../actions/server/predictions/makePrediction';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
@@ -10,10 +10,7 @@ export default withApiAuthRequired(async function locations(req, res) {
 
     const { accessToken } = await getAccessToken(req, res);
 
-    const result = await BackendClient.get({
-      path: `/locations/${locationId}/mushrooms/${mushroomId}/predictions?date=${date}`,
-      accessToken,
-    });
+    const result = await makePrediction({ locationId, mushroomId, date, accessToken });
 
     res.status(200).json(result);
     res.end();
