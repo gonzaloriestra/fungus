@@ -1,7 +1,7 @@
-import fetcher from '../fetcher';
+import ClientFetcher from '../clientSide/ClientFetcher';
 
 import Prediction from '../../models/Prediction';
 
 export default async function makePrediction({ date, locationId, mushroomId }): Promise<Prediction> {
-  return fetcher.get<Prediction>(`/predictions?locationId=${locationId}&mushroomId=${mushroomId}&date=${date}`);
+  return ClientFetcher.get<Prediction>(`/predictions?locationId=${locationId}&mushroomId=${mushroomId}&date=${date}`);
 }

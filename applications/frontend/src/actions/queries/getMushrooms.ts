@@ -2,10 +2,10 @@ import useSWR from 'swr';
 
 import Mushrooms from '../../models/Mushrooms';
 
-import fetcher from '../fetcher';
+import ClientFetcher from '../clientSide/ClientFetcher';
 
 export default function getMushrooms(): { mushrooms?: Mushrooms; isLoading: boolean; error: Error } {
-  const { data, error } = useSWR<Mushrooms>(`/mushrooms`, fetcher.get);
+  const { data, error } = useSWR<Mushrooms>(`/mushrooms`, ClientFetcher.get);
 
   return {
     mushrooms: data,

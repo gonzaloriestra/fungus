@@ -12,7 +12,7 @@ export default {
     });
   },
 
-  async get({ path, accessToken = '' }): Promise<Response> {
+  async get<T>({ path, accessToken = '' }): Promise<T> {
     const response = await fetch(`${HOST}${path}`, {
       method: 'GET',
       headers: {

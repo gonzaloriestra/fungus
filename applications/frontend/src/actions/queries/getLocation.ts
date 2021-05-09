@@ -2,10 +2,10 @@ import useSWR from 'swr';
 
 import Location from '../../models/Location';
 
-import fetcher from '../fetcher';
+import ClientFetcher from '../clientSide/ClientFetcher';
 
 export default function getLocation({ id }): { location?: Location; isLoading: boolean; error: Error } {
-  const { data, error } = useSWR<Location>(`/locations/${id}`, fetcher.get);
+  const { data, error } = useSWR<Location>(`/locations/${id}`, ClientFetcher.get);
 
   return {
     location: data,

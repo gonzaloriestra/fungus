@@ -5,7 +5,7 @@ const HarvestList = ({ harvests }): JSX.Element => {
   return (
     <List>
       {harvests.map((harvest) => (
-        <List.Item>
+        <List.Item key={harvest.id}>
           <List.Content>
             <List.Header as="a">{harvest.date}</List.Header>
             <List.Description>Mushroom - {harvest.mushroomId}</List.Description>
