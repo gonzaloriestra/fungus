@@ -1,12 +1,12 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import BackendClient from '../BackendClient';
+import getMushrooms from '../../../actions/server/mushrooms/getMushrooms';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
     const { accessToken } = await getAccessToken(req, res);
 
-    const result = await BackendClient.get({ path: '/mushrooms', accessToken });
+    const result = await getMushrooms({ accessToken });
 
     res.status(200).json(result);
     res.end();
