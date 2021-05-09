@@ -26,10 +26,10 @@ const LocationDetails = (): JSX.Element => {
   //   return <div>Loading failed: {error.message}</div>;
   // }
   //
-  // if (errorHarvests) {
-  //   // To-Do Implement error behaviour
-  //   return <div>Loading failed: {errorHarvests.message}</div>;
-  // }
+  if (errorHarvests) {
+    // To-Do Implement error behaviour
+    return <div>Loading failed: {errorHarvests.message}</div>;
+  }
 
   return (
     <>

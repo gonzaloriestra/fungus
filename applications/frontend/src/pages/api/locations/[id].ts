@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import BackendClient from '../BackendClient';
+import getLocation from '../../../actions/server/locations/getLocation';
 import addLocation from '../../../actions/server/locations/addLocation';
 
 export default withApiAuthRequired(async function locations(req, res) {
@@ -10,7 +10,7 @@ export default withApiAuthRequired(async function locations(req, res) {
     const { accessToken } = await getAccessToken(req, res);
 
     if (req.method === 'GET') {
-      const result = await BackendClient.get({ path: `/locations/${id}`, accessToken });
+      const result = await getLocation({ id, accessToken });
 
       res.status(200).json(result);
       res.end();
