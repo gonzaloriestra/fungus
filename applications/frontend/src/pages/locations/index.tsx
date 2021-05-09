@@ -10,7 +10,7 @@ import Item from '../../components/Item';
 import Header, { ActivePage } from '../../components/Header';
 import { useRouter } from 'next/router';
 import NewLocationModal from '../../components/NewLocationModal';
-import getMyLocations from '../../actions/queries/getMyLocations';
+import getMyLocations from '../../actions/client/queries/getMyLocations';
 
 function Locations(): JSX.Element {
   const { locations, isLoading, error } = getMyLocations();

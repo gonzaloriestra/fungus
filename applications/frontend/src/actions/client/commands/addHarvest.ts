@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import ClientFetcher from '../clientSide/ClientFetcher';
+import ClientFetcher from '../ClientFetcher';
 
 export default async function addHarvest(harvest): Promise<void> {
   const id = uuidv4();

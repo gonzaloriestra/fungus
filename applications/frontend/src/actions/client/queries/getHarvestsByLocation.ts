@@ -1,8 +1,8 @@
 import useSWR from 'swr';
 
-import Harvests from '../../models/Harvests';
+import Harvests from '../../../models/Harvests';
 
-import ClientFetcher from '../clientSide/ClientFetcher';
+import ClientFetcher from '../ClientFetcher';
 
 export default function getHarvestsByLocation({
   locationId,
