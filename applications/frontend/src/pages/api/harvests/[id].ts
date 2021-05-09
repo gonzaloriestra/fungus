@@ -1,6 +1,6 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
 
-import BackendClient from '../BackendClient';
+import add from '../../../actions/server/harvests/add';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
@@ -9,9 +9,9 @@ export default withApiAuthRequired(async function (req, res) {
 
     const { accessToken } = await getAccessToken(req, res);
 
-    const response = await BackendClient.put({ path: `/harvests/${id}`, body, accessToken });
+    await add({ id, body, accessToken });
 
-    res.status(response.status).end();
+    res.status(201).end();
   } catch (error) {
     // To-Do Custom error cuando la harvest no se ha podido añadir
     console.error(error);
