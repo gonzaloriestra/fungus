@@ -7,10 +7,6 @@
   "repository": {
     "url": "https://github.com/ssanchezmarc/fungus"
   },
-  "engines": {
-    "node": ">=10.15.0",
-    "yarn": ">=1.21.0"
-  },
   "scripts": {
     "start:dev:frontend": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev applications/frontend",
     "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 -r dotenv/config applications/backend/server.ts dotenv_config_path=./config/.env.development",
@@ -37,6 +33,7 @@
     "http-status": "^1.4.2",
     "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
+    "@react-leaflet/core": "^1.0.2",
     "lodash": "^4.17.15",
     "next": "^10.0.7",
     "node-dependency-injection": "^2.6.3",
