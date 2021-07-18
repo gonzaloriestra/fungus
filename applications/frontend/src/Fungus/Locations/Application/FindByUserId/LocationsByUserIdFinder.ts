@@ -13,7 +13,7 @@ export default class LocationsByUserIdFinder {
 
   run({ userId }: FindLocationsByUserIdRequest): FindLocationsByUserIdResponse {
     const locations = this._repository.findByUserId(userId) || new Locations();
-    console.log(locations);
+
     return new FindLocationsByUserIdResponse(locations.toPrimitives());
   }
 }

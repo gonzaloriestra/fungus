@@ -37,4 +37,8 @@ export class FileRepository {
       if (err) throw new AddingRegisterToFileFailed(aggregate.id());
     });
   }
+
+  cleanContent(): void {
+    fs.truncate(this._filePath, 0, () => undefined);
+  }
 }

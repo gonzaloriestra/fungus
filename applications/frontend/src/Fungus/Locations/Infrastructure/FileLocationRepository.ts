@@ -46,6 +46,6 @@ export class FileLocationRepository extends FileRepository implements LocationRe
   }
 
   clean(): void {
-    throw new MethodNotImplemented('FileLocationRepository.clean');
+    this.cleanContent();
   }
 }
