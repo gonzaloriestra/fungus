@@ -6,7 +6,7 @@ import LocationMother from '../../Domain/LocationMother.spec';
 import LocationsByUserIdFinder from './LocationsByUserIdFinder';
 
 describe('LocationByUserIdFinder', () => {
-  beforeEach(() => {
+  afterEach(() => {
     locationRepository.clean();
   });
 

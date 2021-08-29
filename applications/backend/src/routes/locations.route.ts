@@ -3,16 +3,12 @@ import { Server } from '@hapi/hapi';
 import container from '../config/dependency-injection';
 
 import LocationPutController from '../controllers/Locations/LocationPutController';
-import MyLocationsGetController from '../controllers/Locations/MyLocationsGetController';
 import LocationsDeleteController from '../controllers/Locations/LocationsDeleteController';
 import LocationByIdGetController from '../controllers/Locations/LocationByIdGetController';
 
 export const register = (app: Server): void => {
   const locationPutController: LocationPutController = container.get(
     'applications.fungus.controllers.LocationPutController',
-  );
-  const myLocationsGetController: MyLocationsGetController = container.get(
-    'applications.fungus.controllers.MyLocationsGetController',
   );
   const locationByIdGetController: LocationByIdGetController = container.get(
     'applications.fungus.controllers.LocationByIdGetController',
@@ -26,13 +22,6 @@ export const register = (app: Server): void => {
     path: '/locations/{id}',
     options: { auth: 'jwt' },
     handler: locationPutController.run.bind(locationPutController),
-  });
-
-  app.route({
-    method: 'GET',
-    path: '/me/locations',
-    options: { auth: 'jwt' },
-    handler: myLocationsGetController.run.bind(myLocationsGetController),
   });
 
   app.route({
