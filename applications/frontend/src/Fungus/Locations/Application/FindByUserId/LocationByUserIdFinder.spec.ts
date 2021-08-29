@@ -1,7 +1,7 @@
 import { UserId } from '../../../Shared/Domain/UserId';
 import { locationRepository } from '../../Infrastructure';
 
-import LocationMother from '../../Domain/LocationMother.spec';
+import LocationMother from '../../Domain/LocationMother';
 
 import LocationsByUserIdFinder from './LocationsByUserIdFinder';
 

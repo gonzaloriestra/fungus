@@ -7,7 +7,7 @@ import { WeatherStationId } from '../../Shared/Domain/WeatherStationId';
 import { Zone } from './Zone';
 import { Location } from './Location';
 
-import ZoneMother from './ZoneMother.spec';
+import ZoneMother from './ZoneMother';
 
 export default class LocationMother {
   static create({
