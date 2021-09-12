@@ -6,7 +6,11 @@ import LocationMother from '../../Domain/LocationMother';
 import LocationsByUserIdFinder from './LocationsByUserIdFinder';
 
 describe('LocationByUserIdFinder', () => {
-  afterEach(() => {
+  beforeEach(() => {
+    locationRepository.clean();
+  });
+
+  afterAll(() => {
     locationRepository.clean();
   });
 
@@ -22,7 +26,7 @@ describe('LocationByUserIdFinder', () => {
 
     const response = subject.run({ userId });
 
-    expect(response.locations.length).toEqual(2);
+    expect(response.locations).toHaveLength(2);
   });
 
   it('should return an empty list of location if there are any', () => {
@@ -30,6 +34,6 @@ describe('LocationByUserIdFinder', () => {
 
     const response = subject.run({ userId: UserId.create() });
 
-    expect(response.locations.length).toEqual(0);
+    expect(response.locations).toHaveLength(0);
   });
 });
