@@ -83,6 +83,7 @@ services:
     arguments: ["@fungus.locations.LocationRepository", "@fungus.locations.WeatherStationRepository"]
 
   fungus.locations.LocationsByUserIdFinder:
+  // No existe esta clase, la hemos borrado
     class: ../../../../../src/Fungus/Locations/Application/FindByUserId/LocationsByUserIdFinder
     arguments: ["@fungus.locations.LocationRepository"]
 

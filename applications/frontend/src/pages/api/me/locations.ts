@@ -2,7 +2,6 @@ import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
 import httpStatus from 'http-status';
 
 import { UserId } from '../../../Fungus/Shared/Domain/UserId';
-
 import locationsByUserIdFinder from '../../../Fungus/Locations/Application/FindByUserId';
 
 export default withApiAuthRequired(async function (req, res) {

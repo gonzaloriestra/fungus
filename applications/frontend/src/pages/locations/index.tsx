@@ -1,16 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Button, Container, Icon, Item as SemanticItem } from 'semantic-ui-react';
 import { mutate } from 'swr';
-import Link from 'next/link';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
+import getMyLocations from '../../actions/client/locations/getMyLocations';
+
 import Item from '../../components/Item';
 import Header, { ActivePage } from '../../components/Header';
-import { useRouter } from 'next/router';
 import NewLocationModal from '../../components/NewLocationModal';
-import getMyLocations from '../../actions/client/locations/getMyLocations';
 
 function Locations(): JSX.Element {
   const { locations, isLoading, error } = getMyLocations();
