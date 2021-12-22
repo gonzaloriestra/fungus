@@ -1,15 +1,16 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Button, Header as SemanticHeader, Icon } from 'semantic-ui-react';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
 
 import getLocation from '../../actions/client/locations/getLocation';
+import getHarvestsByLocationId from '../../actions/client/harvests/getByLocationId';
+
 import Map from '../../components/Map';
 import HarvestList from '../../components/HarvestList';
-import Link from 'next/link';
 import Header, { ActivePage } from '../../components/Header';
-import { useRouter } from 'next/router';
-import getByLocationId from '../../actions/client/harvests/getByLocationId';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();
@@ -17,7 +18,11 @@ const LocationDetails = (): JSX.Element => {
   const { location, isLoading, error } = getLocation({ id: router.query.id });
 
   // To-Do move to another sub component maybe harvestList
-  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = getByLocationId({
+  const {
+    harvests,
+    isLoading: isLoadingHarvests,
+    error: errorHarvests,
+  } = getHarvestsByLocationId({
     locationId: router.query.id,
   });
 

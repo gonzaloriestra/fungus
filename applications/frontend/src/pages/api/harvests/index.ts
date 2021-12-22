@@ -1,19 +1,19 @@
-import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import httpStatus from 'http-status';
+import harvestsByLocationFinder from '../../../Fungus/Harvests/Application/FindByLocation';
 
-import getByLocationId from '../../../actions/server/harvests/getByLocationId';
+import { LocationId } from '../../../Fungus/Shared/Domain/LocationId';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
-    const locationId = req.query.locationId;
+    const locationId = req.query.locationId as string;
 
-    const { accessToken } = await getAccessToken(req, res);
+    const result = await harvestsByLocationFinder.run({ locationId: new LocationId(locationId) });
 
-    const harvests = await getByLocationId({ locationId, accessToken });
-
-    res.status(200).json(harvests);
+    res.status(httpStatus.OK).json(result.harvests);
     res.end();
   } catch (error) {
     console.error(error);
-    res.status(error.status || 500).end(error.message);
+    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

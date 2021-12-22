@@ -1,23 +1,30 @@
-import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import httpStatus from 'http-status';
 
-import getLocation from '../../../actions/server/locations/getLocation';
 import addLocation from '../../../actions/server/locations/addLocation';
+
+import { LocationId } from '../../../Fungus/Shared/Domain/LocationId';
+import locationsByIdFinder from '../../../Fungus/Locations/Application/FindById';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
-    const id = req.query.id;
-
-    const { accessToken } = await getAccessToken(req, res);
+    const locationId = req.query.locationId as string;
 
     if (req.method === 'GET') {
-      const result = await getLocation({ id, accessToken });
+      try {
+        const result = await locationsByIdFinder.run({ locationId: new LocationId(locationId) });
 
-      res.status(200).json(result);
-      res.end();
+        res.status(httpStatus.OK).json(result.location);
+        res.end();
+      } catch (error) {
+        console.error(error.message);
+
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
+      }
     } else {
       const { name, zone } = JSON.parse(req.body);
-
-      await addLocation({ id, body: { name, coordinates: zone }, accessToken });
+      
+      // await addLocation({ id, body: { name, coordinates: zone }, accessToken });
 
       res.status(201).end();
     }
