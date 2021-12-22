@@ -1,8 +1,8 @@
 import faker from 'faker';
 
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
-import { Mushroom } from '../../../../src/Fungus/Mushrooms/Domain/Mushroom';
+import { Mushroom } from './Mushroom';
 
 export class MushroomMother {
   static create({

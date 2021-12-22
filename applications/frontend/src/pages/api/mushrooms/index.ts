@@ -1,17 +1,17 @@
-import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import httpStatus from 'http-status';
 
-import getMushrooms from '../../../actions/server/mushrooms/getMushrooms';
+import mushroomsFinder from '../../../Fungus/Mushrooms/Application/Find';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
-    const { accessToken } = await getAccessToken(req, res);
+    const result = await mushroomsFinder.run();
 
-    const result = await getMushrooms({ accessToken });
-
-    res.status(200).json(result);
+    res.status(httpStatus.OK).json(result.mushrooms);
     res.end();
   } catch (error) {
-    console.error(error);
-    res.status(error.status || 500).end(error.message);
+    console.error(error.message);
+
+    return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

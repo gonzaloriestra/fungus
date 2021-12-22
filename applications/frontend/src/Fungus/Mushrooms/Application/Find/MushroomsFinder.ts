@@ -2,7 +2,7 @@ import { MushroomRepository } from '../../Domain/MushroomRepository';
 
 import { FindMushroomsResponse } from './FindMushroomsResponse';
 
-export class MushroomsFinder {
+export default class MushroomsFinder {
   private readonly _repository: MushroomRepository;
 
   constructor(repository: MushroomRepository) {
