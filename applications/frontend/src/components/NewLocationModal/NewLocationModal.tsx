@@ -52,6 +52,7 @@ const NewLocationModal = ({ show, onSave }: NewLocationModalProps): JSX.Element 
                   height: '500px',
                 }}
               >
+                {/* ToDo No se muestra correctamente el mapa */}
                 <Map mode="edit" initialZoom={6} onLocationCreated={(zone): void => setZone(zone)} />
               </div>
             </Form.Field>

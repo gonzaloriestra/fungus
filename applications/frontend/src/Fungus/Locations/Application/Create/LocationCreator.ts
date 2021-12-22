@@ -8,7 +8,7 @@ import { LocationAlreadyExist } from '../../Domain/LocationAlreadyExist';
 
 import { CreateLocationRequest } from './CreateLocationRequest';
 
-export class LocationCreator {
+export default class LocationCreator {
   private readonly _locationRepository: LocationRepository;
   private readonly _weatherStationRepository: WeatherStationRepository;
 
