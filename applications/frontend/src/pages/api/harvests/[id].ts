@@ -1,20 +1,31 @@
-import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import httpStatus from 'http-status';
 
-import addHarvest from '../../../actions/server/harvests/addHarvest';
+import { LocationId } from '../../../Fungus/Shared/Domain/LocationId';
+import { MushroomId } from '../../../Fungus/Shared/Domain/MushroomId';
+
+import { HarvestId } from '../../../Fungus/Harvests/Domain/HarvestId';
+
+import harvestCreator from '../../../Fungus/Harvests/Application/Create';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
-    const id = req.query.id;
-    const body = JSON.parse(req.body);
+    const id = req.query.id as string;
+    const { mushroomId, locationId, date, quantity } = JSON.parse(req.body);
 
-    const { accessToken } = await getAccessToken(req, res);
+    await harvestCreator.run({
+      id: new HarvestId(id),
+      mushroomId: new MushroomId(mushroomId),
+      locationId: new LocationId(locationId),
+      date,
+      quantity,
+    });
 
-    await addHarvest({ id, body, accessToken });
-
-    res.status(201).end();
+    res.status(httpStatus.CREATED).end();
   } catch (error) {
     // To-Do Custom error cuando la harvest no se ha podido añadir
-    console.error(error);
-    res.status(error.status || 500).end(error.message);
+    console.error(error.message);
+
+    return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

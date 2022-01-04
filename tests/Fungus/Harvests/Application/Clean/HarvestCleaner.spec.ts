@@ -1,7 +1,7 @@
 import { InMemoryHarvestRepository } from '../../../../../src/Fungus/Harvests/Infrastructure/InMemoryHarvestRepository';
 import HarvestCleaner from '../../../../../src/Fungus/Harvests/Application/Clean/HarvestCleaner';
 
-import HarvestMother from '../../Domain/HarvestMother';
+import HarvestMother from '../../../../../applications/frontend/src/Fungus/Harvests/Domain/HarvestMother';
 
 describe('HarvestCleaner', () => {
   it('should remove all the existing Harvest', () => {

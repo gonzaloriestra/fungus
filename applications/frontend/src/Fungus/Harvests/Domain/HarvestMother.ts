@@ -1,10 +1,11 @@
 import faker from 'faker';
 
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
-import { MushroomId } from '../../../../src/Fungus/Shared/Domain/MushroomId';
+import { LocationId } from '../../Shared/Domain/LocationId';
+import { MushroomId } from '../../Shared/Domain/MushroomId';
 
-import { Harvest } from '../../../../src/Fungus/Harvests/Domain/Harvest';
-import { HarvestId } from '../../../../src/Fungus/Harvests/Domain/HarvestId';
+import { Harvest } from './Harvest';
+import { HarvestId } from './HarvestId';
+
 
 export default class HarvestMother {
   static create({
