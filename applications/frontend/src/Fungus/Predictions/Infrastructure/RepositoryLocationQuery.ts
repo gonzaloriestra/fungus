@@ -1,5 +1,6 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
 
+// ToDo: It comes from another module
 import { LocationRepository } from '../../Locations/Domain/LocationRepository';
 
 import { LocationQuery } from '../Domain/LocationQuery';

@@ -23,7 +23,7 @@ function Predictions(): JSX.Element {
   const handleOnSubmit = async () => {
     const response = await makePrediction({ date, locationId, mushroomId });
 
-    setPrediction(response?.probability);
+    setPrediction(response?.prediction?.probability);
 
     setActive(true);
   };
