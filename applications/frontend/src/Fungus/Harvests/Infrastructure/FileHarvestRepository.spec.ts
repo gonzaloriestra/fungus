@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 
-import { FileHarvestRepository } from '../../../../src/Fungus/Harvests/Infrastructure/FileHarvestRepository';
+import { FileHarvestRepository } from './FileHarvestRepository';
 
-import HarvestMother from '../../../../applications/frontend/src/Fungus/Harvests/Domain/HarvestMother';
+import HarvestMother from '../Domain/HarvestMother';
 
 describe('FileHarvestRepository', () => {
   const filePath = 'harvests.test.txt';

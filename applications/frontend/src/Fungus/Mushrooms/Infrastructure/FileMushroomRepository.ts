@@ -46,6 +46,6 @@ export class FileMushroomRepository extends FileRepository implements MushroomRe
   }
 
   clean(): void {
-    throw new MethodNotImplemented('FileMushroomRepository.clean');
+    this.cleanContent();
   }
 }

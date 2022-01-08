@@ -64,6 +64,6 @@ export class FileHarvestRepository implements HarvestRepository {
   }
 
   clean(): void {
-    throw new MethodNotImplemented('FileHarvestRepository.clean');
+    fs.truncate(this.filePath, 0, () => undefined);
   }
 }
