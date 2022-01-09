@@ -1,4 +1,4 @@
-import { Id } from '../../../../src/Fungus/Shared/Domain/Id';
+import { Id } from './Id';
 
 describe('Id', () => {
   it('should be able to another id with the same value', () => {

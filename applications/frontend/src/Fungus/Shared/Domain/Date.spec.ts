@@ -1,4 +1,4 @@
-import Date from '../../../../src/Fungus/Shared/Domain/Date';
+import Date from './Date';
 
 describe('Date', () => {
   describe('.dayOfYear', () => {
