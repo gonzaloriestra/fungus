@@ -25,4 +25,12 @@ describe('MushroomsFinder', () => {
 
     expect(response.mushrooms.length).toEqual(2);
   });
+
+  it('should return empty list when there are not mushrooms registered', async () => {
+    const subject = new MushroomsFinder(mushroomRepository);
+
+    const response = subject.run();
+
+    expect(response.mushrooms.length).toEqual(0);
+  });
 });

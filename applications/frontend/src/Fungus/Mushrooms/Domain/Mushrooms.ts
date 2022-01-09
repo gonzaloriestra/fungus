@@ -5,7 +5,7 @@ import { Mushroom, Primitives as MushroomPrimitives } from './Mushroom';
 export type Primitives = Array<MushroomPrimitives>;
 
 export class Mushrooms {
-  private readonly _mushrooms: Array<Mushroom>;
+  private _mushrooms: Array<Mushroom>;
 
   constructor({ mushrooms = [] }: { mushrooms?: Array<Mushroom> } = {}) {
     this._mushrooms = mushrooms;
@@ -25,5 +25,9 @@ export class Mushrooms {
 
   toPrimitives(): Primitives {
     return this._mushrooms.map((mushroom) => mushroom.toPrimitives());
+  }
+
+  clean(): void {
+    this._mushrooms = [];
   }
 }

@@ -45,7 +45,9 @@ export class FileMushroomRepository extends FileRepository implements MushroomRe
     return this._mushrooms;
   }
 
-  clean(): void {
+  async clean(): Promise<void> {
+    this._mushrooms.clean();
+    
     this.cleanContent();
   }
 }
