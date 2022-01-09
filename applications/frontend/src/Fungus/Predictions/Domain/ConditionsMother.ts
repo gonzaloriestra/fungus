@@ -1,7 +1,7 @@
 import faker from 'faker';
 
-import { WeatherConditionFactory } from '../../../../src/Fungus/Predictions/Domain/WeatherConditions/WeatherConditionFactory';
-import { Conditions } from '../../../../src/Fungus/Predictions/Domain/Conditions';
+import { WeatherConditionFactory } from './WeatherConditions/WeatherConditionFactory';
+import { Conditions } from './Conditions';
 
 export default class ConditionsMother {
   static create({ type, ...attrs }: { type: string }): Conditions {

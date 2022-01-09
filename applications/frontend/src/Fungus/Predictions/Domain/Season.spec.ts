@@ -1,4 +1,4 @@
-import { Season } from '../../../../src/Fungus/Predictions/Domain/Season';
+import { Season } from './Season';
 
 describe('Season', () => {
   describe('.isPeriod', () => {
