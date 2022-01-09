@@ -9,7 +9,6 @@ import { AEMETWeatherService } from '../../Infrastructure/WeatherStations/AEMETW
 import { WeatherStation } from './WeatherStation';
 import { WeatherService } from './WeatherService';
 
-
 export default class WeatherStationMother {
   static create({
     id = WeatherStationId.create(),
