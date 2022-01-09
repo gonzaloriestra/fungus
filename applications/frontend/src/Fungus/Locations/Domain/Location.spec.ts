@@ -1,8 +1,8 @@
-import { UserId } from '../../../../src/Fungus/Shared/Domain/UserId';
-import { LocationId } from '../../../../src/Fungus/Shared/Domain/LocationId';
+import { UserId } from '../../Shared/Domain/UserId';
+import { LocationId } from '../../Shared/Domain/LocationId';
 
-import { Location } from '../../../../src/Fungus/Locations/Domain/Location';
-import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
+import { Location } from './Location';
+import { Zone } from './Zone';
 
 describe('Location', () => {
   // To-Do define a entity to inherate from it and make this test there

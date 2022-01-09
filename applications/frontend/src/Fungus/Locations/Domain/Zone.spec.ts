@@ -1,5 +1,6 @@
-import { Zone } from '../../../../src/Fungus/Locations/Domain/Zone';
-import { Coordinate } from '../../../../src/Fungus/Shared/Domain/Coordinate';
+import { Coordinate } from '../../Shared/Domain/Coordinate';
+
+import { Zone } from './Zone';
 
 describe('Zone', () => {
   describe('.midpoint', () => {
