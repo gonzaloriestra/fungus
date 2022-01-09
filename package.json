@@ -8,11 +8,12 @@
     "url": "https://github.com/ssanchezmarc/fungus"
   },
   "scripts": {
-    "start:dev:frontend": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev applications/frontend",
+    "start:dev": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev applications/frontend",
     "start:dev:backend": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --watch 'src/**/*.ts' --inspect=0.0.0.0:9269 -r dotenv/config applications/backend/server.ts dotenv_config_path=./config/.env.development",
-    "start:frontend": "NODE_ENV=production next start applications/frontend",
+    "start": "NODE_ENV=production next start applications/frontend",
     "start:backend": "NODE_ENV=production node -r dotenv/config dist/applications/backend/server dotenv_config_path=./config/.env.production",
-    "test": "yarn run test:unit && yarn run test:features",
+    "test": "yarn run test:unit",
+    "test:all": "yarn run test:unit && yarn run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
     "test:features": "NODE_ENV=test cucumber-js -p default -b",
