@@ -10,12 +10,12 @@ COPY ./tsconfig.prod.json ./tsconfig.prod.json
 RUN yarn install
 
 COPY ./src /app/src/
-COPY ./config /app/config/
 COPY ./database /app/database/
-COPY ./applications/backend/src /app/applications/backend/src/
-COPY ./applications/backend/server.ts /app/applications/backend/
+COPY ./config /app/config/
+COPY ./.env.local ./.env.local
+COPY ./.env.production ./.env.production
 
-RUN yarn build:backend
+RUN yarn build
 
-EXPOSE 3001
-CMD ["yarn", "start:backend"]
+EXPOSE 3000
+CMD ["yarn", "start"]
