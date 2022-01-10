@@ -21,9 +21,9 @@ yarn-error.log
 
 # next.js
 /.next/
-/.env.local
-/.env.development
-/.env.production
+.env.local
+.env.development
+.env.production
 
 # IOS
 /.DS_Store

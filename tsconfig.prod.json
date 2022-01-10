@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
   "baseUrl": ".",
-  "exclude": ["tests", "applications/backend/tests", "applications/frontend"]
+  "exclude": ["src/**/*.spec.*"]
 }
