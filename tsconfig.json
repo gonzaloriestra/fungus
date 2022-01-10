@@ -1,25 +1,36 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
+    "module": "esnext",
     "target": "es6",
-    "jsx": "react",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "esModuleInterop": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": false,
     "rootDir": ".",
     "strict": true,
-    "noEmit": false,
     "resolveJsonModule": true,
     "outDir": "./dist",
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
   "include": [
-    "src/**/**.ts",
-    "tests/**/**.ts",
-    "applications/**/**.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "package*.json",
-    "project*.json"
+    "project*.json",
+    "next-env.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

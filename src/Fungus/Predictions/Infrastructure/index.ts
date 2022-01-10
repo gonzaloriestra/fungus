@@ -1,7 +1,7 @@
 // ToDo: Comes from another module
 import { locationRepository } from '../../Locations/Infrastructure';
-import { WeatherStationRepository } from '../../Predictions/Domain/WeatherStations/WeatherStationRepository';
-import { InMemoryAEMETWeatherStationRepository } from '../../Predictions/Infrastructure/WeatherStations/InMemoryAEMETWeatherStationRepository';
+import { WeatherStationRepository } from '../Domain/WeatherStations/WeatherStationRepository';
+import { InMemoryAEMETWeatherStationRepository } from './WeatherStations/InMemoryAEMETWeatherStationRepository';
 import { ConditionRepository } from '../Domain/ConditionRepository';
 import { LocationQuery } from '../Domain/LocationQuery';
 

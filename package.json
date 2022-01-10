@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "private": true,
-  "license": "",
+  "license": "MIT",
   "repository": {
     "url": "https://github.com/ssanchezmarc/fungus"
   },
