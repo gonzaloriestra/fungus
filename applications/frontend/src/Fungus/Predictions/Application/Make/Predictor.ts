@@ -4,6 +4,8 @@ import { LocationQuery } from '../../Domain/LocationQuery';
 
 import { MakePredictionResponse } from './MakePredictionResponse';
 import { MakePredictionRequest } from './MakePredictionRequest';
+import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 export default class Predictor {
   private readonly _conditionRepository: ConditionRepository;
@@ -38,6 +40,10 @@ export default class Predictor {
     // return new GenerateForecastsResponse({ date, forecasts });
 
     const location = this._locationQuery.findById(locationId);
+
+    if (!location) {
+      throw new LocationDoesNotExist(locationId);
+    }
 
     const weatherStationId = location.weatherStationId();
 

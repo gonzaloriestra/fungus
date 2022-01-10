@@ -9,6 +9,8 @@ import Date from '../../../Shared/Domain/Date';
 import { conditionRepository, locationQuery } from '../../Infrastructure';
 
 import Predictor from './Predictor';
+import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
+import { LocationId } from '../../../Shared/Domain/LocationId';
 
 describe('Predictor', () => {
   it('should return a prediction of a mushroom sprout in a location', async () => {
@@ -24,5 +26,13 @@ describe('Predictor', () => {
     });
 
     expect(response.prediction.probability).toBeDefined();
+  });
+
+  it('should return expection LocationDoesNotExist when the location has not been defined', () => {
+    // ToDo
+  });
+
+  it('should return a prediction 0 for a specific date, location and mushrooms without myco conditions', () => {
+    // ToDo
   });
 });

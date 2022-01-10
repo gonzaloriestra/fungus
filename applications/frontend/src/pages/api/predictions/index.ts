@@ -1,9 +1,11 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import httpStatus from 'http-status';
-import predictor from '../../../Fungus/Predictions/Application/Make';
 
+import { LocationDoesNotExist } from '../../../Fungus/Shared/Domain/LocationDoesNotExist';
 import { LocationId } from '../../../Fungus/Shared/Domain/LocationId';
 import { MushroomId } from '../../../Fungus/Shared/Domain/MushroomId';
+
+import predictor from '../../../Fungus/Predictions/Application/Make';
 
 export default withApiAuthRequired(async function locations(req, res) {
   try {
@@ -17,10 +19,18 @@ export default withApiAuthRequired(async function locations(req, res) {
       locationId: new LocationId(locationId),
     });
 
+    if (!result.prediction) {
+      return res.status(httpStatus.NOT_FOUND).end();
+    }
+
     res.status(httpStatus.OK).json(result.prediction);
     res.end();
   } catch (error) {
     console.error(error.message);
+
+    if (error instanceof LocationDoesNotExist) {
+      return res.status(httpStatus.NOT_FOUND).end(error.message);
+    }
 
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
