@@ -1,0 +1,1 @@
+{"ast":null,"code":"import dynamic from 'next/dynamic';\nexport default dynamic(() => import('./Map'), {\n  ssr: false,\n  loadableGenerated: {\n    webpack: () => [require.resolveWeak('./Map')],\n    modules: ['./Map']\n  }\n});","map":null,"metadata":{},"sourceType":"module"}

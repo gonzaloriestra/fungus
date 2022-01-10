@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { v4 as uuidv4 } from 'uuid';\nexport default function addLocation({\n  name,\n  zone\n}) {\n  const id = uuidv4();\n  fetch(`http://localhost:3000/api/locations/${id}`, {\n    method: 'POST',\n    body: JSON.stringify({\n      name,\n      zone\n    })\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

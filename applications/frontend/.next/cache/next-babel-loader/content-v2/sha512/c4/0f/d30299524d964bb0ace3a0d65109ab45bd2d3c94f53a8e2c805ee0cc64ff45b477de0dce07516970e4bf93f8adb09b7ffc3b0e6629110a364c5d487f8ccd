@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nexport default function getMushrooms() {\n  return axios.get('http://localhost:3001/mushrooms');\n}","map":null,"metadata":{},"sourceType":"module"}

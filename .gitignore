@@ -1,7 +1,5 @@
 # dependencies
 /node_modules
-
-# yarn
 yarn-error.log
 
 # production
@@ -19,3 +17,11 @@ yarn-error.log
 /config/.env.development
 /config/.env.test
 /config/.env.production
+
+
+# next.js
+/.next/
+/.env.local
+
+# IOS
+/.DS_Store

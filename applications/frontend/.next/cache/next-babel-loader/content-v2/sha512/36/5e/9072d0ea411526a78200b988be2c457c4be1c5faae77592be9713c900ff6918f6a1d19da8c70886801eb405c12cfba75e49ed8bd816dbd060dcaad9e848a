@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { withPageAuthRequired } from '@auth0/nextjs-auth0';\nexport function withServerAuthRequired(getServerSideProps) {\n  return withPageAuthRequired({\n    getServerSideProps\n  });\n}\nexport function withClientAuthRequired(page) {\n  return withPageAuthRequired(page);\n}","map":null,"metadata":{},"sourceType":"module"}
