@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default async function fetcher(url) {\n  const res = await fetch(url);\n\n  if (!res.ok) {\n    throw Error('Sommething happens feching the info!!!');\n  }\n\n  return await res.json();\n}","map":null,"metadata":{},"sourceType":"module"}

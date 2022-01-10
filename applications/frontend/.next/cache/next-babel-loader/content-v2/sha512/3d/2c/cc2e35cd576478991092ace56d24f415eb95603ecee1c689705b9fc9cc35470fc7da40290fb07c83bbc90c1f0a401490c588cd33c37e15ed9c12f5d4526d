@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { handleAuth } from '@auth0/nextjs-auth0';\nexport default {\n  handleAuth\n};","map":null,"metadata":{},"sourceType":"module"}

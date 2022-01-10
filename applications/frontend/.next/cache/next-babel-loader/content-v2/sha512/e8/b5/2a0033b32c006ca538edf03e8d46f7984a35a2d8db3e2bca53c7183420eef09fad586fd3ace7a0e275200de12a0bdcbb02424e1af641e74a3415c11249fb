@@ -1,1 +1,0 @@
-{"ast":null,"code":"import axios from 'axios';\nexport default function makePrediction({\n  date,\n  locationId,\n  mushroomId\n}) {\n  return axios.get(`http://localhost:3001/locations/${locationId}/mushrooms/${mushroomId}/predictions?date=${date}`);\n}","map":null,"metadata":{},"sourceType":"module"}

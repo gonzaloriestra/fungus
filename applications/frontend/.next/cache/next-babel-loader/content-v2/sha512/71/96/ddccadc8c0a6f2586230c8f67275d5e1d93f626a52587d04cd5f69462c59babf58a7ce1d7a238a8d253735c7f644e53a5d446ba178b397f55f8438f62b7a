@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { v4 as uuidv4 } from 'uuid';\nimport client from './client';\nexport default function addHarvest(harvest) {\n  const id = uuidv4();\n  return client.put({\n    path: `/harvests/${id}`,\n    body: harvest\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

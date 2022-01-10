@@ -1,1 +1,0 @@
-{"ast":null,"code":"import axios from 'axios';\nexport default function getHarvestsByLocationId({\n  locationId\n}) {\n  return axios.get(`http://localhost:3001/locations/${locationId}/harvests`);\n}","map":null,"metadata":{},"sourceType":"module"}

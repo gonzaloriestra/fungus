@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\nimport { UserProvider } from '@auth0/nextjs-auth0';\nexport default function AuthenticationMiddleware(_ref) {\n  var children = _ref.children;\n  return /*#__PURE__*/_jsx(UserProvider, {\n    children: children\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

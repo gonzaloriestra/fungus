@@ -1,1 +1,0 @@
-{"ast":null,"code":"import AuthenticationService from '../../../authentication/AuthenticationService';\nexport default AuthenticationService.handleAuth();","map":null,"metadata":{},"sourceType":"module"}
