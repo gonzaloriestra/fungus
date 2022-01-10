@@ -1,8 +1,13 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import httpStatus from 'http-status';
 
+// ToDo from another module
+import { HarvestAlreadyExist } from '../../../Fungus/Harvests/Domain/HarvestAlreadyExist';
+import { MushroomDoesNotExist } from '../../../Fungus/Mushrooms/Domain/MushroomDoesNotExist';
+
 import { LocationId } from '../../../Fungus/Shared/Domain/LocationId';
 import { MushroomId } from '../../../Fungus/Shared/Domain/MushroomId';
+import { LocationDoesNotExist } from '../../../Fungus/Shared/Domain/LocationDoesNotExist';
 
 import { HarvestId } from '../../../Fungus/Harvests/Domain/HarvestId';
 
@@ -25,6 +30,14 @@ export default withApiAuthRequired(async function (req, res) {
   } catch (error) {
     // To-Do Custom error cuando la harvest no se ha podido añadir
     console.error(error.message);
+
+    if (
+      error instanceof HarvestAlreadyExist ||
+      error instanceof MushroomDoesNotExist ||
+      error instanceof LocationDoesNotExist
+    ) {
+      return res.status(httpStatus.BAD_REQUEST).end(error.message);
+    }
 
     return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
