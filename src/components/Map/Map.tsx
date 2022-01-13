@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Map as MapLeaflet, WMSTileLayer, TileLayer, Polygon } from 'react-leaflet';
 
 import Location from '../../models/Location';
+import Zone from '../../models/Zone';
+import Coordinate from '../../models/Coordinate';
+
+import MapControls from './MapControls';
 
 import styles from './map.module.css';
-import Coordinate from '../../models/Coordinate';
-import MapControls from './MapControls';
 
 type MapProps = {
   mode?: string;
@@ -14,7 +16,7 @@ type MapProps = {
   onLocationCreated?: (zone: Array<Coordinate>) => void;
 };
 
-function mapPositionFromZone(zone): { lat: number; lng: number } {
+function mapPositionFromZone(zone: Zone): { lat: number; lng: number } | void {
   if (zone && zone.midpoint) {
     return { lat: zone.midpoint.latitude, lng: zone.midpoint.longitude };
   }
@@ -24,14 +26,14 @@ const Map = ({
   mode = 'view',
   location,
   initialZoom = 15,
-  onLocationCreated = (): void => {},
+  onLocationCreated = (): void => undefined,
 }: MapProps): JSX.Element => {
   const initialPosition = mapPositionFromZone(location?.zone) || { lat: 42.829022, lng: -4.849545 };
 
   const [position] = useState(initialPosition);
   const [zoom] = useState(initialZoom);
 
-  const renderLocation = (location): JSX.Element => {
+  const renderLocation = (location: Location): JSX.Element | null => {
     if (!location) {
       return null;
     }

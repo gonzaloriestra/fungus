@@ -1,7 +1,10 @@
 import React from 'react';
 import { List } from 'semantic-ui-react';
+import Harvests from '../../models/Harvests';
 
-const HarvestList = ({ harvests }): JSX.Element => {
+type HarvestListProps = { harvests: Harvests };
+
+const HarvestList = ({ harvests }: HarvestListProps): JSX.Element => {
   return (
     <List>
       {harvests.map((harvest) => (
