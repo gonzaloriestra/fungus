@@ -9,8 +9,6 @@ import Date from '../../../Shared/Domain/Date';
 import { conditionRepository, locationQuery } from '../../Infrastructure';
 
 import Predictor from './Predictor';
-import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
-import { LocationId } from '../../../Shared/Domain/LocationId';
 
 describe('Predictor', () => {
   it('should return a prediction of a mushroom sprout in a location', async () => {

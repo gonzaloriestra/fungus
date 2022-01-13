@@ -5,7 +5,6 @@ import { LocationQuery } from '../../Domain/LocationQuery';
 import { MakePredictionResponse } from './MakePredictionResponse';
 import { MakePredictionRequest } from './MakePredictionRequest';
 import { LocationDoesNotExist } from '../../../Shared/Domain/LocationDoesNotExist';
-import { LocationId } from '../../../Shared/Domain/LocationId';
 
 export default class Predictor {
   private readonly _conditionRepository: ConditionRepository;
