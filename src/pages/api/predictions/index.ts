@@ -7,7 +7,7 @@ import { MushroomId } from '../../../Fungus/Shared/Domain/MushroomId';
 
 import predictor from '../../../Fungus/Predictions/Application/Make';
 
-export default withApiAuthRequired(async function locations(req, res) {
+export default withApiAuthRequired(async function (req, res) {
   try {
     const locationId = req.query.locationId as string;
     const mushroomId = req.query.mushroomId as string;
@@ -20,18 +20,18 @@ export default withApiAuthRequired(async function locations(req, res) {
     });
 
     if (!result.prediction) {
-      return res.status(httpStatus.NOT_FOUND).end();
+      res.status(httpStatus.NOT_FOUND).end();
     }
 
     res.status(httpStatus.OK).json(result.prediction);
     res.end();
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
 
     if (error instanceof LocationDoesNotExist) {
-      return res.status(httpStatus.NOT_FOUND).end(error.message);
+      res.status(httpStatus.NOT_FOUND).end(error.message);
     }
 
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

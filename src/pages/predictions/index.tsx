@@ -15,22 +15,22 @@ function Predictions(): JSX.Element {
   const { locations, isLoading, error } = getMyLocations();
 
   const [date, setDate] = useState('');
-  const [locationId, setLocationId] = useState(router.query.locationId);
+  const [locationId, setLocationId] = useState(router.query.locationId as string);
   const [mushroomId, setMushroomId] = useState('');
   const [prediction, setPrediction] = useState('');
   const [active, setActive] = useState(false);
 
   const handleOnSubmit = async () => {
-    const response = await makePrediction({ date, locationId, mushroomId });
+    const prediction = await makePrediction({ date, locationId, mushroomId });
 
-    setPrediction(response?.prediction?.probability);
+    setPrediction(prediction?.probability);
 
     setActive(true);
   };
 
   const handleClose = (): void => setActive(false);
 
-  const handleOnChangeLocation = (_, data): void => {
+  const handleOnChangeLocation = (_: any, data: any): void => {
     setLocationId(data.value);
 
     router.push(`predictions/?locationId=${data.value}`, undefined, { shallow: true });
@@ -41,7 +41,7 @@ function Predictions(): JSX.Element {
   }
 
   if (error) {
-    return <div>Loading failed: {errorLocations.message}</div>;
+    return <div>Loading failed: {error.message}</div>;
   }
 
   if (isLoading) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Map as MapLeaflet, WMSTileLayer, TileLayer, Polygon } from 'react-leaflet';
+import { LatLng } from 'leaflet';
 
 import Location from '../../models/Location';
 import Zone from '../../models/Zone';
@@ -13,10 +14,10 @@ type MapProps = {
   mode?: string;
   location?: Location;
   initialZoom?: number;
-  onLocationCreated?: (zone: Array<Coordinate>) => void;
+  onLocationCreated?: (zone: Zone) => void;
 };
 
-function mapPositionFromZone(zone: Zone): { lat: number; lng: number } | void {
+function mapPositionFromZone(zone?: Zone): { lat: number; lng: number } | void {
   if (zone && zone.midpoint) {
     return { lat: zone.midpoint.latitude, lng: zone.midpoint.longitude };
   }
@@ -33,14 +34,18 @@ const Map = ({
   const [position] = useState(initialPosition);
   const [zoom] = useState(initialZoom);
 
-  const renderLocation = (location: Location): JSX.Element | null => {
+  const renderLocation = (location?: Location): JSX.Element | null => {
     if (!location) {
       return null;
     }
 
     const zone = location?.zone;
 
-    return <Polygon positions={zone.coordinates.map((coordinate) => [coordinate.latitude, coordinate.longitude])} />;
+    return (
+      <Polygon
+        positions={zone.coordinates.map((coordinate) => new LatLng(coordinate.latitude, coordinate.longitude))}
+      />
+    );
   };
 
   return (

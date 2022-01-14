@@ -14,10 +14,10 @@ function NewHarvest(): JSX.Element {
 
   const router = useRouter();
 
-  const handleOnSubmit = async () => {
-    const locationId = router.query.locationId;
+  const handleOnSubmit = async (): Promise<void> => {
+    const locationId = router.query.locationId as string;
 
-    await addHarvest({ date, locationId, mushroomId, quantity });
+    await addHarvest({ date: new Date(date), locationId, mushroomId, quantity });
 
     router.push(`/locations/${locationId}`);
   };

@@ -14,17 +14,12 @@ import Header, { ActivePage } from '../../components/Header';
 
 const LocationDetails = (): JSX.Element => {
   const router = useRouter();
+  const locationId = router.query.id as string;
 
-  const { location, isLoading, error } = getLocation({ id: router.query.id });
+  const { location, isLoading, error } = getLocation({ id: locationId });
 
   // To-Do move to another sub component maybe harvestList
-  const {
-    harvests,
-    isLoading: isLoadingHarvests,
-    error: errorHarvests,
-  } = getHarvestsByLocationId({
-    locationId: router.query.id,
-  });
+  const { harvests, isLoading: isLoadingHarvests, error: errorHarvests } = getHarvestsByLocationId({ locationId });
 
   // if (error) {
   //   // To-Do Implement error behaviour

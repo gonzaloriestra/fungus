@@ -12,7 +12,7 @@ export default withApiAuthRequired(async function locations(req, res) {
 
     res.status(httpStatus.OK).json(result.harvests);
     res.end();
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }

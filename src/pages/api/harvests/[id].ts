@@ -27,7 +27,7 @@ export default withApiAuthRequired(async function (req, res) {
     });
 
     res.status(httpStatus.CREATED).end();
-  } catch (error) {
+  } catch (error: any) {
     // To-Do Custom error cuando la harvest no se ha podido añadir
     console.error(error.message);
 
@@ -36,9 +36,9 @@ export default withApiAuthRequired(async function (req, res) {
       error instanceof MushroomDoesNotExist ||
       error instanceof LocationDoesNotExist
     ) {
-      return res.status(httpStatus.BAD_REQUEST).end(error.message);
+      res.status(httpStatus.BAD_REQUEST).end(error.message);
     }
 
-    return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
+    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

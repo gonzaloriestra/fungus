@@ -9,9 +9,9 @@ export default withApiAuthRequired(async function (req, res) {
 
     res.status(httpStatus.OK).json(result.mushrooms);
     res.end();
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
 
-    return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
+    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

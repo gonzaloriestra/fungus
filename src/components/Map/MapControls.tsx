@@ -2,31 +2,36 @@ import React, { useState } from 'react';
 import { FeatureGroup } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 
-import Coordinate from '../../models/Coordinate';
+import Zone from '../../models/Zone';
 
 type MapProps = {
   mode?: string;
-  onLocationCreated?: (zone: Array<Coordinate>) => void;
+  onLocationCreated?: (zone: Zone) => void;
 };
 
-const MapControls = ({ mode = 'view', onLocationCreated = (): void => {} }: MapProps): JSX.Element => {
+const MapControls = ({ mode = 'view', onLocationCreated = (): void => undefined }: MapProps): JSX.Element | null => {
   const [hasLocationDefined, setHasLocationDefined] = useState(mode === 'view');
 
   if (mode !== 'edit') {
     return null;
   }
 
-  const handleOnCreate = (event): void => {
+  const handleOnCreate = (event: any): void => {
     if (event.layer?.editing?.latlngs[0][0]) {
       const coordinates = event.layer?.editing?.latlngs[0][0];
 
       setHasLocationDefined(true);
 
-      onLocationCreated(coordinates.map((coordinate) => ({ latitude: coordinate.lat, longitude: coordinate.lng })));
+      onLocationCreated(
+        coordinates.map((coordinate: { lat: number; lng: number }) => ({
+          latitude: coordinate.lat,
+          longitude: coordinate.lng,
+        })),
+      );
     }
   };
 
-  const handleOnDelete = (event): void => {
+  const handleOnDelete = (event: any): void => {
     if (event.layers?.getLayers().length > 0) {
       setHasLocationDefined(false);
     }

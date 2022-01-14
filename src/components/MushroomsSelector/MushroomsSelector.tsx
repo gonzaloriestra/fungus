@@ -9,7 +9,9 @@ const MushroomsSelector = ({ onSelect }: MushroomsSelectorProps): JSX.Element =>
   const { mushrooms, isLoading, error } = getMushrooms();
 
   function transformMushroomsInOptions(): Array<DropdownItemProps> {
-    return mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }));
+    return mushrooms
+      ? mushrooms.map((mushroom) => ({ key: mushroom.id, value: mushroom.id, text: mushroom.scientificName }))
+      : [];
   }
 
   if (error) {

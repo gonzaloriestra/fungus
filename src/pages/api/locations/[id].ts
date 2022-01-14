@@ -13,7 +13,9 @@ import locationCreator from '../../../Fungus/Locations/Application/Create';
 import { LocationAlreadyExist } from '../../../Fungus/Locations/Domain/LocationAlreadyExist';
 import { Zone } from '../../../Fungus/Locations/Domain/Zone';
 
-export default withApiAuthRequired(async function locations(req, res) {
+import CoordinateModel from '../../../models/Coordinate';
+
+export default withApiAuthRequired(async function (req, res) {
   try {
     const locationId = req.query.locationId as string;
 
@@ -23,31 +25,31 @@ export default withApiAuthRequired(async function locations(req, res) {
       res.status(httpStatus.OK).json(result.location);
       res.end();
     } else {
-      const { user } = getSession(req, res);
-      const userId = user['http://fungus/user_id'];
+      const session = getSession(req, res);
+      const userId = session?.user['http://fungus/user_id'];
       const { name, coordinates, weatherStationId } = JSON.parse(req.body);
 
       await locationCreator.run({
         id: new LocationId(locationId),
         name,
-        zone: new Zone({ coordinates: coordinates.map((coordinate) => new Coordinate(coordinate)) }),
+        zone: new Zone({ coordinates: coordinates.map((coordinate: CoordinateModel) => new Coordinate(coordinate)) }),
         weatherStationId: weatherStationId ? new WeatherStationId(weatherStationId) : undefined,
         userId: new UserId(userId),
       });
 
       res.status(httpStatus.CREATED).end();
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.message);
     // ToDo avoid this defining the exception with and error code ???
     if (error instanceof LocationDoesNotExist) {
-      return res.status(httpStatus.NOT_FOUND).end(error.message);
+      res.status(httpStatus.NOT_FOUND).end(error.message);
     }
     // ToDo avoid this defining the exception with and error code ???
     if (error instanceof LocationAlreadyExist) {
-      return res.status(httpStatus.BAD_REQUEST).end(error.message);
+      res.status(httpStatus.BAD_REQUEST).end(error.message);
     }
 
-    return res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
+    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

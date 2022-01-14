@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import addLocation from '../../actions/client/locations/addLocation';
 
 import Map from '../Map';
+import Zone from '../../models/Zone';
 
 type NewLocationModalProps = { show: boolean; onSave: Function };
 
 const NewLocationModal = ({ show, onSave }: NewLocationModalProps): JSX.Element => {
   const [name, setName] = useState('');
-  const [zone, setZone] = useState([]);
+  const [zone, setZone] = useState<Zone>();
   const [open, setOpen] = useState(show);
 
   const router = useRouter();
@@ -33,7 +34,9 @@ const NewLocationModal = ({ show, onSave }: NewLocationModalProps): JSX.Element 
   };
 
   const handleOnSave = async (): Promise<void> => {
-    await addLocation({ name, zone });
+    if (zone) {
+      await addLocation({ name, zone });
+    }
 
     closeModal();
 

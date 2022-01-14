@@ -1,10 +1,10 @@
-import Coordinate from './Coordinate';
+import Zone from './Zone';
 
 type Location = {
-  id?: string;
+  id: string;
   name: string;
   // To-Do remove the Array<any>
-  zone: { coordinates: Array<Coordinate> } | Array<any>;
+  zone: Zone;
 };
 
 export default Location;
