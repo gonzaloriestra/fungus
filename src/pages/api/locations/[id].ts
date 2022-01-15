@@ -17,7 +17,7 @@ import CoordinateModel from '../../../models/Coordinate';
 
 export default withApiAuthRequired(async function (req, res) {
   try {
-    const locationId = req.query.locationId as string;
+    const locationId = req.query.id as string;
 
     if (req.method === 'GET') {
       const result = await locationsByIdFinder.run({ locationId: new LocationId(locationId) });
