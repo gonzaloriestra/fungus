@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Form, Select, Header as SemanticHeader, Dimmer, Icon } from 'semantic-ui-react';
+import { Button, Container, Form, Select, Header as SemanticHeader, Dimmer, Icon, DropdownItemProps } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
 import { withClientAuthRequired } from '../../authentication/withAuthRequired';
@@ -36,8 +36,8 @@ function Predictions(): JSX.Element {
     router.push(`predictions/?locationId=${data.value}`, undefined, { shallow: true });
   };
 
-  function transformLocationsInOptions() {
-    return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name }));
+  function transformLocationsInOptions(): DropdownItemProps[] {
+    return locations?.map((location) => ({ key: location.id, value: location.id, text: location.name })) || [];
   }
 
   if (error) {
