@@ -13,8 +13,7 @@ export class FileMushroomRepository extends FileRepository implements MushroomRe
   constructor({
     mushrooms = new Mushrooms(),
     filePath = 'database/mushrooms.txt',
-    onLoad,
-  }: { mushrooms?: Mushrooms; filePath?: string; onLoad?: () => void } = {}) {
+  }: { mushrooms?: Mushrooms; filePath?: string } = {}) {
     super({ filePath });
 
     this._mushrooms = mushrooms;
@@ -23,7 +22,6 @@ export class FileMushroomRepository extends FileRepository implements MushroomRe
       onLineRead: (json) => {
         this._mushrooms.add(Mushroom.fromPrimitives(json));
       },
-      onFinish: onLoad,
     });
   }
 

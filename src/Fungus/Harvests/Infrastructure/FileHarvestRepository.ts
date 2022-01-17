@@ -1,41 +1,27 @@
-import * as fs from 'fs';
-import * as readline from 'readline';
-
 import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { LocationId } from '../../Shared/Domain/LocationId';
+import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
 
 import { HarvestRepository } from '../Domain/HarvestRepository';
 import { HarvestId } from '../Domain/HarvestId';
 import { Harvest } from '../Domain/Harvest';
 import { Harvests } from '../Domain/Harvests';
 
-// To-Do Extend from File repository
-export class FileHarvestRepository implements HarvestRepository {
-  harvests: Harvests;
-  filePath: string;
+export class FileHarvestRepository extends FileRepository implements HarvestRepository {
+  private readonly harvests: Harvests;
 
   constructor({
     harvests = new Harvests({ harvests: [] }),
     filePath = 'database/harvests.txt',
-    onLoad,
-  }: { harvests?: Harvests; filePath?: string; onLoad?: () => void } = {}) {
+  }: { harvests?: Harvests; filePath?: string } = {}) {
+    super({ filePath });
+
     this.harvests = harvests;
-    this.filePath = filePath;
 
-    this.__fetch({ onFinish: onLoad });
-  }
-
-  __fetch({ onFinish = (): void => undefined }: { onFinish?: () => void } = {}): void {
-    const lineReader = readline.createInterface({
-      input: fs.createReadStream(this.filePath),
-      crlfDelay: Infinity,
-    });
-
-    lineReader.on('close', onFinish);
-    lineReader.on('line', (line) => {
-      const json = JSON.parse(line);
-
-      this.harvests.add(Harvest.fromPrimitives(json));
+    this.readAll({
+      onLineRead: (json) => {
+        this.harvests.add(Harvest.fromPrimitives(json));
+      },
     });
   }
 
@@ -46,9 +32,7 @@ export class FileHarvestRepository implements HarvestRepository {
   add(harvest: Harvest): void {
     this.harvests.add(harvest);
 
-    fs.appendFile(this.filePath, `${JSON.stringify(harvest.toPrimitives())}\n`, (err) => {
-      if (err) throw err; // TODO Define own error
-    });
+    this.write(harvest);
   }
 
   count(): number {
@@ -64,6 +48,6 @@ export class FileHarvestRepository implements HarvestRepository {
   }
 
   clean(): void {
-    fs.truncate(this.filePath, 0, () => undefined);
+    this.cleanContent();
   }
 }

@@ -1,4 +1,3 @@
-import readline from 'readline';
 import fs from 'fs';
 
 import { AggregateRoot } from '../Domain/AggregateRoot';
@@ -12,23 +11,20 @@ export class FileRepository {
     this._filePath = filePath;
   }
 
-  readAll({
-    onLineRead,
-    onFinish = (): void => undefined,
-  }: {
-    onLineRead: (line: any) => void;
-    onFinish?: () => void;
-  }): void {
-    const lineReader = readline.createInterface({
-      input: fs.createReadStream(this._filePath),
-      crlfDelay: Infinity,
-    });
+  readAll({ onLineRead }: { onLineRead: (line: any) => void }): void {
+    const lines = fs
+      .readFileSync(this._filePath, 'utf-8')
+      .split('\n')
+      .filter((line) => line.startsWith('{'));
 
-    lineReader.on('close', onFinish);
-    lineReader.on('line', (line) => {
-      const json = JSON.parse(line);
+    lines.map((line) => {
+      try {
+        const json = JSON.parse(line);
 
-      onLineRead(json);
+        onLineRead(json);
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 

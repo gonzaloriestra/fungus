@@ -5,7 +5,7 @@ import { FileHarvestRepository } from './FileHarvestRepository';
 import HarvestMother from '../Domain/HarvestMother';
 
 describe('FileHarvestRepository', () => {
-  const filePath = 'harvests.test.txt';
+  const filePath = 'harvests.spec.txt';
   let subject: FileHarvestRepository;
 
   beforeAll((done) => {
@@ -22,6 +22,7 @@ describe('FileHarvestRepository', () => {
 
   describe('.add', () => {
     beforeAll((done) => {
+      fs.unlinkSync(filePath);
       fs.writeFile(filePath, '', (err) => {
         if (err) throw err;
 
@@ -41,6 +42,7 @@ describe('FileHarvestRepository', () => {
 
   describe('.findById', () => {
     beforeAll((done) => {
+      fs.unlinkSync(filePath);
       fs.writeFile(filePath, '', (err) => {
         if (err) throw err;
 
@@ -74,6 +76,7 @@ describe('FileHarvestRepository', () => {
     });
 
     beforeAll((done) => {
+      fs.unlinkSync(filePath);
       fs.writeFile(filePath, '', (err) => {
         if (err) throw err;
 

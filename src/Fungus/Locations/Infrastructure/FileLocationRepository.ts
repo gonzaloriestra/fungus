@@ -13,8 +13,7 @@ export class FileLocationRepository extends FileRepository implements LocationRe
   constructor({
     locations = new Locations(),
     filePath = 'database/locations.txt',
-    onLoad,
-  }: { locations?: Locations; filePath?: string; onLoad?: () => void } = {}) {
+  }: { locations?: Locations; filePath?: string } = {}) {
     super({ filePath });
 
     this._locations = locations;
@@ -23,7 +22,6 @@ export class FileLocationRepository extends FileRepository implements LocationRe
       onLineRead: (json) => {
         this._locations.add(Location.fromPrimitives(json));
       },
-      onFinish: onLoad,
     });
   }
 
