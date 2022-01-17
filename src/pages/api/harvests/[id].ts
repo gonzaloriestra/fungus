@@ -37,8 +37,8 @@ export default withApiAuthRequired(async function (req, res) {
       error instanceof LocationDoesNotExist
     ) {
       res.status(httpStatus.BAD_REQUEST).end(error.message);
+    } else {
+      res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
     }
-
-    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });

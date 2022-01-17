@@ -44,12 +44,11 @@ export default withApiAuthRequired(async function (req, res) {
     // ToDo avoid this defining the exception with and error code ???
     if (error instanceof LocationDoesNotExist) {
       res.status(httpStatus.NOT_FOUND).end(error.message);
-    }
-    // ToDo avoid this defining the exception with and error code ???
-    if (error instanceof LocationAlreadyExist) {
+      // ToDo avoid this defining the exception with and error code ???
+    } else if (error instanceof LocationAlreadyExist) {
       res.status(httpStatus.BAD_REQUEST).end(error.message);
+    } else {
+      res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
     }
-
-    res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).end(error.message);
   }
 });
