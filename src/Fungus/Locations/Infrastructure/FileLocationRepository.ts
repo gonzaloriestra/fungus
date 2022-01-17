@@ -1,5 +1,4 @@
 import { LocationId } from '../../Shared/Domain/LocationId';
-import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { UserId } from '../../Shared/Domain/UserId';
 
 import { FileRepository } from '../../Shared/Infrastructure/FileRepository';

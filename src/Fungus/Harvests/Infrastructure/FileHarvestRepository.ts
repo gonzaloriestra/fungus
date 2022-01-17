@@ -1,4 +1,3 @@
-import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { LocationId } from '../../Shared/Domain/LocationId';
 import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
 

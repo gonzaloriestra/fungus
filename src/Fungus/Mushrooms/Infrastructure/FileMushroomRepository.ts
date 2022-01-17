@@ -1,4 +1,3 @@
-import { MethodNotImplemented } from '../../Shared/Domain/MethodNotImplemented';
 import { MushroomId } from '../../Shared/Domain/MushroomId';
 
 import { FileRepository } from '../../Shared/Infrastructure/FileRepository';
