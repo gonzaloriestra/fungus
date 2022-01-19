@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Map as MapLeaflet, WMSTileLayer, TileLayer, Polygon } from 'react-leaflet';
+import { MapContainer, WMSTileLayer, TileLayer, Polygon } from 'react-leaflet';
 import { LatLng } from 'leaflet';
 
 import Location from '../../models/Location';
 import Zone from '../../models/Zone';
-import Coordinate from '../../models/Coordinate';
 
 import MapControls from './MapControls';
 
@@ -49,12 +48,12 @@ const Map = ({
   };
 
   return (
-    <MapLeaflet className={styles.container} center={position} zoom={zoom}>
+    <MapContainer className={styles.container} center={position} zoom={zoom}>
       <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
       <WMSTileLayer url="https://www.ign.es/wms-inspire/ign-base" format="image/png" layers="IGNBaseOrto" transparent />
       <MapControls mode={mode} onLocationCreated={onLocationCreated} />
       {renderLocation(location)}
-    </MapLeaflet>
+    </MapContainer>
   );
 };
 
