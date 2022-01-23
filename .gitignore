@@ -25,4 +25,5 @@ yarn-error.log
 /.next/
 
 # IOS
-/.DS_Store
+*/**/.DS_Store
+.DS_Store
