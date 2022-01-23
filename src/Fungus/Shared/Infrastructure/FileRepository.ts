@@ -12,20 +12,22 @@ export class FileRepository {
   }
 
   readAll({ onLineRead }: { onLineRead: (line: any) => void }): void {
-    const lines = fs
-      .readFileSync(this._filePath, 'utf-8')
-      .split('\n')
-      .filter((line) => line.startsWith('{'));
+    if (fs.existsSync(this._filePath)) {
+      const lines = fs
+        .readFileSync(this._filePath, 'utf-8')
+        .split('\n')
+        .filter((line) => line.startsWith('{'));
 
-    lines.map((line) => {
-      try {
-        const json = JSON.parse(line);
+      lines.map((line) => {
+        try {
+          const json = JSON.parse(line);
 
-        onLineRead(json);
-      } catch (error) {
-        console.error(error);
-      }
-    });
+          onLineRead(json);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
   }
 
   write(aggregate: AggregateRoot): void {
