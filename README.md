@@ -15,3 +15,7 @@ A fungi locator which notifies you when you have high options to collect mushroo
 `yarn run test:unit` to execute unit test
 
 # DEPLOYMENT
+
+## Deploy to Google Cloud Run
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)

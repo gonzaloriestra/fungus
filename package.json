@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start:dev": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
-    "start": "NODE_ENV=production next start",
+    "start": "NODE_ENV=production next start -p ${PORT:=3000}",
     "test": "yarn run test:unit",
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "NODE_ENV=test jest --watch",
