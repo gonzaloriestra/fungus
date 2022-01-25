@@ -1,10 +1,10 @@
 # FUNGUS
 
-A fungi locator which notifies you when you have high options to collect mushrooms in your mushroomslocations.
+A fungi locator which notifies you when you have higher options to collect mushrooms in your preferred locations.
 
 # DEVELOPMENT
 
-`start:dev` to run the web app in hot reloading mode
+`yarn start:dev` to run the web app in hot reloading mode
 
 # TESTING
 
